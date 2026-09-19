@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://biagio-scaglia.github.io/frutiger-js/sitemap.xml

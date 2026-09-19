@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Sky Background Gradient -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="45%" stop-color="#38bdf8" />
+      <stop offset="80%" stop-color="#bae6fd" />
+      <stop offset="100%" stop-color="#e0f2fe" />
+    </linearGradient>
+
+    <!-- Solar Lens Flare -->
+    <radialGradient id="sunBurst" cx="15%" cy="10%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+      <stop offset="25%" stop-color="#fed7aa" stop-opacity="0.4" />
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glass Window Surface -->
+    <linearGradient id="windowGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="15%" stop-color="#ffffff" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.75" />
+    </linearGradient>
+
+    <!-- Window Titlebar Gloss -->
+    <linearGradient id="titlebarGloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="49%" stop-color="#ffffff" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#bae6fd" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.4" />
+    </linearGradient>
+
+    <!-- Button Aero Gloss -->
+    <linearGradient id="aeroBtnGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="48%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#0369a1" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Shadow Filters -->
+    <filter id="windowShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="24" stdDeviation="32" flood-color="#0284c7" flood-opacity="0.35" />
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#034870" flood-opacity="0.2" />
+    </filter>
+
+    <filter id="btnShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Sky Background Canvas -->
+  <rect width="1200" height="630" fill="url(#skyGrad)" />
+  <rect width="1200" height="630" fill="url(#sunBurst)" />
+
+  <!-- Nature Clouds & Horizon Curves -->
+  <path d="M 0 520 Q 300 480 600 510 T 1200 490 L 1200 630 L 0 630 Z" fill="#ffffff" fill-opacity="0.35" />
+  <path d="M 0 550 Q 350 510 750 540 T 1200 530 L 1200 630 L 0 630 Z" fill="#22c55e" fill-opacity="0.2" />
+
+  <!-- Floating Liquid Bubbles -->
+  <circle cx="120" cy="180" r="32" fill="#ffffff" fill-opacity="0.3" stroke="#ffffff" stroke-width="1.5" />
+  <ellipse cx="112" cy="168" rx="10" ry="5" fill="#ffffff" fill-opacity="0.8" transform="rotate(-30 112 168)" />
+  
+  <circle cx="1080" cy="140" r="44" fill="#ffffff" fill-opacity="0.25" stroke="#ffffff" stroke-width="1.5" />
+  <ellipse cx="1068" cy="125" rx="14" ry="7" fill="#ffffff" fill-opacity="0.75" transform="rotate(-30 1068 125)" />
+
+  <circle cx="980" cy="460" r="24" fill="#ffffff" fill-opacity="0.2" stroke="#ffffff" stroke-width="1" />
+
+  <!-- Main Aero Glass Window Card -->
+  <g filter="url(#windowShadow)">
+    <rect x="150" y="75" width="900" height="480" rx="20" fill="url(#windowGlass)" stroke="#ffffff" stroke-width="2" />
+    
+    <!-- Titlebar -->
+    <path d="M 150 95 A 20 20 0 0 1 170 75 L 1030 75 A 20 20 0 0 1 1050 95 L 1050 135 L 150 135 Z" fill="url(#titlebarGloss)" stroke="#ffffff" stroke-width="1" />
+    
+    <!-- Window Traffic Light Buttons -->
+    <circle cx="1016" cy="105" r="7" fill="#ef4444" stroke="#b91c1c" stroke-width="1" />
+    <circle cx="994" cy="105" r="7" fill="#22c55e" stroke="#15803d" stroke-width="1" />
+    <circle cx="972" cy="105" r="7" fill="#eab308" stroke="#a16207" stroke-width="1" />
+
+    <!-- Titlebar Brand & Status -->
+    <g transform="translate(180, 111)">
+      <!-- Water Icon -->
+      <circle cx="10" cy="-6" r="12" fill="#0284c7" />
+      <circle cx="7" cy="-9" r="3" fill="#ffffff" />
+      <text x="32" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#034870">
+        Frutiger.js — Aero Glass Explorer (v0.1.0)
+      </text>
+    </g>
+
+    <!-- Inside Content -->
+    <!-- Tagline Badge -->
+    <rect x="200" y="165" width="230" height="32" rx="16" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5" />
+    <text x="220" y="186" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#047857">
+      🌿 WEB 2.0 AESTHETIC REBORN
+    </text>
+
+    <!-- Main Title -->
+    <text x="200" y="248" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="800" letter-spacing="-1px" fill="#0c4a6e">
+      Frutiger<tspan fill="#0ea5e9">.js</tspan>
+    </text>
+
+    <text x="200" y="295" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="600" fill="#0369a1">
+      Frutiger Aero, rebuilt for the modern web.
+    </text>
+
+    <text x="200" y="335" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="400" fill="#334155">
+      A modern React component library and CSS design system inspired by Web 2.0,
+    </text>
+    <text x="200" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="400" fill="#334155">
+      translucent acrylic glass, glossy dome buttons, and nature digital aesthetics.
+    </text>
+
+    <!-- Feature Pill Badges -->
+    <g transform="translate(200, 395)">
+      <rect x="0" y="0" width="130" height="28" rx="14" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1" />
+      <text x="14" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#0369a1">✨ React 18 &amp; 19</text>
+
+      <rect x="140" y="0" width="145" height="28" rx="14" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1" />
+      <text x="154" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#0369a1">💎 Pure CSS Layers</text>
+
+      <rect x="295" y="0" width="140" height="28" rx="14" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1" />
+      <text x="309" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#0369a1">♿ WCAG 2.1 AA</text>
+
+      <rect x="445" y="0" width="135" height="28" rx="14" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1" />
+      <text x="459" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#0369a1">📦 MIT Licensed</text>
+    </g>
+
+    <!-- CTAs Inside Window -->
+    <g transform="translate(200, 450)">
+      <!-- Primary Aero Button -->
+      <g filter="url(#btnShadow)">
+        <rect x="0" y="0" width="210" height="46" rx="23" fill="url(#aeroBtnGrad)" stroke="#bae6fd" stroke-width="1.5" />
+        <path d="M 15 5 C 30 1 180 1 195 5 C 190 14 20 14 15 5 Z" fill="#ffffff" fill-opacity="0.45" />
+        <text x="40" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="700" fill="#ffffff">
+          npm install @frutiger-js
+        </text>
+      </g>
+
+      <!-- Glass Secondary Button -->
+      <rect x="225" y="0" width="150" height="46" rx="23" fill="#ffffff" fill-opacity="0.75" stroke="#ffffff" stroke-width="1.5" />
+      <text x="250" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#0369a1">
+        Explore Demo →
+      </text>
+    </g>
+
+    <!-- Creator Branding Footer -->
+    <text x="1000" y="525" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#0284c7">
+      Architected with passion by Biagio Scaglia
+    </text>
+  </g>
+</svg>

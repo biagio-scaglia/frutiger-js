@@ -1,0 +1,17 @@
+{
+  "name": "Frutiger.js — Modern Frutiger Aero Design System",
+  "short_name": "Frutiger.js",
+  "description": "Frutiger Aero, rebuilt for the modern web. React UI components & pure CSS design system.",
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#38bdf8",
+  "background_color": "#f0f9ff",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

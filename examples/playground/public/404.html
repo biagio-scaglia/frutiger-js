@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Drifted Away | Frutiger.js</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="robots" content="noindex, follow" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #0284c7 0%, #38bdf8 40%, #bae6fd 80%, #f0f9ff 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        color: #0c4a6e;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 20px 45px -10px rgba(2, 132, 199, 0.3), inset 0 1px 2px #ffffff;
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        max-width: 520px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .sheen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 45%;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+        pointer-events: none;
+      }
+      .bubble {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #ffffff 0%, #38bdf8 55%, #0284c7 100%);
+        box-shadow: inset 0 2px 4px #ffffff, 0 8px 24px rgba(2, 132, 199, 0.4);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        margin-bottom: 1.5rem;
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.75rem;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #334155;
+        margin-bottom: 2rem;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        border-radius: 9999px;
+        background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+        color: #ffffff;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 12px rgba(2, 132, 199, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 18px rgba(2, 132, 199, 0.45);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="glass-card">
+      <div class="sheen"></div>
+      <div class="bubble">🫧</div>
+      <h1>Oops. This page drifted away.</h1>
+      <p>
+        The resource you are looking for might have evaporated into the digital clouds, or the URL might have changed.
+      </p>
+      <a href="./" class="btn">Return to Daylight Home ☀️</a>
+    </div>
+
+    <!-- GitHub Pages Single Page Application (SPA) Deep Link Redirect -->
+    <script>
+      (function () {
+        var pathSegments = window.location.pathname.split('/');
+        // If loaded under GitHub Pages subfolder, redirect query to index.html
+        var repoName = 'frutiger-js';
+        var isRepoSubfolder = pathSegments.indexOf(repoName) !== -1;
+        if (isRepoSubfolder && pathSegments.length > 2) {
+          var targetPath = window.location.pathname.replace('/' + repoName + '/', '');
+          if (targetPath && targetPath !== '404.html' && targetPath !== '404') {
+            window.location.replace(window.location.origin + '/' + repoName + '/#' + targetPath);
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
