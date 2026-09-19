@@ -1,0 +1,88 @@
+@layer fj.components {
+  /* Frutiger Aero Custom Scroll Area */
+  .fj-scroll-area {
+    position: relative;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.6) rgba(224, 242, 254, 0.4);
+    -webkit-overflow-scrolling: touch;
+    border-radius: inherit;
+  }
+
+  /* WebKit Custom Scrollbars */
+  .fj-scroll-area::-webkit-scrollbar,
+  .fj-scrollbar-aero::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .fj-scroll-area::-webkit-scrollbar-track,
+  .fj-scrollbar-aero::-webkit-scrollbar-track {
+    background: rgba(224, 242, 254, 0.4);
+    border-radius: var(--fj-radius-pill);
+    box-shadow: inset 0 1px 2px rgba(12, 74, 110, 0.08);
+    margin: 4px;
+  }
+
+  .fj-scroll-area::-webkit-scrollbar-thumb,
+  .fj-scrollbar-aero::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #7dd3fc 0%, #38bdf8 50%, #0284c7 100%);
+    border-radius: var(--fj-radius-pill);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.9),
+      0 1px 3px rgba(2, 132, 199, 0.35);
+    transition: background var(--fj-duration-fast) var(--fj-ease-out);
+  }
+
+  .fj-scroll-area::-webkit-scrollbar-thumb:hover,
+  .fj-scrollbar-aero::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #bae6fd 0%, #38bdf8 40%, #0369a1 100%);
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 1),
+      0 2px 8px rgba(2, 132, 199, 0.6);
+  }
+
+  .fj-scroll-area::-webkit-scrollbar-thumb:active,
+  .fj-scrollbar-aero::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 60%, #075985 100%);
+  }
+
+  .fj-scroll-area::-webkit-scrollbar-corner,
+  .fj-scrollbar-aero::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Scroll Area Container with Gradient Overflow Shadows */
+  .fj-scroll-area-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .fj-scroll-area-wrapper--has-top-shadow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background: linear-gradient(180deg, rgba(2, 132, 199, 0.15) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .fj-scroll-area-wrapper--has-bottom-shadow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background: linear-gradient(0deg, rgba(2, 132, 199, 0.15) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 10;
+  }
+}

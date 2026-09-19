@@ -1,0 +1,40 @@
+@layer fj.components {
+  /* Frutiger Aero Glossy Shimmer Skeleton */
+  .fj-skeleton {
+    display: block;
+    background: linear-gradient(
+      90deg,
+      rgba(224, 242, 254, 0.4) 0%,
+      rgba(255, 255, 255, 0.85) 50%,
+      rgba(224, 242, 254, 0.4) 100%
+    );
+    background-size: 200% 100%;
+    animation: fj-shimmer-gloss 1.8s infinite linear;
+    border-radius: var(--fj-radius-md);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  }
+
+  .fj-skeleton--circle {
+    border-radius: 50%;
+  }
+
+  .fj-skeleton--pill {
+    border-radius: var(--fj-radius-pill);
+  }
+
+  @keyframes fj-shimmer-gloss {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fj-skeleton {
+      animation: none;
+      background: rgba(224, 242, 254, 0.6);
+    }
+  }
+}
