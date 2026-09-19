@@ -17,7 +17,7 @@ describe('Gallery', () => {
     );
     expect(screen.getByText('Vista Aurora Borealis')).toBeInTheDocument();
     expect(screen.getByText('Wallpaper')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button'));
+    fireEvent.click(screen.getByRole('article'));
     expect(handleSelect).toHaveBeenCalled();
   });
 });

@@ -74,7 +74,7 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
     return (
       <div
         ref={ref}
-        role="button"
+        role={props.role || 'article'}
         tabIndex={0}
         onClick={handleClick}
         onKeyDown={e => {
@@ -83,6 +83,7 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
             handleClick(e as unknown as React.MouseEvent<HTMLDivElement>);
           }
         }}
+        aria-label={typeof title === 'string' ? title : undefined}
         className={cn('fj-gallery-item', className)}
         {...props}
       >
@@ -90,7 +91,11 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
           {imageNode ? (
             imageNode
           ) : imageUrl ? (
-            <img className="fj-gallery-item__img" src={imageUrl} alt={typeof title === 'string' ? title : 'Gallery item'} />
+            <img
+              className="fj-gallery-item__img"
+              src={imageUrl}
+              alt={typeof title === 'string' ? title : 'Gallery item'}
+            />
           ) : (
             fallbackIcon
           )}

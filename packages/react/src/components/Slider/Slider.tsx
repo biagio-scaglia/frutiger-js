@@ -62,6 +62,10 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             aria-valuenow={currentValue}
             aria-valuemin={Number(min)}
             aria-valuemax={Number(max)}
+            aria-label={
+              ((props as Record<string, unknown>)['aria-label'] as string) ||
+              (typeof label === 'string' ? label : 'Slider')
+            }
             {...props}
           />
         </div>

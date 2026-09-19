@@ -299,7 +299,7 @@ export default function App() {
                 <IconWater size={18} />
               </div>
               <span style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em' }}>
-                Frutiger<span style={{ color: 'var(--fj-color-sky-500)' }}>.js</span>
+                Frutiger<span style={{ color: 'var(--fj-color-sky-700)' }}>.js</span>
               </span>
             </div>
           }
@@ -520,7 +520,7 @@ export default function App() {
                         style={{
                           fontSize: '3.2rem',
                           fontWeight: 800,
-                          color: 'var(--fj-color-sky-600)',
+                          color: 'var(--fj-color-sky-800)',
                         }}
                       >
                         22°C
@@ -608,7 +608,11 @@ export default function App() {
                       </div>
                     </div>
 
-                    <Progress value={songProgress} style={{ marginBottom: '0.75rem' }} />
+                    <Progress
+                      value={songProgress}
+                      aria-label="Audio track playback progress"
+                      style={{ marginBottom: '0.75rem' }}
+                    />
 
                     <div
                       style={{
@@ -658,6 +662,7 @@ export default function App() {
                     <Divider label="Master Volume" style={{ margin: '1.25rem 0 0.75rem 0' }} />
 
                     <Slider
+                      aria-label="Master Volume"
                       value={sliderVolumeVal}
                       onChange={e => setSliderVolumeVal(Number(e.target.value))}
                       valueFormat={v => `${v}%`}
@@ -681,7 +686,14 @@ export default function App() {
                         marginBottom: '1.25rem',
                       }}
                     >
-                      <Progress variant="circular" value={28} size={70} strokeWidth={7} showLabel />
+                      <Progress
+                        variant="circular"
+                        value={28}
+                        size={70}
+                        strokeWidth={7}
+                        showLabel
+                        aria-label="CPU Utilization percentage"
+                      />
                       <div>
                         <div style={{ fontWeight: 700, fontSize: 'var(--fj-font-size-sm)' }}>
                           CPU Utilization
@@ -709,7 +721,7 @@ export default function App() {
                         <span>Memory (DDR4)</span>
                         <span>6.8 / 16 GB (42%)</span>
                       </div>
-                      <Progress value={42} status="success" />
+                      <Progress value={42} status="success" aria-label="Memory usage progress" />
                     </div>
 
                     <div>
@@ -724,7 +736,7 @@ export default function App() {
                         <span>Bandwidth</span>
                         <span>1 Gbps Optical</span>
                       </div>
-                      <Progress value={85} />
+                      <Progress value={85} aria-label="Bandwidth capacity usage" />
                     </div>
                   </CardContent>
                 </Card>
@@ -1636,6 +1648,7 @@ export default function App() {
                           <div style={{ width: 'clamp(200px, 100%, 300px)' }}>
                             <Input
                               placeholder="Search archive artifacts..."
+                              aria-label="Search archive artifacts"
                               value={archiveSearch}
                               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setArchiveSearch(e.target.value)
@@ -1891,7 +1904,10 @@ export default function App() {
                                   Computer ‣ Local Disk (C:) ‣ Media ‣ FrutigerArchive
                                 </div>
                                 <div style={{ width: '160px' }}>
-                                  <Input placeholder="Search folder..." />
+                                  <Input
+                                    placeholder="Search folder..."
+                                    aria-label="Search folder"
+                                  />
                                 </div>
                               </div>
 
@@ -2013,6 +2029,7 @@ export default function App() {
                         <div style={{ marginBottom: '1.5rem', maxWidth: '400px' }}>
                           <Input
                             placeholder="Search questions or keywords..."
+                            aria-label="Search questions or keywords"
                             value={faqSearch}
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                               setFaqSearch(e.target.value)
@@ -2420,7 +2437,7 @@ export default function App() {
               href="https://github.com/biagio-scaglia"
               target="_blank"
               rel="noreferrer"
-              style={{ color: 'var(--fj-color-sky-600)', fontWeight: 700, textDecoration: 'none' }}
+              style={{ color: 'var(--fj-color-sky-800)', fontWeight: 700, textDecoration: 'none' }}
             >
               Biagio Scaglia
             </a>{' '}

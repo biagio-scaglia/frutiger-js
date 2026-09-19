@@ -25,6 +25,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={textareaId}
           disabled={disabled}
           aria-invalid={isError}
+          aria-label={
+            props['aria-label'] || (!label && props.placeholder ? props.placeholder : undefined)
+          }
           aria-describedby={
             error ? `${textareaId}-error` : helperText ? `${textareaId}-helper` : undefined
           }

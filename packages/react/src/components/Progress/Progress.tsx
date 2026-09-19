@@ -9,6 +9,7 @@ export interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number; // For circular progress (px)
   strokeWidth?: number; // For circular progress
   showLabel?: boolean;
+  label?: string;
 }
 
 export const Progress: React.FC<ProgressProps> = ({
@@ -19,10 +20,14 @@ export const Progress: React.FC<ProgressProps> = ({
   size = 64,
   strokeWidth = 6,
   showLabel = false,
+  label,
   className,
   ...props
 }) => {
   const percentage = Math.min(Math.max(0, (value / max) * 100), 100);
+  const progressLabel =
+    ((props as Record<string, unknown>)['aria-label'] as string) ||
+    (typeof label === 'string' ? label : `Progress: ${Math.round(percentage)}%`);
 
   if (variant === 'circular') {
     const radius = (size - strokeWidth) / 2;
@@ -35,6 +40,7 @@ export const Progress: React.FC<ProgressProps> = ({
         aria-valuenow={value}
         aria-valuemin={0}
         aria-valuemax={max}
+        aria-label={progressLabel}
         className={cn('fj-progress-circle', className)}
         style={{ width: size, height: size }}
         {...props}
@@ -70,6 +76,7 @@ export const Progress: React.FC<ProgressProps> = ({
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
+      aria-label={progressLabel}
       className={cn('fj-progress-bar', className)}
       {...props}
     >

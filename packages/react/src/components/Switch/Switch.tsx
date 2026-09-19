@@ -56,6 +56,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
           type="button"
           role="switch"
           aria-checked={isChecked}
+          aria-label={
+            ((props as Record<string, unknown>)['aria-label'] as string) ||
+            (typeof label === 'string' ? label : 'Toggle switch')
+          }
           disabled={disabled}
           onClick={handleClick}
           onKeyDown={handleKeyDown}

@@ -34,6 +34,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             id={selectId}
             disabled={disabled}
             aria-invalid={isError}
+            aria-label={
+              props['aria-label'] ||
+              (!label && typeof props.title === 'string'
+                ? props.title
+                : !label
+                  ? 'Select option'
+                  : undefined)
+            }
             aria-describedby={
               error ? `${selectId}-error` : helperText ? `${selectId}-helper` : undefined
             }
