@@ -2,7 +2,8 @@ import React, { forwardRef, useState } from 'react';
 import { cn } from '../../utils/cn';
 import { IconCloud } from '../../icons';
 
-export interface DropzoneProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onDrop'> {
+export interface DropzoneProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onDrop' | 'title'> {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   icon?: React.ReactNode;

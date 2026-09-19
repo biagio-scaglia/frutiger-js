@@ -41,6 +41,9 @@ import {
   Grid,
   Slider,
   Divider,
+  ScrollArea,
+  Dropzone,
+  Skeleton,
   IconSun,
   IconWater,
   IconLeaf,
@@ -529,6 +532,7 @@ export default function App() {
                 <Tab value="forms">Form Controls</Tab>
                 <Tab value="feedback">Alerts & Badges</Tab>
                 <Tab value="navigation">Tabs & Accordion</Tab>
+                <Tab value="overflow">Custom Overflow</Tab>
                 <Tab value="responsive">Responsive Lab</Tab>
               </TabList>
 
@@ -744,6 +748,19 @@ export default function App() {
                         valueFormat={v => `${v} dB`}
                       />
                     </Grid>
+
+                    <Divider
+                      label="Skeuomorphic File Upload & Dropzone"
+                      style={{ margin: '2rem 0 1.5rem 0' }}
+                    />
+
+                    <Dropzone
+                      title="Drag & drop Frutiger Aero assets or click to browse"
+                      subtitle="Supports wallpapers, 3D icons, audio stems, and vector packages up to 50MB"
+                      onFilesSelected={files =>
+                        alert(`Uploaded ${files.length} asset(s): ${files[0].name}`)
+                      }
+                    />
                   </CardContent>
                 </Card>
               </TabPanel>
@@ -780,6 +797,57 @@ export default function App() {
                       </Tooltip>
                     ))}
                   </div>
+
+                  <Divider
+                    label="Iridescent Skeleton Shimmer Loaders"
+                    style={{ margin: '1.5rem 0 1rem 0' }}
+                  />
+
+                  <Grid columns="repeat(auto-fit, minmax(260px, 1fr))" gap="1rem">
+                    <Card variant="default">
+                      <CardContent style={{ padding: '1.25rem' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '1rem',
+                            alignItems: 'center',
+                            marginBottom: '1rem',
+                          }}
+                        >
+                          <Skeleton variant="circle" width="48px" height="48px" />
+                          <div
+                            style={{
+                              flex: 1,
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: '0.5rem',
+                            }}
+                          >
+                            <Skeleton height="16px" width="75%" />
+                            <Skeleton height="12px" width="50%" />
+                          </div>
+                        </div>
+                        <Skeleton height="14px" width="100%" style={{ marginBottom: '0.5rem' }} />
+                        <Skeleton height="14px" width="85%" style={{ marginBottom: '1rem' }} />
+                        <Skeleton variant="pill" height="32px" width="110px" />
+                      </CardContent>
+                    </Card>
+
+                    <Card variant="glass">
+                      <CardContent style={{ padding: '1.25rem' }}>
+                        <Skeleton
+                          height="110px"
+                          width="100%"
+                          style={{
+                            borderRadius: 'var(--fj-radius-lg)',
+                            marginBottom: '1rem',
+                          }}
+                        />
+                        <Skeleton height="18px" width="80%" style={{ marginBottom: '0.5rem' }} />
+                        <Skeleton height="14px" width="60%" />
+                      </CardContent>
+                    </Card>
+                  </Grid>
                 </Stack>
               </TabPanel>
 
@@ -810,6 +878,187 @@ export default function App() {
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
+              </TabPanel>
+
+              {/* OVERFLOW & SCROLLAREA TAB */}
+              <TabPanel value="overflow">
+                <Stack spacing="lg">
+                  <Card variant="glass">
+                    <CardHeader>
+                      <div>
+                        <CardTitle>Custom Aero Scrollbars & Dynamic Overflow Regions</CardTitle>
+                        <CardDescription>
+                          Tactile skeuomorphic scrollbars with aqua gradient thumbs, subtle tracks,
+                          and dynamic top/bottom shadow masks.
+                        </CardDescription>
+                      </div>
+                      <Badge variant="nature">Touch & A11y Region</Badge>
+                    </CardHeader>
+                    <CardContent>
+                      <Grid columns="repeat(auto-fit, minmax(min(100%, 300px), 1fr))" gap="1.5rem">
+                        {/* Vertical ScrollArea Demo */}
+                        <div>
+                          <h4
+                            style={{
+                              margin: '0 0 0.75rem 0',
+                              fontSize: 'var(--fj-font-size-md)',
+                              fontWeight: 700,
+                              color: 'var(--fj-color-sky-950)',
+                            }}
+                          >
+                            Vertical ScrollArea (with Dynamic Fade Shadows)
+                          </h4>
+                          <ScrollArea
+                            maxHeight="250px"
+                            showOverflowShadows
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.65)',
+                              padding: '1.25rem',
+                              borderRadius: 'var(--fj-radius-lg)',
+                              border: '1px solid rgba(186, 230, 253, 0.85)',
+                            }}
+                          >
+                            <div
+                              style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+                            >
+                              {[
+                                {
+                                  title: 'Windows Vista Aero Glass',
+                                  desc: 'Translucent glass surfaces with specular highlights and vivid nature wallpapers.',
+                                },
+                                {
+                                  title: 'Mac OS X Aqua Interface',
+                                  desc: 'Luminous gel buttons, ripple effects, crystal spheres, and skeuomorphic organic joy.',
+                                },
+                                {
+                                  title: 'PlayStation 3 XMB Wave',
+                                  desc: 'Dynamic flowing ribbon waves, particle dust, and iridescent daylight illumination.',
+                                },
+                                {
+                                  title: 'Nintendo Wii Channel UI',
+                                  desc: 'Soft rounded rectangles, bubbly cursor feedback, and clean digital optimism.',
+                                },
+                                {
+                                  title: 'iOS 6 Skeuomorphic Precision',
+                                  desc: 'Rich tactile textures, custom dials, stitched borders, and glossy chrome highlights.',
+                                },
+                                {
+                                  title: 'Windows 7 Desktop Gadgets',
+                                  desc: 'Translucent floating desktop widgets showing dials, weather radars, and analog clocks.',
+                                },
+                              ].map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  style={{
+                                    padding: '0.75rem 1rem',
+                                    background: 'rgba(255, 255, 255, 0.8)',
+                                    borderRadius: 'var(--fj-radius-md)',
+                                    border: '1px solid rgba(255, 255, 255, 0.95)',
+                                    boxShadow: '0 2px 6px rgba(2, 132, 199, 0.08)',
+                                  }}
+                                >
+                                  <div
+                                    style={{
+                                      fontWeight: 700,
+                                      fontSize: 'var(--fj-font-size-sm)',
+                                      color: 'var(--fj-color-sky-900)',
+                                    }}
+                                  >
+                                    {item.title}
+                                  </div>
+                                  <div
+                                    style={{
+                                      fontSize: 'var(--fj-font-size-xs)',
+                                      color: 'var(--fj-color-text-muted)',
+                                      marginTop: '0.2rem',
+                                    }}
+                                  >
+                                    {item.desc}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </ScrollArea>
+                        </div>
+
+                        {/* Horizontal ScrollArea Demo */}
+                        <div>
+                          <h4
+                            style={{
+                              margin: '0 0 0.75rem 0',
+                              fontSize: 'var(--fj-font-size-md)',
+                              fontWeight: 700,
+                              color: 'var(--fj-color-sky-950)',
+                            }}
+                          >
+                            Horizontal Custom Scrollbar Demo
+                          </h4>
+                          <ScrollArea
+                            maxHeight="250px"
+                            showOverflowShadows={false}
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.65)',
+                              padding: '1.25rem',
+                              borderRadius: 'var(--fj-radius-lg)',
+                              border: '1px solid rgba(186, 230, 253, 0.85)',
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: 'flex',
+                                gap: '1rem',
+                                width: 'max-content',
+                                paddingBottom: '0.5rem',
+                              }}
+                            >
+                              {[
+                                { name: 'Pure Sky Blue', hex: '#38bdf8' },
+                                { name: 'Deep Ocean Blue', hex: '#0284c7' },
+                                { name: 'Lagoon Turquoise', hex: '#2dd4bf' },
+                                { name: 'Meadow Green', hex: '#22c55e' },
+                                { name: 'Solar Sun Amber', hex: '#fbbf24' },
+                                { name: 'Berry Crystal Pink', hex: '#f43f5e' },
+                                { name: 'Spring Fresh Leaf', hex: '#86efac' },
+                                { name: 'Cloud Light Aqua', hex: '#e0f2fe' },
+                              ].map((c, idx) => (
+                                <div
+                                  key={idx}
+                                  style={{
+                                    width: 135,
+                                    padding: '1.25rem 0.85rem',
+                                    background: `linear-gradient(135deg, ${c.hex} 0%, rgba(255,255,255,0.85) 100%)`,
+                                    borderRadius: 'var(--fj-radius-lg)',
+                                    border: '1px solid rgba(255, 255, 255, 0.95)',
+                                    boxShadow:
+                                      'inset 0 1px 1px #fff, 0 4px 12px rgba(2, 132, 199, 0.15)',
+                                    textAlign: 'center',
+                                    fontWeight: 700,
+                                    fontSize: 'var(--fj-font-size-xs)',
+                                    color: '#0f2d4a',
+                                  }}
+                                >
+                                  <div style={{ marginBottom: '0.4rem', fontSize: '1.25rem' }}>
+                                    💧
+                                  </div>
+                                  <div>{c.name}</div>
+                                  <div
+                                    style={{
+                                      opacity: 0.85,
+                                      marginTop: '4px',
+                                      fontFamily: 'monospace',
+                                    }}
+                                  >
+                                    {c.hex}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </ScrollArea>
+                        </div>
+                      </Grid>
+                    </CardContent>
+                  </Card>
+                </Stack>
               </TabPanel>
 
               {/* RESPONSIVE LAB TAB */}
