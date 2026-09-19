@@ -90,17 +90,18 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
           {imageNode ? (
             imageNode
           ) : imageUrl ? (
-            <img src={imageUrl} alt={typeof title === 'string' ? title : 'Gallery item'} />
+            <img className="fj-gallery-item__img" src={imageUrl} alt={typeof title === 'string' ? title : 'Gallery item'} />
           ) : (
             fallbackIcon
           )}
+          <div className="fj-gallery-item__gloss-overlay" aria-hidden="true" />
           {badge && <div className="fj-gallery-item__badge">{badge}</div>}
         </div>
         <div className="fj-gallery-item__body">
           {category && <div className="fj-gallery-item__category">{category}</div>}
           <div className="fj-gallery-item__title">{title}</div>
           {description && <div className="fj-gallery-item__description">{description}</div>}
-          {footer && <div style={{ marginTop: '0.75rem' }}>{footer}</div>}
+          {footer && <div className="fj-gallery-item__footer">{footer}</div>}
         </div>
       </div>
     );

@@ -1659,6 +1659,7 @@ export default function App() {
                                   style={{
                                     width: '100%',
                                     height: '100%',
+                                    minHeight: '160px',
                                     background: item.gradient,
                                     position: 'relative',
                                     overflow: 'hidden',
