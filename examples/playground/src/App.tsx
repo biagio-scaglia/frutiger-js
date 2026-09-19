@@ -574,6 +574,7 @@ const AERO_ICONS_LIST = [
 
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
+  const [selectedExplorerTab, setSelectedExplorerTab] = useState('buttons');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
@@ -695,9 +696,21 @@ export default function App() {
           <NavLink
             href="#components"
             isActive={activeNav === 'components'}
-            onClick={() => setActiveNav('components')}
+            onClick={() => {
+              setActiveNav('components');
+            }}
           >
             Components
+          </NavLink>
+          <NavLink
+            href="#components"
+            isActive={activeNav === 'icons'}
+            onClick={() => {
+              setActiveNav('icons');
+              setSelectedExplorerTab('icons');
+            }}
+          >
+            Aero Icons
           </NavLink>
           <NavLink
             href="#responsive-lab"
@@ -802,6 +815,15 @@ export default function App() {
                 <a href="#components" style={{ textDecoration: 'none' }}>
                   <Button variant="aero" size="lg">
                     Explore Components →
+                  </Button>
+                </a>
+                <a
+                  href="#components"
+                  style={{ textDecoration: 'none' }}
+                  onClick={() => setSelectedExplorerTab('icons')}
+                >
+                  <Button variant="glass" size="lg" leftIcon={<IconSparkles size={18} />}>
+                    Aero Icons (45+) ✨
                   </Button>
                 </a>
                 <Button
@@ -1116,7 +1138,7 @@ export default function App() {
                 Interactive Component Explorer
               </h2>
 
-              <Tabs defaultValue="buttons">
+              <Tabs value={selectedExplorerTab} onValueChange={setSelectedExplorerTab}>
                 <TabList>
                   <Tab value="buttons">Buttons</Tab>
                   <Tab value="cards">Cards & Surfaces</Tab>
