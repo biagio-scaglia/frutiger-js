@@ -1,13 +1,18 @@
-name: Release
+name: Release & Publish
 
 on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
   release:
-    name: Build & Publish
+    name: Build & Publish to npm
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,14 +27,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Quality Gate
+      - name: Run Full Quality Gate
         run: |
           npm run lint
           npm run typecheck
-          npm run test
+          npm test
           npm run build
 
-      # - name: Publish to NPM
-      #   run: npm publish --workspaces --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Inspect Package Tarballs
+        run: |
+          npm pack --dry-run --workspace=@frutiger-js/core
+          npm pack --dry-run --workspace=@frutiger-js/react
+
+      - name: Publish @frutiger-js/core
+        run: npm publish --workspace=@frutiger-js/core --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true
+
+      - name: Publish @frutiger-js/react
+        run: npm publish --workspace=@frutiger-js/react --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true

@@ -2,13 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [master, main]
   pull_request:
-    branches: [main]
+    branches: [master, main]
 
 jobs:
   validate:
-    name: Lint, Test & Build
+    name: Lint, Typecheck, Test & Build
     runs-on: ubuntu-latest
 
     strategy:
@@ -40,5 +40,10 @@ jobs:
       - name: Run Tests
         run: npm run test
 
-      - name: Build Packages
+      - name: Build Packages & Showcase
         run: npm run build
+
+      - name: Test Package Packing
+        run: |
+          npm pack --dry-run --workspace=@frutiger-js/core
+          npm pack --dry-run --workspace=@frutiger-js/react
