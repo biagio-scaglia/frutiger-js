@@ -20,6 +20,8 @@ export * from './components/Avatar';
 export * from './components/Breadcrumb';
 export * from './components/Navbar';
 export * from './components/Sidebar';
+export * from './components/Slider';
+export * from './components/Divider';
 export * from './components/Container';
 export * from './components/Stack';
 export * from './components/Grid';
