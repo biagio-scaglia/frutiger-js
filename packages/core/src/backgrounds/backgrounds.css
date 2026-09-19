@@ -43,4 +43,10 @@
       linear-gradient(180deg, #38bdf8 0%, #7dd3fc 45%, #bae6fd 75%, #f0fdf4 100%);
     background-attachment: fixed;
   }
+
+  @media (max-width: 768px) {
+    .fj-bg-aero {
+      background-attachment: scroll; /* Optimal scroll performance on iOS and mobile */
+    }
+  }
 }

@@ -4,6 +4,7 @@
     flex-direction: column;
     gap: var(--fj-space-1);
     width: 100%;
+    box-sizing: border-box;
   }
 
   .fj-label {
@@ -17,11 +18,12 @@
     display: flex;
     align-items: center;
     width: 100%;
+    box-sizing: border-box;
   }
 
   .fj-input {
     width: 100%;
-    height: 40px;
+    height: 42px;
     padding: 0 var(--fj-space-4);
     font-size: var(--fj-font-size-sm);
     font-family: var(--fj-font-family-sans);
@@ -34,6 +36,7 @@
       inset 0 0 0 1px rgba(255, 255, 255, 0.8);
     transition: all 0.2s ease;
     outline: none;
+    box-sizing: border-box;
   }
 
   .fj-input::placeholder {
@@ -100,11 +103,20 @@
   .fj-helper-text {
     font-size: var(--fj-font-size-xs);
     color: var(--fj-color-text-muted);
+    overflow-wrap: break-word;
   }
   .fj-helper-text--error {
     color: var(--fj-color-danger);
   }
   .fj-helper-text--success {
     color: var(--fj-color-success);
+  }
+
+  /* iOS / Mobile Zoom Prevention (>= 16px font size on small screens) */
+  @media (max-width: 768px) {
+    .fj-input {
+      font-size: 16px;
+      height: 44px; /* Enhanced touch target */
+    }
   }
 }

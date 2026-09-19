@@ -1,0 +1,10 @@
+@layer fj.tokens {
+  :root {
+    --fj-breakpoint-xs: 320px;
+    --fj-breakpoint-sm: 640px;
+    --fj-breakpoint-md: 768px;
+    --fj-breakpoint-lg: 1024px;
+    --fj-breakpoint-xl: 1280px;
+    --fj-breakpoint-2xl: 1536px;
+  }
+}

@@ -1,5 +1,6 @@
 @layer fj.tokens {
   :root {
+    /* Fixed Spacing Scale */
     --fj-space-1: 0.25rem; /* 4px */
     --fj-space-2: 0.5rem; /* 8px */
     --fj-space-3: 0.75rem; /* 12px */
@@ -12,5 +13,13 @@
     --fj-space-16: 4rem; /* 64px */
     --fj-space-20: 5rem; /* 80px */
     --fj-space-24: 6rem; /* 96px */
+
+    /* Fluid Responsive Spacing Scale */
+    --fj-fluid-container-padding: clamp(1rem, 4vw, 2.5rem);
+    --fj-fluid-space-xs: clamp(0.25rem, 1vw, 0.5rem);
+    --fj-fluid-space-sm: clamp(0.5rem, 1.5vw, 0.75rem);
+    --fj-fluid-space-md: clamp(1rem, 2.5vw, 1.5rem);
+    --fj-fluid-space-lg: clamp(1.5rem, 4vw, 2.5rem);
+    --fj-fluid-space-xl: clamp(2rem, 6vw, 4rem);
   }
 }

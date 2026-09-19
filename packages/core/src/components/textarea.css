@@ -1,7 +1,7 @@
 @layer fj.components {
   .fj-textarea {
     width: 100%;
-    min-height: 80px;
+    min-height: 84px;
     padding: var(--fj-space-3) var(--fj-space-4);
     font-size: var(--fj-font-size-sm);
     font-family: var(--fj-font-family-sans);
@@ -15,6 +15,7 @@
     transition: all 0.2s ease;
     outline: none;
     resize: vertical;
+    box-sizing: border-box;
   }
 
   .fj-textarea::placeholder {
@@ -43,5 +44,11 @@
     color: var(--fj-color-text-muted);
     cursor: not-allowed;
     opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .fj-textarea {
+      font-size: 16px;
+    }
   }
 }
