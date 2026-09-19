@@ -1,0 +1,111 @@
+@layer fj.tokens {
+  :root {
+    /* Sky Palette (Luminous, airy cyan-blues) */
+    --fj-color-sky-50: #f0f9ff;
+    --fj-color-sky-100: #e0f2fe;
+    --fj-color-sky-200: #bae6fd;
+    --fj-color-sky-300: #7dd3fc;
+    --fj-color-sky-400: #38bdf8;
+    --fj-color-sky-500: #0ea5e9;
+    --fj-color-sky-600: #0284c7;
+    --fj-color-sky-700: #0369a1;
+    --fj-color-sky-800: #075985;
+    --fj-color-sky-900: #0c4a6e;
+
+    /* Ocean Palette (Deep, vivid crystalline water blues) */
+    --fj-color-ocean-50: #eff6ff;
+    --fj-color-ocean-100: #dbeafe;
+    --fj-color-ocean-200: #bfdbfe;
+    --fj-color-ocean-300: #93c5fd;
+    --fj-color-ocean-400: #60a5fa;
+    --fj-color-ocean-500: #3b82f6;
+    --fj-color-ocean-600: #2563eb;
+    --fj-color-ocean-700: #1d4ed8;
+    --fj-color-ocean-800: #1e40af;
+    --fj-color-ocean-900: #1e3a8a;
+
+    /* Grass & Nature (Vibrant sunny meadow greens) */
+    --fj-color-grass-50: #f0fdf4;
+    --fj-color-grass-100: #dcfce7;
+    --fj-color-grass-200: #bbf7d0;
+    --fj-color-grass-300: #86efac;
+    --fj-color-grass-400: #4ade80;
+    --fj-color-grass-500: #22c55e;
+    --fj-color-grass-600: #16a34a;
+    --fj-color-grass-700: #15803d;
+    --fj-color-grass-800: #166534;
+    --fj-color-grass-900: #14532d;
+
+    /* Leaf & Emerald (Rich foliage green) */
+    --fj-color-leaf-50: #ecfdf5;
+    --fj-color-leaf-100: #d1fae5;
+    --fj-color-leaf-200: #a7f3d0;
+    --fj-color-leaf-300: #6ee7b7;
+    --fj-color-leaf-400: #34d399;
+    --fj-color-leaf-500: #10b981;
+    --fj-color-leaf-600: #059669;
+    --fj-color-leaf-700: #047857;
+    --fj-color-leaf-800: #065f46;
+    --fj-color-leaf-900: #064e3b;
+
+    /* Water & Aqua (Translucent marine turquoise) */
+    --fj-color-water-50: #f0fdfa;
+    --fj-color-water-100: #ccfbf1;
+    --fj-color-water-200: #99f6e4;
+    --fj-color-water-300: #5eead4;
+    --fj-color-water-400: #2dd4bf;
+    --fj-color-water-500: #14b8a6;
+    --fj-color-water-600: #0d9488;
+    --fj-color-water-700: #0f766e;
+    --fj-color-water-800: #115e59;
+    --fj-color-water-900: #134e4a;
+
+    /* Cloud & Glass Frost (Bright, translucent whites and misty silvers) */
+    --fj-color-cloud-50: #ffffff;
+    --fj-color-cloud-100: #f8fafc;
+    --fj-color-cloud-200: #f1f5f9;
+    --fj-color-cloud-300: #e2e8f0;
+    --fj-color-cloud-400: #cbd5e1;
+    --fj-color-cloud-500: #94a3b8;
+    --fj-color-cloud-600: #64748b;
+    --fj-color-cloud-700: #475569;
+    --fj-color-cloud-800: #334155;
+    --fj-color-cloud-900: #1e293b;
+
+    /* Sun & Solar (Warm sunny amber-yellow) */
+    --fj-color-sun-50: #fffbeb;
+    --fj-color-sun-100: #fef3c7;
+    --fj-color-sun-200: #fde68a;
+    --fj-color-sun-300: #fcd34d;
+    --fj-color-sun-400: #fbbf24;
+    --fj-color-sun-500: #f59e0b;
+    --fj-color-sun-600: #d97706;
+    --fj-color-sun-700: #b45309;
+    --fj-color-sun-800: #92400e;
+    --fj-color-sun-900: #78350f;
+
+    /* Berry & Sunset (Glossy ruby/magenta accents) */
+    --fj-color-berry-50: #fff1f2;
+    --fj-color-berry-100: #ffe4e6;
+    --fj-color-berry-200: #fecdd3;
+    --fj-color-berry-300: #fda4af;
+    --fj-color-berry-400: #fb7185;
+    --fj-color-berry-500: #f43f5e;
+    --fj-color-berry-600: #e11d48;
+    --fj-color-berry-700: #be123c;
+    --fj-color-berry-800: #9f1239;
+    --fj-color-berry-900: #881337;
+
+    /* Neutrals (Polished steel and clean slate) */
+    --fj-color-neutral-50: #fcfdfe;
+    --fj-color-neutral-100: #f4f6f8;
+    --fj-color-neutral-200: #e8ecf1;
+    --fj-color-neutral-300: #d6dde5;
+    --fj-color-neutral-400: #9aa7b5;
+    --fj-color-neutral-500: #627282;
+    --fj-color-neutral-600: #475463;
+    --fj-color-neutral-700: #333d49;
+    --fj-color-neutral-800: #212831;
+    --fj-color-neutral-900: #12171d;
+  }
+}

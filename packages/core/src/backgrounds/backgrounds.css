@@ -1,0 +1,56 @@
+@layer fj.utilities {
+  /* Sky Background (Clear luminous daylight) */
+  .fj-bg-sky {
+    background: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 35%, #e0f2fe 80%, #ffffff 100%);
+  }
+
+  /* Ocean Background (Deep crystal marine horizon) */
+  .fj-bg-ocean {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 40%, #0c4a6e 85%, #082f49 100%);
+  }
+
+  /* Water Aqua Background (Refreshing tropical lagoon) */
+  .fj-bg-water {
+    background: linear-gradient(180deg, #2dd4bf 0%, #0ea5e9 50%, #0369a1 100%);
+  }
+
+  /* Grass / Meadow Background (Sunny green hill landscape gradient) */
+  .fj-bg-grass {
+    background: linear-gradient(180deg, #bae6fd 0%, #86efac 60%, #22c55e 100%);
+  }
+
+  /* Cloud & Glass Light (Soft pearlescent sheen) */
+  .fj-bg-cloud {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%);
+  }
+
+  /* Sunset Background (Warm solar aura fading into dusk blue) */
+  .fj-bg-sunset {
+    background: linear-gradient(180deg, #fb923c 0%, #fbbf24 30%, #38bdf8 70%, #0284c7 100%);
+  }
+
+  /* Authentic Frutiger Aero Atmospheric Gradient */
+  .fj-bg-aero {
+    background:
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(224, 242, 254, 0.4) 40%,
+        transparent 70%
+      ),
+      radial-gradient(circle at 20% 80%, rgba(134, 239, 172, 0.35) 0%, transparent 50%),
+      radial-gradient(circle at 80% 85%, rgba(56, 189, 248, 0.4) 0%, transparent 60%),
+      linear-gradient(180deg, #38bdf8 0%, #7dd3fc 45%, #bae6fd 75%, #f0fdf4 100%);
+    background-attachment: fixed;
+  }
+
+  /* Aero Night Atmospheric Gradient */
+  .fj-bg-aero-night {
+    background:
+      radial-gradient(ellipse at 50% 10%, rgba(56, 189, 248, 0.25) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(13, 148, 136, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.25) 0%, transparent 60%),
+      linear-gradient(180deg, #071526 0%, #0c2b48 45%, #0a3d62 80%, #082136 100%);
+    background-attachment: fixed;
+  }
+}

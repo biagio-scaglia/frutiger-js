@@ -1,0 +1,50 @@
+@layer fj.tokens {
+  :root {
+    /* Semantic Colors - Default Light Aero Theme */
+    --fj-color-background: #f0f8ff;
+    --fj-color-background-surface: rgba(255, 255, 255, 0.82);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.95);
+    --fj-color-background-overlay: rgba(12, 74, 110, 0.4);
+
+    --fj-color-text: #0f2d4a;
+    --fj-color-text-muted: #537188;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(186, 230, 253, 0.8);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.6);
+    --fj-color-border-strong: #7dd3fc;
+
+    --fj-color-primary: #0284c7;
+    --fj-color-primary-hover: #0369a1;
+    --fj-color-primary-active: #075985;
+    --fj-color-primary-light: #e0f2fe;
+
+    --fj-color-secondary: #0d9488;
+    --fj-color-secondary-hover: #0f766e;
+    --fj-color-secondary-active: #115e59;
+    --fj-color-secondary-light: #ccfbf1;
+
+    --fj-color-success: #16a34a;
+    --fj-color-success-hover: #15803d;
+    --fj-color-success-active: #166534;
+    --fj-color-success-light: #dcfce7;
+
+    --fj-color-warning: #d97706;
+    --fj-color-warning-hover: #b45309;
+    --fj-color-warning-active: #92400e;
+    --fj-color-warning-light: #fef3c7;
+
+    --fj-color-danger: #e11d48;
+    --fj-color-danger-hover: #be123c;
+    --fj-color-danger-active: #9f1239;
+    --fj-color-danger-light: #ffe4e6;
+
+    --fj-color-info: #0284c7;
+    --fj-color-info-light: #e0f2fe;
+
+    /* Focus and ring */
+    --fj-ring-color: rgba(14, 165, 233, 0.5);
+    --fj-ring-width: 3px;
+    --fj-ring-offset: 2px;
+  }
+}

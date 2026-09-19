@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@frutiger-js/react": ["../../packages/react/src/index.ts"],
+      "@frutiger-js/core": ["../../packages/core/src/index.css"]
+    }
+  },
+  "include": ["src/**/*"]
+}

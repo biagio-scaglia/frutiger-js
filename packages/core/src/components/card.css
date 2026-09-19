@@ -1,0 +1,121 @@
+@layer fj.components {
+  .fj-card {
+    position: relative;
+    border-radius: var(--fj-radius-xl);
+    overflow: hidden;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Default Card */
+  .fj-card--default {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.9),
+      0 4px 16px rgba(12, 74, 110, 0.08);
+  }
+
+  /* Glass Card (Vista Aero Glass) */
+  .fj-card--glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 249, 255, 0.4) 100%);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow:
+      inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -1px 1px 0 rgba(14, 165, 233, 0.1),
+      0 12px 36px rgba(14, 165, 233, 0.15);
+  }
+
+  /* Gloss Card */
+  .fj-card--gloss {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(186, 230, 253, 0.7);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 8px 24px rgba(2, 132, 199, 0.15);
+  }
+  .fj-card--gloss::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+  }
+
+  /* Floating Card */
+  .fj-card--floating {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 1),
+      0 16px 40px rgba(12, 74, 110, 0.16);
+  }
+  .fj-card--floating:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 1),
+      0 20px 48px rgba(14, 165, 233, 0.22);
+  }
+
+  /* Nature Card */
+  .fj-card--nature {
+    background: linear-gradient(
+      135deg,
+      rgba(240, 253, 244, 0.9) 0%,
+      rgba(220, 252, 231, 0.75) 100%
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(187, 247, 208, 0.8);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.95),
+      0 8px 28px rgba(34, 197, 94, 0.15);
+  }
+
+  /* Card Subcomponents */
+  .fj-card__header {
+    padding: var(--fj-space-5) var(--fj-space-6);
+    border-bottom: 1px solid rgba(186, 230, 253, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .fj-card__title {
+    font-size: var(--fj-font-size-lg);
+    font-weight: var(--fj-font-weight-bold);
+    color: var(--fj-color-text);
+  }
+  .fj-card__subtitle {
+    font-size: var(--fj-font-size-sm);
+    color: var(--fj-color-text-muted);
+    margin-top: var(--fj-space-1);
+  }
+
+  .fj-card__content {
+    padding: var(--fj-space-6);
+    flex: 1 1 auto;
+    color: var(--fj-color-text);
+  }
+
+  .fj-card__footer {
+    padding: var(--fj-space-4) var(--fj-space-6);
+    border-top: 1px solid rgba(186, 230, 253, 0.4);
+    background: rgba(240, 249, 255, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--fj-space-3);
+  }
+}

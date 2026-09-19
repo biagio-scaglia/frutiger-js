@@ -1,0 +1,41 @@
+{
+  "name": "@frutiger-js/core",
+  "version": "0.1.0",
+  "description": "Pure CSS design system inspired by Frutiger Aero and Web 2.0 aesthetics.",
+  "type": "module",
+  "main": "./dist/styles.css",
+  "style": "./dist/styles.css",
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "style": "./dist/styles.css",
+      "default": "./dist/styles.css"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./reset": "./src/reset.css",
+    "./tokens": "./src/tokens/index.css",
+    "./components": "./src/components/index.css",
+    "./utilities": "./src/utilities/utilities.css",
+    "./themes/*": "./src/themes/*.css"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "typecheck": "node -e \"console.log('@frutiger-js/core is CSS-first; no TS check required.')\""
+  },
+  "keywords": [
+    "css",
+    "design-system",
+    "frutiger-aero",
+    "web2",
+    "glassmorphism",
+    "skeuomorphism",
+    "tokens"
+  ],
+  "author": "Biagio Scaglia <biagio.scaglia@gmail.com>",
+  "license": "MIT"
+}

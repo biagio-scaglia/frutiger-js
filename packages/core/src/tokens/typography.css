@@ -1,0 +1,41 @@
+@layer fj.tokens {
+  :root {
+    /* Font Families: Modern system UI stack with Segoe UI / Lucida Grande / Tahoma feel */
+    --fj-font-family-sans:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Roboto, 'Lucida Grande',
+      'Lucida Sans Unicode', Tahoma, sans-serif;
+    --fj-font-family-display:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Trebuchet MS', 'SF Pro Display', Helvetica,
+      Arial, sans-serif;
+    --fj-font-family-mono:
+      ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+
+    /* Font Sizes */
+    --fj-font-size-xs: 0.75rem; /* 12px */
+    --fj-font-size-sm: 0.875rem; /* 14px */
+    --fj-font-size-md: 1rem; /* 16px */
+    --fj-font-size-lg: 1.125rem; /* 18px */
+    --fj-font-size-xl: 1.25rem; /* 20px */
+    --fj-font-size-2xl: 1.5rem; /* 24px */
+    --fj-font-size-3xl: 1.875rem; /* 30px */
+    --fj-font-size-4xl: 2.25rem; /* 36px */
+    --fj-font-size-5xl: 3rem; /* 48px */
+
+    /* Font Weights */
+    --fj-font-weight-regular: 400;
+    --fj-font-weight-medium: 500;
+    --fj-font-weight-semibold: 600;
+    --fj-font-weight-bold: 700;
+
+    /* Line Heights */
+    --fj-line-height-tight: 1.2;
+    --fj-line-height-normal: 1.5;
+    --fj-line-height-relaxed: 1.625;
+
+    /* Letter Spacing */
+    --fj-letter-spacing-tight: -0.015em;
+    --fj-letter-spacing-normal: 0;
+    --fj-letter-spacing-wide: 0.025em;
+  }
+}

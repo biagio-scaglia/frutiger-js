@@ -1,0 +1,253 @@
+@layer fj.components {
+  .fj-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--fj-space-2);
+    font-family: var(--fj-font-family-sans);
+    font-weight: var(--fj-font-weight-semibold);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    cursor: pointer;
+    border-radius: var(--fj-radius-pill);
+    border: 1px solid transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  /* Specular Dome Highlight */
+  .fj-button::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    right: 4px;
+    height: 48%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.3) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    border-radius: var(--fj-radius-pill) var(--fj-radius-pill) 100% 100%;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Sizes */
+  .fj-button--sm {
+    padding: 0.35rem 0.85rem;
+    font-size: var(--fj-font-size-xs);
+    height: 30px;
+  }
+  .fj-button--md {
+    padding: 0.55rem 1.25rem;
+    font-size: var(--fj-font-size-sm);
+    height: 38px;
+  }
+  .fj-button--lg {
+    padding: 0.75rem 1.75rem;
+    font-size: var(--fj-font-size-md);
+    height: 48px;
+  }
+
+  /* Variants */
+  /* Primary (Aero Sky Blue Gloss) */
+  .fj-button--primary {
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 60%, #0369a1 100%);
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(2, 132, 199, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  .fj-button--primary:hover:not(:disabled) {
+    background: linear-gradient(180deg, #7dd3fc 0%, #0ea5e9 60%, #0284c7 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 4px 12px rgba(2, 132, 199, 0.5);
+    transform: translateY(-1px);
+  }
+  .fj-button--primary:active:not(:disabled) {
+    background: linear-gradient(180deg, #0369a1 0%, #0284c7 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+
+  /* Secondary (Aqua / Marine Gel) */
+  .fj-button--secondary {
+    background: linear-gradient(180deg, #5eead4 0%, #0d9488 60%, #0f766e 100%);
+    color: #ffffff;
+    border-color: #0d9488;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 2px 6px rgba(13, 148, 136, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  .fj-button--secondary:hover:not(:disabled) {
+    background: linear-gradient(180deg, #99f6e4 0%, #14b8a6 60%, #0d9488 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 4px 12px rgba(13, 148, 136, 0.5);
+    transform: translateY(-1px);
+  }
+  .fj-button--secondary:active:not(:disabled) {
+    background: linear-gradient(180deg, #0f766e 0%, #0d9488 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+
+  /* Success (Nature Grass Gel) */
+  .fj-button--success {
+    background: linear-gradient(180deg, #86efac 0%, #16a34a 60%, #15803d 100%);
+    color: #ffffff;
+    border-color: #16a34a;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 2px 6px rgba(22, 163, 74, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  .fj-button--success:hover:not(:disabled) {
+    background: linear-gradient(180deg, #bbf7d0 0%, #22c55e 60%, #16a34a 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 4px 12px rgba(22, 163, 74, 0.5);
+    transform: translateY(-1px);
+  }
+  .fj-button--success:active:not(:disabled) {
+    background: linear-gradient(180deg, #15803d 0%, #16a34a 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+
+  /* Danger (Glossy Ruby Berry) */
+  .fj-button--danger {
+    background: linear-gradient(180deg, #fda4af 0%, #e11d48 60%, #be123c 100%);
+    color: #ffffff;
+    border-color: #e11d48;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 2px 6px rgba(225, 29, 72, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  }
+  .fj-button--danger:hover:not(:disabled) {
+    background: linear-gradient(180deg, #fecdd3 0%, #f43f5e 60%, #e11d48 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      0 4px 12px rgba(225, 29, 72, 0.5);
+    transform: translateY(-1px);
+  }
+  .fj-button--danger:active:not(:disabled) {
+    background: linear-gradient(180deg, #be123c 0%, #e11d48 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(1px);
+  }
+
+  /* Glass (Frosted Translucent Button) */
+  .fj-button--glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--fj-color-text);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.9),
+      0 2px 8px rgba(12, 74, 110, 0.12);
+  }
+  .fj-button--glass:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 1),
+      0 4px 14px rgba(12, 74, 110, 0.18);
+    transform: translateY(-1px);
+  }
+  .fj-button--glass:active:not(:disabled) {
+    background: rgba(240, 249, 255, 0.9);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+    transform: translateY(1px);
+  }
+
+  /* Aero (Iconic Crystalline Aqua-Blue Gradient) */
+  .fj-button--aero {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.1) 48%,
+        rgba(255, 255, 255, 0) 52%,
+        rgba(255, 255, 255, 0.3) 100%
+      ),
+      linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0ea5e9 100%);
+    color: #ffffff;
+    border-color: #38bdf8;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 4px 14px rgba(14, 165, 233, 0.45);
+    text-shadow: 0 1px 2px rgba(12, 74, 110, 0.5);
+  }
+  .fj-button--aero:hover:not(:disabled) {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(255, 255, 255, 0.2) 48%,
+        rgba(255, 255, 255, 0) 52%,
+        rgba(255, 255, 255, 0.4) 100%
+      ),
+      linear-gradient(180deg, #7dd3fc 0%, #0ea5e9 50%, #0284c7 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 1),
+      0 6px 18px rgba(14, 165, 233, 0.6);
+    transform: translateY(-1px);
+  }
+  .fj-button--aero:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Ghost */
+  .fj-button--ghost {
+    background: transparent;
+    color: var(--fj-color-text);
+    border-color: transparent;
+  }
+  .fj-button--ghost::before {
+    display: none;
+  }
+  .fj-button--ghost:hover:not(:disabled) {
+    background: rgba(224, 242, 254, 0.6);
+    color: var(--fj-color-primary);
+  }
+
+  /* States */
+  .fj-button:focus-visible {
+    box-shadow: 0 0 0 var(--fj-ring-width) var(--fj-ring-color);
+  }
+
+  .fj-button:disabled,
+  .fj-button[aria-disabled='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .fj-button--loading {
+    position: relative;
+    cursor: wait;
+  }
+  .fj-button--loading .fj-button__content {
+    visibility: hidden;
+  }
+  .fj-button__spinner {
+    position: absolute;
+  }
+}

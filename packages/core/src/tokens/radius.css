@@ -1,0 +1,13 @@
+@layer fj.tokens {
+  :root {
+    --fj-radius-none: 0px;
+    --fj-radius-xs: 4px;
+    --fj-radius-sm: 6px;
+    --fj-radius-md: 10px;
+    --fj-radius-lg: 14px;
+    --fj-radius-xl: 18px;
+    --fj-radius-2xl: 24px;
+    --fj-radius-pill: 9999px;
+    --fj-radius-full: 50%;
+  }
+}
