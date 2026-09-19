@@ -138,17 +138,16 @@ export default function App() {
               overflow: 'hidden',
             }}
           >
-            {/* Ambient specular highlight */}
+            {/* Smooth full-width glossy sheen without sharp vertical cutoffs */}
             <div
               style={{
                 position: 'absolute',
                 top: 0,
-                left: '15%',
-                right: '15%',
-                height: '50%',
+                left: 0,
+                right: 0,
+                height: '40%',
                 background:
-                  'linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%)',
-                borderRadius: '0 0 100% 100%',
+                  'linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%)',
                 pointerEvents: 'none',
               }}
             />
