@@ -103,15 +103,15 @@ export function App() {
 
 ## 🧱 Components Included in v0.1.0
 
-| Category                 | Components                                                                                                                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Buttons & Actions**    | `Button` (primary, secondary, success, danger, ghost, glass, aero), `Dropdown`, `DropdownItem`                                                                                                    |
-| **Surfaces & Cards**     | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` (default, glass, gloss, floating, nature)                                                                       |
-| **Form Controls**        | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`                                                                                                                                      |
-| **Feedback & Badges**    | `Badge`, `Alert`, `Tooltip`, `Progress` (linear & circular), `Spinner`                                                                                                                            |
-| **Navigation & Overlay** | `Navbar`, `NavLink`, `Sidebar`, `SidebarItem`, `Breadcrumb`, `Modal`, `Dialog`, `Tabs`, `Accordion`                                                                                               |
-| **Layout & Primitives**  | `Container`, `Stack`, `Grid`, `Avatar`                                                                                                                                                            |
-| **Aero Icons**           | `IconSun`, `IconWater`, `IconLeaf`, `IconCloud`, `IconMusic`, `IconPlay`, `IconPause`, `IconCheck`, `IconClose`, `IconChevronDown`, `IconSearch`, `IconInfo`, `IconAlertTriangle`, `IconSparkles` |
+| Category                 | Components                                                                                                                                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Buttons & Actions**    | `Button` (primary, secondary, success, danger, ghost, glass, aero), `Dropdown`, `DropdownItem`                                                                                                                |
+| **Surfaces & Cards**     | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` (default, glass, gloss, floating, nature), `ScrollArea`                                                                     |
+| **Form Controls**        | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Slider`, `Dropzone`                                                                                                                            |
+| **Feedback & Loading**   | `Badge`, `Alert`, `Tooltip`, `Progress`, `Spinner`, `Skeleton` (rect, circle, pill shimmer)                                                                                                                   |
+| **Navigation & Overlay** | `Navbar`, `NavLink`, `Sidebar`, `SidebarItem`, `Breadcrumb`, `Modal`, `Dialog`, `Tabs`, `Accordion`                                                                                                           |
+| **Layout & Primitives**  | `Container`, `Stack`, `Grid`, `Avatar`, `Divider`                                                                                                                                                             |
+| **Aero Icons**           | `IconSun`, `IconWater`, `IconLeaf`, `IconCloud`, `IconMusic`, `IconPlay`, `IconPause`, `IconCheck`, `IconClose`, `IconChevronDown`, `IconSearch`, `IconInfo`, `IconAlertTriangle`, `IconSparkles`, `IconMenu` |
 
 ---
 
