@@ -5,10 +5,24 @@
   "type": "module",
   "main": "./dist/styles.css",
   "style": "./dist/styles.css",
+  "homepage": "https://biagio-scaglia.github.io/frutiger-js/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biagio-scaglia/frutiger-js.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/biagio-scaglia/frutiger-js/issues"
+  },
+  "sideEffects": [
+    "dist/*.css",
+    "src/**/*.css"
+  ],
   "files": [
     "dist",
     "src",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -28,13 +42,16 @@
     "typecheck": "node -e \"console.log('@frutiger-js/core is CSS-first; no TS check required.')\""
   },
   "keywords": [
+    "frutiger-aero",
     "css",
     "design-system",
-    "frutiger-aero",
+    "ui-library",
     "web2",
-    "glassmorphism",
     "skeuomorphism",
-    "tokens"
+    "glassmorphism",
+    "tokens",
+    "aero-glass",
+    "modern-css"
   ],
   "author": "Biagio Scaglia <biagio.scaglia@gmail.com>",
   "license": "MIT"

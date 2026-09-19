@@ -1,27 +1,30 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to the **Frutiger.js** design system and libraries will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+---
 
 ## [0.1.0] - 2026-09-19
 
 ### Added
 
-- Initial release of **Frutiger.js** design system and component ecosystem.
-- `@frutiger-js/core`: Pure CSS design system with CSS Cascade Layers (`@layer fj.*`).
-  - Comprehensive design tokens: Sky, Ocean, Grass, Leaf, Water, Cloud, Sun, Berry, Neutrals, Semantics.
-  - Frutiger Aero Gloss & Glass system: Specular highlights, inner glows, organic shadows, frosted reflections.
-  - Background atmospheric system: Sky, Ocean, Water, Grass, Sunset, Aero gradients with organic depth.
-  - Keyframe animations with `@media (prefers-reduced-motion: reduce)` accessibility support (`fj-float`, `fj-bubble`, `fj-shimmer`, `fj-pulse`, `fj-wave`).
-  - Theming engine: Default Light Aero and Dark `aero-night` modes.
-- `@frutiger-js/react`: Accessible, fully-typed React component library.
-  - Core components: `Button`, `Card`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`.
-  - Feedback & Display: `Badge`, `Alert`, `Tooltip`, `Progress`, `Spinner`, `Avatar`, `Breadcrumb`.
-  - Navigation & Overlay: `Navbar`, `Sidebar`, `Modal`, `Dialog`, `Dropdown`, `Tabs`, `Accordion`.
-  - Layout primitives: `Container`, `Stack`, `Grid`.
-  - Minimalist Frutiger Aero SVG icons collection.
-- Interactive showcase and documentation playground with living Aero widgets (Weather, Media Player, System Monitor, Theme Switcher).
-- Full test suite powered by Vitest and React Testing Library.
-- GitHub Actions CI workflow for linting, typechecking, testing, and building.
+- **`@frutiger-js/core`**:
+  - CSS Cascade Layer architecture (`@layer fj.reset, fj.tokens, fj.base, fj.utilities, fj.components, fj.themes`).
+  - Comprehensive Design Token system with HSL scales: `Sky`, `Ocean`, `Grass`, `Leaf`, `Water`, `Sun`, `Berry`, and `Neutrals`.
+  - Core component stylesheets: `button`, `card`, `input`, `textarea`, `select`, `checkbox`, `radio`, `switch`, `badge`, `alert`, `tooltip`, `modal`, `tabs`, `accordion`, `progress`, `spinner`, `avatar`, `breadcrumb`, `navbar`, `sidebar`, `slider`, `divider`, `scroll-area`, `dropzone`, `skeleton`, `window-frame`, `gallery`, `stat-card`, `faq`.
+  - Specular glass reflections, acrylic blurs, and naturalistic gradients.
+- **`@frutiger-js/react`**:
+  - Full suite of accessible, typed React 18/19 components.
+  - Strict TypeScript definitions with `.d.ts` declaration bundling via `vite-plugin-dts`.
+  - Tactile skeuomorphic components: `WindowFrame` (Vista / 7 Aero glass window), `GalleryGrid` & `GalleryItem` (media archive), `StatCard` (metrics & trends), `FaqList` & `FaqItem` (`<details>` / `<summary>`), `ScrollArea`, `Dropzone`, `Skeleton`.
+  - Complete Aero vector icon suite: `IconSun`, `IconWater`, `IconLeaf`, `IconCloud`, `IconMusic`, `IconPlay`, `IconPause`, `IconCheck`, `IconClose`, `IconChevronDown`, `IconSearch`, `IconInfo`, `IconAlertTriangle`, `IconSparkles`, `IconMenu`.
+  - 16 test suites (33 tests) passing with Vitest and React Testing Library.
+- **`@frutiger-js/playground`**:
+  - Interactive Web 2.0 demonstration application with component matrix, viewport simulation lab, Vista window explorer, archive media gallery, and live token inspector.
+- **Documentation & Open Source**:
+  - [`docs/components.md`](docs/components.md): Comprehensive API reference and props tables.
+  - [`docs/responsive.md`](docs/responsive.md): Fluid-first continuum architecture guidelines.
+  - `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `LICENSE`.

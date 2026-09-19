@@ -6,9 +6,20 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "homepage": "https://biagio-scaglia.github.io/frutiger-js/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biagio-scaglia/frutiger-js.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/biagio-scaglia/frutiger-js/issues"
+  },
+  "sideEffects": false,
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "exports": {
     ".": {
@@ -29,14 +40,16 @@
     "@frutiger-js/core": "^0.1.0"
   },
   "keywords": [
-    "react",
-    "react-components",
-    "ui",
-    "design-system",
     "frutiger-aero",
-    "web2",
+    "react",
     "component-library",
-    "typescript"
+    "ui-library",
+    "design-system",
+    "web2",
+    "skeuomorphism",
+    "glassmorphism",
+    "typescript",
+    "accessible-ui"
   ],
   "author": "Biagio Scaglia <biagio.scaglia@gmail.com>",
   "license": "MIT"

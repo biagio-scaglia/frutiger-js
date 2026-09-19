@@ -1,28 +1,60 @@
-# @frutiger-js/core
+# @frutiger-js/core 💧✨
 
-Pure CSS design system inspired by Frutiger Aero, Web 2.0 aesthetics, glossy textures, organic curves, nature-inspired visuals, and the optimistic digital era of the late 2000s.
+> **Pure CSS design system inspired by Frutiger Aero and Web 2.0 aesthetics.**  
+> _Part of the [Frutiger.js](https://biagio-scaglia.github.io/frutiger-js/) ecosystem._
 
-## Features
+[![npm version](https://img.shields.io/npm/v/@frutiger-js/core.svg?style=flat-square&color=0ea5e9)](https://www.npmjs.com/package/@frutiger-js/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/biagio-scaglia/frutiger-js/blob/master/LICENSE)
 
-- 💧 **Pure CSS Architecture**: Works with any framework (React, Vue, Svelte, or Vanilla HTML/JS).
-- 🧬 **CSS Cascade Layers**: Structured with `@layer fj.*` (`fj.reset`, `fj.tokens`, `fj.utilities`, `fj.components`, `fj.themes`).
-- 🎨 **Rich Design Tokens**: Naturalistic palettes (Sky, Ocean, Grass, Leaf, Water, Sun, Berry, Neutrals).
-- ✨ **Authentic Gloss & Glass**: Specular dome highlights, frosted acrylic backdrops, organic rim lighting, and depth shadows.
-- ♿ **Accessibility**: Reduced motion compliance, high-contrast focus rings, and WCAG AA contrast.
+---
 
-## Installation
+## 📖 Overview
+
+`@frutiger-js/core` is a framework-agnostic CSS framework engineered with **CSS Cascade Layers (`@layer fj.*`)** and **CSS Custom Properties**. It brings back the optimistic, tactile aesthetics of the late 2000s—translucent acrylic glass (`backdrop-filter`), specular dome highlights, water droplet spheres, and organic nature gradients—without any JavaScript runtime overhead.
+
+- 🌐 **Documentation & Live Playground**: [biagio-scaglia.github.io/frutiger-js](https://biagio-scaglia.github.io/frutiger-js/)
+- 💻 **GitHub Repository**: [biagio-scaglia/frutiger-js](https://github.com/biagio-scaglia/frutiger-js)
+- 🐛 **Issue Tracker**: [Report an issue](https://github.com/biagio-scaglia/frutiger-js/issues)
+
+---
+
+## ✨ Features
+
+- 💧 **Framework Agnostic**: Works seamlessly with React, Vue, Svelte, Solid, Astro, or plain HTML.
+- 🧬 **CSS Cascade Layers**: Structured cleanly in `@layer fj.reset, fj.tokens, fj.base, fj.utilities, fj.components, fj.themes`.
+- 🎨 **Naturalistic Design Tokens**: Sky, Ocean, Grass, Leaf, Water, Sun, Berry, and Neutral color systems.
+- 💎 **Authentic Gloss & Glass**: Hardware-accelerated gradients, multi-layer box shadows, and specular rim reflections.
+- ♿ **Accessible**: WCAG 2.1 AA compliant color contrast, tactile focus rings, and `@media (prefers-reduced-motion)` safety.
+
+---
+
+## 🚀 Installation
 
 ```bash
 npm install @frutiger-js/core
 ```
 
-## Quick Start
+Or using pnpm / yarn:
 
-Import the master stylesheet in your application entry:
+```bash
+pnpm add @frutiger-js/core
+# or
+yarn add @frutiger-js/core
+```
+
+---
+
+## ⚡ Usage
+
+### Complete Stylesheet
+
+Import the master stylesheet at your entry point:
 
 ```javascript
 import '@frutiger-js/core/styles.css';
 ```
+
+### Modular Imports
 
 Or selectively import specific modules:
 
@@ -33,7 +65,7 @@ import '@frutiger-js/core/components';
 import '@frutiger-js/core/utilities';
 ```
 
-## Usage Example
+### HTML Component Example
 
 ```html
 <div class="fj-card fj-card--glass">
@@ -45,11 +77,19 @@ import '@frutiger-js/core/utilities';
     <p>Rebuilt with modern CSS Cascade Layers and Custom Properties.</p>
   </div>
   <div class="fj-card__footer">
-    <button class="fj-button fj-button--aero fj-button--md">Explore</button>
+    <button class="fj-btn fj-btn--aero fj-btn--md">Explore</button>
   </div>
 </div>
 ```
 
-## License
+---
 
-MIT © Biagio Scaglia
+## 📦 React Components
+
+Looking for React components? Check out [`@frutiger-js/react`](https://www.npmjs.com/package/@frutiger-js/react) for fully typed, accessible React 18/19 components built on top of `@frutiger-js/core`.
+
+---
+
+## 📄 License
+
+MIT © [Biagio Scaglia](https://github.com/biagio-scaglia)

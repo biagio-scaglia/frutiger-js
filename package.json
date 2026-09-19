@@ -4,6 +4,14 @@
   "private": true,
   "description": "Frutiger Aero, rebuilt for the modern web. React component library & CSS design system.",
   "type": "module",
+  "homepage": "https://biagio-scaglia.github.io/frutiger-js/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biagio-scaglia/frutiger-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/biagio-scaglia/frutiger-js/issues"
+  },
   "workspaces": [
     "packages/*",
     "examples/*"
