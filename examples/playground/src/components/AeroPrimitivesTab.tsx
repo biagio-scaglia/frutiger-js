@@ -270,6 +270,29 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
           </CardContent>
         </Card>
 
+        {/* Glow Primitive */}
+        <Card variant="default">
+          <CardHeader>
+            <CardTitle>
+              <IconSparkles size={16} /> &lt;Glow /&gt;
+            </CardTitle>
+          </CardHeader>
+          <CardContent style={{ textAlign: 'center' }}>
+            <Glow
+              color="aqua"
+              style={{
+                padding: '1.5rem 1rem',
+                borderRadius: 'var(--fj-radius-lg)',
+                background: 'rgba(255, 255, 255, 0.8)',
+                fontWeight: 700,
+                fontSize: 'var(--fj-font-size-sm)',
+              }}
+            >
+              Ambient Aqua Glow
+            </Glow>
+          </CardContent>
+        </Card>
+
         {/* Reflection Mirror Primitive */}
         <Card variant="default">
           <CardHeader>

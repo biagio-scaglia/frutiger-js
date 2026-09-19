@@ -9,11 +9,16 @@ export interface GlassProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Glass = forwardRef<HTMLDivElement, GlassProps>(
-  ({ specular = true, border = true, className, children, ...props }, ref) => {
+  ({ specular = true, border = true, blur, className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn('fj-aero-surface fj-aero-surface--glass', className)}
+        className={cn(
+          'fj-aero-surface fj-aero-surface--glass',
+          !border && 'fj-aero-surface--no-border',
+          blur && `fj-aero-surface--blur-${blur}`,
+          className
+        )}
         {...props}
       >
         {specular && <div className="fj-gloss-cap" aria-hidden="true" />}
