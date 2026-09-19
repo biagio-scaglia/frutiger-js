@@ -428,7 +428,7 @@ export default function App() {
 
                 {/* CARDS TAB */}
                 <TabPanel value="cards">
-                  <Grid columns="repeat(auto-fit, minmax(240px, 1fr))" gap="1rem">
+                  <Grid columns="repeat(auto-fit, minmax(min(100%, 240px), 1fr))" gap="1rem">
                     {(['default', 'glass', 'gloss', 'floating', 'nature'] as CardVariant[]).map(
                       v => (
                         <Card key={v} variant={v}>
@@ -459,7 +459,7 @@ export default function App() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Grid columns="repeat(auto-fit, minmax(280px, 1fr))" gap="1.5rem">
+                      <Grid columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))" gap="1.5rem">
                         <Input
                           label="User Email"
                           value={inputVal}
@@ -538,7 +538,7 @@ export default function App() {
                         style={{ margin: '2rem 0 1.5rem 0' }}
                       />
 
-                      <Grid columns="repeat(auto-fit, minmax(280px, 1fr))" gap="1.5rem">
+                      <Grid columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))" gap="1.5rem">
                         <Slider
                           label="Aqua Ambient Luminescence"
                           value={sliderAquaVal}

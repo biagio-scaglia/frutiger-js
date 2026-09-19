@@ -22,6 +22,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.65rem 1rem;
+    gap: var(--fj-space-2);
+    min-width: 0;
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.95) 0%,
@@ -41,12 +43,24 @@
     font-weight: 700;
     color: var(--fj-color-sky-950);
     letter-spacing: -0.01em;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .fj-window__title-group span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .fj-window__controls {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .fj-window__btn {

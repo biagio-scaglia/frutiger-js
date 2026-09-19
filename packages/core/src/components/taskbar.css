@@ -406,9 +406,26 @@
       display: none;
     }
     .fj-taskbar-item {
+      min-width: 36px;
       max-width: 44px;
+      height: 32px;
       padding: 0;
       justify-content: center;
+    }
+    .fj-taskbar-tray {
+      gap: 0.35rem;
+      padding-left: 0.4rem;
+    }
+    .fj-taskbar-tray-icon {
+      width: 24px;
+      height: 24px;
+    }
+    .fj-taskbar-clock {
+      font-size: 11px;
+      padding: 0.1rem 0.25rem;
+    }
+    .fj-taskbar-clock-date {
+      display: none;
     }
     .fj-start-menu-body {
       grid-template-columns: 1fr;

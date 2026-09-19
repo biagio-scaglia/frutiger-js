@@ -47,7 +47,7 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
         Interactive Aero Dashboard Widgets
       </h2>
 
-      <Grid columns="repeat(auto-fit, minmax(320px, 1fr))" gap="1.5rem">
+      <Grid columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))" gap="1.5rem">
         {/* Weather Widget */}
         <Card variant="glass" className="fj-animate-float">
           <CardHeader>

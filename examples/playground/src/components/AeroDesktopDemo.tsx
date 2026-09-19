@@ -64,7 +64,8 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
         <div
           style={{
             position: 'relative',
-            height: '520px',
+            minHeight: '480px',
+            height: 'clamp(480px, 65vh, 540px)',
             borderRadius: 'var(--fj-radius-xl)',
             background:
               'radial-gradient(circle at 50% 30%, #e0f2fe 0%, #bae6fd 45%, #7dd3fc 85%, #38bdf8 100%)',
@@ -102,9 +103,20 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
           />
 
           {/* Desktop Work Area */}
-          <div style={{ position: 'relative', flex: 1, padding: '1.25rem', overflow: 'hidden' }}>
+          <div style={{ position: 'relative', flex: 1, padding: '0.75rem', overflow: 'hidden' }}>
             {/* Desktop Shortcut Icons */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '80px' }}>
+            <div
+              style={{
+                position: 'absolute',
+                top: '12px',
+                left: '12px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem',
+                width: '70px',
+                zIndex: 1,
+              }}
+            >
               <button
                 type="button"
                 onClick={() => {
@@ -126,7 +138,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
-                <div style={{ fontSize: '2rem' }}>📁</div>
+                <div style={{ fontSize: '1.8rem' }}>📁</div>
                 <span style={{ fontSize: '11px', fontWeight: 700, textShadow: '0 1px 2px #fff' }}>
                   Aero Files
                 </span>
@@ -153,7 +165,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
-                <div style={{ fontSize: '2rem' }}>🎵</div>
+                <div style={{ fontSize: '1.8rem' }}>🎵</div>
                 <span style={{ fontSize: '11px', fontWeight: 700, textShadow: '0 1px 2px #fff' }}>
                   WMP 11
                 </span>
@@ -165,9 +177,9 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
               <div
                 style={{
                   position: 'absolute',
-                  top: '25px',
-                  left: '110px',
-                  right: '25px',
+                  top: '12px',
+                  left: 'clamp(8px, 10vw, 96px)',
+                  right: '8px',
                   maxWidth: '560px',
                   zIndex: 10,
                   animation: 'fj-fade-in 0.2s ease',
@@ -182,13 +194,13 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   onMinimize={() => setIsExplorerMinimized(true)}
                   onMaximize={() => {}}
                 >
-                  <div style={{ padding: '0.5rem 0' }}>
+                  <div style={{ padding: '0.25rem 0' }}>
                     <div
                       style={{
                         display: 'flex',
                         gap: '0.5rem',
                         alignItems: 'center',
-                        padding: '0.4rem 0.6rem',
+                        padding: '0.35rem 0.6rem',
                         background: '#fff',
                         borderRadius: 'var(--fj-radius-sm)',
                         border: '1px solid rgba(14, 165, 233, 0.4)',
@@ -196,12 +208,15 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                         marginBottom: '0.75rem',
                         color: 'var(--fj-color-sky-900)',
                         fontWeight: 600,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
                       }}
                     >
                       Computer ‣ Local Disk (C:) ‣ Media ‣ Wallpapers
                     </div>
 
-                    <Grid columns="repeat(auto-fit, minmax(110px, 1fr))" gap="0.6rem">
+                    <Grid columns="repeat(auto-fit, minmax(min(100%, 75px), 1fr))" gap="0.5rem">
                       {[
                         { name: 'aurora_4k.png', icon: '🌄', sz: '14.2 MB' },
                         { name: 'aqua_orb.c4d', icon: '🔮', sz: '38.4 MB' },
@@ -210,7 +225,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                         <div
                           key={i}
                           style={{
-                            padding: '0.6rem',
+                            padding: '0.5rem 0.25rem',
                             borderRadius: 'var(--fj-radius-md)',
                             background: 'rgba(255, 255, 255, 0.85)',
                             border: '1px solid rgba(255, 255, 255, 0.95)',
@@ -218,10 +233,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                             cursor: 'pointer',
                           }}
                         >
-                          <div style={{ fontSize: '1.6rem' }}>{f.icon}</div>
+                          <div style={{ fontSize: '1.4rem' }}>{f.icon}</div>
                           <div
                             style={{
-                              fontSize: '11px',
+                              fontSize: '10px',
                               fontWeight: 600,
                               overflow: 'hidden',
                               textOverflow: 'ellipsis',
@@ -246,9 +261,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
               <div
                 style={{
                   position: 'absolute',
-                  top: '90px',
-                  left: '160px',
-                  width: '320px',
+                  top: 'clamp(20px, 8vw, 75px)',
+                  left: 'clamp(12px, 14vw, 130px)',
+                  right: '12px',
+                  maxWidth: '320px',
                   zIndex: 20,
                   animation: 'fj-fade-in 0.2s ease',
                 }}
