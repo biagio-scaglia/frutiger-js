@@ -1,0 +1,164 @@
+@layer fj.components {
+  /* ==========================================================================
+     AERO VISUAL PRIMITIVES SYSTEM
+     Foundational building blocks for Frutiger Aero visual language.
+     ========================================================================== */
+
+  /* 1. Base Aero Surface */
+  .fj-aero-surface {
+    position: relative;
+    box-sizing: border-box;
+    border-radius: var(--fj-radius-xl);
+    transition: transform var(--fj-duration-normal) var(--fj-ease-out),
+                box-shadow var(--fj-duration-normal) var(--fj-ease-out),
+                border-color var(--fj-duration-normal) var(--fj-ease-out);
+    overflow: hidden;
+  }
+
+  /* Interactive Surface Hover/Active Elevate */
+  .fj-aero-surface--interactive {
+    cursor: pointer;
+    user-select: none;
+  }
+  .fj-aero-surface--interactive:hover {
+    transform: translateY(-2px);
+  }
+  .fj-aero-surface--interactive:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  /* Surface Variants */
+  .fj-aero-surface--glass {
+    background: var(--fj-surface-glass-bg, linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(224, 242, 254, 0.45) 100%));
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 1px 0 rgba(14, 165, 233, 0.15),
+                0 12px 36px rgba(14, 165, 233, 0.15);
+  }
+
+  .fj-aero-surface--gloss {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(224, 242, 254, 0.85) 50%, rgba(186, 230, 253, 0.7) 100%);
+    border: 1px solid rgba(186, 230, 253, 0.85);
+    box-shadow: inset 0 1px 0 #ffffff,
+                inset 0 -2px 0 rgba(14, 165, 233, 0.3),
+                0 8px 24px rgba(2, 132, 199, 0.15);
+  }
+
+  .fj-aero-surface--acrylic {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(28px) saturate(220%);
+    -webkit-backdrop-filter: blur(28px) saturate(220%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1),
+                0 20px 50px rgba(12, 74, 110, 0.18);
+  }
+
+  .fj-aero-surface--crystal {
+    background: radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.9) 0%, rgba(186, 230, 253, 0.6) 55%, rgba(56, 189, 248, 0.4) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 2px 4px #ffffff,
+                inset 0 -3px 6px rgba(2, 132, 199, 0.4),
+                0 10px 30px rgba(2, 132, 199, 0.25);
+  }
+
+  .fj-aero-surface--chrome {
+    background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 35%, #94a3b8 50%, #cbd5e1 52%, #f8fafc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: inset 0 1px 1px #fff,
+                inset 0 -1px 2px rgba(0, 0, 0, 0.3),
+                0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .fj-aero-surface--water {
+    background: radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.85) 0%, rgba(125, 211, 252, 0.6) 45%, rgba(2, 132, 199, 0.7) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 2px 4px #ffffff,
+                0 0 24px rgba(56, 189, 248, 0.5),
+                0 8px 24px rgba(2, 132, 199, 0.3);
+  }
+
+  /* 2. Specular Gloss Cap Primitive */
+  .fj-gloss-cap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: inherit;
+    border-bottom-left-radius: 40% 20px;
+    border-bottom-right-radius: 40% 20px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .fj-gloss-cap--flat {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .fj-gloss-cap--bright {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.15) 100%);
+  }
+
+  /* 3. Bevel Primitive */
+  .fj-bevel {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 1px 0 0 rgba(255, 255, 255, 0.7),
+                inset -1px 0 0 rgba(0, 0, 0, 0.08),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  }
+  .fj-bevel--deep {
+    box-shadow: inset 0 2px 1px rgba(255, 255, 255, 1),
+                inset 2px 0 1px rgba(255, 255, 255, 0.8),
+                inset -2px 0 1px rgba(0, 0, 0, 0.15),
+                inset 0 -2px 1px rgba(0, 0, 0, 0.25);
+  }
+
+  /* 4. Ambient Halo Glow Primitive */
+  .fj-glow {
+    position: relative;
+  }
+  .fj-glow::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: inherit;
+    background: radial-gradient(circle, var(--fj-surface-glow-color, rgba(56, 189, 248, 0.5)) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(12px);
+    opacity: 0.85;
+    pointer-events: none;
+    transition: opacity var(--fj-duration-normal) ease;
+  }
+  .fj-glow--sun::after {
+    background: radial-gradient(circle, rgba(251, 191, 36, 0.6) 0%, transparent 70%);
+  }
+  .fj-glow--meadow::after {
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.6) 0%, transparent 70%);
+  }
+  .fj-glow--aurora::after {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.5) 0%, transparent 70%);
+  }
+
+  /* 5. Reflection Primitive */
+  .fj-reflection-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .fj-reflection-mirror {
+    transform: scaleY(-1);
+    opacity: 0.35;
+    margin-top: 4px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 65%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 65%);
+    pointer-events: none;
+    user-select: none;
+    filter: blur(0.5px);
+  }
+}

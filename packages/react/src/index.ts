@@ -38,5 +38,8 @@ export * from './components/Grid';
 // Icons
 export * from './icons';
 
+// Aero Visual Primitives
+export * from './primitives';
+
 // Utilities
 export * from './utils/cn';

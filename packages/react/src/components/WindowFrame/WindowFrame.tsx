@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 
-export type WindowFrameVariant = 'aero' | 'glass' | 'glossy' | 'frosted';
+export type WindowFrameVariant = 'aero' | 'glass' | 'glossy' | 'frosted' | 'vista' | 'windows7';
 
 export interface WindowFrameProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: React.ReactNode;

@@ -57,10 +57,12 @@ import { AeroArchiveTab } from './components/AeroArchiveTab';
 import { AeroFaqTab } from './components/AeroFaqTab';
 import { AeroIconExplorer } from './components/AeroIconExplorer';
 import { AeroDesktopDemo } from './components/AeroDesktopDemo';
+import { AeroPrimitivesTab } from './components/AeroPrimitivesTab';
 
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
-  const [selectedExplorerTab, setSelectedExplorerTab] = useState('buttons');
+  const [selectedExplorerTab, setSelectedExplorerTab] = useState('primitives');
+  const [currentTheme, setCurrentTheme] = useState<'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7'>('aero');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
@@ -81,7 +83,11 @@ export default function App() {
   };
 
   return (
-    <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
+    <div
+      className="fj-bg-aero"
+      data-fj-theme={currentTheme}
+      style={{ minHeight: '100vh', transition: 'background 0.3s ease' }}
+    >
       {/* Top Aero Header Landmark */}
       <header role="banner">
         <Navbar
@@ -110,7 +116,45 @@ export default function App() {
             </div>
           }
           actions={
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+              {/* Live Theme Quick Switcher */}
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  background: 'rgba(255, 255, 255, 0.5)',
+                  padding: '3px 6px',
+                  borderRadius: 'var(--fj-radius-pill)',
+                  border: '1px solid rgba(186, 230, 253, 0.8)',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                }}
+              >
+                <span style={{ color: 'var(--fj-color-sky-950)', padding: '0 4px' }}>Theme:</span>
+                {(['aero', 'ocean', 'meadow', 'sunset', 'vista', 'windows7'] as const).map(t => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setCurrentTheme(t)}
+                    style={{
+                      border: 'none',
+                      background: currentTheme === t ? 'var(--fj-color-primary)' : 'transparent',
+                      color: currentTheme === t ? '#fff' : 'var(--fj-color-sky-900)',
+                      borderRadius: 'var(--fj-radius-pill)',
+                      padding: '2px 8px',
+                      cursor: 'pointer',
+                      fontSize: '10px',
+                      fontWeight: 700,
+                      transition: 'all 0.15s ease',
+                      textTransform: 'capitalize',
+                    }}
+                  >
+                    {t === 'windows7' ? 'Win 7' : t}
+                  </button>
+                ))}
+              </div>
+
               <Avatar name="Biagio Scaglia" size="sm" />
               <a
                 href="https://github.com/biagio-scaglia/frutiger-js"
@@ -323,6 +367,7 @@ export default function App() {
 
               <Tabs value={selectedExplorerTab} onValueChange={setSelectedExplorerTab}>
                 <TabList>
+                  <Tab value="primitives">🔮 Aero Primitives</Tab>
                   <Tab value="buttons">Buttons</Tab>
                   <Tab value="cards">Cards & Surfaces</Tab>
                   <Tab value="forms">Form Controls</Tab>
@@ -335,6 +380,11 @@ export default function App() {
                   <Tab value="faq">FAQ Knowledgebase</Tab>
                   <Tab value="responsive">Responsive Lab</Tab>
                 </TabList>
+
+                {/* AERO PRIMITIVES TAB */}
+                <TabPanel value="primitives">
+                  <AeroPrimitivesTab />
+                </TabPanel>
 
                 {/* BUTTONS TAB */}
                 <TabPanel value="buttons">

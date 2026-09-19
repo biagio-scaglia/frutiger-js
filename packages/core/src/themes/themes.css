@@ -1,0 +1,146 @@
+@layer fj.themes {
+  /* Default / Classic Frutiger Aero Theme */
+  :root,
+  [data-fj-theme='aero'] {
+    --fj-color-background: #f0f8ff;
+    --fj-color-background-surface: rgba(255, 255, 255, 0.82);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.95);
+    --fj-color-background-overlay: rgba(12, 74, 110, 0.4);
+
+    --fj-color-text: #0f2d4a;
+    --fj-color-text-muted: #537188;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(186, 230, 253, 0.8);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.6);
+    --fj-color-border-strong: #7dd3fc;
+
+    --fj-color-primary: #0284c7;
+    --fj-color-primary-hover: #0369a1;
+    --fj-color-primary-active: #075985;
+    --fj-color-primary-light: #e0f2fe;
+
+    --fj-surface-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(224, 242, 254, 0.45) 100%);
+    --fj-surface-glow-color: rgba(56, 189, 248, 0.4);
+  }
+
+  /* Deep Ocean Aqua Theme */
+  [data-fj-theme='ocean'] {
+    --fj-color-background: #e0f2fe;
+    --fj-color-background-surface: rgba(240, 249, 255, 0.85);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.95);
+    --fj-color-background-overlay: rgba(3, 43, 67, 0.5);
+
+    --fj-color-text: #032b43;
+    --fj-color-text-muted: #1e5270;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(125, 211, 252, 0.85);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.7);
+    --fj-color-border-strong: #0284c7;
+
+    --fj-color-primary: #0284c7;
+    --fj-color-primary-hover: #0369a1;
+    --fj-color-primary-active: #0c4a6e;
+    --fj-color-primary-light: #bae6fd;
+
+    --fj-surface-glass-bg: linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(186, 230, 253, 0.5) 100%);
+    --fj-surface-glow-color: rgba(2, 132, 199, 0.5);
+  }
+
+  /* Nature Meadow & Leaf Theme */
+  [data-fj-theme='meadow'] {
+    --fj-color-background: #f0fdf4;
+    --fj-color-background-surface: rgba(255, 255, 255, 0.88);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.96);
+    --fj-color-background-overlay: rgba(20, 83, 45, 0.4);
+
+    --fj-color-text: #052e16;
+    --fj-color-text-muted: #2d6a4f;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(187, 247, 208, 0.85);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.7);
+    --fj-color-border-strong: #22c55e;
+
+    --fj-color-primary: #16a34a;
+    --fj-color-primary-hover: #15803d;
+    --fj-color-primary-active: #166534;
+    --fj-color-primary-light: #dcfce7;
+
+    --fj-surface-glass-bg: linear-gradient(135deg, rgba(240, 253, 244, 0.85) 0%, rgba(220, 252, 231, 0.5) 100%);
+    --fj-surface-glow-color: rgba(34, 197, 94, 0.45);
+  }
+
+  /* Sunset Warm Daylight Theme */
+  [data-fj-theme='sunset'] {
+    --fj-color-background: #fffbeb;
+    --fj-color-background-surface: rgba(255, 255, 255, 0.88);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.96);
+    --fj-color-background-overlay: rgba(120, 53, 15, 0.4);
+
+    --fj-color-text: #451a03;
+    --fj-color-text-muted: #854d0e;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(254, 215, 170, 0.85);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.7);
+    --fj-color-border-strong: #f59e0b;
+
+    --fj-color-primary: #ea580c;
+    --fj-color-primary-hover: #c2410c;
+    --fj-color-primary-active: #9a3412;
+    --fj-color-primary-light: #ffedd5;
+
+    --fj-surface-glass-bg: linear-gradient(135deg, rgba(255, 247, 237, 0.85) 0%, rgba(254, 215, 170, 0.5) 100%);
+    --fj-surface-glow-color: rgba(249, 115, 22, 0.4);
+  }
+
+  /* Windows Vista Smoky Aero Glass Theme */
+  [data-fj-theme='vista'] {
+    --fj-color-background: #0d1b2a;
+    --fj-color-background-surface: rgba(26, 43, 66, 0.78);
+    --fj-color-background-elevated: rgba(34, 56, 84, 0.92);
+    --fj-color-background-overlay: rgba(5, 10, 18, 0.7);
+
+    --fj-color-text: #f0f9ff;
+    --fj-color-text-muted: #94a3b8;
+    --fj-color-text-inverse: #0f172a;
+
+    --fj-color-border: rgba(56, 189, 248, 0.4);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.15);
+    --fj-color-border-strong: #38bdf8;
+
+    --fj-color-primary: #38bdf8;
+    --fj-color-primary-hover: #7dd3fc;
+    --fj-color-primary-active: #0284c7;
+    --fj-color-primary-light: rgba(56, 189, 248, 0.2);
+
+    --fj-surface-glass-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(14, 165, 233, 0.1) 100%);
+    --fj-surface-glow-color: rgba(56, 189, 248, 0.6);
+  }
+
+  /* Windows 7 Pure Crystalline Aero Theme */
+  [data-fj-theme='windows7'] {
+    --fj-color-background: #e0f2fe;
+    --fj-color-background-surface: rgba(255, 255, 255, 0.8);
+    --fj-color-background-elevated: rgba(255, 255, 255, 0.96);
+    --fj-color-background-overlay: rgba(12, 74, 110, 0.45);
+
+    --fj-color-text: #0c2d48;
+    --fj-color-text-muted: #2e5984;
+    --fj-color-text-inverse: #ffffff;
+
+    --fj-color-border: rgba(186, 230, 253, 0.9);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.8);
+    --fj-color-border-strong: #0ea5e9;
+
+    --fj-color-primary: #0ea5e9;
+    --fj-color-primary-hover: #0284c7;
+    --fj-color-primary-active: #0369a1;
+    --fj-color-primary-light: #bae6fd;
+
+    --fj-surface-glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(224, 242, 254, 0.65) 50%, rgba(186, 230, 253, 0.5) 100%);
+    --fj-surface-glow-color: rgba(14, 165, 233, 0.5);
+  }
+}

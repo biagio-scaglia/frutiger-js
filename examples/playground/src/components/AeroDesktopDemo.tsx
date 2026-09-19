@@ -44,9 +44,9 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
             and live system tray clock.
           </CardDescription>
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="nature">Desktop Suite</Badge>
-          {(['aero', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]).map(v => (
+          {(['aero', 'vista', 'windows7', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]).map(v => (
             <Button
               key={v}
               size="sm"

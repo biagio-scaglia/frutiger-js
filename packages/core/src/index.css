@@ -2,8 +2,10 @@
 @import './reset.css';
 @import './tokens/index.css';
 @import './gloss/gloss.css';
+@import './primitives/primitives.css';
 @import './backgrounds/backgrounds.css';
 @import './animations/animations.css';
 @import './utilities/utilities.css';
 @import './components/index.css';
 @import './themes/aero.css';
+@import './themes/themes.css';
