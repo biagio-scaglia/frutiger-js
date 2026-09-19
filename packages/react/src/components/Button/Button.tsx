@@ -2,7 +2,13 @@ import React, { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 
 export type ButtonVariant =
-  'primary' | 'secondary' | 'success' | 'danger' | 'ghost' | 'glass' | 'aero';
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'ghost'
+  | 'glass'
+  | 'aero';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -10,6 +16,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: ButtonVariant;
   size?: ButtonSize;
   isLoading?: boolean;
+  isFullWidth?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -22,6 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'primary',
       size = 'md',
       isLoading = false,
+      isFullWidth = false,
       disabled,
       leftIcon,
       rightIcon,
@@ -44,6 +52,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           'fj-button',
           `fj-button--${variant}`,
           `fj-button--${size}`,
+          isFullWidth && 'fj-button--block',
           isLoading && 'fj-button--loading',
           className
         )}
