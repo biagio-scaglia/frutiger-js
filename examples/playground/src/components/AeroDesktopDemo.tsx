@@ -24,6 +24,10 @@ import {
   IconFolder,
   IconWifi,
   IconSpeaker,
+  IconSun,
+  IconAeroOrb,
+  IconCamera,
+  IconSettings,
 } from '@frutiger-js/react';
 
 export const AeroDesktopDemo: React.FC = React.memo(() => {
@@ -140,8 +144,24 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
-                <div style={{ fontSize: '1.8rem' }}>📁</div>
-                <span style={{ fontSize: '11px', fontWeight: 700, textShadow: '0 1px 2px #fff' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '32px',
+                  }}
+                >
+                  <IconFolder size={32} />
+                </div>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    textShadow: '0 1px 2px #fff',
+                    marginTop: '4px',
+                  }}
+                >
                   Aero Files
                 </span>
               </button>
@@ -167,8 +187,24 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.4)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
-                <div style={{ fontSize: '1.8rem' }}>🎵</div>
-                <span style={{ fontSize: '11px', fontWeight: 700, textShadow: '0 1px 2px #fff' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '32px',
+                  }}
+                >
+                  <IconMusic size={32} />
+                </div>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    textShadow: '0 1px 2px #fff',
+                    marginTop: '4px',
+                  }}
+                >
                   WMP 11
                 </span>
               </button>
@@ -220,9 +256,9 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
 
                     <Grid columns="repeat(auto-fit, minmax(min(100%, 75px), 1fr))" gap="0.5rem">
                       {[
-                        { name: 'aurora_4k.png', icon: '🌄', sz: '14.2 MB' },
-                        { name: 'aqua_orb.c4d', icon: '🔮', sz: '38.4 MB' },
-                        { name: 'ambience.flac', icon: '🎵', sz: '28.1 MB' },
+                        { name: 'aurora_4k.png', icon: <IconSun size={20} />, sz: '14.2 MB' },
+                        { name: 'aqua_orb.c4d', icon: <IconAeroOrb size={20} />, sz: '38.4 MB' },
+                        { name: 'ambience.flac', icon: <IconMusic size={20} />, sz: '28.1 MB' },
                       ].map((f, i) => (
                         <div
                           key={i}
@@ -235,7 +271,16 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                             cursor: 'pointer',
                           }}
                         >
-                          <div style={{ fontSize: '1.4rem' }}>{f.icon}</div>
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              height: '24px',
+                            }}
+                          >
+                            {f.icon}
+                          </div>
                           <div
                             style={{
                               fontSize: '10px',
@@ -243,6 +288,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                               overflow: 'hidden',
                               textOverflow: 'ellipsis',
                               whiteSpace: 'nowrap',
+                              marginTop: '2px',
                             }}
                           >
                             {f.name}
@@ -317,7 +363,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   id: 'exp',
                   label: 'Aero Explorer',
                   subtitle: 'Browse files & media vault',
-                  icon: '📁',
+                  icon: <IconFolder size={20} />,
                   onClick: () => {
                     setIsExplorerOpen(true);
                     setIsExplorerMinimized(false);
@@ -328,7 +374,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   id: 'player',
                   label: 'Media Player 11',
                   subtitle: 'High fidelity audio',
-                  icon: '🎵',
+                  icon: <IconMusic size={20} />,
                   onClick: () => {
                     setIsPlayerOpen(true);
                     setIsPlayerMinimized(false);
@@ -339,7 +385,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   id: 'browser',
                   label: 'Aero Web Browser',
                   subtitle: 'Fast daylight navigation',
-                  icon: '🌐',
+                  icon: <IconGlobe size={20} />,
                   onClick: () => {
                     alert('Launching Aero Web Browser');
                     setIsStartOpen(false);
@@ -347,10 +393,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                 },
               ]}
               places={[
-                { id: 'docs', label: 'Documents', icon: '📄' },
-                { id: 'pics', label: 'Pictures', icon: '🖼️' },
-                { id: 'music', label: 'Music', icon: '🎶' },
-                { id: 'ctrl', label: 'Control Panel', icon: '⚙️' },
+                { id: 'docs', label: 'Documents', icon: <IconFolder size={16} /> },
+                { id: 'pics', label: 'Pictures', icon: <IconCamera size={16} /> },
+                { id: 'music', label: 'Music', icon: <IconMusic size={16} /> },
+                { id: 'ctrl', label: 'Control Panel', icon: <IconSettings size={16} /> },
               ]}
             />
           </div>

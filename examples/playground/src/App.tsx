@@ -51,6 +51,10 @@ import {
   IconLeaf,
   IconSparkles,
   IconCheck,
+  IconStar,
+  IconSun,
+  IconAeroOrb,
+  IconGlobe,
 } from '@frutiger-js/react';
 import { AeroWidgetsSection } from './components/AeroWidgetsSection';
 import { AeroArchiveTab } from './components/AeroArchiveTab';
@@ -59,12 +63,12 @@ import { AeroIconExplorer } from './components/AeroIconExplorer';
 import { AeroDesktopDemo } from './components/AeroDesktopDemo';
 import { AeroPrimitivesTab } from './components/AeroPrimitivesTab';
 
+type ThemeName = 'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7';
+
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedExplorerTab, setSelectedExplorerTab] = useState('primitives');
-  const [currentTheme, setCurrentTheme] = useState<
-    'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7'
-  >('aero');
+  const [currentTheme, setCurrentTheme] = useState<ThemeName>('aero');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
@@ -118,43 +122,47 @@ export default function App() {
             </div>
           }
           actions={
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {/* Live Theme Quick Switcher */}
+            <div
+              style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'nowrap' }}
+            >
+              {/* Compact Glass Theme Selector */}
               <div
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '4px',
-                  background: 'rgba(255, 255, 255, 0.5)',
-                  padding: '3px 6px',
+                  gap: '6px',
+                  background: 'rgba(255, 255, 255, 0.75)',
+                  padding: '3px 8px',
                   borderRadius: 'var(--fj-radius-pill)',
-                  border: '1px solid rgba(186, 230, 253, 0.8)',
-                  fontSize: '11px',
-                  fontWeight: 700,
+                  border: '1px solid rgba(186, 230, 253, 0.95)',
+                  boxShadow: 'inset 0 1px 1px #fff, 0 2px 6px rgba(12, 74, 110, 0.1)',
+                  backdropFilter: 'blur(8px)',
+                  flexShrink: 0,
                 }}
               >
-                <span style={{ color: 'var(--fj-color-sky-950)', padding: '0 4px' }}>Theme:</span>
-                {(['aero', 'ocean', 'meadow', 'sunset', 'vista', 'windows7'] as const).map(t => (
-                  <button
-                    key={t}
-                    type="button"
-                    onClick={() => setCurrentTheme(t)}
-                    style={{
-                      border: 'none',
-                      background: currentTheme === t ? 'var(--fj-color-primary)' : 'transparent',
-                      color: currentTheme === t ? '#fff' : 'var(--fj-color-sky-900)',
-                      borderRadius: 'var(--fj-radius-pill)',
-                      padding: '2px 8px',
-                      cursor: 'pointer',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      transition: 'all 0.15s ease',
-                      textTransform: 'capitalize',
-                    }}
-                  >
-                    {t === 'windows7' ? 'Win 7' : t}
-                  </button>
-                ))}
+                <IconSparkles size={14} />
+                <select
+                  value={currentTheme}
+                  onChange={e => setCurrentTheme(e.target.value as ThemeName)}
+                  aria-label="Select visual theme"
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    color: 'var(--fj-color-text)',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  <option value="aero">Aero Classic</option>
+                  <option value="ocean">Ocean Aqua</option>
+                  <option value="meadow">Meadow Leaf</option>
+                  <option value="sunset">Sunset Dusk</option>
+                  <option value="vista">Windows Vista</option>
+                  <option value="windows7">Windows 7</option>
+                </select>
               </div>
 
               <Avatar name="Biagio Scaglia" size="sm" />
@@ -164,7 +172,7 @@ export default function App() {
                 rel="noreferrer"
                 style={{ textDecoration: 'none' }}
               >
-                <Button variant="primary" size="sm">
+                <Button variant="primary" size="sm" leftIcon={<IconStar size={14} />}>
                   GitHub
                 </Button>
               </a>
@@ -306,7 +314,7 @@ export default function App() {
               >
                 <a href="#components" style={{ textDecoration: 'none' }}>
                   <Button variant="aero" size="lg">
-                    Explore Components →
+                    Explore Components
                   </Button>
                 </a>
                 <a
@@ -315,7 +323,7 @@ export default function App() {
                   onClick={() => setSelectedExplorerTab('icons')}
                 >
                   <Button variant="glass" size="lg" leftIcon={<IconSparkles size={18} />}>
-                    Aero Icons (45+) ✨
+                    Aero Icons (45+)
                   </Button>
                 </a>
                 <Button
@@ -332,10 +340,68 @@ export default function App() {
                   rel="noreferrer"
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button variant="secondary" size="lg">
-                    GitHub ★
+                  <Button variant="secondary" size="lg" leftIcon={<IconStar size={18} />}>
+                    GitHub
                   </Button>
                 </a>
+              </div>
+
+              {/* Live Atmosphere & Multi-Theme Selector */}
+              <div
+                style={{
+                  marginTop: '2rem',
+                  paddingTop: '1.5rem',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.6)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 'var(--fj-font-size-xs)',
+                    fontWeight: 700,
+                    color: 'var(--fj-color-text-muted)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  Live Atmosphere & Aero Multi-Theme Engine
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {(
+                    [
+                      { id: 'aero', label: 'Aero Classic', icon: <IconWater size={14} /> },
+                      { id: 'ocean', label: 'Ocean Aqua', icon: <IconSparkles size={14} /> },
+                      { id: 'meadow', label: 'Meadow Leaf', icon: <IconLeaf size={14} /> },
+                      { id: 'sunset', label: 'Sunset Dusk', icon: <IconSun size={14} /> },
+                      { id: 'vista', label: 'Windows Vista', icon: <IconAeroOrb size={14} /> },
+                      { id: 'windows7', label: 'Windows 7', icon: <IconGlobe size={14} /> },
+                    ] as const
+                  ).map(t => (
+                    <Button
+                      key={t.id}
+                      size="sm"
+                      variant={currentTheme === t.id ? 'primary' : 'glass'}
+                      onClick={() => setCurrentTheme(t.id)}
+                      leftIcon={t.icon}
+                      style={{
+                        borderRadius: 'var(--fj-radius-pill)',
+                        fontWeight: 700,
+                      }}
+                    >
+                      {t.label}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </section>
 
@@ -369,7 +435,7 @@ export default function App() {
 
               <Tabs value={selectedExplorerTab} onValueChange={setSelectedExplorerTab}>
                 <TabList>
-                  <Tab value="primitives">🔮 Aero Primitives</Tab>
+                  <Tab value="primitives">Aero Primitives</Tab>
                   <Tab value="buttons">Buttons</Tab>
                   <Tab value="cards">Cards & Surfaces</Tab>
                   <Tab value="forms">Form Controls</Tab>
@@ -825,8 +891,14 @@ export default function App() {
                                       color: '#0f2d4a',
                                     }}
                                   >
-                                    <div style={{ marginBottom: '0.4rem', fontSize: '1.25rem' }}>
-                                      💧
+                                    <div
+                                      style={{
+                                        marginBottom: '0.4rem',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                      }}
+                                    >
+                                      <IconWater size={20} />
                                     </div>
                                     <div>{c.name}</div>
                                     <div
@@ -1288,8 +1360,8 @@ export default function App() {
                           rel="noreferrer"
                           style={{ textDecoration: 'none' }}
                         >
-                          <Button variant="glass" size="md">
-                            Star Repository ★
+                          <Button variant="glass" size="md" leftIcon={<IconStar size={16} />}>
+                            Star Repository
                           </Button>
                         </a>
                       </div>

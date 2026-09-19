@@ -15,6 +15,14 @@ import {
   GalleryItem,
   Modal,
   IconSearch,
+  IconCamera,
+  IconSparkles,
+  IconLeaf,
+  IconUsers,
+  IconSun,
+  IconAeroOrb,
+  IconMonitor,
+  IconFolder,
 } from '@frutiger-js/react';
 
 export interface ArchiveMediaItem {
@@ -156,7 +164,7 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
           title="Archive Media Assets"
           value="2,480"
           subtitle="High-res wallpapers & renders"
-          icon="🖼️"
+          icon={<IconCamera size={22} />}
           variant="aero"
           trend={{ value: '+14.2%', isPositive: true }}
         />
@@ -164,7 +172,7 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
           title="Themes & Gadgets"
           value="640"
           subtitle="Packaged Vista/7 widgets"
-          icon="✨"
+          icon={<IconSparkles size={22} />}
           variant="sky"
           trend={{ value: '+8.5%', isPositive: true }}
         />
@@ -172,7 +180,7 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
           title="Eco Biospheres"
           value="128"
           subtitle="3D daylight renders"
-          icon="🌿"
+          icon={<IconLeaf size={22} />}
           variant="grass"
           trend={{ value: '+22.0%', isPositive: true }}
         />
@@ -180,7 +188,7 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
           title="Active Curators"
           value="1,920"
           subtitle="Community contributors"
-          icon="👥"
+          icon={<IconUsers size={22} />}
           variant="default"
           trend={{ value: '+5.1%', isPositive: true }}
         />
@@ -198,74 +206,62 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
           <Badge variant="nature">{filteredArchive.length} Items Found</Badge>
         </CardHeader>
         <CardContent>
-          {/* Filter & Search Bar */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '1rem',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '1.5rem',
-              padding: '1rem 1.25rem',
-              background: 'rgba(255, 255, 255, 0.45)',
-              borderRadius: 'var(--fj-radius-xl)',
-            }}
-          >
-            {/* Search Input */}
-            <div style={{ flex: '1 1 240px', maxWidth: '340px' }}>
+          {/* Controls toolbar */}
+          <Stack spacing="md" style={{ marginBottom: '1.5rem' }}>
+            <Grid columns="repeat(auto-fit, minmax(min(100%, 260px), 1fr))" gap="1rem">
               <Input
-                placeholder="Search archive assets..."
+                placeholder="Search archive assets (e.g. Vista, Orbs, Aurora)..."
                 value={archiveSearch}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setArchiveSearch(e.target.value)}
                 leftIcon={<IconSearch size={16} />}
               />
-            </div>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '0.4rem',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                }}
+              >
+                {(['all', 'wallpapers', 'gadgets', 'themes', 'concept'] as const).map(cat => (
+                  <Button
+                    key={cat}
+                    size="sm"
+                    variant={archiveCategory === cat ? 'primary' : 'glass'}
+                    onClick={() => setArchiveCategory(cat)}
+                    style={{ textTransform: 'capitalize' }}
+                  >
+                    {cat}
+                  </Button>
+                ))}
+              </div>
+            </Grid>
+          </Stack>
 
-            {/* Category Pills */}
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              {[
-                { label: 'All Artifacts', val: 'all' },
-                { label: 'Wallpapers', val: 'wallpapers' },
-                { label: 'Concepts', val: 'concept' },
-                { label: 'Themes & Gadgets', val: 'themes' },
-              ].map(cat => (
-                <Button
-                  key={cat.val}
-                  size="sm"
-                  variant={archiveCategory === cat.val ? 'aero' : 'glass'}
-                  onClick={() => setArchiveCategory(cat.val)}
-                >
-                  {cat.label}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          {/* Responsive Gallery Grid */}
-          <GalleryGrid cols={3} minWidth="260px" gap="1.5rem">
+          {/* Gallery Items Grid */}
+          <GalleryGrid columns="repeat(auto-fill, minmax(min(100%, 260px), 1fr))" gap="1.25rem">
             {filteredArchive.map(item => (
               <GalleryItem
                 key={item.id}
                 title={item.title}
-                category={`${item.year} • ${item.badge}`}
-                description={item.description}
-                badge={item.tags[0]}
+                subtitle={`${item.year} • ${item.category}`}
+                badge={item.badge}
                 onClick={() => setLightboxItem(item)}
-                imageNode={
+                aspectRatio="16/10"
+                image={
                   <div
                     style={{
                       width: '100%',
                       height: '100%',
-                      minHeight: '160px',
                       background: item.gradient,
-                      position: 'relative',
-                      overflow: 'hidden',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      position: 'relative',
+                      overflow: 'hidden',
                     }}
                   >
+                    {/* Simulated lens glare */}
                     <div
                       style={{
                         position: 'absolute',
@@ -280,17 +276,16 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
                     />
                     <div
                       style={{
-                        fontSize: '3rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.25))',
                       }}
                     >
-                      {item.category === 'wallpapers'
-                        ? '🌄'
-                        : item.category === 'concept'
-                          ? '🔮'
-                          : item.category === 'themes'
-                            ? '📱'
-                            : '📟'}
+                      {item.category === 'wallpapers' && <IconSun size={48} />}
+                      {item.category === 'concept' && <IconAeroOrb size={48} />}
+                      {item.category === 'themes' && <IconMonitor size={48} />}
+                      {item.category === 'gadgets' && <IconFolder size={48} />}
                     </div>
                   </div>
                 }
@@ -312,8 +307,8 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
                     >
                       {item.author}
                     </span>
-                    <Button size="sm" variant="glass">
-                      Inspect 🔍
+                    <Button size="sm" variant="glass" leftIcon={<IconSearch size={14} />}>
+                      Inspect
                     </Button>
                   </div>
                 }
@@ -329,7 +324,9 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
                 color: 'var(--fj-color-text-muted)',
               }}
             >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>🔍</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
+                <IconSearch size={44} />
+              </div>
               <p style={{ fontWeight: 600 }}>No assets found matching your query.</p>
               <Button
                 variant="primary"
@@ -370,17 +367,16 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
             >
               <div
                 style={{
-                  fontSize: '4rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.3))',
                 }}
               >
-                {lightboxItem.category === 'wallpapers'
-                  ? '🌄'
-                  : lightboxItem.category === 'concept'
-                    ? '🔮'
-                    : lightboxItem.category === 'themes'
-                      ? '📱'
-                      : '📟'}
+                {lightboxItem.category === 'wallpapers' && <IconSun size={64} />}
+                {lightboxItem.category === 'concept' && <IconAeroOrb size={64} />}
+                {lightboxItem.category === 'themes' && <IconMonitor size={64} />}
+                {lightboxItem.category === 'gadgets' && <IconFolder size={64} />}
               </div>
             </div>
 

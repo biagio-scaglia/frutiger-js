@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
+import { IconCamera } from '../../icons';
 
 export interface GalleryGridProps extends React.HTMLAttributes<HTMLDivElement> {
   columns?: string;
@@ -41,25 +42,31 @@ export interface GalleryItemProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   description?: React.ReactNode;
   imageUrl?: string;
   imageNode?: React.ReactNode;
+  subtitle?: React.ReactNode;
   category?: string;
   badge?: React.ReactNode;
   fallbackIcon?: React.ReactNode;
   footer?: React.ReactNode;
   onSelect?: () => void;
+  aspectRatio?: string;
+  image?: React.ReactNode;
 }
 
 export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
   (
     {
       title,
+      subtitle,
       description,
       imageUrl,
       imageNode,
       category,
       badge,
-      fallbackIcon = '🖼️',
+      fallbackIcon = <IconCamera size={28} />,
       footer,
       onSelect,
+      aspectRatio,
+      image,
       className,
       onClick,
       ...props
@@ -87,9 +94,9 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
         className={cn('fj-gallery-item', className)}
         {...props}
       >
-        <div className="fj-gallery-item__media">
-          {imageNode ? (
-            imageNode
+        <div className="fj-gallery-item__media" style={aspectRatio ? { aspectRatio } : undefined}>
+          {image || imageNode ? (
+            image || imageNode
           ) : imageUrl ? (
             <img
               className="fj-gallery-item__img"
@@ -103,7 +110,9 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
           {badge && <div className="fj-gallery-item__badge">{badge}</div>}
         </div>
         <div className="fj-gallery-item__body">
-          {category && <div className="fj-gallery-item__category">{category}</div>}
+          {(subtitle || category) && (
+            <div className="fj-gallery-item__category">{subtitle || category}</div>
+          )}
           <div className="fj-gallery-item__title">{title}</div>
           {description && <div className="fj-gallery-item__description">{description}</div>}
           {footer && <div className="fj-gallery-item__footer">{footer}</div>}

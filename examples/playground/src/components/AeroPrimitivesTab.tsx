@@ -20,6 +20,9 @@ import {
   IconWater,
   IconLeaf,
   IconSun,
+  IconAeroOrb,
+  IconBubble,
+  IconDisc,
 } from '@frutiger-js/react';
 
 export const AeroPrimitivesTab: React.FC = React.memo(() => {
@@ -81,12 +84,12 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                     justifyContent: 'center',
                   }}
                 >
-                  {selectedVariant === 'crystal' && '🔮'}
-                  {selectedVariant === 'water' && '💧'}
-                  {selectedVariant === 'glass' && '🪟'}
-                  {selectedVariant === 'gloss' && '✨'}
-                  {selectedVariant === 'acrylic' && '💎'}
-                  {selectedVariant === 'chrome' && '🪙'}
+                  {selectedVariant === 'crystal' && <IconAeroOrb size={44} />}
+                  {selectedVariant === 'water' && <IconWater size={44} />}
+                  {selectedVariant === 'glass' && <IconBubble size={44} />}
+                  {selectedVariant === 'gloss' && <IconSparkles size={44} />}
+                  {selectedVariant === 'acrylic' && <IconSun size={44} />}
+                  {selectedVariant === 'chrome' && <IconDisc size={44} />}
                 </div>
                 <h4
                   style={{

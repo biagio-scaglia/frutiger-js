@@ -1,10 +1,11 @@
-import React, { forwardRef, HTMLAttributes } from 'react';
+import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../utils/cn';
+import { IconLock } from '../../icons';
 
 export interface StartMenuItemData {
   id: string;
   label: string;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   subtitle?: string;
   onClick?: () => void;
 }
@@ -13,12 +14,12 @@ export interface StartMenuProps extends HTMLAttributes<HTMLDivElement> {
   isOpen: boolean;
   onClose?: () => void;
   userName?: string;
-  userAvatar?: React.ReactNode;
+  userAvatar?: ReactNode;
   programs?: StartMenuItemData[];
   places?: StartMenuItemData[];
   searchPlaceholder?: string;
   onSearch?: (query: string) => void;
-  footerActions?: React.ReactNode;
+  footerActions?: ReactNode;
 }
 
 export const StartMenu = forwardRef<HTMLDivElement, StartMenuProps>(
@@ -161,10 +162,13 @@ export const StartMenu = forwardRef<HTMLDivElement, StartMenuProps>(
                 padding: '0.35rem 0.6rem',
                 background: 'rgba(239, 68, 68, 0.15)',
                 color: '#dc2626',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '4px',
               }}
               title="Shut Down System"
             >
-              🔒 Lock
+              <IconLock size={14} /> Lock
             </button>
           )}
         </div>
