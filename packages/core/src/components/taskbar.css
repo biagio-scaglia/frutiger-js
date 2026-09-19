@@ -1,0 +1,420 @@
+@layer fj.components {
+  /* Taskbar Main Dock */
+  .fj-taskbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 48px;
+    padding: 0 0.5rem;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(224, 242, 254, 0.6) 35%,
+      rgba(186, 230, 253, 0.5) 70%,
+      rgba(125, 211, 252, 0.65) 100%
+    );
+    backdrop-filter: blur(16px) saturate(170%);
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+    box-shadow:
+      0 -4px 20px rgba(2, 132, 199, 0.15),
+      inset 0 1px 1px rgba(255, 255, 255, 0.9),
+      inset 0 -1px 2px rgba(2, 132, 199, 0.1);
+    box-sizing: border-box;
+    user-select: none;
+    position: relative;
+    z-index: 100;
+    transform: translateZ(0);
+  }
+
+  .fj-taskbar-top {
+    border-top: 1px solid rgba(14, 165, 233, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow:
+      0 4px 20px rgba(2, 132, 199, 0.15),
+      inset 0 -1px 1px rgba(255, 255, 255, 0.9);
+  }
+
+  .fj-taskbar-fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .fj-taskbar-fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /* Start Button & Orb */
+  .fj-taskbar-start {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 0 0.5rem 0 0;
+    flex-shrink: 0;
+  }
+
+  .fj-taskbar-start-orb {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 35% 30%,
+      #ffffff 0%,
+      #38bdf8 30%,
+      #0284c7 70%,
+      #0369a1 100%
+    );
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow:
+      0 0 10px rgba(2, 132, 199, 0.4),
+      0 2px 6px rgba(0, 0, 0, 0.2),
+      inset 0 2px 3px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 3px rgba(3, 105, 161, 0.6);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    outline: none;
+  }
+
+  /* Specular dome cap */
+  .fj-taskbar-start-orb::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    right: 4px;
+    height: 44%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    border-radius: 50px 50px 30px 30px;
+    pointer-events: none;
+  }
+
+  .fj-taskbar-start-orb:hover {
+    transform: scale(1.06);
+    box-shadow:
+      0 0 18px rgba(56, 189, 248, 0.8),
+      0 3px 10px rgba(2, 132, 199, 0.4),
+      inset 0 2px 4px #ffffff;
+  }
+
+  .fj-taskbar-start-orb:active,
+  .fj-taskbar-start-orb[aria-expanded='true'] {
+    transform: scale(0.96);
+    background: radial-gradient(circle at 35% 30%, #bae6fd 0%, #0284c7 40%, #0c4a6e 100%);
+    box-shadow:
+      0 0 12px rgba(14, 165, 233, 0.6),
+      inset 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .fj-taskbar-start-orb:focus-visible {
+    box-shadow:
+      0 0 0 3px rgba(255, 255, 255, 0.95),
+      0 0 0 5px var(--fj-color-sky-500);
+  }
+
+  /* Taskbar Running Items Region */
+  .fj-taskbar-items {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1;
+    min-width: 0;
+    overflow-x: auto;
+    padding: 0 0.5rem;
+    scrollbar-width: none;
+  }
+  .fj-taskbar-items::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Individual Taskbar Application Tab */
+  .fj-taskbar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 36px;
+    padding: 0 0.75rem;
+    min-width: 44px;
+    max-width: 180px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(186, 230, 253, 0.35) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: var(--fj-radius-md);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 1px 3px rgba(2, 132, 199, 0.08);
+    font-size: var(--fj-font-size-xs);
+    font-weight: 600;
+    color: var(--fj-color-sky-950);
+    cursor: pointer;
+    transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+  }
+
+  .fj-taskbar-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    pointer-events: none;
+  }
+
+  .fj-taskbar-item:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(224, 242, 254, 0.7) 50%,
+      rgba(125, 211, 252, 0.6) 100%
+    );
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow:
+      0 0 10px rgba(56, 189, 248, 0.35),
+      inset 0 1px 1px #ffffff;
+  }
+
+  .fj-taskbar-item-active {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 165, 233, 0.25) 0%,
+      rgba(2, 132, 199, 0.45) 50%,
+      rgba(3, 105, 161, 0.6) 100%
+    );
+    border-color: rgba(14, 165, 233, 0.9);
+    color: #032b43;
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 0 var(--fj-color-sky-600),
+      0 2px 8px rgba(2, 132, 199, 0.25);
+  }
+
+  .fj-taskbar-item-minimized {
+    opacity: 0.65;
+  }
+
+  .fj-taskbar-item-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+  }
+
+  .fj-taskbar-item:focus-visible {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 4px var(--fj-color-sky-500);
+  }
+
+  /* System Tray Area */
+  .fj-taskbar-tray {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid rgba(186, 230, 253, 0.6);
+    flex-shrink: 0;
+  }
+
+  .fj-taskbar-clock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: var(--fj-font-size-xs);
+    font-weight: 700;
+    color: var(--fj-color-sky-950);
+    line-height: 1.15;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--fj-radius-sm);
+    cursor: default;
+  }
+
+  .fj-taskbar-clock-date {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--fj-color-text-muted);
+  }
+
+  .fj-taskbar-tray-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--fj-radius-sm);
+    color: var(--fj-color-sky-900);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .fj-taskbar-tray-icon:hover {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Start Menu Popup */
+  .fj-start-menu {
+    position: absolute;
+    bottom: 54px;
+    left: 8px;
+    width: clamp(300px, 92vw, 420px);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(240, 249, 255, 0.92) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: var(--fj-radius-xl);
+    box-shadow:
+      0 20px 50px rgba(2, 132, 199, 0.25),
+      0 6px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 2px #ffffff;
+    z-index: 1000;
+    overflow: hidden;
+    animation: fj-start-menu-open 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateZ(0);
+  }
+
+  @keyframes fj-start-menu-open {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .fj-start-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(
+      180deg,
+      rgba(14, 165, 233, 0.15) 0%,
+      rgba(186, 230, 253, 0.05) 100%
+    );
+    border-bottom: 1px solid rgba(186, 230, 253, 0.6);
+  }
+
+  .fj-start-menu-body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    min-height: 280px;
+  }
+
+  .fj-start-menu-programs {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-right: 1px solid rgba(186, 230, 253, 0.6);
+    overflow-y: auto;
+    max-height: 320px;
+  }
+
+  .fj-start-menu-places {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: rgba(224, 242, 254, 0.3);
+  }
+
+  .fj-start-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--fj-radius-md);
+    border: 1px solid transparent;
+    font-size: var(--fj-font-size-xs);
+    font-weight: 600;
+    color: var(--fj-color-sky-950);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background: none;
+    width: 100%;
+    text-align: left;
+    outline: none;
+  }
+
+  .fj-start-menu-item:hover {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(186, 230, 253, 0.7) 100%
+    );
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow:
+      0 2px 6px rgba(2, 132, 199, 0.15),
+      inset 0 1px 1px #fff;
+  }
+
+  .fj-start-menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(240, 249, 255, 0.9);
+    border-top: 1px solid rgba(186, 230, 253, 0.7);
+  }
+
+  /* Mobile Adaptation */
+  @media (max-width: 640px) {
+    .fj-taskbar {
+      height: 44px;
+      padding: 0 0.35rem;
+    }
+    .fj-taskbar-item-label {
+      display: none;
+    }
+    .fj-taskbar-item {
+      max-width: 44px;
+      padding: 0;
+      justify-content: center;
+    }
+    .fj-start-menu-body {
+      grid-template-columns: 1fr;
+    }
+    .fj-start-menu-places {
+      display: none;
+    }
+  }
+}

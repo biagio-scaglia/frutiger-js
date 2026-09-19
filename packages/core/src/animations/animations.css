@@ -2,20 +2,20 @@
   @keyframes fj-float {
     0%,
     100% {
-      transform: translateY(0px);
+      transform: translate3d(0, 0, 0);
     }
     50% {
-      transform: translateY(-8px);
+      transform: translate3d(0, -8px, 0);
     }
   }
 
   @keyframes fj-bubble {
     0%,
     100% {
-      transform: scale(1) translateY(0);
+      transform: scale(1) translate3d(0, 0, 0);
     }
     50% {
-      transform: scale(1.04) translateY(-6px);
+      transform: scale(1.04) translate3d(0, -6px, 0);
     }
   }
 
@@ -62,25 +62,30 @@
     }
   }
 
-  /* Utility classes */
+  /* Utility classes with GPU layer hints */
   .fj-animate-float {
     animation: fj-float 4s ease-in-out infinite;
+    will-change: transform;
   }
 
   .fj-animate-bubble {
     animation: fj-bubble 3.5s ease-in-out infinite;
+    will-change: transform;
   }
 
   .fj-animate-pulse {
     animation: fj-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    will-change: transform, opacity;
   }
 
   .fj-animate-wave {
     animation: fj-wave 3s ease-in-out infinite;
+    will-change: transform;
   }
 
   .fj-animate-spin {
     animation: fj-spin 1s linear infinite;
+    will-change: transform;
   }
 
   .fj-shimmer {

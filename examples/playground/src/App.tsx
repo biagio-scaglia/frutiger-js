@@ -39,8 +39,6 @@ import {
   Divider,
   ScrollArea,
   Dropzone,
-  WindowFrame,
-  WindowFrameVariant,
   IconWater,
   IconLeaf,
   IconSparkles,
@@ -50,6 +48,7 @@ import { AeroWidgetsSection } from './components/AeroWidgetsSection';
 import { AeroArchiveTab } from './components/AeroArchiveTab';
 import { AeroFaqTab } from './components/AeroFaqTab';
 import { AeroIconExplorer } from './components/AeroIconExplorer';
+import { AeroDesktopDemo } from './components/AeroDesktopDemo';
 
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
@@ -59,10 +58,6 @@ export default function App() {
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [simulatedWidth, setSimulatedWidth] = useState<string>('100%');
-
-  // WindowFrame State
-  const [windowVariant, setWindowVariant] = useState<WindowFrameVariant>('aero');
-  const [isWindowActive, setIsWindowActive] = useState(true);
 
   // Form states
   const [inputVal, setInputVal] = useState('frutiger.aero@web2007.net');
@@ -327,7 +322,7 @@ export default function App() {
                   <Tab value="navigation">Tabs & Accordion</Tab>
                   <Tab value="overflow">Custom Overflow</Tab>
                   <Tab value="archive">Aero Gallery & Archive</Tab>
-                  <Tab value="window">Aero Window Frame</Tab>
+                  <Tab value="window">Aero Desktop & Taskbar</Tab>
                   <Tab value="icons">Aero Custom Icons</Tab>
                   <Tab value="faq">FAQ Knowledgebase</Tab>
                   <Tab value="responsive">Responsive Lab</Tab>
@@ -1039,247 +1034,9 @@ export default function App() {
                   <AeroArchiveTab />
                 </TabPanel>
 
-                {/* AERO WINDOW FRAME TAB */}
+                {/* AERO DESKTOP & TASKBAR TAB */}
                 <TabPanel value="window">
-                  <Stack spacing="lg">
-                    <Card variant="glass">
-                      <CardHeader>
-                        <div>
-                          <CardTitle>Aero Window Frame (Vista & 7 Glass)</CardTitle>
-                          <CardDescription>
-                            Authentic skeuomorphic desktop window frames with specular titlebars,
-                            jewel traffic-light controls, address breadcrumbs, and content
-                            containers.
-                          </CardDescription>
-                        </div>
-                        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                          <Button
-                            size="sm"
-                            variant={isWindowActive ? 'aero' : 'glass'}
-                            onClick={() => setIsWindowActive(!isWindowActive)}
-                          >
-                            {isWindowActive ? 'Active Window' : 'Inactive Window'}
-                          </Button>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        {/* Variant Selection Bar */}
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            gap: '0.75rem',
-                            marginBottom: '1.5rem',
-                            alignItems: 'center',
-                            padding: '0.75rem 1rem',
-                            background: 'rgba(255, 255, 255, 0.45)',
-                            borderRadius: 'var(--fj-radius-lg)',
-                          }}
-                        >
-                          <span style={{ fontSize: 'var(--fj-font-size-sm)', fontWeight: 600 }}>
-                            Window Theme Variant:
-                          </span>
-                          {(['aero', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]).map(
-                            v => (
-                              <Button
-                                key={v}
-                                size="sm"
-                                variant={windowVariant === v ? 'primary' : 'glass'}
-                                onClick={() => setWindowVariant(v)}
-                              >
-                                {v.toUpperCase()}
-                              </Button>
-                            )
-                          )}
-                        </div>
-
-                        {/* Live Window Frame Preview */}
-                        <div
-                          style={{
-                            padding: '1.5rem',
-                            background:
-                              'radial-gradient(circle at 50% 30%, #e0f2fe 0%, #bae6fd 60%, #7dd3fc 100%)',
-                            borderRadius: 'var(--fj-radius-xl)',
-                            boxShadow: 'inset 0 2px 6px rgba(2, 132, 199, 0.15)',
-                          }}
-                        >
-                          <WindowFrame
-                            title="Windows Aero Explorer — C:\Media\FrutigerArchive\Renders"
-                            icon={<IconWater size={16} />}
-                            variant={windowVariant}
-                            isActive={isWindowActive}
-                            onClose={() => alert('Window close action triggered')}
-                            onMinimize={() => alert('Window minimize action triggered')}
-                            onMaximize={() => alert('Window maximize action triggered')}
-                            headerActions={
-                              <div style={{ display: 'flex', gap: '0.25rem' }}>
-                                <Badge variant="nature">Ready</Badge>
-                              </div>
-                            }
-                            footer={
-                              <div
-                                style={{
-                                  display: 'flex',
-                                  justifyContent: 'space-between',
-                                  alignItems: 'center',
-                                  width: '100%',
-                                }}
-                              >
-                                <span>8 items • 124.6 MB available in Aero storage</span>
-                                <span>Protected by Frutiger.js</span>
-                              </div>
-                            }
-                          >
-                            {/* Simulated Explorer Content */}
-                            <div style={{ padding: '0.5rem 0' }}>
-                              {/* Address & Navigation Toolbar */}
-                              <div
-                                style={{
-                                  display: 'flex',
-                                  flexWrap: 'wrap',
-                                  gap: '0.75rem',
-                                  alignItems: 'center',
-                                  padding: '0.6rem 0.8rem',
-                                  background: 'rgba(255, 255, 255, 0.8)',
-                                  borderRadius: 'var(--fj-radius-md)',
-                                  border: '1px solid rgba(186, 230, 253, 0.6)',
-                                  marginBottom: '1rem',
-                                }}
-                              >
-                                <div style={{ display: 'flex', gap: '0.35rem' }}>
-                                  <Button
-                                    size="sm"
-                                    variant="glass"
-                                    style={{ padding: '0.2rem 0.5rem' }}
-                                  >
-                                    ←
-                                  </Button>
-                                  <Button
-                                    size="sm"
-                                    variant="glass"
-                                    style={{ padding: '0.2rem 0.5rem' }}
-                                  >
-                                    →
-                                  </Button>
-                                </div>
-                                <div
-                                  style={{
-                                    flex: 1,
-                                    minWidth: '180px',
-                                    padding: '0.35rem 0.75rem',
-                                    background: '#ffffff',
-                                    borderRadius: 'var(--fj-radius-sm)',
-                                    border: '1px solid rgba(14, 165, 233, 0.4)',
-                                    fontSize: 'var(--fj-font-size-xs)',
-                                    color: 'var(--fj-color-sky-900)',
-                                    fontWeight: 500,
-                                  }}
-                                >
-                                  Computer ‣ Local Disk (C:) ‣ Media ‣ FrutigerArchive
-                                </div>
-                                <div style={{ width: '160px' }}>
-                                  <Input
-                                    placeholder="Search folder..."
-                                    aria-label="Search folder"
-                                  />
-                                </div>
-                              </div>
-
-                              {/* Explorer Files Grid */}
-                              <Grid columns="repeat(auto-fit, minmax(130px, 1fr))" gap="0.75rem">
-                                {[
-                                  {
-                                    name: 'aurora_bliss.png',
-                                    type: 'PNG Image',
-                                    icon: '🖼️',
-                                    size: '14.2 MB',
-                                  },
-                                  {
-                                    name: 'aqua_orb_3d.c4d',
-                                    type: '3D Project',
-                                    icon: '🔮',
-                                    size: '42.8 MB',
-                                  },
-                                  {
-                                    name: 'wii_forecast.gadget',
-                                    type: 'Desktop Gadget',
-                                    icon: '📟',
-                                    size: '2.1 MB',
-                                  },
-                                  {
-                                    name: 'walkman_ui.swf',
-                                    type: 'Flash Theme',
-                                    icon: '📱',
-                                    size: '8.4 MB',
-                                  },
-                                  {
-                                    name: 'wmp11_aurora.wms',
-                                    type: 'Skin File',
-                                    icon: '🎵',
-                                    size: '11.6 MB',
-                                  },
-                                  {
-                                    name: 'eco_dome.max',
-                                    type: '3D Scene',
-                                    icon: '🌿',
-                                    size: '38.2 MB',
-                                  },
-                                ].map((f, i) => (
-                                  <div
-                                    key={i}
-                                    style={{
-                                      padding: '0.75rem',
-                                      borderRadius: 'var(--fj-radius-md)',
-                                      background: 'rgba(255, 255, 255, 0.75)',
-                                      border: '1px solid rgba(255, 255, 255, 0.9)',
-                                      textAlign: 'center',
-                                      cursor: 'pointer',
-                                      transition: 'all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                                      boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
-                                    }}
-                                    onMouseEnter={e => {
-                                      e.currentTarget.style.background = 'rgba(224, 242, 254, 0.9)';
-                                      e.currentTarget.style.borderColor = 'var(--fj-color-sky-400)';
-                                    }}
-                                    onMouseLeave={e => {
-                                      e.currentTarget.style.background =
-                                        'rgba(255, 255, 255, 0.75)';
-                                      e.currentTarget.style.borderColor =
-                                        'rgba(255, 255, 255, 0.9)';
-                                    }}
-                                  >
-                                    <div style={{ fontSize: '2rem', marginBottom: '0.35rem' }}>
-                                      {f.icon}
-                                    </div>
-                                    <div
-                                      style={{
-                                        fontSize: 'var(--fj-font-size-xs)',
-                                        fontWeight: 600,
-                                        whiteSpace: 'nowrap',
-                                        overflow: 'hidden',
-                                        textOverflow: 'ellipsis',
-                                      }}
-                                    >
-                                      {f.name}
-                                    </div>
-                                    <div
-                                      style={{
-                                        fontSize: '0.65rem',
-                                        color: 'var(--fj-color-text-muted)',
-                                        marginTop: '2px',
-                                      }}
-                                    >
-                                      {f.size}
-                                    </div>
-                                  </div>
-                                ))}
-                              </Grid>
-                            </div>
-                          </WindowFrame>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Stack>
+                  <AeroDesktopDemo />
                 </TabPanel>
 
                 {/* MEMOIZED FAQ KNOWLEDGEBASE TAB */}
