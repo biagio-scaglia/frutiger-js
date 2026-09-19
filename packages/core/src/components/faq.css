@@ -1,0 +1,82 @@
+@layer fj.components {
+  /* Frutiger Aero FAQ & Knowledgebase Item */
+  .fj-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fj-space-3);
+    width: 100%;
+  }
+
+  .fj-faq-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: var(--fj-radius-xl);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 4px 14px rgba(2, 132, 199, 0.08);
+    overflow: hidden;
+    transition: all var(--fj-duration-normal) var(--fj-ease-out);
+  }
+
+  .fj-faq-card:hover {
+    border-color: var(--fj-color-sky-300);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 6px 20px rgba(2, 132, 199, 0.15);
+  }
+
+  .fj-faq-card__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--fj-space-4) var(--fj-space-5);
+    font-weight: 700;
+    font-size: var(--fj-font-size-md);
+    color: var(--fj-color-sky-950);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    outline: none;
+  }
+
+  .fj-faq-card__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .fj-faq-card__summary:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--fj-color-sky-400);
+  }
+
+  .fj-faq-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #bae6fd 0%, #38bdf8 100%);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 2px 5px rgba(2, 132, 199, 0.25);
+    color: #ffffff;
+    transition: transform var(--fj-duration-fast) var(--fj-ease-spring);
+    flex-shrink: 0;
+  }
+
+  .fj-faq-card[open] .fj-faq-card__icon {
+    transform: rotate(180deg);
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+  }
+
+  .fj-faq-card__content {
+    padding: 0 var(--fj-space-5) var(--fj-space-4) var(--fj-space-5);
+    font-size: var(--fj-font-size-sm);
+    color: var(--fj-color-text-muted);
+    line-height: 1.65;
+    border-top: 1px solid rgba(186, 230, 253, 0.4);
+    margin-top: 0.25rem;
+    padding-top: var(--fj-space-3);
+  }
+}

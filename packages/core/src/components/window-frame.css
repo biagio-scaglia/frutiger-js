@@ -1,0 +1,99 @@
+@layer fj.components {
+  /* Frutiger Aero Glass Window Frame (Vista / 7 Aero Glass) */
+  .fj-window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: var(--fj-radius-xl);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 12px 36px rgba(2, 132, 199, 0.2),
+      0 1px 3px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: box-shadow var(--fj-duration-normal) var(--fj-ease-out);
+  }
+
+  .fj-window__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1rem;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(224, 242, 254, 0.8) 50%,
+      rgba(186, 230, 253, 0.6) 100%
+    );
+    border-bottom: 1px solid rgba(186, 230, 253, 0.8);
+    box-shadow: inset 0 1px 0 #ffffff;
+    user-select: none;
+  }
+
+  .fj-window__title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--fj-space-2);
+    font-size: var(--fj-font-size-sm);
+    font-weight: 700;
+    color: var(--fj-color-sky-950);
+    letter-spacing: -0.01em;
+  }
+
+  .fj-window__controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .fj-window__btn {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 1px 2px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition:
+      transform var(--fj-duration-fast) var(--fj-ease-spring),
+      filter 0.15s;
+    padding: 0;
+  }
+
+  .fj-window__btn:hover {
+    transform: scale(1.15);
+    filter: brightness(1.1);
+  }
+
+  .fj-window__btn--close {
+    background: radial-gradient(circle at 35% 30%, #fca5a5 0%, #ef4444 60%, #b91c1c 100%);
+  }
+
+  .fj-window__btn--minimize {
+    background: radial-gradient(circle at 35% 30%, #fef08a 0%, #eab308 60%, #a16207 100%);
+  }
+
+  .fj-window__btn--maximize {
+    background: radial-gradient(circle at 35% 30%, #86efac 0%, #22c55e 60%, #15803d 100%);
+  }
+
+  .fj-window__body {
+    padding: var(--fj-space-4);
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .fj-window__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: var(--fj-font-size-xs);
+    color: var(--fj-color-text-muted);
+    background: rgba(240, 249, 255, 0.8);
+    border-top: 1px solid rgba(186, 230, 253, 0.6);
+  }
+}

@@ -1,0 +1,104 @@
+@layer fj.components {
+  /* Frutiger Aero Archive Media Gallery */
+  .fj-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: var(--fj-space-4);
+    width: 100%;
+  }
+
+  .fj-gallery-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--fj-radius-xl);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 4px 16px rgba(2, 132, 199, 0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--fj-duration-normal) var(--fj-ease-out);
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+  }
+
+  .fj-gallery-item:hover,
+  .fj-gallery-item:focus-visible {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--fj-color-sky-300);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 0 0 3px rgba(56, 189, 248, 0.4),
+      0 12px 32px rgba(2, 132, 199, 0.22);
+  }
+
+  .fj-gallery-item__preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, #bae6fd 0%, #38bdf8 50%, #0284c7 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fj-gallery-item__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fj-gallery-item:hover .fj-gallery-item__img {
+    transform: scale(1.06);
+  }
+
+  .fj-gallery-item__gloss-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+  }
+
+  .fj-gallery-item__category-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 0.2rem 0.6rem;
+    font-size: var(--fj-font-size-xs);
+    font-weight: 700;
+    color: #ffffff;
+    background: rgba(2, 132, 199, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: var(--fj-radius-pill);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .fj-gallery-item__meta {
+    padding: var(--fj-space-3) var(--fj-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .fj-gallery-item__title {
+    font-weight: 700;
+    font-size: var(--fj-font-size-sm);
+    color: var(--fj-color-sky-950);
+  }
+
+  .fj-gallery-item__description {
+    font-size: var(--fj-font-size-xs);
+    color: var(--fj-color-text-muted);
+    line-height: 1.4;
+  }
+}

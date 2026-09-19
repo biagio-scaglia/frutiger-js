@@ -1,0 +1,86 @@
+@layer fj.components {
+  /* Frutiger Aero Stat / Metric Card */
+  .fj-stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--fj-space-4);
+    padding: var(--fj-space-4) var(--fj-space-5);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(224, 242, 254, 0.7) 100%
+    );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: var(--fj-radius-xl);
+    box-shadow:
+      inset 0 1px 1px #ffffff,
+      0 6px 20px rgba(2, 132, 199, 0.1);
+    transition:
+      transform var(--fj-duration-normal) var(--fj-ease-out),
+      box-shadow var(--fj-duration-normal);
+  }
+
+  .fj-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 10px 28px rgba(2, 132, 199, 0.18);
+  }
+
+  .fj-stat-card__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--fj-radius-lg);
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #38bdf8 45%, #0284c7 95%);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 4px 12px rgba(2, 132, 199, 0.35);
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .fj-stat-card__content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .fj-stat-card__value {
+    font-size: var(--fj-font-size-2xl);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--fj-color-sky-950);
+    letter-spacing: -0.03em;
+  }
+
+  .fj-stat-card__label {
+    font-size: var(--fj-font-size-xs);
+    font-weight: 600;
+    color: var(--fj-color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.2rem;
+  }
+
+  .fj-stat-card__trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--fj-font-size-xs);
+    font-weight: 700;
+    margin-top: 0.25rem;
+  }
+
+  .fj-stat-card__trend--up {
+    color: var(--fj-color-grass-600);
+  }
+
+  .fj-stat-card__trend--down {
+    color: var(--fj-color-danger);
+  }
+}
