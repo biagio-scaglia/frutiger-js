@@ -51,7 +51,6 @@ import {
 } from '@frutiger-js/react';
 
 export default function App() {
-  const [theme, setTheme] = useState<'aero' | 'aero-night'>('aero');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
@@ -67,23 +66,13 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songProgress, setSongProgress] = useState(38);
 
-  // Toggle Theme
-  const toggleTheme = () => {
-    const nextTheme = theme === 'aero' ? 'aero-night' : 'aero';
-    setTheme(nextTheme);
-    document.documentElement.setAttribute('data-fj-theme', nextTheme);
-  };
-
   const handleCopyInstall = () => {
     navigator.clipboard.writeText('npm install @frutiger-js/core @frutiger-js/react');
     alert('Copied to clipboard: npm install @frutiger-js/core @frutiger-js/react');
   };
 
   return (
-    <div
-      className={theme === 'aero' ? 'fj-bg-aero' : 'fj-bg-aero-night'}
-      style={{ minHeight: '100vh' }}
-    >
+    <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
       {/* Top Aero Navigation */}
       <Navbar
         brand={
@@ -112,14 +101,6 @@ export default function App() {
         }
         actions={
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Button
-              variant="glass"
-              size="sm"
-              onClick={toggleTheme}
-              leftIcon={theme === 'aero' ? <IconSun size={14} /> : <IconSparkles size={14} />}
-            >
-              {theme === 'aero' ? 'Light Sky' : 'Aero Night'}
-            </Button>
             <Avatar name="Aero User" size="sm" />
             <a
               href="https://github.com/biagio-scaglia/frutiger-js"

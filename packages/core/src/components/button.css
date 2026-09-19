@@ -152,24 +152,25 @@
 
   /* Glass (Frosted Translucent Button) */
   .fj-button--glass {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    color: var(--fj-color-text);
-    border-color: rgba(255, 255, 255, 0.8);
+    color: #0f2d4a;
+    border-color: rgba(255, 255, 255, 0.9);
     box-shadow:
       inset 0 1px 1px rgba(255, 255, 255, 0.9),
-      0 2px 8px rgba(12, 74, 110, 0.12);
+      0 2px 8px rgba(12, 74, 110, 0.15);
   }
   .fj-button--glass:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.95);
+    color: #0369a1;
     box-shadow:
       inset 0 1px 1px rgba(255, 255, 255, 1),
-      0 4px 14px rgba(12, 74, 110, 0.18);
+      0 4px 14px rgba(12, 74, 110, 0.2);
     transform: translateY(-1px);
   }
   .fj-button--glass:active:not(:disabled) {
-    background: rgba(240, 249, 255, 0.9);
+    background: rgba(240, 249, 255, 0.95);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
     transform: translateY(1px);
   }

@@ -27,7 +27,6 @@ The system is split into two primary packages:
 - 💎 **Authentic Frutiger Aero Gloss**: Specular dome buttons, acrylic glass backdrops (`backdrop-filter`), tactile bevels, and organic shadows.
 - 🧬 **CSS Cascade Layers**: Organized via `@layer fj.reset, fj.tokens, fj.base, fj.utilities, fj.components, fj.themes`.
 - 🎨 **Comprehensive Token System**: Sky, Ocean, Grass, Leaf, Water, Sun, Berry, and Neutral color scales.
-- 🌓 **Day / Aero-Night Theming**: Switch between luminous day sky and glowing nocturnal twilight mode with `[data-fj-theme]`.
 - ♿ **WCAG 2.2 AA Accessibility**: Full keyboard navigation, focus visible rings, ARIA semantics, and `@media (prefers-reduced-motion: reduce)` support.
 - 📦 **Modern ESM & TypeScript**: Strict typing, tree-shakeable exports, and `.d.ts` declarations.
 
@@ -145,16 +144,16 @@ All visual tokens are defined as CSS Custom Properties:
 
 ---
 
-## 🌓 Theming
+## 🎨 CSS Customization
 
-Toggle themes using the `data-fj-theme` attribute on the `<html>` or container element:
+Frutiger.js design tokens are fully customizable using CSS variables:
 
-```html
-<!-- Default Day Sky Theme -->
-<html data-fj-theme="aero">
-  <!-- Deep Glowing Aero Night Theme -->
-  <html data-fj-theme="aero-night"></html>
-</html>
+```css
+:root {
+  --fj-color-primary: #0284c7;
+  --fj-radius-md: 12px;
+  --fj-font-family-sans: 'Segoe UI', system-ui, sans-serif;
+}
 ```
 
 ---

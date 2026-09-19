@@ -8,7 +8,6 @@ Pure CSS design system inspired by Frutiger Aero, Web 2.0 aesthetics, glossy tex
 - 🧬 **CSS Cascade Layers**: Structured with `@layer fj.*` (`fj.reset`, `fj.tokens`, `fj.utilities`, `fj.components`, `fj.themes`).
 - 🎨 **Rich Design Tokens**: Naturalistic palettes (Sky, Ocean, Grass, Leaf, Water, Sun, Berry, Neutrals).
 - ✨ **Authentic Gloss & Glass**: Specular dome highlights, frosted acrylic backdrops, organic rim lighting, and depth shadows.
-- 🌓 **Theming**: Integrated Light Aero and Dark `aero-night` themes via `[data-fj-theme]`.
 - ♿ **Accessibility**: Reduced motion compliance, high-contrast focus rings, and WCAG AA contrast.
 
 ## Installation
