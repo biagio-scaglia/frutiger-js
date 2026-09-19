@@ -30,6 +30,7 @@ export * from './components/Gallery';
 export * from './components/StatCard';
 export * from './components/Faq';
 export * from './components/Taskbar';
+export * from './components/Table';
 export * from './components/Container';
 export * from './components/Stack';
 export * from './components/Grid';

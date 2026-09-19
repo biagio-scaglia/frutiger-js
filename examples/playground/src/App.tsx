@@ -39,6 +39,14 @@ import {
   Divider,
   ScrollArea,
   Dropzone,
+  Table,
+  TableContainer,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
   IconWater,
   IconLeaf,
   IconSparkles,
@@ -924,31 +932,22 @@ export default function App() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div style={{ overflowX: 'auto' }}>
-                          <table
-                            style={{
-                              width: '100%',
-                              borderCollapse: 'collapse',
-                              textAlign: 'left',
-                              fontSize: 'var(--fj-font-size-sm)',
-                            }}
-                          >
-                            <thead>
-                              <tr
-                                style={{
-                                  borderBottom: '2px solid rgba(186, 230, 253, 0.8)',
-                                  background: 'rgba(224, 242, 254, 0.3)',
-                                }}
-                              >
-                                <th style={{ padding: '0.75rem' }}>Target Viewport</th>
-                                <th style={{ padding: '0.75rem' }}>Device Category</th>
-                                <th style={{ padding: '0.75rem' }}>Navbar Mode</th>
-                                <th style={{ padding: '0.75rem' }}>Grid Columns</th>
-                                <th style={{ padding: '0.75rem' }}>Touch Hit Target</th>
-                                <th style={{ padding: '0.75rem' }}>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
+                        <TableContainer>
+                          <Table responsiveMode="stack" isStriped isHoverable>
+                            <TableCaption>
+                              Verified 320px–3840px responsive viewport compliance matrix.
+                            </TableCaption>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead>Target Viewport</TableHead>
+                                <TableHead>Device Category</TableHead>
+                                <TableHead>Navbar Mode</TableHead>
+                                <TableHead>Grid Columns</TableHead>
+                                <TableHead>Touch Hit Target</TableHead>
+                                <TableHead>Status</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
                               {[
                                 {
                                   vp: '320 × 568',
@@ -1007,23 +1006,25 @@ export default function App() {
                                   status: 'Verified',
                                 },
                               ].map((row, i) => (
-                                <tr
-                                  key={i}
-                                  style={{ borderBottom: '1px solid rgba(186, 230, 253, 0.4)' }}
-                                >
-                                  <td style={{ padding: '0.75rem', fontWeight: 600 }}>{row.vp}</td>
-                                  <td style={{ padding: '0.75rem' }}>{row.cat}</td>
-                                  <td style={{ padding: '0.75rem' }}>{row.nav}</td>
-                                  <td style={{ padding: '0.75rem' }}>{row.grid}</td>
-                                  <td style={{ padding: '0.75rem' }}>{row.hit}</td>
-                                  <td style={{ padding: '0.75rem' }}>
+                                <TableRow key={i}>
+                                  <TableCell
+                                    dataLabel="Target Viewport"
+                                    style={{ fontWeight: 600 }}
+                                  >
+                                    {row.vp}
+                                  </TableCell>
+                                  <TableCell dataLabel="Device Category">{row.cat}</TableCell>
+                                  <TableCell dataLabel="Navbar Mode">{row.nav}</TableCell>
+                                  <TableCell dataLabel="Grid Columns">{row.grid}</TableCell>
+                                  <TableCell dataLabel="Touch Hit Target">{row.hit}</TableCell>
+                                  <TableCell dataLabel="Status">
                                     <Badge variant="success">{row.status}</Badge>
-                                  </td>
-                                </tr>
+                                  </TableCell>
+                                </TableRow>
                               ))}
-                            </tbody>
-                          </table>
-                        </div>
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
                       </CardContent>
                     </Card>
                   </Stack>
