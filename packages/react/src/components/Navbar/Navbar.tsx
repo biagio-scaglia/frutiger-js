@@ -44,6 +44,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     }, [isControlled, onMenuToggle]);
 
     useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth >= 1025 && !isControlled && uncontrolledMenuOpen) {
+          setUncontrolledMenuOpen(false);
+        }
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, [isControlled, uncontrolledMenuOpen]);
+
+    useEffect(() => {
       if (!isMenuOpen) return;
 
       const handleKeyDown = (e: KeyboardEvent) => {
