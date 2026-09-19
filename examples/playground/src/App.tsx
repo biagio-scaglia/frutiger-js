@@ -264,57 +264,312 @@ const FAQ_ITEMS = [
 ];
 
 const AERO_ICONS_LIST = [
-  { name: 'IconFish', component: IconFish, category: 'Nature & Life', tags: ['fish', 'goldfish', 'water', 'nature', 'pet', 'aqua'] },
-  { name: 'IconBubble', component: IconBubble, category: 'Aero Glass', tags: ['bubble', 'aqua', 'sphere', 'water', '3d', 'specular'] },
-  { name: 'IconWater', component: IconWater, category: 'Nature & Life', tags: ['water', 'drop', 'droplet', 'liquid', 'aqua', 'dew'] },
-  { name: 'IconLeaf', component: IconLeaf, category: 'Nature & Life', tags: ['leaf', 'plant', 'nature', 'green', 'eco', 'organic'] },
-  { name: 'IconSprout', component: IconSprout, category: 'Nature & Life', tags: ['sprout', 'seedling', 'plant', 'nature', 'green', 'growth'] },
-  { name: 'IconSun', component: IconSun, category: 'Atmosphere', tags: ['sun', 'day', 'weather', 'light', 'amber', 'solar'] },
-  { name: 'IconCloud', component: IconCloud, category: 'Atmosphere', tags: ['cloud', 'weather', 'sky', 'overcast', 'cumulus'] },
-  { name: 'IconGlobe', component: IconGlobe, category: 'Atmosphere', tags: ['globe', 'world', 'earth', 'planet', 'network', 'latitude'] },
-  { name: 'IconRainbow', component: IconRainbow, category: 'Atmosphere', tags: ['rainbow', 'spectrum', 'color', 'sky', 'prism', 'arc'] },
-  { name: 'IconFlame', component: IconFlame, category: 'Nature & Life', tags: ['flame', 'fire', 'burn', 'hot', 'orange', 'warm'] },
-  { name: 'IconAeroOrb', component: IconAeroOrb, category: 'Aero Glass', tags: ['orb', 'vista', 'sphere', 'button', 'badge', '3d', 'chrome'] },
-  { name: 'IconDisc', component: IconDisc, category: 'Hardware & Media', tags: ['disc', 'cd', 'dvd', 'music', 'hologram', 'sheen'] },
-  { name: 'IconMonitor', component: IconMonitor, category: 'Hardware & Media', tags: ['monitor', 'screen', 'display', 'desktop', 'computer'] },
-  { name: 'IconCamera', component: IconCamera, category: 'Hardware & Media', tags: ['camera', 'photo', 'lens', 'picture', 'shot', 'reflex'] },
-  { name: 'IconSpeaker', component: IconSpeaker, category: 'Hardware & Media', tags: ['speaker', 'audio', 'sound', 'volume', 'cone'] },
-  { name: 'IconBattery', component: IconBattery, category: 'Hardware & Media', tags: ['battery', 'energy', 'power', 'charge', 'green'] },
-  { name: 'IconWifi', component: IconWifi, category: 'Hardware & Media', tags: ['wifi', 'wireless', 'network', 'signal', 'waves'] },
-  { name: 'IconShield', component: IconShield, category: 'Security & System', tags: ['shield', 'security', 'protect', 'safe', 'defender'] },
-  { name: 'IconLock', component: IconLock, category: 'Security & System', tags: ['lock', 'security', 'padlock', 'private', 'gold'] },
-  { name: 'IconUnlock', component: IconUnlock, category: 'Security & System', tags: ['unlock', 'open', 'access', 'security'] },
-  { name: 'IconCompass', component: IconCompass, category: 'Hardware & Media', tags: ['compass', 'navigation', 'direction', 'safari', 'needle'] },
-  { name: 'IconSettings', component: IconSettings, category: 'Security & System', tags: ['settings', 'gear', 'config', 'preferences', 'metal'] },
-  { name: 'IconFolder', component: IconFolder, category: 'Security & System', tags: ['folder', 'directory', 'files', 'storage', 'aqua'] },
-  { name: 'IconTrash', component: IconTrash, category: 'Security & System', tags: ['trash', 'recycle', 'bin', 'delete', 'glass'] },
-  { name: 'IconMusic', component: IconMusic, category: 'Hardware & Media', tags: ['music', 'song', 'audio', 'notes', 'eighth'] },
-  { name: 'IconPlay', component: IconPlay, category: 'Hardware & Media', tags: ['play', 'start', 'media', 'triangle'] },
-  { name: 'IconPause', component: IconPause, category: 'Hardware & Media', tags: ['pause', 'stop', 'media', 'bars'] },
-  { name: 'IconUser', component: IconUser, category: 'Communication', tags: ['user', 'profile', 'avatar', 'person', 'account'] },
-  { name: 'IconUsers', component: IconUsers, category: 'Communication', tags: ['users', 'group', 'people', 'team', 'community'] },
-  { name: 'IconMail', component: IconMail, category: 'Communication', tags: ['mail', 'email', 'message', 'envelope', 'post'] },
-  { name: 'IconHeart', component: IconHeart, category: 'Communication', tags: ['heart', 'like', 'love', 'favorite', 'ruby', '3d'] },
-  { name: 'IconStar', component: IconStar, category: 'Communication', tags: ['star', 'favorite', 'rating', 'gold', '3d', 'spark'] },
-  { name: 'IconSparkles', component: IconSparkles, category: 'Atmosphere', tags: ['sparkles', 'magic', 'shine', 'starburst', 'glow'] },
-  { name: 'IconSearch', component: IconSearch, category: 'UI Navigation', tags: ['search', 'find', 'magnifier', 'explore', 'glass'] },
-  { name: 'IconCheck', component: IconCheck, category: 'UI Navigation', tags: ['check', 'success', 'done', 'tick', 'green'] },
-  { name: 'IconClose', component: IconClose, category: 'UI Navigation', tags: ['close', 'cancel', 'error', 'remove', 'cross'] },
-  { name: 'IconMenu', component: IconMenu, category: 'UI Navigation', tags: ['menu', 'hamburger', 'nav', 'list', 'pills'] },
-  { name: 'IconInfo', component: IconInfo, category: 'UI Navigation', tags: ['info', 'help', 'details', 'about', 'badge'] },
-  { name: 'IconAlertTriangle', component: IconAlertTriangle, category: 'UI Navigation', tags: ['alert', 'warning', 'danger', 'caution', 'amber'] },
-  { name: 'IconChevronDown', component: IconChevronDown, category: 'UI Navigation', tags: ['chevron', 'down', 'arrow', 'expand'] },
-  { name: 'IconChevronUp', component: IconChevronUp, category: 'UI Navigation', tags: ['chevron', 'up', 'arrow', 'collapse'] },
-  { name: 'IconChevronLeft', component: IconChevronLeft, category: 'UI Navigation', tags: ['chevron', 'left', 'arrow', 'back'] },
-  { name: 'IconChevronRight', component: IconChevronRight, category: 'UI Navigation', tags: ['chevron', 'right', 'arrow', 'forward'] },
-  { name: 'IconDownload', component: IconDownload, category: 'UI Navigation', tags: ['download', 'save', 'arrow', 'get', 'receive'] },
-  { name: 'IconUpload', component: IconUpload, category: 'UI Navigation', tags: ['upload', 'send', 'arrow', 'put', 'transmit'] },
-  { name: 'IconRefresh', component: IconRefresh, category: 'UI Navigation', tags: ['refresh', 'reload', 'sync', 'update', 'arrows'] },
-  { name: 'IconEye', component: IconEye, category: 'UI Navigation', tags: ['eye', 'view', 'visible', 'preview', 'look'] },
-  { name: 'IconClock', component: IconClock, category: 'Hardware & Media', tags: ['clock', 'time', 'watch', 'timer', 'analog'] },
-  { name: 'IconCalendar', component: IconCalendar, category: 'Hardware & Media', tags: ['calendar', 'date', 'schedule', 'day', 'month'] },
-  { name: 'IconLayers', component: IconLayers, category: 'Aero Glass', tags: ['layers', 'plates', 'glass', 'stack', 'design'] },
-  { name: 'IconZap', component: IconZap, category: 'Atmosphere', tags: ['zap', 'bolt', 'lightning', 'energy', 'power', 'electric'] },
+  {
+    name: 'IconFish',
+    component: IconFish,
+    category: 'Nature & Life',
+    tags: ['fish', 'goldfish', 'water', 'nature', 'pet', 'aqua'],
+  },
+  {
+    name: 'IconBubble',
+    component: IconBubble,
+    category: 'Aero Glass',
+    tags: ['bubble', 'aqua', 'sphere', 'water', '3d', 'specular'],
+  },
+  {
+    name: 'IconWater',
+    component: IconWater,
+    category: 'Nature & Life',
+    tags: ['water', 'drop', 'droplet', 'liquid', 'aqua', 'dew'],
+  },
+  {
+    name: 'IconLeaf',
+    component: IconLeaf,
+    category: 'Nature & Life',
+    tags: ['leaf', 'plant', 'nature', 'green', 'eco', 'organic'],
+  },
+  {
+    name: 'IconSprout',
+    component: IconSprout,
+    category: 'Nature & Life',
+    tags: ['sprout', 'seedling', 'plant', 'nature', 'green', 'growth'],
+  },
+  {
+    name: 'IconSun',
+    component: IconSun,
+    category: 'Atmosphere',
+    tags: ['sun', 'day', 'weather', 'light', 'amber', 'solar'],
+  },
+  {
+    name: 'IconCloud',
+    component: IconCloud,
+    category: 'Atmosphere',
+    tags: ['cloud', 'weather', 'sky', 'overcast', 'cumulus'],
+  },
+  {
+    name: 'IconGlobe',
+    component: IconGlobe,
+    category: 'Atmosphere',
+    tags: ['globe', 'world', 'earth', 'planet', 'network', 'latitude'],
+  },
+  {
+    name: 'IconRainbow',
+    component: IconRainbow,
+    category: 'Atmosphere',
+    tags: ['rainbow', 'spectrum', 'color', 'sky', 'prism', 'arc'],
+  },
+  {
+    name: 'IconFlame',
+    component: IconFlame,
+    category: 'Nature & Life',
+    tags: ['flame', 'fire', 'burn', 'hot', 'orange', 'warm'],
+  },
+  {
+    name: 'IconAeroOrb',
+    component: IconAeroOrb,
+    category: 'Aero Glass',
+    tags: ['orb', 'vista', 'sphere', 'button', 'badge', '3d', 'chrome'],
+  },
+  {
+    name: 'IconDisc',
+    component: IconDisc,
+    category: 'Hardware & Media',
+    tags: ['disc', 'cd', 'dvd', 'music', 'hologram', 'sheen'],
+  },
+  {
+    name: 'IconMonitor',
+    component: IconMonitor,
+    category: 'Hardware & Media',
+    tags: ['monitor', 'screen', 'display', 'desktop', 'computer'],
+  },
+  {
+    name: 'IconCamera',
+    component: IconCamera,
+    category: 'Hardware & Media',
+    tags: ['camera', 'photo', 'lens', 'picture', 'shot', 'reflex'],
+  },
+  {
+    name: 'IconSpeaker',
+    component: IconSpeaker,
+    category: 'Hardware & Media',
+    tags: ['speaker', 'audio', 'sound', 'volume', 'cone'],
+  },
+  {
+    name: 'IconBattery',
+    component: IconBattery,
+    category: 'Hardware & Media',
+    tags: ['battery', 'energy', 'power', 'charge', 'green'],
+  },
+  {
+    name: 'IconWifi',
+    component: IconWifi,
+    category: 'Hardware & Media',
+    tags: ['wifi', 'wireless', 'network', 'signal', 'waves'],
+  },
+  {
+    name: 'IconShield',
+    component: IconShield,
+    category: 'Security & System',
+    tags: ['shield', 'security', 'protect', 'safe', 'defender'],
+  },
+  {
+    name: 'IconLock',
+    component: IconLock,
+    category: 'Security & System',
+    tags: ['lock', 'security', 'padlock', 'private', 'gold'],
+  },
+  {
+    name: 'IconUnlock',
+    component: IconUnlock,
+    category: 'Security & System',
+    tags: ['unlock', 'open', 'access', 'security'],
+  },
+  {
+    name: 'IconCompass',
+    component: IconCompass,
+    category: 'Hardware & Media',
+    tags: ['compass', 'navigation', 'direction', 'safari', 'needle'],
+  },
+  {
+    name: 'IconSettings',
+    component: IconSettings,
+    category: 'Security & System',
+    tags: ['settings', 'gear', 'config', 'preferences', 'metal'],
+  },
+  {
+    name: 'IconFolder',
+    component: IconFolder,
+    category: 'Security & System',
+    tags: ['folder', 'directory', 'files', 'storage', 'aqua'],
+  },
+  {
+    name: 'IconTrash',
+    component: IconTrash,
+    category: 'Security & System',
+    tags: ['trash', 'recycle', 'bin', 'delete', 'glass'],
+  },
+  {
+    name: 'IconMusic',
+    component: IconMusic,
+    category: 'Hardware & Media',
+    tags: ['music', 'song', 'audio', 'notes', 'eighth'],
+  },
+  {
+    name: 'IconPlay',
+    component: IconPlay,
+    category: 'Hardware & Media',
+    tags: ['play', 'start', 'media', 'triangle'],
+  },
+  {
+    name: 'IconPause',
+    component: IconPause,
+    category: 'Hardware & Media',
+    tags: ['pause', 'stop', 'media', 'bars'],
+  },
+  {
+    name: 'IconUser',
+    component: IconUser,
+    category: 'Communication',
+    tags: ['user', 'profile', 'avatar', 'person', 'account'],
+  },
+  {
+    name: 'IconUsers',
+    component: IconUsers,
+    category: 'Communication',
+    tags: ['users', 'group', 'people', 'team', 'community'],
+  },
+  {
+    name: 'IconMail',
+    component: IconMail,
+    category: 'Communication',
+    tags: ['mail', 'email', 'message', 'envelope', 'post'],
+  },
+  {
+    name: 'IconHeart',
+    component: IconHeart,
+    category: 'Communication',
+    tags: ['heart', 'like', 'love', 'favorite', 'ruby', '3d'],
+  },
+  {
+    name: 'IconStar',
+    component: IconStar,
+    category: 'Communication',
+    tags: ['star', 'favorite', 'rating', 'gold', '3d', 'spark'],
+  },
+  {
+    name: 'IconSparkles',
+    component: IconSparkles,
+    category: 'Atmosphere',
+    tags: ['sparkles', 'magic', 'shine', 'starburst', 'glow'],
+  },
+  {
+    name: 'IconSearch',
+    component: IconSearch,
+    category: 'UI Navigation',
+    tags: ['search', 'find', 'magnifier', 'explore', 'glass'],
+  },
+  {
+    name: 'IconCheck',
+    component: IconCheck,
+    category: 'UI Navigation',
+    tags: ['check', 'success', 'done', 'tick', 'green'],
+  },
+  {
+    name: 'IconClose',
+    component: IconClose,
+    category: 'UI Navigation',
+    tags: ['close', 'cancel', 'error', 'remove', 'cross'],
+  },
+  {
+    name: 'IconMenu',
+    component: IconMenu,
+    category: 'UI Navigation',
+    tags: ['menu', 'hamburger', 'nav', 'list', 'pills'],
+  },
+  {
+    name: 'IconInfo',
+    component: IconInfo,
+    category: 'UI Navigation',
+    tags: ['info', 'help', 'details', 'about', 'badge'],
+  },
+  {
+    name: 'IconAlertTriangle',
+    component: IconAlertTriangle,
+    category: 'UI Navigation',
+    tags: ['alert', 'warning', 'danger', 'caution', 'amber'],
+  },
+  {
+    name: 'IconChevronDown',
+    component: IconChevronDown,
+    category: 'UI Navigation',
+    tags: ['chevron', 'down', 'arrow', 'expand'],
+  },
+  {
+    name: 'IconChevronUp',
+    component: IconChevronUp,
+    category: 'UI Navigation',
+    tags: ['chevron', 'up', 'arrow', 'collapse'],
+  },
+  {
+    name: 'IconChevronLeft',
+    component: IconChevronLeft,
+    category: 'UI Navigation',
+    tags: ['chevron', 'left', 'arrow', 'back'],
+  },
+  {
+    name: 'IconChevronRight',
+    component: IconChevronRight,
+    category: 'UI Navigation',
+    tags: ['chevron', 'right', 'arrow', 'forward'],
+  },
+  {
+    name: 'IconDownload',
+    component: IconDownload,
+    category: 'UI Navigation',
+    tags: ['download', 'save', 'arrow', 'get', 'receive'],
+  },
+  {
+    name: 'IconUpload',
+    component: IconUpload,
+    category: 'UI Navigation',
+    tags: ['upload', 'send', 'arrow', 'put', 'transmit'],
+  },
+  {
+    name: 'IconRefresh',
+    component: IconRefresh,
+    category: 'UI Navigation',
+    tags: ['refresh', 'reload', 'sync', 'update', 'arrows'],
+  },
+  {
+    name: 'IconEye',
+    component: IconEye,
+    category: 'UI Navigation',
+    tags: ['eye', 'view', 'visible', 'preview', 'look'],
+  },
+  {
+    name: 'IconClock',
+    component: IconClock,
+    category: 'Hardware & Media',
+    tags: ['clock', 'time', 'watch', 'timer', 'analog'],
+  },
+  {
+    name: 'IconCalendar',
+    component: IconCalendar,
+    category: 'Hardware & Media',
+    tags: ['calendar', 'date', 'schedule', 'day', 'month'],
+  },
+  {
+    name: 'IconLayers',
+    component: IconLayers,
+    category: 'Aero Glass',
+    tags: ['layers', 'plates', 'glass', 'stack', 'design'],
+  },
+  {
+    name: 'IconZap',
+    component: IconZap,
+    category: 'Atmosphere',
+    tags: ['zap', 'bolt', 'lightning', 'energy', 'power', 'electric'],
+  },
 ];
 
 export default function App() {
@@ -2191,7 +2446,8 @@ export default function App() {
                         <div>
                           <CardTitle>Frutiger Aero Custom Icon Pack</CardTitle>
                           <CardDescription>
-                            Skeuomorphic SVG icons with specular dome reflections, multi-layer liquid gradients, and tactile depth.
+                            Skeuomorphic SVG icons with specular dome reflections, multi-layer
+                            liquid gradients, and tactile depth.
                           </CardDescription>
                         </div>
                         <Badge variant="nature">45+ Authentic Icons</Badge>
@@ -2217,14 +2473,32 @@ export default function App() {
                             <Input
                               placeholder="Search icons (e.g. fish, bubble, disc)..."
                               value={iconSearch}
-                              onChange={(e: ChangeEvent<HTMLInputElement>) => setIconSearch(e.target.value)}
+                              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                                setIconSearch(e.target.value)
+                              }
                               leftIcon={<IconSearch size={16} />}
                             />
                           </div>
 
                           {/* Category Filter */}
-                          <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                            {['all', 'Nature & Life', 'Aero Glass', 'Atmosphere', 'Hardware & Media', 'Security & System', 'UI Navigation', 'Communication'].map(cat => (
+                          <div
+                            style={{
+                              display: 'flex',
+                              gap: '0.4rem',
+                              flexWrap: 'wrap',
+                              alignItems: 'center',
+                            }}
+                          >
+                            {[
+                              'all',
+                              'Nature & Life',
+                              'Aero Glass',
+                              'Atmosphere',
+                              'Hardware & Media',
+                              'Security & System',
+                              'UI Navigation',
+                              'Communication',
+                            ].map(cat => (
                               <Button
                                 key={cat}
                                 size="sm"
@@ -2237,9 +2511,33 @@ export default function App() {
                           </div>
 
                           {/* Controls: Variant & Size */}
-                          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                            <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center', background: 'rgba(255,255,255,0.6)', padding: '0.25rem 0.5rem', borderRadius: 'var(--fj-radius-md)' }}>
-                              <span style={{ fontSize: 'var(--fj-font-size-xs)', fontWeight: 600, marginRight: '4px' }}>Style:</span>
+                          <div
+                            style={{
+                              display: 'flex',
+                              gap: '0.75rem',
+                              alignItems: 'center',
+                              flexWrap: 'wrap',
+                            }}
+                          >
+                            <div
+                              style={{
+                                display: 'flex',
+                                gap: '0.25rem',
+                                alignItems: 'center',
+                                background: 'rgba(255,255,255,0.6)',
+                                padding: '0.25rem 0.5rem',
+                                borderRadius: 'var(--fj-radius-md)',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontSize: 'var(--fj-font-size-xs)',
+                                  fontWeight: 600,
+                                  marginRight: '4px',
+                                }}
+                              >
+                                Style:
+                              </span>
                               <Button
                                 size="sm"
                                 variant={iconVariant === 'aero' ? 'primary' : 'ghost'}
@@ -2256,8 +2554,25 @@ export default function App() {
                               </Button>
                             </div>
 
-                            <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center', background: 'rgba(255,255,255,0.6)', padding: '0.25rem 0.5rem', borderRadius: 'var(--fj-radius-md)' }}>
-                              <span style={{ fontSize: 'var(--fj-font-size-xs)', fontWeight: 600, marginRight: '4px' }}>Size:</span>
+                            <div
+                              style={{
+                                display: 'flex',
+                                gap: '0.25rem',
+                                alignItems: 'center',
+                                background: 'rgba(255,255,255,0.6)',
+                                padding: '0.25rem 0.5rem',
+                                borderRadius: 'var(--fj-radius-md)',
+                              }}
+                            >
+                              <span
+                                style={{
+                                  fontSize: 'var(--fj-font-size-xs)',
+                                  fontWeight: 600,
+                                  marginRight: '4px',
+                                }}
+                              >
+                                Size:
+                              </span>
                               {[20, 28, 36, 48].map(sz => (
                                 <Button
                                   key={sz}
@@ -2298,10 +2613,13 @@ export default function App() {
                         {/* Icon Grid */}
                         <Grid columns="repeat(auto-fill, minmax(140px, 1fr))" gap="1rem">
                           {AERO_ICONS_LIST.filter(item => {
-                            const matchCat = iconCategory === 'all' || item.category === iconCategory;
+                            const matchCat =
+                              iconCategory === 'all' || item.category === iconCategory;
                             const matchSearch =
                               item.name.toLowerCase().includes(iconSearch.toLowerCase()) ||
-                              item.tags.some(t => t.toLowerCase().includes(iconSearch.toLowerCase()));
+                              item.tags.some(t =>
+                                t.toLowerCase().includes(iconSearch.toLowerCase())
+                              );
                             return matchCat && matchSearch;
                           }).map(item => {
                             const IconComponent = item.component;
@@ -2327,7 +2645,8 @@ export default function App() {
                                   gap: '0.75rem',
                                   cursor: 'pointer',
                                   transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                                  boxShadow: '0 2px 8px rgba(2, 132, 199, 0.08), inset 0 1px 0 #fff',
+                                  boxShadow:
+                                    '0 2px 8px rgba(2, 132, 199, 0.08), inset 0 1px 0 #fff',
                                 }}
                                 onMouseEnter={e => {
                                   e.currentTarget.style.transform = 'translateY(-3px)';
@@ -2397,7 +2716,8 @@ export default function App() {
                               color: 'var(--fj-color-sky-950)',
                             }}
                           >
-                            3D Aero Gel Badges (<code style={{ fontSize: '0.85em' }}>&lt;AeroIconBadge /&gt;</code>)
+                            3D Aero Gel Badges (
+                            <code style={{ fontSize: '0.85em' }}>&lt;AeroIconBadge /&gt;</code>)
                           </h4>
                           <p
                             style={{
@@ -2406,7 +2726,8 @@ export default function App() {
                               marginBottom: '1.25rem',
                             }}
                           >
-                            Wrap any icon in a glossy 3D gel bubble badge with specular light cap and glow aura.
+                            Wrap any icon in a glossy 3D gel bubble badge with specular light cap
+                            and glow aura.
                           </p>
 
                           <div
