@@ -28,20 +28,20 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
     const isControlled = controlledMenuOpen !== undefined;
     const isMenuOpen = isControlled ? controlledMenuOpen : uncontrolledMenuOpen;
 
-    const handleToggle = () => {
+    const handleToggle = React.useCallback(() => {
       const nextState = !isMenuOpen;
       if (!isControlled) {
         setUncontrolledMenuOpen(nextState);
       }
       onMenuToggle?.(nextState);
-    };
+    }, [isMenuOpen, isControlled, onMenuToggle]);
 
-    const handleClose = () => {
+    const handleClose = React.useCallback(() => {
       if (!isControlled) {
         setUncontrolledMenuOpen(false);
       }
       onMenuToggle?.(false);
-    };
+    }, [isControlled, onMenuToggle]);
 
     useEffect(() => {
       if (!isMenuOpen) return;
@@ -54,7 +54,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
       document.addEventListener('keydown', handleKeyDown);
       return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [isMenuOpen]);
+    }, [isMenuOpen, handleClose]);
 
     return (
       <header ref={ref} className={cn('fj-navbar', className)} {...props}>
@@ -83,10 +83,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
         {/* Responsive Mobile Drawer */}
         <div
           id="fj-navbar-mobile-drawer"
-          className={cn(
-            'fj-navbar__mobile-menu',
-            isMenuOpen && 'fj-navbar__mobile-menu--open'
-          )}
+          className={cn('fj-navbar__mobile-menu', isMenuOpen && 'fj-navbar__mobile-menu--open')}
           aria-hidden={!isMenuOpen}
         >
           {children && (
@@ -95,9 +92,7 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
             </nav>
           )}
           {(mobileMenuActions || actions) && (
-            <div className="fj-navbar__mobile-menu-actions">
-              {mobileMenuActions || actions}
-            </div>
+            <div className="fj-navbar__mobile-menu-actions">{mobileMenuActions || actions}</div>
           )}
         </div>
       </header>

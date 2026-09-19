@@ -2,13 +2,7 @@ import React, { forwardRef } from 'react';
 import { cn } from '../../utils/cn';
 
 export type ButtonVariant =
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'danger'
-  | 'ghost'
-  | 'glass'
-  | 'aero';
+  'primary' | 'secondary' | 'success' | 'danger' | 'ghost' | 'glass' | 'aero';
 
 export type ButtonSize = 'sm' | 'md' | 'lg';
 

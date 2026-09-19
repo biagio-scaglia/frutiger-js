@@ -1,12 +1,15 @@
 @layer fj.tokens {
   :root {
     /* Font Families */
-    --fj-font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Roboto,
-      'Lucida Grande', 'Lucida Sans Unicode', Tahoma, sans-serif;
-    --fj-font-family-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Trebuchet MS',
-      'SF Pro Display', Helvetica, Arial, sans-serif;
-    --fj-font-family-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
-      'Liberation Mono', 'Courier New', monospace;
+    --fj-font-family-sans:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Roboto, 'Lucida Grande',
+      'Lucida Sans Unicode', Tahoma, sans-serif;
+    --fj-font-family-display:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Trebuchet MS', 'SF Pro Display', Helvetica,
+      Arial, sans-serif;
+    --fj-font-family-mono:
+      ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
 
     /* Font Sizes */
     --fj-font-size-xs: 0.75rem; /* 12px */

@@ -109,8 +109,9 @@
   .fj-navbar__mobile-menu {
     display: none;
     flex-direction: column;
-    padding: var(--fj-space-4) max(var(--fj-fluid-container-padding), env(safe-area-inset-left, 0px))
-      var(--fj-space-6) max(var(--fj-fluid-container-padding), env(safe-area-inset-right, 0px));
+    padding: var(--fj-space-4)
+      max(var(--fj-fluid-container-padding), env(safe-area-inset-left, 0px)) var(--fj-space-6)
+      max(var(--fj-fluid-container-padding), env(safe-area-inset-right, 0px));
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

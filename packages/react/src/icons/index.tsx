@@ -236,11 +236,7 @@ export const IconInfo: React.FC<IconProps> = ({ size = 20, className = '', ...pr
   </svg>
 );
 
-export const IconAlertTriangle: React.FC<IconProps> = ({
-  size = 20,
-  className = '',
-  ...props
-}) => (
+export const IconAlertTriangle: React.FC<IconProps> = ({ size = 20, className = '', ...props }) => (
   <svg
     width={size}
     height={size}

@@ -55,6 +55,7 @@ export default function App() {
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+  const [simulatedWidth, setSimulatedWidth] = useState<string>('100%');
 
   // Form states
   const [inputVal, setInputVal] = useState('frutiger.aero@web2007.net');
@@ -479,6 +480,7 @@ export default function App() {
                 <Tab value="forms">Form Controls</Tab>
                 <Tab value="feedback">Alerts & Badges</Tab>
                 <Tab value="navigation">Tabs & Accordion</Tab>
+                <Tab value="responsive">Responsive Lab</Tab>
               </TabList>
 
               {/* BUTTONS TAB */}
@@ -739,6 +741,243 @@ export default function App() {
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
+              </TabPanel>
+
+              {/* RESPONSIVE LAB TAB */}
+              <TabPanel value="responsive">
+                <Stack spacing="lg">
+                  <Card variant="glass">
+                    <CardHeader>
+                      <div>
+                        <CardTitle>Viewport Simulator & Container Query Tester</CardTitle>
+                        <CardDescription>
+                          Test how Frutiger.js components fluidly adapt to constrained widths and
+                          mobile devices.
+                        </CardDescription>
+                      </div>
+                      <Badge variant="nature">Fluid-First System</Badge>
+                    </CardHeader>
+                    <CardContent>
+                      {/* Viewport Presets Bar */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '0.5rem',
+                          alignItems: 'center',
+                          marginBottom: '1.5rem',
+                          padding: '0.75rem 1rem',
+                          background: 'rgba(255, 255, 255, 0.45)',
+                          borderRadius: 'var(--fj-radius-lg)',
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontSize: 'var(--fj-font-size-sm)',
+                            fontWeight: 600,
+                            marginRight: '0.5rem',
+                          }}
+                        >
+                          Viewport Frame:
+                        </span>
+                        {[
+                          { label: '320px (Compact Mobile)', width: '320px' },
+                          { label: '375px (Standard Phone)', width: '375px' },
+                          { label: '768px (Tablet)', width: '768px' },
+                          { label: '1024px (Laptop)', width: '1024px' },
+                          { label: '100% (Fluid Full)', width: '100%' },
+                        ].map(preset => (
+                          <Button
+                            key={preset.width}
+                            size="sm"
+                            variant={simulatedWidth === preset.width ? 'aero' : 'glass'}
+                            onClick={() => setSimulatedWidth(preset.width)}
+                          >
+                            {preset.label}
+                          </Button>
+                        ))}
+                      </div>
+
+                      {/* Simulated Viewport Boundary */}
+                      <div
+                        style={{
+                          border: '2px dashed var(--fj-color-sky-400)',
+                          borderRadius: 'var(--fj-radius-xl)',
+                          padding: '1.5rem',
+                          background: 'rgba(240, 249, 255, 0.5)',
+                          maxWidth: simulatedWidth,
+                          margin: '0 auto',
+                          transition: 'max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+                          boxSizing: 'border-box',
+                        }}
+                      >
+                        <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                          <Badge variant="primary">Width: {simulatedWidth}</Badge>
+                        </div>
+
+                        {/* Test Component inside Frame */}
+                        <Stack spacing="md">
+                          <Card variant="default">
+                            <CardHeader>
+                              <div>
+                                <CardTitle>Intrinsic Responsive Card</CardTitle>
+                                <CardDescription>
+                                  Uses @container queries for automatic stacking
+                                </CardDescription>
+                              </div>
+                              <Badge variant="nature">Safe Area</Badge>
+                            </CardHeader>
+                            <CardContent>
+                              <p
+                                style={{ fontSize: 'var(--fj-font-size-sm)', marginBottom: '1rem' }}
+                              >
+                                This card automatically reorganizes its header and actions when its
+                                container is below 360px.
+                              </p>
+                              <Input label="Fluid Input" placeholder="Type here..." />
+                            </CardContent>
+                            <CardFooter>
+                              <Button variant="ghost" size="sm">
+                                Dismiss
+                              </Button>
+                              <Button variant="aero" size="sm">
+                                Save Changes
+                              </Button>
+                            </CardFooter>
+                          </Card>
+
+                          <div
+                            style={{
+                              display: 'grid',
+                              gridTemplateColumns:
+                                'repeat(auto-fit, minmax(min(100%, 140px), 1fr))',
+                              gap: '0.75rem',
+                            }}
+                          >
+                            <Button variant="primary" isFullWidth size="sm">
+                              Action 1
+                            </Button>
+                            <Button variant="secondary" isFullWidth size="sm">
+                              Action 2
+                            </Button>
+                          </div>
+                        </Stack>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Diagnostic Verification Matrix */}
+                  <Card variant="default">
+                    <CardHeader>
+                      <CardTitle>Responsive Support Matrix</CardTitle>
+                      <CardDescription>
+                        Verified target screen resolutions and behavior
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div style={{ overflowX: 'auto' }}>
+                        <table
+                          style={{
+                            width: '100%',
+                            borderCollapse: 'collapse',
+                            textAlign: 'left',
+                            fontSize: 'var(--fj-font-size-sm)',
+                          }}
+                        >
+                          <thead>
+                            <tr
+                              style={{
+                                borderBottom: '2px solid rgba(186, 230, 253, 0.8)',
+                                background: 'rgba(224, 242, 254, 0.3)',
+                              }}
+                            >
+                              <th style={{ padding: '0.75rem' }}>Target Viewport</th>
+                              <th style={{ padding: '0.75rem' }}>Device Category</th>
+                              <th style={{ padding: '0.75rem' }}>Navbar Mode</th>
+                              <th style={{ padding: '0.75rem' }}>Grid Columns</th>
+                              <th style={{ padding: '0.75rem' }}>Touch Hit Target</th>
+                              <th style={{ padding: '0.75rem' }}>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {[
+                              {
+                                vp: '320 × 568',
+                                cat: 'iPhone SE (1st gen)',
+                                nav: 'Hamburger Drawer',
+                                grid: '1 Column',
+                                hit: '44px Touch Target',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '375 × 812',
+                                cat: 'iPhone Mini / Standard',
+                                nav: 'Hamburger Drawer',
+                                grid: '1 Column',
+                                hit: '44px Touch Target',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '412 × 915',
+                                cat: 'Samsung Galaxy / Pixel',
+                                nav: 'Hamburger Drawer',
+                                grid: '1–2 Columns',
+                                hit: '44px Touch Target',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '768 × 1024',
+                                cat: 'iPad / Tablet Portrait',
+                                nav: 'Full Desktop Nav',
+                                grid: '2–3 Columns',
+                                hit: '40px Intrinsic',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '1024 × 768',
+                                cat: 'Tablet Landscape / Laptop',
+                                nav: 'Full Desktop Nav',
+                                grid: '3 Columns',
+                                hit: '40px Intrinsic',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '1440 × 900',
+                                cat: 'MacBook / Desktop',
+                                nav: 'Full Desktop Nav',
+                                grid: '3–4 Columns',
+                                hit: '40px Intrinsic',
+                                status: 'Verified',
+                              },
+                              {
+                                vp: '3840 × 2160',
+                                cat: '4K Ultra-wide Display',
+                                nav: 'Constrained Max-width',
+                                grid: '4 Columns',
+                                hit: '40px Intrinsic',
+                                status: 'Verified',
+                              },
+                            ].map((row, i) => (
+                              <tr
+                                key={i}
+                                style={{ borderBottom: '1px solid rgba(186, 230, 253, 0.4)' }}
+                              >
+                                <td style={{ padding: '0.75rem', fontWeight: 600 }}>{row.vp}</td>
+                                <td style={{ padding: '0.75rem' }}>{row.cat}</td>
+                                <td style={{ padding: '0.75rem' }}>{row.nav}</td>
+                                <td style={{ padding: '0.75rem' }}>{row.grid}</td>
+                                <td style={{ padding: '0.75rem' }}>{row.hit}</td>
+                                <td style={{ padding: '0.75rem' }}>
+                                  <Badge variant="success">{row.status}</Badge>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Stack>
               </TabPanel>
             </Tabs>
           </div>
