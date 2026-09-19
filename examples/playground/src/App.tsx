@@ -39,6 +39,8 @@ import {
   Container,
   Stack,
   Grid,
+  Slider,
+  Divider,
   IconSun,
   IconWater,
   IconLeaf,
@@ -51,6 +53,7 @@ import {
 } from '@frutiger-js/react';
 
 export default function App() {
+  const [activeNav, setActiveNav] = useState('overview');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
@@ -62,6 +65,8 @@ export default function App() {
   const [radioVal, setRadioVal] = useState('sky');
   const [switchChecked, setSwitchChecked] = useState(true);
   const [checkboxChecked, setCheckboxChecked] = useState(true);
+  const [sliderAquaVal, setSliderAquaVal] = useState(68);
+  const [sliderVolumeVal, setSliderVolumeVal] = useState(82);
 
   // Media Player State
   const [isPlaying, setIsPlaying] = useState(false);
@@ -102,7 +107,7 @@ export default function App() {
         }
         actions={
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <Avatar name="Aero User" size="sm" />
+            <Avatar name="Biagio Scaglia" size="sm" />
             <a
               href="https://github.com/biagio-scaglia/frutiger-js"
               target="_blank"
@@ -116,12 +121,48 @@ export default function App() {
           </div>
         }
       >
-        <NavLink href="#overview" isActive>
+        <NavLink
+          href="#overview"
+          isActive={activeNav === 'overview'}
+          onClick={() => setActiveNav('overview')}
+        >
           Overview
         </NavLink>
-        <NavLink href="#widgets">Dashboard</NavLink>
-        <NavLink href="#components">Components</NavLink>
-        <NavLink href="#tokens">Tokens</NavLink>
+        <NavLink
+          href="#widgets"
+          isActive={activeNav === 'widgets'}
+          onClick={() => setActiveNav('widgets')}
+        >
+          Dashboard
+        </NavLink>
+        <NavLink
+          href="#components"
+          isActive={activeNav === 'components'}
+          onClick={() => setActiveNav('components')}
+        >
+          Components
+        </NavLink>
+        <NavLink
+          href="#responsive-lab"
+          isActive={activeNav === 'responsive-lab'}
+          onClick={() => setActiveNav('responsive-lab')}
+        >
+          Responsive Lab
+        </NavLink>
+        <NavLink
+          href="#tokens"
+          isActive={activeNav === 'tokens'}
+          onClick={() => setActiveNav('tokens')}
+        >
+          Tokens
+        </NavLink>
+        <NavLink
+          href="#creator"
+          isActive={activeNav === 'creator'}
+          onClick={() => setActiveNav('creator')}
+        >
+          Biagio Scaglia
+        </NavLink>
       </Navbar>
 
       <Container size="xl" style={{ paddingTop: '2.5rem', paddingBottom: '4rem' }}>
@@ -391,6 +432,15 @@ export default function App() {
                       +15s
                     </Button>
                   </div>
+
+                  <Divider label="Master Volume" style={{ margin: '1.25rem 0 0.75rem 0' }} />
+
+                  <Slider
+                    value={sliderVolumeVal}
+                    onChange={e => setSliderVolumeVal(Number(e.target.value))}
+                    valueFormat={v => `${v}%`}
+                    showValue
+                  />
                 </CardContent>
               </Card>
 
@@ -674,6 +724,26 @@ export default function App() {
                         />
                       </div>
                     </div>
+
+                    <Divider
+                      label="Aero Range Sliders & Tactile Controls"
+                      style={{ margin: '2rem 0 1.5rem 0' }}
+                    />
+
+                    <Grid columns="repeat(auto-fit, minmax(280px, 1fr))" gap="1.5rem">
+                      <Slider
+                        label="Aqua Ambient Luminescence"
+                        value={sliderAquaVal}
+                        onChange={e => setSliderAquaVal(Number(e.target.value))}
+                        valueFormat={v => `${v}% Lumens`}
+                      />
+                      <Slider
+                        label="Audio Synthesis Gain"
+                        value={sliderVolumeVal}
+                        onChange={e => setSliderVolumeVal(Number(e.target.value))}
+                        valueFormat={v => `${v} dB`}
+                      />
+                    </Grid>
                   </CardContent>
                 </Card>
               </TabPanel>
@@ -1027,6 +1097,183 @@ export default function App() {
               </CardContent>
             </Card>
           </div>
+          {/* Biagio Scaglia - Creator & Lead Architect Section */}
+          <div id="creator">
+            <h2
+              style={{
+                fontSize: 'var(--fj-font-size-2xl)',
+                fontWeight: 700,
+                marginBottom: '1.25rem',
+                color: 'var(--fj-color-text)',
+              }}
+            >
+              Architect & Creator
+            </h2>
+
+            <Card
+              variant="floating"
+              style={{
+                background:
+                  'linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(224, 242, 254, 0.85) 100%)',
+                border: '1px solid rgba(255, 255, 255, 0.95)',
+                boxShadow: '0 20px 45px -15px rgba(2, 132, 199, 0.3), inset 0 1px 1px #ffffff',
+              }}
+            >
+              <CardContent style={{ padding: '2.5rem 2rem' }}>
+                <Grid
+                  columns="repeat(auto-fit, minmax(min(100%, 320px), 1fr))"
+                  gap="2.5rem"
+                  style={{ alignItems: 'center' }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1.25rem',
+                        marginBottom: '1.25rem',
+                      }}
+                    >
+                      <Avatar
+                        name="Biagio Scaglia"
+                        size="lg"
+                        style={{
+                          width: 64,
+                          height: 64,
+                          fontSize: '1.5rem',
+                          boxShadow:
+                            '0 0 0 3px rgba(255, 255, 255, 0.95), 0 8px 20px rgba(2, 132, 199, 0.4)',
+                        }}
+                      />
+                      <div>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.6rem',
+                            flexWrap: 'wrap',
+                          }}
+                        >
+                          <h3
+                            style={{
+                              margin: 0,
+                              fontSize: 'var(--fj-font-size-xl)',
+                              fontWeight: 800,
+                              letterSpacing: '-0.02em',
+                            }}
+                          >
+                            Biagio Scaglia
+                          </h3>
+                          <Badge variant="nature" icon={<IconCheck size={12} />}>
+                            Lead Architect
+                          </Badge>
+                        </div>
+                        <p
+                          style={{
+                            margin: '0.25rem 0 0 0',
+                            color: 'var(--fj-color-sky-700)',
+                            fontWeight: 600,
+                            fontSize: 'var(--fj-font-size-sm)',
+                          }}
+                        >
+                          Senior Frontend Engineer & Design Systems Specialist
+                        </p>
+                      </div>
+                    </div>
+
+                    <p
+                      style={{
+                        lineHeight: 1.7,
+                        color: 'var(--fj-color-text-muted)',
+                        fontSize: 'var(--fj-font-size-md)',
+                        marginBottom: '1.5rem',
+                      }}
+                    >
+                      Creator and architect of <strong>Frutiger.js</strong>. Built with a passion
+                      for tactile skeuomorphism, digital optimism, and modern UI engineering.
+                      Frutiger.js delivers a responsive design system spanning 320px mobile to 4K
+                      ultrawide displays, paired with strict accessibility and zero runtime
+                      dependencies for core CSS.
+                    </p>
+
+                    <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                      <a
+                        href="https://github.com/biagio-scaglia"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="aero" size="md" leftIcon={<IconSparkles size={16} />}>
+                          @biagio-scaglia on GitHub
+                        </Button>
+                      </a>
+                      <a
+                        href="https://github.com/biagio-scaglia/frutiger-js"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: 'none' }}
+                      >
+                        <Button variant="glass" size="md">
+                          Star Repository ★
+                        </Button>
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Architecture & Engineering Highlights */}
+                  <div
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.7)',
+                      padding: '2rem',
+                      borderRadius: 'var(--fj-radius-xl)',
+                      border: '1px solid rgba(255, 255, 255, 0.9)',
+                      boxShadow: 'inset 0 1px 2px #ffffff, 0 8px 25px rgba(2, 132, 199, 0.12)',
+                    }}
+                  >
+                    <h4
+                      style={{
+                        margin: '0 0 1rem 0',
+                        fontSize: 'var(--fj-font-size-md)',
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: 'var(--fj-color-sky-900)',
+                      }}
+                    >
+                      <IconLeaf size={18} color="var(--fj-color-grass-600)" /> Engineering Standards
+                    </h4>
+                    <ul
+                      style={{
+                        margin: 0,
+                        paddingLeft: '1.25rem',
+                        lineHeight: 1.8,
+                        fontSize: 'var(--fj-font-size-sm)',
+                        color: 'var(--fj-color-text)',
+                      }}
+                    >
+                      <li>
+                        <strong>Fluid-First Scaling:</strong> Continuous fluid interpolation via CSS
+                        clamp and container queries from 320px to 3840px.
+                      </li>
+                      <li>
+                        <strong>Pure Daylight Atmosphere:</strong> Authentic 2000s Web 2.0 glass
+                        gradients, organic curves, and specular reflections.
+                      </li>
+                      <li>
+                        <strong>WCAG 2.1 AA Accessibility:</strong> High-contrast tokens, tactile
+                        focus rings, and full ARIA keyboard navigation.
+                      </li>
+                      <li>
+                        <strong>Modern Developer Experience:</strong> Strict TypeScript definitions,
+                        composable React APIs, and zero CSS dependencies.
+                      </li>
+                    </ul>
+                  </div>
+                </Grid>
+              </CardContent>
+            </Card>
+          </div>
         </Stack>
       </Container>
 
@@ -1054,18 +1301,29 @@ export default function App() {
       <footer
         style={{
           borderTop: '1px solid rgba(186, 230, 253, 0.6)',
-          background: 'rgba(255, 255, 255, 0.7)',
+          background: 'rgba(255, 255, 255, 0.75)',
           backdropFilter: 'blur(12px)',
-          padding: '2rem 1rem',
+          padding: '2.5rem 1rem',
           textAlign: 'center',
           fontSize: 'var(--fj-font-size-sm)',
           color: 'var(--fj-color-text-muted)',
         }}
       >
         <Container size="lg">
-          <p>
-            Frutiger.js • Open Source Frutiger Aero Design System • Released under MIT License ©{' '}
-            {new Date().getFullYear()} Biagio Scaglia
+          <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
+            Frutiger.js • Open Source Frutiger Aero Design System
+          </p>
+          <p style={{ margin: 0 }}>
+            Conceived and architected with passion by{' '}
+            <a
+              href="https://github.com/biagio-scaglia"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--fj-color-sky-600)', fontWeight: 700, textDecoration: 'none' }}
+            >
+              Biagio Scaglia
+            </a>{' '}
+            • Released under MIT License © {new Date().getFullYear()}
           </p>
         </Container>
       </footer>

@@ -13,7 +13,7 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
       className,
       label,
       showValue = true,
-      valueFormat = (v) => `${v}%`,
+      valueFormat = v => `${v}%`,
       min = 0,
       max = 100,
       step = 1,
@@ -26,7 +26,8 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     },
     ref
   ) => {
-    const inputId = id || (label ? `fj-slider-${Math.random().toString(36).substring(2, 9)}` : undefined);
+    const inputId =
+      id || (label ? `fj-slider-${Math.random().toString(36).substring(2, 9)}` : undefined);
     const currentValue = Number(value !== undefined ? value : defaultValue);
 
     return (
