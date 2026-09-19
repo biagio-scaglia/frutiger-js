@@ -46,7 +46,9 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
         </div>
         <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="nature">Desktop Suite</Badge>
-          {(['aero', 'vista', 'windows7', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]).map(v => (
+          {(
+            ['aero', 'vista', 'windows7', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]
+          ).map(v => (
             <Button
               key={v}
               size="sm"

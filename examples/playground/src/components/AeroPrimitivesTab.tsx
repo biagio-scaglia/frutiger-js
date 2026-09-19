@@ -135,18 +135,25 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                   Base Variant:
                 </span>
                 <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                  {(['crystal', 'water', 'glass', 'gloss', 'acrylic', 'chrome'] as AeroSurfaceVariant[]).map(
-                    v => (
-                      <Button
-                        key={v}
-                        size="sm"
-                        variant={selectedVariant === v ? 'aero' : 'glass'}
-                        onClick={() => setSelectedVariant(v)}
-                      >
-                        {v.toUpperCase()}
-                      </Button>
-                    )
-                  )}
+                  {(
+                    [
+                      'crystal',
+                      'water',
+                      'glass',
+                      'gloss',
+                      'acrylic',
+                      'chrome',
+                    ] as AeroSurfaceVariant[]
+                  ).map(v => (
+                    <Button
+                      key={v}
+                      size="sm"
+                      variant={selectedVariant === v ? 'aero' : 'glass'}
+                      onClick={() => setSelectedVariant(v)}
+                    >
+                      {v.toUpperCase()}
+                    </Button>
+                  ))}
                 </div>
               </div>
 
@@ -175,7 +182,9 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
+              <div
+                style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', marginTop: '1.5rem' }}
+              >
                 <Button
                   size="sm"
                   variant={hasGlossCap ? 'success' : 'ghost'}
@@ -210,7 +219,9 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
               <div style={{ fontWeight: 700, fontSize: 'var(--fj-font-size-sm)' }}>
                 Acrylic Vista Glass
               </div>
-              <div style={{ fontSize: 'var(--fj-font-size-xs)', color: 'var(--fj-color-text-muted)' }}>
+              <div
+                style={{ fontSize: 'var(--fj-font-size-xs)', color: 'var(--fj-color-text-muted)' }}
+              >
                 High-blur refraction
               </div>
             </Glass>
@@ -302,9 +313,7 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
           </CardHeader>
           <CardContent style={{ textAlign: 'center', paddingBottom: '2.5rem' }}>
             <Reflection>
-              <Badge variant="nature" size="md">
-                Mirror Reflection
-              </Badge>
+              <Badge variant="nature">Mirror Reflection</Badge>
             </Reflection>
           </CardContent>
         </Card>

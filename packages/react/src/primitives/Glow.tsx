@@ -9,11 +9,7 @@ export interface GlowProps extends HTMLAttributes<HTMLDivElement> {
 export const Glow = forwardRef<HTMLDivElement, GlowProps>(
   ({ color = 'aqua', className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        className={cn('fj-glow', color && `fj-glow--${color}`, className)}
-        {...props}
-      >
+      <div ref={ref} className={cn('fj-glow', color && `fj-glow--${color}`, className)} {...props}>
         {children}
       </div>
     );

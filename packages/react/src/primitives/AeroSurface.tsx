@@ -34,9 +34,7 @@ export const AeroSurface = forwardRef<HTMLDivElement, AeroSurfaceProps>(
           `fj-aero-surface--${variant}`,
           isInteractive && 'fj-aero-surface--interactive',
           hasBevel === 'deep' ? 'fj-bevel--deep' : hasBevel ? 'fj-bevel' : false,
-          glow === true
-            ? 'fj-glow'
-            : glow && `fj-glow fj-glow--${glow}`,
+          glow === true ? 'fj-glow' : glow && `fj-glow fj-glow--${glow}`,
           className
         )}
         {...props}

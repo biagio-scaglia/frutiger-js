@@ -5,12 +5,7 @@ import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from './index';
 describe('Aero Visual Primitives Suite', () => {
   it('renders AeroSurface with variant, bevel, and glow', () => {
     render(
-      <AeroSurface
-        variant="crystal"
-        hasBevel="deep"
-        glow="aqua"
-        data-testid="aero-surface"
-      >
+      <AeroSurface variant="crystal" hasBevel="deep" glow="aqua" data-testid="aero-surface">
         <span>Crystal Content</span>
       </AeroSurface>
     );
@@ -41,8 +36,12 @@ describe('Aero Visual Primitives Suite', () => {
     const { container } = render(
       <div>
         <Gloss curvature="flat" intensity="bright" data-testid="gloss" />
-        <Bevel depth={2} data-testid="bevel">Beveled Box</Bevel>
-        <Glow color="sun" data-testid="glow">Glowing Orb</Glow>
+        <Bevel depth={2} data-testid="bevel">
+          Beveled Box
+        </Bevel>
+        <Glow color="sun" data-testid="glow">
+          Glowing Orb
+        </Glow>
       </div>
     );
 

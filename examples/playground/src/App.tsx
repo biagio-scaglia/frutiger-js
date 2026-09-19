@@ -62,7 +62,9 @@ import { AeroPrimitivesTab } from './components/AeroPrimitivesTab';
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedExplorerTab, setSelectedExplorerTab] = useState('primitives');
-  const [currentTheme, setCurrentTheme] = useState<'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7'>('aero');
+  const [currentTheme, setCurrentTheme] = useState<
+    'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7'
+  >('aero');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
