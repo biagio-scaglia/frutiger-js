@@ -112,7 +112,7 @@ export function App() {
 | **Feedback & Loading**   | `Badge`, `Alert`, `Tooltip`, `Progress`, `Spinner`, `Skeleton` (rect, circle, pill shimmer)                                                                                                                   |
 | **Navigation & Overlay** | `Navbar`, `NavLink`, `Sidebar`, `SidebarItem`, `Breadcrumb`, `Modal`, `Dialog`, `Tabs`, `Accordion`, `FaqList`, `FaqItem`                                                                                     |
 | **Layout & Primitives**  | `Container`, `Stack`, `Grid`, `Avatar`, `Divider`                                                                                                                                                             |
-| **Aero Icons**           | `IconSun`, `IconWater`, `IconLeaf`, `IconCloud`, `IconMusic`, `IconPlay`, `IconPause`, `IconCheck`, `IconClose`, `IconChevronDown`, `IconSearch`, `IconInfo`, `IconAlertTriangle`, `IconSparkles`, `IconMenu` |
+| **Aero Icons (45+)**     | `IconFish`, `IconBubble`, `IconWater`, `IconLeaf`, `IconSprout`, `IconSun`, `IconCloud`, `IconGlobe`, `IconRainbow`, `IconFlame`, `IconAeroOrb`, `IconDisc`, `IconMonitor`, `IconCamera`, `IconSpeaker`, `IconBattery`, `IconWifi`, `IconShield`, `IconLock`, `IconUnlock`, `IconCompass`, `IconSettings`, `IconFolder`, `IconTrash`, `IconMusic`, `IconPlay`, `IconPause`, `IconUser`, `IconUsers`, `IconMail`, `IconHeart`, `IconStar`, `IconSparkles`, `IconSearch`, `IconCheck`, `IconClose`, `IconMenu`, `IconInfo`, `IconAlertTriangle`, `IconChevronDown`, `IconChevronUp`, `IconChevronLeft`, `IconChevronRight`, `IconDownload`, `IconUpload`, `IconRefresh`, `IconEye`, `IconClock`, `IconCalendar`, `IconLayers`, `IconZap`, `AeroIconBadge` |
 
 ---
 
@@ -185,7 +185,7 @@ npm install
 - [x] `@frutiger-js/core` CSS cascade layer architecture & design tokens.
 - [x] `@frutiger-js/react` initial component suite & accessibility layer.
 - [x] Interactive showcase & Aero Dashboard playground.
-- [ ] `@frutiger-js/icons`: Expanded skeuomorphic SVG icon pack.
+- [x] `@frutiger-js/icons`: Expanded skeuomorphic SVG icon pack (45+ icons + `AeroIconBadge`).
 - [ ] Sound effects audio package (`@frutiger-js/sound`) for authentic tactile clicks and water chimes.
 - [ ] Storybook documentation portal.
 
