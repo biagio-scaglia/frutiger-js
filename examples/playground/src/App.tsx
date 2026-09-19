@@ -44,6 +44,13 @@ import {
   ScrollArea,
   Dropzone,
   Skeleton,
+  WindowFrame,
+  WindowFrameVariant,
+  GalleryGrid,
+  GalleryItem,
+  StatCard,
+  FaqList,
+  FaqItem,
   IconSun,
   IconWater,
   IconLeaf,
@@ -55,6 +62,164 @@ import {
   IconCheck,
 } from '@frutiger-js/react';
 
+interface ArchiveMediaItem {
+  id: string;
+  title: string;
+  category: 'wallpapers' | 'gadgets' | 'themes' | 'concept';
+  badge: string;
+  year: string;
+  author: string;
+  description: string;
+  gradient: string;
+  tags: string[];
+}
+
+const ARCHIVE_ITEMS: ArchiveMediaItem[] = [
+  {
+    id: 'vista-aurora',
+    title: 'Windows Vista Aurora Bliss',
+    category: 'wallpapers',
+    badge: '3840 × 2160',
+    year: '2006',
+    author: 'Microsoft Design Team',
+    description:
+      'The iconic high-resolution organic glass ribbons, fluid aurora bokeh, and brilliant daylight blue gradients that defined the Aero glass era.',
+    gradient: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 35%, #22c55e 70%, #eab308 100%)',
+    tags: ['Vista', 'Aurora', 'Desktop'],
+  },
+  {
+    id: 'aqua-orb-raytrace',
+    title: 'Aqua Orb Sphere 3D Raytrace',
+    category: 'concept',
+    badge: 'Ultra HD 4K',
+    year: '2007',
+    author: 'Skeuomorphic Archive',
+    description:
+      '3D raytraced liquid sphere suspended in mid-air with caustic internal refractions, specular Fresnel highlights, and subsurface light scattering.',
+    gradient:
+      'radial-gradient(circle at 35% 30%, #ffffff 0%, #38bdf8 40%, #0369a1 80%, #082f49 100%)',
+    tags: ['Raytrace', 'Liquid', 'Sphere'],
+  },
+  {
+    id: 'sony-w995-glass',
+    title: 'Sony Ericsson Walkman UI Theme',
+    category: 'themes',
+    badge: 'Mobile Theme',
+    year: '2008',
+    author: 'Sony Ericsson Creative',
+    description:
+      'Embedded flash UI theme with tactile glossy navigation discs, floating bubble equalizers, and vibrant citrus-emerald accent rings.',
+    gradient: 'linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #f59e0b 100%)',
+    tags: ['Symbian', 'Walkman', 'Mobile'],
+  },
+  {
+    id: 'eco-biosphere-2007',
+    title: 'Frutiger Eco Biosphere Concept',
+    category: 'concept',
+    badge: 'Concept Render',
+    year: '2007',
+    author: 'Future Forward Lab',
+    description:
+      'Utopian eco-technological habitat encased in a crystal glass biodome, showcasing symbiotic green technology, clear turquoise water, and solar daylight.',
+    gradient: 'linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%)',
+    tags: ['Eco', 'Solar', 'Biodome'],
+  },
+  {
+    id: 'wmp11-aurora-viz',
+    title: 'Windows Media Player 11 Visualizer',
+    category: 'themes',
+    badge: 'WMP Skin',
+    year: '2006',
+    author: 'Digital Media Studio',
+    description:
+      'Translucent onyx and aqua glass playback deck featuring harmonic frequency spectrums, glossy transport dials, and real-time audio wave reflections.',
+    gradient: 'linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #38bdf8 100%)',
+    tags: ['Media Player', 'Onyx', 'Audio'],
+  },
+  {
+    id: 'wii-forecast-globe',
+    title: 'Nintendo Wii Forecast Glass Globe',
+    category: 'gadgets',
+    badge: 'Wii Channel',
+    year: '2006',
+    author: 'Nintendo R&D',
+    description:
+      'Interactive rotating 3D terrestrial globe with glass cloud layers, sunny weather icons, and soothing ambient synthesis audio cues.',
+    gradient: 'linear-gradient(135deg, #60a5fa 0%, #93c5fd 45%, #a7f3d0 100%)',
+    tags: ['Wii', 'Weather', 'Interactive'],
+  },
+  {
+    id: 'zune-hd-fluid-glass',
+    title: 'Zune HD Fluid Glass Touch UI',
+    category: 'themes',
+    badge: 'OLED UI',
+    year: '2009',
+    author: 'Zune Team',
+    description:
+      'Silky smooth fluid gesture UI with parallax album art floating behind frosted glass overlays, typography masks, and glowing phosphor accents.',
+    gradient: 'linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f43f5e 100%)',
+    tags: ['Zune', 'OLED', 'Typography'],
+  },
+  {
+    id: 'clear-skies-horizon',
+    title: 'Clear Skies & Daylight Vector Horizon',
+    category: 'wallpapers',
+    badge: 'Vector 4K',
+    year: '2007',
+    author: 'Frutiger Aesthetic Vault',
+    description:
+      'Vibrant azure sky with photorealistic cumulus clouds, lens flare sunlight bursts, and lush green rolling hill horizons.',
+    gradient: 'linear-gradient(180deg, #0284c7 0%, #7dd3fc 60%, #4ade80 85%, #16a34a 100%)',
+    tags: ['Sky', 'Clouds', 'Nature'],
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    id: 'faq-1',
+    category: 'Design & Philosophy',
+    question: 'What is Frutiger Aero and why is it experiencing a massive renaissance?',
+    answer:
+      'Frutiger Aero is a broad design aesthetic that dominated consumer technology, operating systems, advertising, and architecture from roughly 2004 to 2013 (named after the Adrian Frutiger typeface and Windows Aero). Characterized by glossy textures, water droplets, clear blue skies, lush greenery, glassmorphism, lens flares, and digital optimism, it represented a bright, tactile future before the flat design homogenization of the 2010s. Frutiger.js modernizes this spirit for contemporary high-performance web applications.',
+  },
+  {
+    id: 'faq-2',
+    category: 'Design & Philosophy',
+    question: 'How does Frutiger Aero differ from Skeuomorphism, Y2K, and Frutiger Eco?',
+    answer:
+      'While Y2K (1997-2003) favored cyberpunk metallics, chrome, and blobitecture, and classic Skeuomorphism directly mimicked leather/wood/paper textures, Frutiger Aero focuses specifically on nature-technology harmony: translucent aero glass, sunlight refractions, aquatic themes, vibrant greens and sky blues, glossy bubbles, and crisp humanist typography. Frutiger Eco is a nature-heavy sub-genre focusing on green architecture, renewable solar/wind, and living biospheres.',
+  },
+  {
+    id: 'faq-3',
+    category: 'Engineering & Performance',
+    question:
+      'How does Frutiger.js deliver authentic glass and gloss without dragging down performance?',
+    answer:
+      'Frutiger.js achieves rich tactile aesthetics using pure hardware-accelerated CSS properties: linear and radial CSS gradients, backdrop-filter: blur(), CSS box-shadows, and transform layers. There are zero heavy JavaScript animation loops or 3D canvas runtimes required for base components. It compiles down to pure vanilla CSS tokens and semantic React components.',
+  },
+  {
+    id: 'faq-4',
+    category: 'Responsive Architecture',
+    question: 'Is Frutiger.js truly responsive across all mobile viewports?',
+    answer:
+      'Yes! Frutiger.js is built from the ground up on a Fluid-First responsive architecture. Using continuous CSS clamp() interpolation, auto-fit container grids, minmax() calculations, and safe-touch target sizing (44px minimum touch targets on mobile), components fluidly adapt from 320px compact smartphones up to 3840px 4K ultrawide monitors with zero horizontal overflow.',
+  },
+  {
+    id: 'faq-5',
+    category: 'Accessibility',
+    question: 'Are Frutiger.js components accessible and compliant with WCAG 2.1 AA?',
+    answer:
+      'Absolutely. Every component adheres to WCAG 2.1 AA standards: high contrast text tokens (e.g. #034870 on light backgrounds, minimum 4.5:1 ratio), native semantic HTML tags (<button>, <details>, <dialog>, <nav>), visible high-contrast focus rings, full keyboard navigation (Enter, Space, Arrow keys, Escape), and ARIA attributes (aria-expanded, aria-controls, role="region").',
+  },
+  {
+    id: 'faq-6',
+    category: 'Integration & Frameworks',
+    question: 'Can I use Frutiger.js with Next.js App Router, Remix, Vite, or plain HTML?',
+    answer:
+      'Yes! @frutiger-js/core is completely framework-agnostic vanilla CSS that can be used in any web project with simple class names (e.g., .fj-btn, .fj-card, .fj-window-frame, .fj-gallery-grid). @frutiger-js/react provides fully typed React 18/19 components with SSR support and zero CSS-in-JS runtime overhead.',
+  },
+];
+
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,6 +227,18 @@ export default function App() {
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [simulatedWidth, setSimulatedWidth] = useState<string>('100%');
+
+  // Archive & Media Gallery states
+  const [archiveCategory, setArchiveCategory] = useState<string>('all');
+  const [archiveSearch, setArchiveSearch] = useState('');
+  const [lightboxItem, setLightboxItem] = useState<ArchiveMediaItem | null>(null);
+
+  // WindowFrame State
+  const [windowVariant, setWindowVariant] = useState<WindowFrameVariant>('aero');
+  const [isWindowActive, setIsWindowActive] = useState(true);
+
+  // FAQ State
+  const [faqSearch, setFaqSearch] = useState('');
 
   // Form states
   const [inputVal, setInputVal] = useState('frutiger.aero@web2007.net');
@@ -79,6 +256,23 @@ export default function App() {
     navigator.clipboard.writeText('npm install @frutiger-js/core @frutiger-js/react');
     alert('Copied to clipboard: npm install @frutiger-js/core @frutiger-js/react');
   };
+
+  const filteredArchive = ARCHIVE_ITEMS.filter(item => {
+    const matchesCategory = archiveCategory === 'all' || item.category === archiveCategory;
+    const matchesSearch =
+      item.title.toLowerCase().includes(archiveSearch.toLowerCase()) ||
+      item.description.toLowerCase().includes(archiveSearch.toLowerCase()) ||
+      item.tags.some(t => t.toLowerCase().includes(archiveSearch.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
+
+  const filteredFaqs = FAQ_ITEMS.filter(item => {
+    return (
+      item.question.toLowerCase().includes(faqSearch.toLowerCase()) ||
+      item.answer.toLowerCase().includes(faqSearch.toLowerCase()) ||
+      item.category.toLowerCase().includes(faqSearch.toLowerCase())
+    );
+  });
 
   return (
     <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
@@ -533,6 +727,9 @@ export default function App() {
                 <Tab value="feedback">Alerts & Badges</Tab>
                 <Tab value="navigation">Tabs & Accordion</Tab>
                 <Tab value="overflow">Custom Overflow</Tab>
+                <Tab value="archive">Aero Gallery & Archive</Tab>
+                <Tab value="window">Aero Window Frame</Tab>
+                <Tab value="faq">FAQ Knowledgebase</Tab>
                 <Tab value="responsive">Responsive Lab</Tab>
               </TabList>
 
@@ -1297,6 +1494,521 @@ export default function App() {
                   </Card>
                 </Stack>
               </TabPanel>
+
+              {/* AERO ARCHIVE & GALLERY TAB */}
+              <TabPanel value="archive">
+                <Stack spacing="lg">
+                  {/* StatCards Banner inspired by frutigeraeroarchive.org */}
+                  <Grid columns="repeat(auto-fit, minmax(min(100%, 220px), 1fr))" gap="1rem">
+                    <StatCard
+                      title="Archive Media Assets"
+                      value="2,480"
+                      subtitle="High-res wallpapers & renders"
+                      icon="🖼️"
+                      variant="aero"
+                      trend={{ value: '+14.2%', isPositive: true }}
+                    />
+                    <StatCard
+                      title="Themes & Gadgets"
+                      value="640"
+                      subtitle="Packaged Vista/7 widgets"
+                      icon="✨"
+                      variant="sky"
+                      trend={{ value: '+8.5%', isPositive: true }}
+                    />
+                    <StatCard
+                      title="Lossless Audio & FX"
+                      value="1,120"
+                      subtitle="44.1kHz FLAC & WAV cues"
+                      icon="🎵"
+                      variant="grass"
+                      trend={{ value: '+4.1%', isPositive: true }}
+                    />
+                    <StatCard
+                      title="Global Community"
+                      value="48.2k"
+                      subtitle="Active aero enthusiasts"
+                      icon="🌐"
+                      variant="glass"
+                      trend={{ value: '+28.7%', isPositive: true }}
+                    />
+                  </Grid>
+
+                  {/* Archive Showcase Container */}
+                  <Card variant="glass">
+                    <CardHeader>
+                      <div>
+                        <CardTitle>Frutiger Aero Museum & Digital Vault</CardTitle>
+                        <CardDescription>
+                          Curated digital artifacts from 2004–2013: wallpapers, concepts, operating
+                          system themes, and glossy skeuomorphic media.
+                        </CardDescription>
+                      </div>
+                      <Badge variant="nature" icon={<IconSparkles size={14} />}>
+                        Archive Verified
+                      </Badge>
+                    </CardHeader>
+                    <CardContent>
+                      {/* Filter and Search Bar */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '1rem',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          marginBottom: '1.5rem',
+                          padding: '1rem',
+                          background: 'rgba(255, 255, 255, 0.45)',
+                          borderRadius: 'var(--fj-radius-lg)',
+                          border: '1px solid rgba(255, 255, 255, 0.7)',
+                        }}
+                      >
+                        {/* Category Buttons */}
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '0.5rem',
+                            alignItems: 'center',
+                          }}
+                        >
+                          {[
+                            { id: 'all', label: 'All Artifacts' },
+                            { id: 'wallpapers', label: 'Wallpapers' },
+                            { id: 'concept', label: 'Concept Art' },
+                            { id: 'themes', label: 'UI Themes' },
+                            { id: 'gadgets', label: 'Gadgets' },
+                          ].map(cat => (
+                            <Button
+                              key={cat.id}
+                              size="sm"
+                              variant={archiveCategory === cat.id ? 'aero' : 'glass'}
+                              onClick={() => setArchiveCategory(cat.id)}
+                            >
+                              {cat.label}
+                            </Button>
+                          ))}
+                        </div>
+
+                        {/* Search Input */}
+                        <div style={{ width: 'clamp(200px, 100%, 300px)' }}>
+                          <Input
+                            placeholder="Search archive artifacts..."
+                            value={archiveSearch}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                              setArchiveSearch(e.target.value)
+                            }
+                          />
+                        </div>
+                      </div>
+
+                      {/* Gallery Grid */}
+                      <GalleryGrid cols={3} minWidth="260px" gap="1.5rem">
+                        {filteredArchive.map(item => (
+                          <GalleryItem
+                            key={item.id}
+                            title={item.title}
+                            category={`${item.year} • ${item.badge}`}
+                            description={item.description}
+                            badge={item.tags[0]}
+                            onClick={() => setLightboxItem(item)}
+                            imageNode={
+                              <div
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  background: item.gradient,
+                                  position: 'relative',
+                                  overflow: 'hidden',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                }}
+                              >
+                                {/* Specular glossy circle reflection overlay */}
+                                <div
+                                  style={{
+                                    position: 'absolute',
+                                    top: '-20%',
+                                    left: '-20%',
+                                    width: '140%',
+                                    height: '80%',
+                                    background:
+                                      'radial-gradient(ellipse at center, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 70%)',
+                                    pointerEvents: 'none',
+                                  }}
+                                />
+                                <div
+                                  style={{
+                                    fontSize: '3rem',
+                                    filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.25))',
+                                  }}
+                                >
+                                  {item.category === 'wallpapers'
+                                    ? '🌄'
+                                    : item.category === 'concept'
+                                      ? '🔮'
+                                      : item.category === 'themes'
+                                        ? '📱'
+                                        : '📟'}
+                                </div>
+                              </div>
+                            }
+                            footer={
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  justifyContent: 'space-between',
+                                  alignItems: 'center',
+                                  width: '100%',
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    fontSize: 'var(--fj-font-size-xs)',
+                                    color: 'var(--fj-color-sky-800)',
+                                    fontWeight: 600,
+                                  }}
+                                >
+                                  {item.author}
+                                </span>
+                                <Button size="sm" variant="glass">
+                                  Inspect 🔍
+                                </Button>
+                              </div>
+                            }
+                          />
+                        ))}
+                      </GalleryGrid>
+
+                      {filteredArchive.length === 0 && (
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            padding: '3rem 1rem',
+                            color: 'var(--fj-color-text-muted)',
+                          }}
+                        >
+                          <p style={{ fontSize: '1.2rem', fontWeight: 600 }}>
+                            No artifacts matching &ldquo;{archiveSearch}&rdquo;
+                          </p>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            onClick={() => {
+                              setArchiveSearch('');
+                              setArchiveCategory('all');
+                            }}
+                          >
+                            Reset Filters
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Stack>
+              </TabPanel>
+
+              {/* AERO WINDOW FRAME TAB */}
+              <TabPanel value="window">
+                <Stack spacing="lg">
+                  <Card variant="glass">
+                    <CardHeader>
+                      <div>
+                        <CardTitle>Aero Window Frame (Vista & 7 Glass)</CardTitle>
+                        <CardDescription>
+                          Authentic skeuomorphic desktop window frames with specular titlebars,
+                          jewel traffic-light controls, address breadcrumbs, and content containers.
+                        </CardDescription>
+                      </div>
+                      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        <Button
+                          size="sm"
+                          variant={isWindowActive ? 'aero' : 'glass'}
+                          onClick={() => setIsWindowActive(!isWindowActive)}
+                        >
+                          {isWindowActive ? 'Active Window' : 'Inactive Window'}
+                        </Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      {/* Variant Selection Bar */}
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '0.75rem',
+                          marginBottom: '1.5rem',
+                          alignItems: 'center',
+                          padding: '0.75rem 1rem',
+                          background: 'rgba(255, 255, 255, 0.45)',
+                          borderRadius: 'var(--fj-radius-lg)',
+                        }}
+                      >
+                        <span style={{ fontSize: 'var(--fj-font-size-sm)', fontWeight: 600 }}>
+                          Window Theme Variant:
+                        </span>
+                        {(['aero', 'glass', 'glossy', 'frosted'] as WindowFrameVariant[]).map(v => (
+                          <Button
+                            key={v}
+                            size="sm"
+                            variant={windowVariant === v ? 'primary' : 'glass'}
+                            onClick={() => setWindowVariant(v)}
+                          >
+                            {v.toUpperCase()}
+                          </Button>
+                        ))}
+                      </div>
+
+                      {/* Live Window Frame Preview */}
+                      <div
+                        style={{
+                          padding: '1.5rem',
+                          background:
+                            'radial-gradient(circle at 50% 30%, #e0f2fe 0%, #bae6fd 60%, #7dd3fc 100%)',
+                          borderRadius: 'var(--fj-radius-xl)',
+                          boxShadow: 'inset 0 2px 6px rgba(2, 132, 199, 0.15)',
+                        }}
+                      >
+                        <WindowFrame
+                          title="Windows Aero Explorer — C:\Media\FrutigerArchive\Renders"
+                          icon={<IconWater size={16} />}
+                          variant={windowVariant}
+                          isActive={isWindowActive}
+                          onClose={() => alert('Window close action triggered')}
+                          onMinimize={() => alert('Window minimize action triggered')}
+                          onMaximize={() => alert('Window maximize action triggered')}
+                          headerActions={
+                            <div style={{ display: 'flex', gap: '0.25rem' }}>
+                              <Badge variant="nature">Ready</Badge>
+                            </div>
+                          }
+                          footer={
+                            <div
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                width: '100%',
+                              }}
+                            >
+                              <span>8 items • 124.6 MB available in Aero storage</span>
+                              <span>Protected by Frutiger.js</span>
+                            </div>
+                          }
+                        >
+                          {/* Simulated Explorer Content */}
+                          <div style={{ padding: '0.5rem 0' }}>
+                            {/* Address & Navigation Toolbar */}
+                            <div
+                              style={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: '0.75rem',
+                                alignItems: 'center',
+                                padding: '0.6rem 0.8rem',
+                                background: 'rgba(255, 255, 255, 0.8)',
+                                borderRadius: 'var(--fj-radius-md)',
+                                border: '1px solid rgba(186, 230, 253, 0.6)',
+                                marginBottom: '1rem',
+                              }}
+                            >
+                              <div style={{ display: 'flex', gap: '0.35rem' }}>
+                                <Button
+                                  size="sm"
+                                  variant="glass"
+                                  style={{ padding: '0.2rem 0.5rem' }}
+                                >
+                                  ←
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="glass"
+                                  style={{ padding: '0.2rem 0.5rem' }}
+                                >
+                                  →
+                                </Button>
+                              </div>
+                              <div
+                                style={{
+                                  flex: 1,
+                                  minWidth: '180px',
+                                  padding: '0.35rem 0.75rem',
+                                  background: '#ffffff',
+                                  borderRadius: 'var(--fj-radius-sm)',
+                                  border: '1px solid rgba(14, 165, 233, 0.4)',
+                                  fontSize: 'var(--fj-font-size-xs)',
+                                  color: 'var(--fj-color-sky-900)',
+                                  fontWeight: 500,
+                                }}
+                              >
+                                Computer ‣ Local Disk (C:) ‣ Media ‣ FrutigerArchive
+                              </div>
+                              <div style={{ width: '160px' }}>
+                                <Input placeholder="Search folder..." />
+                              </div>
+                            </div>
+
+                            {/* Explorer Files Grid */}
+                            <Grid columns="repeat(auto-fit, minmax(130px, 1fr))" gap="0.75rem">
+                              {[
+                                {
+                                  name: 'aurora_bliss.png',
+                                  type: 'PNG Image',
+                                  icon: '🖼️',
+                                  size: '14.2 MB',
+                                },
+                                {
+                                  name: 'aqua_orb_3d.c4d',
+                                  type: '3D Project',
+                                  icon: '🔮',
+                                  size: '42.8 MB',
+                                },
+                                {
+                                  name: 'wii_forecast.gadget',
+                                  type: 'Desktop Gadget',
+                                  icon: '📟',
+                                  size: '2.1 MB',
+                                },
+                                {
+                                  name: 'walkman_ui.swf',
+                                  type: 'Flash Theme',
+                                  icon: '📱',
+                                  size: '8.4 MB',
+                                },
+                                {
+                                  name: 'wmp11_aurora.wms',
+                                  type: 'Skin File',
+                                  icon: '🎵',
+                                  size: '11.6 MB',
+                                },
+                                {
+                                  name: 'eco_dome.max',
+                                  type: '3D Scene',
+                                  icon: '🌿',
+                                  size: '38.2 MB',
+                                },
+                              ].map((f, i) => (
+                                <div
+                                  key={i}
+                                  style={{
+                                    padding: '0.75rem',
+                                    borderRadius: 'var(--fj-radius-md)',
+                                    background: 'rgba(255, 255, 255, 0.75)',
+                                    border: '1px solid rgba(255, 255, 255, 0.9)',
+                                    textAlign: 'center',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1)',
+                                    boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                                  }}
+                                  onMouseEnter={e => {
+                                    e.currentTarget.style.background = 'rgba(224, 242, 254, 0.9)';
+                                    e.currentTarget.style.borderColor = 'var(--fj-color-sky-400)';
+                                  }}
+                                  onMouseLeave={e => {
+                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.75)';
+                                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.9)';
+                                  }}
+                                >
+                                  <div style={{ fontSize: '2rem', marginBottom: '0.35rem' }}>
+                                    {f.icon}
+                                  </div>
+                                  <div
+                                    style={{
+                                      fontSize: 'var(--fj-font-size-xs)',
+                                      fontWeight: 600,
+                                      whiteSpace: 'nowrap',
+                                      overflow: 'hidden',
+                                      textOverflow: 'ellipsis',
+                                    }}
+                                  >
+                                    {f.name}
+                                  </div>
+                                  <div
+                                    style={{
+                                      fontSize: '0.65rem',
+                                      color: 'var(--fj-color-text-muted)',
+                                      marginTop: '2px',
+                                    }}
+                                  >
+                                    {f.size}
+                                  </div>
+                                </div>
+                              ))}
+                            </Grid>
+                          </div>
+                        </WindowFrame>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Stack>
+              </TabPanel>
+
+              {/* FAQ KNOWLEDGEBASE TAB */}
+              <TabPanel value="faq">
+                <Stack spacing="lg">
+                  <Card variant="glass">
+                    <CardHeader>
+                      <div>
+                        <CardTitle>Aero Knowledgebase & FAQ</CardTitle>
+                        <CardDescription>
+                          Essential questions and deep dives into Frutiger Aero aesthetics,
+                          skeuomorphism, modern design system architecture, and accessibility.
+                        </CardDescription>
+                      </div>
+                      <Badge variant="nature" icon={<IconLeaf size={14} />}>
+                        Living Documentation
+                      </Badge>
+                    </CardHeader>
+                    <CardContent>
+                      {/* Search Bar for FAQ */}
+                      <div style={{ marginBottom: '1.5rem', maxWidth: '400px' }}>
+                        <Input
+                          placeholder="Search questions or keywords..."
+                          value={faqSearch}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            setFaqSearch(e.target.value)
+                          }
+                        />
+                      </div>
+
+                      {/* FaqList Component */}
+                      <FaqList>
+                        {filteredFaqs.map(faq => (
+                          <FaqItem
+                            key={faq.id}
+                            question={faq.question}
+                            badge={<Badge variant="nature">{faq.category}</Badge>}
+                            defaultOpen={faq.id === 'faq-1'}
+                          >
+                            <p
+                              style={{ margin: 0, lineHeight: 1.7, color: 'var(--fj-color-text)' }}
+                            >
+                              {faq.answer}
+                            </p>
+                          </FaqItem>
+                        ))}
+                      </FaqList>
+
+                      {filteredFaqs.length === 0 && (
+                        <div
+                          style={{
+                            textAlign: 'center',
+                            padding: '2.5rem 1rem',
+                            color: 'var(--fj-color-text-muted)',
+                          }}
+                        >
+                          <p>No questions found matching &ldquo;{faqSearch}&rdquo;</p>
+                          <Button variant="primary" size="sm" onClick={() => setFaqSearch('')}>
+                            View All Questions
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Stack>
+              </TabPanel>
             </Tabs>
           </div>
 
@@ -1545,6 +2257,86 @@ export default function App() {
           </Button>
         </div>
       </Modal>
+
+      {/* Lightbox / Media Detail Modal */}
+      {lightboxItem && (
+        <Modal
+          isOpen={true}
+          onClose={() => setLightboxItem(null)}
+          title={`Archive Artifact: ${lightboxItem.title}`}
+        >
+          <div style={{ marginBottom: '1.25rem' }}>
+            <div
+              style={{
+                height: '180px',
+                borderRadius: 'var(--fj-radius-lg)',
+                background: lightboxItem.gradient,
+                position: 'relative',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem',
+                boxShadow: 'inset 0 1px 1px #fff, 0 6px 20px rgba(2, 132, 199, 0.25)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '4rem',
+                  filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.3))',
+                }}
+              >
+                {lightboxItem.category === 'wallpapers'
+                  ? '🌄'
+                  : lightboxItem.category === 'concept'
+                    ? '🔮'
+                    : lightboxItem.category === 'themes'
+                      ? '📱'
+                      : '📟'}
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '0.75rem',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 'var(--fj-font-size-sm)',
+                  color: 'var(--fj-color-sky-800)',
+                  fontWeight: 700,
+                }}
+              >
+                Created: {lightboxItem.year} • {lightboxItem.author}
+              </span>
+              <Badge variant="nature">{lightboxItem.badge}</Badge>
+            </div>
+
+            <p style={{ lineHeight: 1.7, color: 'var(--fj-color-text)', margin: 0 }}>
+              {lightboxItem.description}
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+            <Button variant="ghost" onClick={() => setLightboxItem(null)}>
+              Close
+            </Button>
+            <Button
+              variant="aero"
+              onClick={() => {
+                alert(`Downloaded metadata for "${lightboxItem.title}"`);
+                setLightboxItem(null);
+              }}
+            >
+              Download Asset Preset
+            </Button>
+          </div>
+        </Modal>
+      )}
 
       {/* Footer */}
       <footer
