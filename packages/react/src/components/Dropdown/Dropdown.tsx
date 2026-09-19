@@ -1,10 +1,22 @@
-import React, { useState, useRef, useEffect, forwardRef } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  forwardRef,
+  type HTMLAttributes,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+} from 'react';
 import { cn } from '../../utils/cn';
+import { IconCheck, IconChevronDown } from '../../icons';
 
-export interface DropdownProps {
-  trigger: React.ReactNode;
-  children: React.ReactNode;
+export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
+  trigger: ReactNode;
+  children: ReactNode;
   align?: 'left' | 'right';
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
   className?: string;
 }
 
@@ -12,23 +24,39 @@ export const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   children,
   align = 'left',
+  isOpen: controlledOpen,
+  onOpenChange,
   className,
+  ...props
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isControlled = controlledOpen !== undefined;
+  const isOpen = isControlled ? controlledOpen : internalOpen;
+
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!isControlled) {
+        setInternalOpen(next);
+      }
+      onOpenChange?.(next);
+    },
+    [isControlled, onOpenChange]
+  );
 
   useEffect(() => {
     if (!isOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+        setOpen(false);
       }
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
+        setOpen(false);
       }
     };
 
@@ -39,36 +67,25 @@ export const Dropdown: React.FC<DropdownProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, setOpen]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{ position: 'relative', display: 'inline-block' }}
-      className={className}
-    >
-      <div onClick={() => setIsOpen(!isOpen)}>{trigger}</div>
+    <div ref={containerRef} className={cn('fj-dropdown', className)} {...props}>
+      <div
+        className="fj-dropdown__trigger"
+        onClick={() => setOpen(!isOpen)}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+      >
+        {trigger}
+      </div>
       {isOpen && (
         <div
           role="menu"
-          className={cn('fj-dropdown-menu')}
-          style={{
-            position: 'absolute',
-            top: 'calc(100% + 6px)',
-            [align === 'right' ? 'right' : 'left']: 0,
-            zIndex: 1000,
-            minWidth: '180px',
-            background: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(186, 230, 253, 0.9)',
-            borderRadius: 'var(--fj-radius-lg)',
-            boxShadow: 'inset 0 1px 0 #fff, 0 10px 30px rgba(12, 74, 110, 0.2)',
-            padding: 'var(--fj-space-2)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '2px',
-          }}
+          className={cn(
+            'fj-dropdown__menu',
+            align === 'right' ? 'fj-dropdown__menu--right' : 'fj-dropdown__menu--left'
+          )}
         >
           {children}
         </div>
@@ -78,39 +95,157 @@ export const Dropdown: React.FC<DropdownProps> = ({
 };
 Dropdown.displayName = 'Dropdown';
 
-export interface DropdownItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactNode;
+export interface DropdownItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  icon?: ReactNode;
+  isActive?: boolean;
+  isDisabled?: boolean;
+  showCheck?: boolean;
 }
+
 export const DropdownItem = forwardRef<HTMLButtonElement, DropdownItemProps>(
-  ({ children, className, icon, onClick, ...props }, ref) => {
+  (
+    {
+      children,
+      className,
+      icon,
+      isActive = false,
+      isDisabled = false,
+      showCheck = false,
+      onClick,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
         type="button"
         role="menuitem"
-        className={cn('fj-dropdown-item', className)}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--fj-space-2)',
-          padding: 'var(--fj-space-2) var(--fj-space-3)',
-          borderRadius: 'var(--fj-radius-md)',
-          fontSize: 'var(--fj-font-size-sm)',
-          color: 'var(--fj-color-text)',
-          textAlign: 'left',
-          cursor: 'pointer',
-          border: 'none',
-          background: 'transparent',
-          transition: 'all 0.15s ease',
+        disabled={isDisabled}
+        className={cn(
+          'fj-dropdown__item',
+          isActive && 'fj-dropdown__item--active',
+          isDisabled && 'fj-dropdown__item--disabled',
+          className
+        )}
+        onClick={e => {
+          if (isDisabled) return;
+          onClick?.(e);
         }}
-        onClick={onClick}
         {...props}
       >
-        {icon && <span>{icon}</span>}
-        <span>{children}</span>
+        <div className="fj-dropdown__item-content">
+          {icon && <span className="fj-dropdown__item-icon">{icon}</span>}
+          <span>{children}</span>
+        </div>
+        {showCheck && isActive && (
+          <span className="fj-dropdown__item-check">
+            <IconCheck size={14} />
+          </span>
+        )}
       </button>
     );
   }
 );
 DropdownItem.displayName = 'DropdownItem';
+
+export interface DropdownHeaderProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
+
+export const DropdownHeader: React.FC<DropdownHeaderProps> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <div className={cn('fj-dropdown__header', className)} {...props}>
+    {children}
+  </div>
+);
+DropdownHeader.displayName = 'DropdownHeader';
+
+export const DropdownDivider: React.FC<HTMLAttributes<HTMLHRElement>> = ({
+  className,
+  ...props
+}) => <hr className={cn('fj-dropdown__divider', className)} {...props} />;
+DropdownDivider.displayName = 'DropdownDivider';
+
+export interface DropdownSelectOption<T extends string = string> {
+  value: T;
+  label: string;
+  icon?: ReactNode;
+  description?: string;
+}
+
+export interface DropdownSelectProps<T extends string = string> {
+  options: DropdownSelectOption<T>[];
+  value: T;
+  onChange: (value: T) => void;
+  placeholder?: string;
+  leftIcon?: ReactNode;
+  align?: 'left' | 'right';
+  className?: string;
+}
+
+export const DropdownSelect = <T extends string = string>({
+  options,
+  value,
+  onChange,
+  placeholder = 'Select option...',
+  leftIcon,
+  align = 'left',
+  className,
+}: DropdownSelectProps<T>) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectedOption = options.find(o => o.value === value);
+
+  return (
+    <Dropdown
+      isOpen={isOpen}
+      onOpenChange={setIsOpen}
+      align={align}
+      className={className}
+      trigger={
+        <button
+          type="button"
+          className="fj-button fj-button--glass fj-button--sm"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            borderRadius: 'var(--fj-radius-pill)',
+            padding: '4px 12px',
+            fontWeight: 700,
+          }}
+        >
+          {leftIcon || (selectedOption?.icon && <span>{selectedOption.icon}</span>)}
+          <span>{selectedOption ? selectedOption.label : placeholder}</span>
+          <IconChevronDown
+            size={14}
+            style={{
+              transition: 'transform 0.2s ease',
+              transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+              opacity: 0.7,
+            }}
+          />
+        </button>
+      }
+    >
+      {options.map(opt => (
+        <DropdownItem
+          key={opt.value}
+          icon={opt.icon}
+          isActive={opt.value === value}
+          showCheck
+          onClick={() => {
+            onChange(opt.value);
+            setIsOpen(false);
+          }}
+        >
+          {opt.label}
+        </DropdownItem>
+      ))}
+    </Dropdown>
+  );
+};
+DropdownSelect.displayName = 'DropdownSelect';

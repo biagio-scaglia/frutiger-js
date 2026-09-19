@@ -20,6 +20,11 @@ import {
   Alert,
   AlertVariant,
   Modal,
+  Dropdown,
+  DropdownItem,
+  DropdownHeader,
+  DropdownDivider,
+  DropdownSelect,
   Tabs,
   TabList,
   Tab,
@@ -125,45 +130,21 @@ export default function App() {
             <div
               style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'nowrap' }}
             >
-              {/* Compact Glass Theme Selector */}
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  background: 'rgba(255, 255, 255, 0.75)',
-                  padding: '3px 8px',
-                  borderRadius: 'var(--fj-radius-pill)',
-                  border: '1px solid rgba(186, 230, 253, 0.95)',
-                  boxShadow: 'inset 0 1px 1px #fff, 0 2px 6px rgba(12, 74, 110, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                  flexShrink: 0,
-                }}
-              >
-                <IconSparkles size={14} />
-                <select
-                  value={currentTheme}
-                  onChange={e => setCurrentTheme(e.target.value as ThemeName)}
-                  aria-label="Select visual theme"
-                  style={{
-                    border: 'none',
-                    background: 'transparent',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    color: 'var(--fj-color-text)',
-                    cursor: 'pointer',
-                    outline: 'none',
-                    fontFamily: 'inherit',
-                  }}
-                >
-                  <option value="aero">Aero Classic</option>
-                  <option value="ocean">Ocean Aqua</option>
-                  <option value="meadow">Meadow Leaf</option>
-                  <option value="sunset">Sunset Dusk</option>
-                  <option value="vista">Windows Vista</option>
-                  <option value="windows7">Windows 7</option>
-                </select>
-              </div>
+              {/* Authentic Aero Glass Theme Selector Dropdown */}
+              <DropdownSelect<ThemeName>
+                value={currentTheme}
+                onChange={setCurrentTheme}
+                align="right"
+                leftIcon={<IconSparkles size={14} />}
+                options={[
+                  { value: 'aero', label: 'Aero Classic', icon: <IconWater size={14} /> },
+                  { value: 'ocean', label: 'Ocean Aqua', icon: <IconSparkles size={14} /> },
+                  { value: 'meadow', label: 'Meadow Leaf', icon: <IconLeaf size={14} /> },
+                  { value: 'sunset', label: 'Sunset Dusk', icon: <IconSun size={14} /> },
+                  { value: 'vista', label: 'Windows Vista', icon: <IconAeroOrb size={14} /> },
+                  { value: 'windows7', label: 'Windows 7', icon: <IconGlobe size={14} /> },
+                ]}
+              />
 
               <Avatar name="Biagio Scaglia" size="sm" />
               <a
@@ -703,32 +684,103 @@ export default function App() {
                   </Stack>
                 </TabPanel>
 
-                {/* NAVIGATION TAB */}
+                {/* NAVIGATION & DROPDOWNS TAB */}
                 <TabPanel value="navigation">
-                  <Accordion>
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger>What is Frutiger Aero?</AccordionTrigger>
-                      <AccordionContent>
-                        Frutiger Aero is an optimistic, nature-infused design movement prominent
-                        from 2004 to 2013, characterized by glossy textures, clean typography,
-                        skeuomorphism, and daylight themes.
-                      </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-2">
-                      <AccordionTrigger>Why choose Frutiger.js?</AccordionTrigger>
-                      <AccordionContent>
-                        Frutiger.js combines nostalgia with enterprise-grade React architecture,
-                        zero bloat, pure CSS tokens, and full responsive fluid layout scaling.
-                      </AccordionContent>
-                    </AccordionItem>
-                    <AccordionItem value="item-3">
-                      <AccordionTrigger>Is it fully accessible?</AccordionTrigger>
-                      <AccordionContent>
-                        Yes! Every component adheres to WCAG 2.2 AA standards with full keyboard
-                        interaction, ARIA attributes, focus states, and reduced-motion fallbacks.
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
+                  <Stack spacing="lg">
+                    {/* Dropdown Showcase */}
+                    <Card variant="glass">
+                      <CardHeader>
+                        <div>
+                          <CardTitle>Aero Glass Dropdowns & Context Menus</CardTitle>
+                          <CardDescription>
+                            Tactile translucent popup menus with specular borders, glowing hover
+                            states, and keyboard accessibility.
+                          </CardDescription>
+                        </div>
+                        <Badge variant="nature">Interactive Menus</Badge>
+                      </CardHeader>
+                      <CardContent>
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '1.5rem',
+                            flexWrap: 'wrap',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <Dropdown
+                            trigger={
+                              <Button variant="primary" size="md">
+                                File Operations ▾
+                              </Button>
+                            }
+                          >
+                            <DropdownHeader>System Vault</DropdownHeader>
+                            <DropdownItem icon={<IconSparkles size={16} />}>
+                              New Workspace
+                            </DropdownItem>
+                            <DropdownItem icon={<IconWater size={16} />}>
+                              Aero Atmospheric Sync
+                            </DropdownItem>
+                            <DropdownDivider />
+                            <DropdownHeader>Exports</DropdownHeader>
+                            <DropdownItem icon={<IconLeaf size={16} />}>
+                              Export CSS Tokens
+                            </DropdownItem>
+                            <DropdownItem icon={<IconSun size={16} />}>
+                              Export Theme Bundle
+                            </DropdownItem>
+                          </Dropdown>
+
+                          <Dropdown
+                            trigger={
+                              <Button variant="glass" size="md">
+                                User Preferences ▾
+                              </Button>
+                            }
+                          >
+                            <DropdownHeader>Session Account</DropdownHeader>
+                            <DropdownItem icon={<IconStar size={16} />}>
+                              Biagio Scaglia (Admin)
+                            </DropdownItem>
+                            <DropdownDivider />
+                            <DropdownItem icon={<IconGlobe size={16} />} isActive showCheck>
+                              English (US)
+                            </DropdownItem>
+                            <DropdownItem icon={<IconGlobe size={16} />}>
+                              Italiano (IT)
+                            </DropdownItem>
+                          </Dropdown>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* Accordions */}
+                    <Accordion>
+                      <AccordionItem value="item-1">
+                        <AccordionTrigger>What is Frutiger Aero?</AccordionTrigger>
+                        <AccordionContent>
+                          Frutiger Aero is an optimistic, nature-infused design movement prominent
+                          from 2004 to 2013, characterized by glossy textures, clean typography,
+                          skeuomorphism, and daylight themes.
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-2">
+                        <AccordionTrigger>Why choose Frutiger.js?</AccordionTrigger>
+                        <AccordionContent>
+                          Frutiger.js combines nostalgia with enterprise-grade React architecture,
+                          zero bloat, pure CSS tokens, and full responsive fluid layout scaling.
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-3">
+                        <AccordionTrigger>Is it fully accessible?</AccordionTrigger>
+                        <AccordionContent>
+                          Yes! Every component adheres to WCAG 2.2 AA standards with full keyboard
+                          interaction, ARIA attributes, focus states, and reduced-motion fallbacks.
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </Stack>
                 </TabPanel>
 
                 {/* OVERFLOW & SCROLLAREA TAB */}

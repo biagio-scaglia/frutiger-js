@@ -23,17 +23,17 @@
       radial-gradient(circle at 80% 85%, rgba(56, 189, 248, 0.45) 0%, transparent 60%);
 
     --fj-color-background: #f0f8ff;
-    --fj-color-background-surface: rgba(255, 255, 255, 0.85);
+    --fj-color-background-surface: rgba(255, 255, 255, 0.88);
     --fj-color-background-elevated: rgba(255, 255, 255, 0.96);
     --fj-color-background-overlay: rgba(12, 74, 110, 0.4);
 
-    --fj-color-text: #0f2d4a;
-    --fj-color-text-muted: #476885;
+    --fj-color-text: #0c2d48;
+    --fj-color-text-muted: #3b6a94;
     --fj-color-text-inverse: #ffffff;
 
-    --fj-color-border: rgba(186, 230, 253, 0.85);
-    --fj-color-border-subtle: rgba(255, 255, 255, 0.7);
-    --fj-color-border-strong: #38bdf8;
+    --fj-color-border: rgba(186, 230, 253, 0.9);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.85);
+    --fj-color-border-strong: #0284c7;
 
     --fj-color-primary: #0284c7;
     --fj-color-primary-hover: #0369a1;
@@ -42,10 +42,10 @@
 
     --fj-surface-glass-bg: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(224, 242, 254, 0.5) 100%
+      rgba(255, 255, 255, 0.88) 0%,
+      rgba(224, 242, 254, 0.65) 100%
     );
-    --fj-surface-glow-color: rgba(56, 189, 248, 0.5);
+    --fj-surface-glow-color: rgba(56, 189, 248, 0.45);
   }
 
   /* ==========================================================================
@@ -55,40 +55,40 @@
     --fj-theme-wallpaper: linear-gradient(
       180deg,
       #0369a1 0%,
-      #075985 30%,
-      #0c4a6e 65%,
-      #082f49 90%,
+      #075985 25%,
+      #0c4a6e 55%,
+      #082f49 85%,
       #021a2d 100%
     );
     --fj-theme-wallpaper-overlay:
-      radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.4) 0%, transparent 65%),
-      radial-gradient(circle at 25% 75%, rgba(6, 182, 212, 0.35) 0%, transparent 50%),
-      radial-gradient(circle at 75% 85%, rgba(14, 165, 233, 0.3) 0%, transparent 60%);
+      radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.45) 0%, transparent 65%),
+      radial-gradient(circle at 25% 75%, rgba(6, 182, 212, 0.4) 0%, transparent 50%),
+      radial-gradient(circle at 75% 85%, rgba(14, 165, 233, 0.35) 0%, transparent 60%);
 
-    --fj-color-background: #0c4a6e;
-    --fj-color-background-surface: rgba(12, 74, 110, 0.82);
-    --fj-color-background-elevated: rgba(8, 47, 73, 0.94);
-    --fj-color-background-overlay: rgba(2, 26, 45, 0.75);
+    --fj-color-background: #06192a;
+    --fj-color-background-surface: rgba(7, 36, 62, 0.85);
+    --fj-color-background-elevated: rgba(4, 22, 38, 0.94);
+    --fj-color-background-overlay: rgba(2, 10, 18, 0.8);
 
-    --fj-color-text: #f0f9ff;
-    --fj-color-text-muted: #93c5fd;
-    --fj-color-text-inverse: #082f49;
+    --fj-color-text: #ffffff;
+    --fj-color-text-muted: #7dd3fc;
+    --fj-color-text-inverse: #021a2d;
 
-    --fj-color-border: rgba(56, 189, 248, 0.55);
+    --fj-color-border: rgba(56, 189, 248, 0.5);
     --fj-color-border-subtle: rgba(255, 255, 255, 0.2);
     --fj-color-border-strong: #00d2ff;
 
     --fj-color-primary: #0284c7;
     --fj-color-primary-hover: #38bdf8;
     --fj-color-primary-active: #0369a1;
-    --fj-color-primary-light: rgba(6, 182, 212, 0.25);
+    --fj-color-primary-light: rgba(6, 182, 212, 0.3);
 
     --fj-surface-glass-bg: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.25) 0%,
-      rgba(7, 89, 133, 0.65) 100%
+      rgba(7, 40, 68, 0.85) 0%,
+      rgba(3, 20, 36, 0.92) 100%
     );
-    --fj-surface-glow-color: rgba(6, 182, 212, 0.7);
+    --fj-surface-glow-color: rgba(6, 182, 212, 0.65);
   }
 
   /* ==========================================================================
@@ -106,25 +106,25 @@
     --fj-theme-wallpaper-overlay:
       radial-gradient(
         ellipse at 50% 0%,
-        rgba(254, 240, 138, 0.6) 0%,
-        rgba(255, 255, 255, 0.4) 30%,
+        rgba(254, 240, 138, 0.65) 0%,
+        rgba(255, 255, 255, 0.45) 30%,
         transparent 70%
       ),
       radial-gradient(circle at 15% 75%, rgba(34, 197, 94, 0.5) 0%, transparent 55%),
       radial-gradient(circle at 85% 85%, rgba(134, 239, 172, 0.45) 0%, transparent 60%);
 
     --fj-color-background: #f0fdf4;
-    --fj-color-background-surface: rgba(255, 255, 255, 0.88);
+    --fj-color-background-surface: rgba(255, 255, 255, 0.9);
     --fj-color-background-elevated: rgba(255, 255, 255, 0.97);
     --fj-color-background-overlay: rgba(20, 83, 45, 0.45);
 
     --fj-color-text: #052e16;
-    --fj-color-text-muted: #2d6a4f;
+    --fj-color-text-muted: #1b6b3e;
     --fj-color-text-inverse: #ffffff;
 
-    --fj-color-border: rgba(187, 247, 208, 0.9);
-    --fj-color-border-subtle: rgba(255, 255, 255, 0.75);
-    --fj-color-border-strong: #22c55e;
+    --fj-color-border: rgba(187, 247, 208, 0.95);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.85);
+    --fj-color-border-strong: #16a34a;
 
     --fj-color-primary: #16a34a;
     --fj-color-primary-hover: #15803d;
@@ -133,10 +133,10 @@
 
     --fj-surface-glass-bg: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(220, 252, 231, 0.6) 100%
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(220, 252, 231, 0.7) 100%
     );
-    --fj-surface-glow-color: rgba(34, 197, 94, 0.55);
+    --fj-surface-glow-color: rgba(34, 197, 94, 0.5);
   }
 
   /* ==========================================================================
@@ -163,17 +163,17 @@
       radial-gradient(circle at 80% 85%, rgba(99, 102, 241, 0.4) 0%, transparent 60%);
 
     --fj-color-background: #fff7ed;
-    --fj-color-background-surface: rgba(255, 255, 255, 0.88);
+    --fj-color-background-surface: rgba(255, 255, 255, 0.9);
     --fj-color-background-elevated: rgba(255, 255, 255, 0.97);
     --fj-color-background-overlay: rgba(120, 53, 15, 0.5);
 
     --fj-color-text: #431407;
-    --fj-color-text-muted: #9a3412;
+    --fj-color-text-muted: #853610;
     --fj-color-text-inverse: #ffffff;
 
-    --fj-color-border: rgba(254, 215, 170, 0.9);
-    --fj-color-border-subtle: rgba(255, 255, 255, 0.75);
-    --fj-color-border-strong: #f97316;
+    --fj-color-border: rgba(254, 215, 170, 0.95);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.85);
+    --fj-color-border-strong: #ea580c;
 
     --fj-color-primary: #ea580c;
     --fj-color-primary-hover: #c2410c;
@@ -182,10 +182,10 @@
 
     --fj-surface-glass-bg: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.88) 0%,
-      rgba(254, 215, 170, 0.6) 100%
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(254, 215, 170, 0.7) 100%
     );
-    --fj-surface-glow-color: rgba(249, 115, 22, 0.55);
+    --fj-surface-glow-color: rgba(249, 115, 22, 0.5);
   }
 
   /* ==========================================================================
@@ -193,35 +193,35 @@
      ========================================================================== */
   [data-fj-theme='vista'] {
     --fj-theme-wallpaper:
-      radial-gradient(ellipse at 50% 15%, rgba(16, 185, 129, 0.55) 0%, transparent 65%),
-      radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.4) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 15%, rgba(16, 185, 129, 0.6) 0%, transparent 65%),
+      radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.45) 0%, transparent 55%),
       linear-gradient(180deg, #050c14 0%, #0a192f 35%, #0f2d4a 70%, #040911 100%);
     --fj-theme-wallpaper-overlay:
-      radial-gradient(ellipse at 35% 0%, rgba(52, 211, 153, 0.45) 0%, transparent 60%),
-      radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.35) 0%, transparent 50%);
+      radial-gradient(ellipse at 35% 0%, rgba(52, 211, 153, 0.5) 0%, transparent 60%),
+      radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.4) 0%, transparent 50%);
 
-    --fj-color-background: #0a192f;
-    --fj-color-background-surface: rgba(15, 30, 48, 0.82);
-    --fj-color-background-elevated: rgba(20, 42, 68, 0.94);
-    --fj-color-background-overlay: rgba(2, 6, 12, 0.8);
+    --fj-color-background: #050c14;
+    --fj-color-background-surface: rgba(12, 24, 38, 0.88);
+    --fj-color-background-elevated: rgba(6, 14, 24, 0.95);
+    --fj-color-background-overlay: rgba(2, 6, 12, 0.85);
 
-    --fj-color-text: #f0fdf4;
-    --fj-color-text-muted: #93c5fd;
+    --fj-color-text: #ffffff;
+    --fj-color-text-muted: #a7f3d0;
     --fj-color-text-inverse: #050c14;
 
-    --fj-color-border: rgba(52, 211, 153, 0.45);
-    --fj-color-border-subtle: rgba(255, 255, 255, 0.15);
+    --fj-color-border: rgba(52, 211, 153, 0.55);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.2);
     --fj-color-border-strong: #10b981;
 
     --fj-color-primary: #10b981;
     --fj-color-primary-hover: #34d399;
     --fj-color-primary-active: #059669;
-    --fj-color-primary-light: rgba(16, 185, 129, 0.2);
+    --fj-color-primary-light: rgba(16, 185, 129, 0.25);
 
     --fj-surface-glass-bg: linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.18) 0%,
-      rgba(15, 30, 48, 0.75) 100%
+      rgba(12, 22, 34, 0.85) 0%,
+      rgba(4, 10, 18, 0.92) 100%
     );
     --fj-surface-glow-color: rgba(52, 211, 153, 0.65);
   }
@@ -234,7 +234,7 @@
       radial-gradient(
         ellipse at 40% 10%,
         rgba(255, 255, 255, 0.95) 0%,
-        rgba(186, 230, 253, 0.6) 40%,
+        rgba(186, 230, 253, 0.65) 40%,
         transparent 75%
       ),
       linear-gradient(180deg, #1d4ed8 0%, #2563eb 20%, #38bdf8 50%, #93c5fd 80%, #dbeafe 100%);
@@ -242,22 +242,22 @@
       radial-gradient(
         circle at 50% 0%,
         rgba(255, 255, 255, 0.9) 0%,
-        rgba(224, 242, 254, 0.4) 45%,
+        rgba(224, 242, 254, 0.45) 45%,
         transparent 75%
       ),
       radial-gradient(circle at 80% 75%, rgba(14, 165, 233, 0.45) 0%, transparent 60%);
 
     --fj-color-background: #eff6ff;
-    --fj-color-background-surface: rgba(255, 255, 255, 0.85);
+    --fj-color-background-surface: rgba(255, 255, 255, 0.9);
     --fj-color-background-elevated: rgba(255, 255, 255, 0.98);
     --fj-color-background-overlay: rgba(15, 23, 42, 0.5);
 
     --fj-color-text: #0c2d48;
-    --fj-color-text-muted: #2563eb;
+    --fj-color-text-muted: #1d4ed8;
     --fj-color-text-inverse: #ffffff;
 
-    --fj-color-border: rgba(186, 230, 253, 0.95);
-    --fj-color-border-subtle: rgba(255, 255, 255, 0.85);
+    --fj-color-border: rgba(186, 230, 253, 0.98);
+    --fj-color-border-subtle: rgba(255, 255, 255, 0.9);
     --fj-color-border-strong: #0284c7;
 
     --fj-color-primary: #0284c7;
@@ -268,8 +268,8 @@
     --fj-surface-glass-bg: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.92) 0%,
-      rgba(224, 242, 254, 0.7) 45%,
-      rgba(186, 230, 253, 0.55) 100%
+      rgba(224, 242, 254, 0.75) 45%,
+      rgba(186, 230, 253, 0.6) 100%
     );
     --fj-surface-glow-color: rgba(2, 132, 199, 0.6);
   }
