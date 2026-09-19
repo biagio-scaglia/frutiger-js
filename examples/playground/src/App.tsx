@@ -58,7 +58,6 @@ import {
   IconCheck,
   IconStar,
   IconSun,
-  IconAeroOrb,
   IconGlobe,
 } from '@frutiger-js/react';
 import { AeroWidgetsSection } from './components/AeroWidgetsSection';
@@ -68,17 +67,15 @@ import { AeroIconExplorer } from './components/AeroIconExplorer';
 import { AeroDesktopDemo } from './components/AeroDesktopDemo';
 import { AeroPrimitivesTab } from './components/AeroPrimitivesTab';
 
-type ThemeName = 'aero' | 'ocean' | 'meadow' | 'sunset' | 'vista' | 'windows7';
-
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedExplorerTab, setSelectedExplorerTab] = useState('primitives');
-  const [currentTheme, setCurrentTheme] = useState<ThemeName>('aero');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [simulatedWidth, setSimulatedWidth] = useState<string>('100%');
+  const [selectedPreset, setSelectedPreset] = useState('daylight');
 
   // Form states
   const [inputVal, setInputVal] = useState('frutiger.aero@web2007.net');
@@ -94,11 +91,7 @@ export default function App() {
   };
 
   return (
-    <div
-      className="fj-bg-aero"
-      data-fj-theme={currentTheme}
-      style={{ minHeight: '100vh', transition: 'background 0.3s ease' }}
-    >
+    <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
       {/* Top Aero Header Landmark */}
       <header role="banner">
         <Navbar
@@ -128,24 +121,8 @@ export default function App() {
           }
           actions={
             <div
-              style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'nowrap' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'nowrap' }}
             >
-              {/* Authentic Aero Glass Theme Selector Dropdown */}
-              <DropdownSelect<ThemeName>
-                value={currentTheme}
-                onChange={setCurrentTheme}
-                align="right"
-                leftIcon={<IconSparkles size={14} />}
-                options={[
-                  { value: 'aero', label: 'Aero Classic', icon: <IconWater size={14} /> },
-                  { value: 'ocean', label: 'Ocean Aqua', icon: <IconSparkles size={14} /> },
-                  { value: 'meadow', label: 'Meadow Leaf', icon: <IconLeaf size={14} /> },
-                  { value: 'sunset', label: 'Sunset Dusk', icon: <IconSun size={14} /> },
-                  { value: 'vista', label: 'Windows Vista', icon: <IconAeroOrb size={14} /> },
-                  { value: 'windows7', label: 'Windows 7', icon: <IconGlobe size={14} /> },
-                ]}
-              />
-
               <Avatar name="Biagio Scaglia" size="sm" />
               <a
                 href="https://github.com/biagio-scaglia/frutiger-js"
@@ -325,64 +302,6 @@ export default function App() {
                     GitHub
                   </Button>
                 </a>
-              </div>
-
-              {/* Live Atmosphere & Multi-Theme Selector */}
-              <div
-                style={{
-                  marginTop: '2rem',
-                  paddingTop: '1.5rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.6)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 'var(--fj-font-size-xs)',
-                    fontWeight: 700,
-                    color: 'var(--fj-color-text-muted)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  Live Atmosphere & Aero Multi-Theme Engine
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '0.5rem',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {(
-                    [
-                      { id: 'aero', label: 'Aero Classic', icon: <IconWater size={14} /> },
-                      { id: 'ocean', label: 'Ocean Aqua', icon: <IconSparkles size={14} /> },
-                      { id: 'meadow', label: 'Meadow Leaf', icon: <IconLeaf size={14} /> },
-                      { id: 'sunset', label: 'Sunset Dusk', icon: <IconSun size={14} /> },
-                      { id: 'vista', label: 'Windows Vista', icon: <IconAeroOrb size={14} /> },
-                      { id: 'windows7', label: 'Windows 7', icon: <IconGlobe size={14} /> },
-                    ] as const
-                  ).map(t => (
-                    <Button
-                      key={t.id}
-                      size="sm"
-                      variant={currentTheme === t.id ? 'primary' : 'glass'}
-                      onClick={() => setCurrentTheme(t.id)}
-                      leftIcon={t.icon}
-                      style={{
-                        borderRadius: 'var(--fj-radius-pill)',
-                        fontWeight: 700,
-                      }}
-                    >
-                      {t.label}
-                    </Button>
-                  ))}
-                </div>
               </div>
             </section>
 
@@ -728,7 +647,7 @@ export default function App() {
                               Export CSS Tokens
                             </DropdownItem>
                             <DropdownItem icon={<IconSun size={16} />}>
-                              Export Theme Bundle
+                              Export Component Package
                             </DropdownItem>
                           </Dropdown>
 
@@ -751,6 +670,34 @@ export default function App() {
                               Italiano (IT)
                             </DropdownItem>
                           </Dropdown>
+
+                          {/* DropdownSelect Demo */}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                            <span style={{ fontSize: 'var(--fj-font-size-sm)', fontWeight: 600 }}>
+                              Format:
+                            </span>
+                            <DropdownSelect
+                              value={selectedPreset}
+                              onChange={setSelectedPreset}
+                              options={[
+                                {
+                                  value: 'daylight',
+                                  label: 'Daylight Sky',
+                                  icon: <IconWater size={14} />,
+                                },
+                                {
+                                  value: 'gloss',
+                                  label: 'Specular Crystal',
+                                  icon: <IconSparkles size={14} />,
+                                },
+                                {
+                                  value: 'emerald',
+                                  label: 'Biosphere Green',
+                                  icon: <IconLeaf size={14} />,
+                                },
+                              ]}
+                            />
+                          </div>
                         </div>
                       </CardContent>
                     </Card>

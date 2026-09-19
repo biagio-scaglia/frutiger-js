@@ -75,24 +75,6 @@ import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from '@frutiger-js
 
 ---
 
-## 🎨 Theme Presets
-
-Activate any theme globally or per-container using `data-fj-theme`:
-
-```html
-<!-- Windows Vista Smoky Aero Theme -->
-<html data-fj-theme="vista">
-  ...
-</html>
-
-<!-- Deep Ocean Aqua Theme -->
-<div data-fj-theme="ocean">...</div>
-```
-
-Available presets: `aero` (default), `ocean`, `meadow`, `sunset`, `vista`, `windows7`.
-
----
-
 ## 🧱 Components Included in v0.1.0
 
 | Category                 | Components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |

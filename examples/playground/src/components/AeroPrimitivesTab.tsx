@@ -277,6 +277,7 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                 textAlign: 'center',
                 fontWeight: 700,
                 fontSize: 'var(--fj-font-size-sm)',
+                color: 'var(--fj-color-text)',
               }}
             >
               Tactile 3D Bevel Edge
@@ -300,6 +301,7 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                 background: 'rgba(255, 255, 255, 0.8)',
                 fontWeight: 700,
                 fontSize: 'var(--fj-font-size-sm)',
+                color: 'var(--fj-color-text)',
               }}
             >
               Ambient Aqua Glow
