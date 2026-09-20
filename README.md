@@ -118,6 +118,18 @@ npm run build
 
 ---
 
+---
+
+## 👨‍💻 Creator & Lead Developer
+
+**Frutiger.js** is designed, architected, and maintained with 💚 by **Biagio Scaglia** — Full Stack Software Engineer & UX/UI Designer.
+
+- 🌐 **Portfolio & Cyberspace**: [biagiocyberspace.it](https://biagiocyberspace.it/)
+- 🐙 **GitHub**: [@biagio-scaglia](https://github.com/biagio-scaglia)
+- 💼 **LinkedIn**: [Biagio Scaglia](https://linkedin.com/in/biagio-scaglia)
+
+---
+
 ## 📄 License
 
-MIT © [Biagio Scaglia](https://github.com/biagio-scaglia)
+MIT © [Biagio Scaglia](https://github.com/biagio-scaglia) • [biagiocyberspace.it](https://biagiocyberspace.it)

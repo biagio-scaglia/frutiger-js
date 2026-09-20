@@ -225,13 +225,29 @@ export default function App() {
                 }}
               />
 
-              <Badge
-                variant="nature"
-                icon={<IconLeaf size={14} />}
-                style={{ marginBottom: '1.25rem' }}
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '0.75rem',
+                  justifyContent: 'center',
+                  flexWrap: 'wrap',
+                  marginBottom: '1.25rem',
+                }}
               >
-                v0.1.0 • Web 2.0 Aesthetic Reborn
-              </Badge>
+                <Badge variant="nature" icon={<IconLeaf size={14} />}>
+                  v0.1.0 • Web 2.0 Aesthetic Reborn
+                </Badge>
+                <a
+                  href="https://biagiocyberspace.it"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Badge variant="primary" icon={<IconSparkles size={14} />}>
+                    Created by Biagio Scaglia
+                  </Badge>
+                </a>
+              </div>
 
               <h1
                 id="hero-heading"
@@ -1449,29 +1465,83 @@ export default function App() {
       <footer
         style={{
           borderTop: '1px solid rgba(186, 230, 253, 0.6)',
-          background: 'rgba(255, 255, 255, 0.75)',
-          backdropFilter: 'blur(12px)',
-          padding: '2.5rem 1rem',
+          background: 'rgba(255, 255, 255, 0.85)',
+          backdropFilter: 'blur(16px)',
+          padding: '3rem 1rem',
           textAlign: 'center',
           fontSize: 'var(--fj-font-size-sm)',
           color: 'var(--fj-color-text-muted)',
         }}
       >
         <Container size="lg">
-          <p style={{ margin: '0 0 0.5rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
-            Frutiger.js • Open Source Frutiger Aero Design System
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              marginBottom: '0.75rem',
+            }}
+          >
+            <span
+              style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--fj-color-sky-950)' }}
+            >
+              Frutiger<span style={{ color: 'var(--fj-color-sky-600)' }}>.js</span>
+            </span>
+            <Badge variant="primary">v0.1.0</Badge>
+          </div>
+          <p style={{ margin: '0 0 0.75rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
+            The Premier Frutiger Aero UI Component Suite & CSS Design System for React
           </p>
-          <p style={{ margin: 0 }}>
-            Conceived and architected with passion by{' '}
+          <p style={{ margin: '0 0 1rem 0', lineHeight: 1.6 }}>
+            Designed, architected & crafted with 💚 by{' '}
+            <a
+              href="https://biagiocyberspace.it"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--fj-color-sky-700)', fontWeight: 800, textDecoration: 'none' }}
+            >
+              Biagio Scaglia
+            </a>{' '}
+            (Full Stack Software Engineer & UX/UI Designer)
+          </p>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '1.25rem',
+              flexWrap: 'wrap',
+              fontWeight: 600,
+            }}
+          >
+            <a
+              href="https://biagiocyberspace.it"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--fj-color-sky-800)', textDecoration: 'none' }}
+            >
+              🌐 Portfolio (biagiocyberspace.it)
+            </a>
             <a
               href="https://github.com/biagio-scaglia"
               target="_blank"
               rel="noreferrer"
-              style={{ color: 'var(--fj-color-sky-800)', fontWeight: 700, textDecoration: 'none' }}
+              style={{ color: 'var(--fj-color-sky-800)', textDecoration: 'none' }}
             >
-              Biagio Scaglia
-            </a>{' '}
-            • Released under MIT License © {new Date().getFullYear()}
+              🐙 GitHub (@biagio-scaglia)
+            </a>
+            <a
+              href="https://linkedin.com/in/biagio-scaglia"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--fj-color-sky-800)', textDecoration: 'none' }}
+            >
+              💼 LinkedIn
+            </a>
+          </div>
+          <p style={{ margin: '1.5rem 0 0 0', fontSize: 'var(--fj-font-size-xs)', opacity: 0.8 }}>
+            Released under MIT License © {new Date().getFullYear()} Biagio Scaglia. Inspired by
+            Frutiger Aero, Windows Vista & Web 2.0.
           </p>
         </Container>
       </footer>

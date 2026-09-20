@@ -13,10 +13,14 @@ describe('Production SEO, Metadata & Discoverability Audit', () => {
 
     // Title & Description
     expect(html).toContain(
-      '<title>Frutiger.js | Frutiger Aero UI & CSS Design System for React</title>'
+      '<title>Frutiger.js | Frutiger Aero UI & CSS Design System for React by Biagio Scaglia</title>'
     );
     expect(html).toContain('name="description"');
-    expect(html).toContain('Frutiger.js is a modern React component library and CSS design system');
+    expect(html).toContain(
+      'Frutiger.js is a modern React UI library and CSS design system created by Biagio Scaglia'
+    );
+    expect(html).toContain('name="author" content="Biagio Scaglia"');
+    expect(html).toContain('name="creator" content="Biagio Scaglia"');
 
     // Canonical & Theme
     expect(html).toContain(
@@ -41,9 +45,12 @@ describe('Production SEO, Metadata & Discoverability Audit', () => {
     expect(html).toContain(
       'name="twitter:image" content="https://biagio-scaglia.github.io/frutiger-js/og-image.svg"'
     );
+    expect(html).toContain('name="twitter:creator" content="Biagio Scaglia"');
 
     // JSON-LD Structured Data
     expect(html).toContain('application/ld+json');
+    expect(html).toContain('"@type": "Person"');
+    expect(html).toContain('"name": "Biagio Scaglia"');
     expect(html).toContain('"@type": "SoftwareApplication"');
     expect(html).toContain('"name": "Frutiger.js"');
     expect(html).toContain('"applicationCategory": "DeveloperApplication"');
