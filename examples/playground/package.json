@@ -1,6 +1,6 @@
 {
   "name": "@frutiger.js/playground",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
   "description": "Interactive showcase and documentation playground for Frutiger.js",
   "type": "module",
@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@frutiger.js/core": "^1.0.6",
-    "@frutiger.js/react": "^1.0.6",
+    "@frutiger.js/core": "^1.0.7",
+    "@frutiger.js/react": "^1.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

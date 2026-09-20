@@ -55,7 +55,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && (
           <span className="fj-button__spinner" aria-hidden="true">
-            <span className={cn('fj-spinner fj-spinner--sm', isWhiteSpinner && 'fj-spinner--white')} />
+            <span
+              className={cn('fj-spinner fj-spinner--sm', isWhiteSpinner && 'fj-spinner--white')}
+            />
           </span>
         )}
         <span

@@ -246,7 +246,8 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                         ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.7) 100%)'
                         : 'rgba(15, 23, 42, 0.05)',
                 border: '1px solid rgba(255, 255, 255, 0.8)',
-                boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(12, 74, 110, 0.08)',
+                boxShadow:
+                  'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(12, 74, 110, 0.08)',
                 transition: 'all 0.3s ease',
               }}
             >
@@ -272,7 +273,13 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                   >
                     Active Format: {selectedPreset.toUpperCase()}
                   </Badge>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--fj-color-sky-900)', fontWeight: 600 }}>
+                  <span
+                    style={{
+                      fontSize: '0.8rem',
+                      color: 'var(--fj-color-sky-900)',
+                      fontWeight: 600,
+                    }}
+                  >
                     {selectedPreset === 'daylight' && '☀️ Daylight Aero Sky Color Tokens'}
                     {selectedPreset === 'gloss' && '✨ Frosted Specular Refractive Preset'}
                     {selectedPreset === 'emerald' && '🌿 Organic Biosphere Foliage Tokens'}
