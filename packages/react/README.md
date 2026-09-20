@@ -1,16 +1,16 @@
-# @frutiger-js/react 💧✨
+# @frutiger.js/react 💧✨
 
 > **Modern React component library inspired by Frutiger Aero and Web 2.0 aesthetics.**  
 > _Part of the [Frutiger.js](https://biagio-scaglia.github.io/frutiger-js/) design system ecosystem._
 
-[![npm version](https://img.shields.io/npm/v/@frutiger-js/react.svg?style=flat-square&color=0ea5e9)](https://www.npmjs.com/package/@frutiger-js/react)
+[![npm version](https://img.shields.io/npm/v/@frutiger.js/react.svg?style=flat-square&color=0ea5e9)](https://www.npmjs.com/package/@frutiger.js/react)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/biagio-scaglia/frutiger-js/blob/master/LICENSE)
 
 ---
 
 ## 📖 Overview
 
-`@frutiger-js/react` delivers accessible, strictly typed, and tree-shakeable React components inspired by Frutiger Aero, Windows Vista / 7 Glass, and early Web 2.0 optimistic design. Built with zero CSS-in-JS runtime overhead directly upon [`@frutiger-js/core`](https://www.npmjs.com/package/@frutiger-js/core).
+`@frutiger.js/react` delivers accessible, strictly typed, and tree-shakeable React components inspired by Frutiger Aero, Windows Vista / 7 Glass, and early Web 2.0 optimistic design. Built with zero CSS-in-JS runtime overhead directly upon [`@frutiger.js/core`](https://www.npmjs.com/package/@frutiger.js/core).
 
 - 🌐 **Documentation & Live Playground**: [biagio-scaglia.github.io/frutiger-js](https://biagio-scaglia.github.io/frutiger-js/)
 - 💻 **GitHub Repository**: [biagio-scaglia/frutiger-js](https://github.com/biagio-scaglia/frutiger-js)
@@ -21,7 +21,7 @@
 ## ✨ Features
 
 - 💎 **Authentic Frutiger Aero Aesthetics**: Translucent acrylic glass, glossy dome buttons, specular reflections, and nature gradients.
-- ⚡ **Zero Runtime Overhead**: Styled via native hardware-accelerated CSS Cascade Layers (`@frutiger-js/core`).
+- ⚡ **Zero Runtime Overhead**: Styled via native hardware-accelerated CSS Cascade Layers (`@frutiger.js/core`).
 - 🦾 **TypeScript First**: Strict typed props extending native HTML elements with full IDE autocomplete.
 - ♿ **Accessible**: WCAG 2.1 AA compliant, full keyboard navigation, visible focus rings, ARIA roles, and reduced-motion safety.
 - 📱 **Fluid-First Responsive**: Continuum scaling from 320px smartphones up to 4K ultrawide displays.
@@ -32,26 +32,26 @@
 ## 🚀 Installation
 
 ```bash
-npm install @frutiger-js/core @frutiger-js/react
+npm install @frutiger.js/core @frutiger.js/react
 ```
 
 Or using pnpm / yarn:
 
 ```bash
-pnpm add @frutiger-js/core @frutiger-js/react
+pnpm add @frutiger.js/core @frutiger.js/react
 # or
-yarn add @frutiger-js/core @frutiger-js/react
+yarn add @frutiger.js/core @frutiger.js/react
 ```
 
 ---
 
 ## ⚡ Quick Start
 
-Import `@frutiger-js/core/styles.css` once in your root file (e.g. `main.tsx` or `layout.tsx`):
+Import `@frutiger.js/core/styles.css` once in your root file (e.g. `main.tsx` or `layout.tsx`):
 
 ```tsx
 import React from 'react';
-import '@frutiger-js/core/styles.css';
+import '@frutiger.js/core/styles.css';
 import {
   Button,
   Card,
@@ -61,7 +61,7 @@ import {
   CardFooter,
   Badge,
   Input,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export function App() {
   return (

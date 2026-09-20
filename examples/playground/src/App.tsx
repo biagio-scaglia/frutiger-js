@@ -59,7 +59,7 @@ import {
   IconStar,
   IconSun,
   IconGlobe,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 import { AeroWidgetsSection } from './components/AeroWidgetsSection';
 import { AeroArchiveTab } from './components/AeroArchiveTab';
 import { AeroFaqTab } from './components/AeroFaqTab';
@@ -86,8 +86,8 @@ export default function App() {
   const [sliderGainVal, setSliderGainVal] = useState(74);
 
   const handleCopyInstall = () => {
-    navigator.clipboard.writeText('npm install @frutiger-js/core @frutiger-js/react');
-    alert('Copied to clipboard: npm install @frutiger-js/core @frutiger-js/react');
+    navigator.clipboard.writeText('npm install @frutiger.js/core @frutiger.js/react');
+    alert('Copied to clipboard: npm install @frutiger.js/core @frutiger.js/react');
   };
 
   return (
@@ -306,7 +306,7 @@ export default function App() {
                   onClick={handleCopyInstall}
                   leftIcon={<IconSparkles size={16} />}
                 >
-                  npm install @frutiger-js/react
+                  npm install @frutiger.js/react
                 </Button>
                 <a
                   href="https://github.com/biagio-scaglia/frutiger-js"

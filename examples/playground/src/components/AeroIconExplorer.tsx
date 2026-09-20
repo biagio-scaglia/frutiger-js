@@ -72,7 +72,7 @@ import {
   IconKey,
   IconCalculator,
   IconFolderOpen,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export interface IconDefinition {
   name: string;

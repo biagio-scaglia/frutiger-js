@@ -1,16 +1,16 @@
-# @frutiger-js/core 💧✨
+# @frutiger.js/core 💧✨
 
 > **Pure CSS design system inspired by Frutiger Aero and Web 2.0 aesthetics.**  
 > _Part of the [Frutiger.js](https://biagio-scaglia.github.io/frutiger-js/) ecosystem._
 
-[![npm version](https://img.shields.io/npm/v/@frutiger-js/core.svg?style=flat-square&color=0ea5e9)](https://www.npmjs.com/package/@frutiger-js/core)
+[![npm version](https://img.shields.io/npm/v/@frutiger.js/core.svg?style=flat-square&color=0ea5e9)](https://www.npmjs.com/package/@frutiger.js/core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/biagio-scaglia/frutiger-js/blob/master/LICENSE)
 
 ---
 
 ## 📖 Overview
 
-`@frutiger-js/core` is a framework-agnostic CSS framework engineered with **CSS Cascade Layers (`@layer fj.*`)** and **CSS Custom Properties**. It brings back the optimistic, tactile aesthetics of the late 2000s—translucent acrylic glass (`backdrop-filter`), specular dome highlights, water droplet spheres, and organic nature gradients—without any JavaScript runtime overhead.
+`@frutiger.js/core` is a framework-agnostic CSS framework engineered with **CSS Cascade Layers (`@layer fj.*`)** and **CSS Custom Properties**. It brings back the optimistic, tactile aesthetics of the late 2000s—translucent acrylic glass (`backdrop-filter`), specular dome highlights, water droplet spheres, and organic nature gradients—without any JavaScript runtime overhead.
 
 - 🌐 **Documentation & Live Playground**: [biagio-scaglia.github.io/frutiger-js](https://biagio-scaglia.github.io/frutiger-js/)
 - 💻 **GitHub Repository**: [biagio-scaglia/frutiger-js](https://github.com/biagio-scaglia/frutiger-js)
@@ -31,15 +31,15 @@
 ## 🚀 Installation
 
 ```bash
-npm install @frutiger-js/core
+npm install @frutiger.js/core
 ```
 
 Or using pnpm / yarn:
 
 ```bash
-pnpm add @frutiger-js/core
+pnpm add @frutiger.js/core
 # or
-yarn add @frutiger-js/core
+yarn add @frutiger.js/core
 ```
 
 ---
@@ -51,7 +51,7 @@ yarn add @frutiger-js/core
 Import the master stylesheet at your entry point:
 
 ```javascript
-import '@frutiger-js/core/styles.css';
+import '@frutiger.js/core/styles.css';
 ```
 
 ### Modular Imports
@@ -59,10 +59,10 @@ import '@frutiger-js/core/styles.css';
 Or selectively import specific modules:
 
 ```javascript
-import '@frutiger-js/core/reset';
-import '@frutiger-js/core/tokens';
-import '@frutiger-js/core/components';
-import '@frutiger-js/core/utilities';
+import '@frutiger.js/core/reset';
+import '@frutiger.js/core/tokens';
+import '@frutiger.js/core/components';
+import '@frutiger.js/core/utilities';
 ```
 
 ### HTML Component Example

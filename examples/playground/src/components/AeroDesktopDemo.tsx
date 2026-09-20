@@ -28,7 +28,7 @@ import {
   IconAeroOrb,
   IconCamera,
   IconSettings,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export const AeroDesktopDemo: React.FC = React.memo(() => {
   const [isStartOpen, setIsStartOpen] = useState(false);

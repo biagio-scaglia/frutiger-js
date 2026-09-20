@@ -12,7 +12,7 @@ import {
   FaqList,
   FaqItem,
   IconSearch,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export const FAQ_ITEMS = [
   {
@@ -32,7 +32,7 @@ export const FAQ_ITEMS = [
   {
     id: 'faq-3',
     category: 'Architecture',
-    question: 'How do CSS Cascade Layers work in @frutiger-js/core?',
+    question: 'How do CSS Cascade Layers work in @frutiger.js/core?',
     answer:
       'All core styles are organized into predictable CSS Cascade Layers (@layer fj.reset, fj.tokens, fj.base, fj.utilities, fj.components, fj.themes). This architecture ensures that you can override any token or component style easily without messy !important hacks or high CSS specificity battles.',
   },
@@ -55,7 +55,7 @@ export const FAQ_ITEMS = [
     category: 'Integration & Frameworks',
     question: 'Can I use Frutiger.js with Next.js App Router, Remix, Vite, or plain HTML?',
     answer:
-      'Yes! @frutiger-js/core is completely framework-agnostic vanilla CSS that can be used in any web project with simple class names (e.g., .fj-btn, .fj-card, .fj-window-frame, .fj-gallery-grid). @frutiger-js/react provides fully typed React 18/19 components with SSR support and zero CSS-in-JS runtime overhead.',
+      'Yes! @frutiger.js/core is completely framework-agnostic vanilla CSS that can be used in any web project with simple class names (e.g., .fj-btn, .fj-card, .fj-window-frame, .fj-gallery-grid). @frutiger.js/react provides fully typed React 18/19 components with SSR support and zero CSS-in-JS runtime overhead.',
   },
 ];
 

@@ -23,7 +23,7 @@ import {
   IconAeroOrb,
   IconBubble,
   IconDisc,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export const AeroPrimitivesTab: React.FC = React.memo(() => {
   const [selectedVariant, setSelectedVariant] = useState<AeroSurfaceVariant>('crystal');

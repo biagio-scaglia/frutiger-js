@@ -19,7 +19,7 @@ import {
   IconPlay,
   IconPause,
   IconCheck,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export const AeroWidgetsSection: React.FC = React.memo(() => {
   const [isPlaying, setIsPlaying] = useState(false);

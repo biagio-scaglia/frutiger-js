@@ -29,8 +29,8 @@ A modern React component library and pure CSS design system inspired by **Frutig
 
 The system is split into two primary packages:
 
-- **`@frutiger-js/core`**: Pure CSS framework built with CSS Cascade Layers (`@layer fj.*`) and CSS Custom Properties. Framework-agnostic (works with React, Vue, Svelte, or Vanilla HTML).
-- **`@frutiger-js/react`**: Accessible, typed React components with zero runtime CSS-in-JS dependencies.
+- **`@frutiger.js/core`**: Pure CSS framework built with CSS Cascade Layers (`@layer fj.*`) and CSS Custom Properties. Framework-agnostic (works with React, Vue, Svelte, or Vanilla HTML).
+- **`@frutiger.js/react`**: Accessible, typed React components with zero runtime CSS-in-JS dependencies.
 
 ---
 
@@ -48,7 +48,7 @@ The system is split into two primary packages:
 ## 🚀 Installation
 
 ```bash
-npm install @frutiger-js/core @frutiger-js/react
+npm install @frutiger.js/core @frutiger.js/react
 ```
 
 ---
@@ -58,7 +58,7 @@ npm install @frutiger-js/core @frutiger-js/react
 Frutiger.js provides foundational building blocks to turn any UI element into an authentic Frutiger Aero surface:
 
 ```tsx
-import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from '@frutiger-js/react';
+import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from '@frutiger.js/react';
 
 // Composable Crystal Surface with Ambient Glow & Bevel
 <AeroSurface variant="crystal" hasBevel="deep" glow="aqua" isInteractive>

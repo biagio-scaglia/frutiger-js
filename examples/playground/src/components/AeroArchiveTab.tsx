@@ -23,7 +23,7 @@ import {
   IconAeroOrb,
   IconMonitor,
   IconFolder,
-} from '@frutiger-js/react';
+} from '@frutiger.js/react';
 
 export interface ArchiveMediaItem {
   id: string;
