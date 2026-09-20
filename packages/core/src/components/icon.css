@@ -1,0 +1,309 @@
+/**
+ * Frutiger Aero Icon & Badge Styling
+ * High-fidelity skeuomorphic aesthetics, glass reflections, and ambient glows
+ */
+
+/* Base Icon */
+.fj-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.2s ease;
+  overflow: visible;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
+}
+
+/* Hover Lift & Specular Highlight for Interactive Icons */
+.fj-icon--interactive,
+.fj-icon:hover {
+  filter: drop-shadow(0 3px 6px rgba(14, 165, 233, 0.35)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15))
+    brightness(1.06);
+}
+
+.fj-icon--interactive:active,
+.fj-icon:active {
+  transform: scale(0.94);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2)) brightness(0.95);
+}
+
+/* Ambient Glow Auras */
+.fj-icon--glow {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.75))
+    drop-shadow(0 0 20px rgba(14, 165, 233, 0.45));
+}
+
+.fj-icon--glow-green {
+  filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.75))
+    drop-shadow(0 0 20px rgba(34, 197, 94, 0.45));
+}
+
+.fj-icon--glow-amber {
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8))
+    drop-shadow(0 0 20px rgba(245, 158, 11, 0.5));
+}
+
+.fj-icon--glow-rose {
+  filter: drop-shadow(0 0 10px rgba(251, 113, 133, 0.75))
+    drop-shadow(0 0 20px rgba(244, 63, 94, 0.45));
+}
+
+.fj-icon--glow-purple {
+  filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.75))
+    drop-shadow(0 0 20px rgba(168, 85, 247, 0.45));
+}
+
+/* Animations */
+@keyframes fj-icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.85)) brightness(1.1);
+  }
+}
+
+@keyframes fj-icon-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(1.5deg);
+  }
+}
+
+@keyframes fj-icon-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fj-icon-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-6px);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.fj-icon--pulse {
+  animation: fj-icon-pulse 2.2s infinite ease-in-out;
+}
+
+.fj-icon--float {
+  animation: fj-icon-float 3s infinite ease-in-out;
+}
+
+.fj-icon--spin {
+  animation: fj-icon-spin 2s infinite linear;
+}
+
+.fj-icon--bounce {
+  animation: fj-icon-bounce 1.5s infinite;
+}
+
+/* ==========================================================================
+   3D Skeuomorphic Aero Icon Badge
+   ========================================================================== */
+.fj-aero-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 10px rgba(0, 0, 0, 0.16),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.2s ease;
+  user-select: none;
+}
+
+/* Top Specular Crescent Reflection Cap */
+.fj-aero-icon-badge::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 12%;
+  right: 12%;
+  height: 46%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 50% 50% 100% 100% / 0 0 60% 60%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Bottom Ambient Rim Light */
+.fj-aero-icon-badge::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 25%;
+  background: radial-gradient(
+    ellipse at bottom,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fj-aero-icon-badge:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+    0 6px 16px rgba(14, 165, 233, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.05);
+}
+
+.fj-aero-icon-badge:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.35),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge Glow */
+.fj-aero-icon-badge--glow {
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.65),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge Sizes */
+.fj-aero-icon-badge--sm {
+  width: 32px;
+  height: 32px;
+}
+
+.fj-aero-icon-badge--md {
+  width: 44px;
+  height: 44px;
+}
+
+.fj-aero-icon-badge--lg {
+  width: 56px;
+  height: 56px;
+}
+
+.fj-aero-icon-badge--xl {
+  width: 72px;
+  height: 72px;
+}
+
+/* Badge Theme Variants */
+.fj-aero-icon-badge--aero {
+  background: linear-gradient(
+    135deg,
+    rgba(56, 189, 248, 0.95) 0%,
+    rgba(14, 165, 233, 0.9) 50%,
+    rgba(2, 132, 199, 0.95) 100%
+  );
+}
+
+.fj-aero-icon-badge--glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(240, 249, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.fj-aero-icon-badge--nature {
+  background: linear-gradient(
+    135deg,
+    rgba(74, 222, 128, 0.95) 0%,
+    rgba(34, 197, 94, 0.9) 50%,
+    rgba(22, 163, 74, 0.95) 100%
+  );
+  border-color: rgba(187, 247, 208, 0.8);
+}
+
+.fj-aero-icon-badge--water {
+  background: linear-gradient(
+    135deg,
+    rgba(125, 211, 252, 0.95) 0%,
+    rgba(56, 189, 248, 0.9) 50%,
+    rgba(3, 105, 161, 0.95) 100%
+  );
+}
+
+.fj-aero-icon-badge--sun {
+  background: linear-gradient(
+    135deg,
+    rgba(253, 224, 71, 0.95) 0%,
+    rgba(250, 204, 21, 0.9) 50%,
+    rgba(202, 138, 4, 0.95) 100%
+  );
+  border-color: rgba(254, 240, 138, 0.8);
+}
+
+.fj-aero-icon-badge--berry {
+  background: linear-gradient(
+    135deg,
+    rgba(244, 114, 182, 0.95) 0%,
+    rgba(236, 72, 153, 0.9) 50%,
+    rgba(190, 24, 93, 0.95) 100%
+  );
+  border-color: rgba(251, 207, 232, 0.8);
+}
+
+.fj-aero-icon-badge--aurora {
+  background: linear-gradient(
+    135deg,
+    rgba(94, 234, 212, 0.95) 0%,
+    rgba(56, 189, 248, 0.9) 50%,
+    rgba(168, 85, 247, 0.95) 100%
+  );
+  border-color: rgba(204, 251, 241, 0.8);
+}
+
+.fj-aero-icon-badge--obsidian {
+  background: linear-gradient(
+    135deg,
+    rgba(51, 65, 85, 0.95) 0%,
+    rgba(30, 41, 59, 0.95) 50%,
+    rgba(15, 23, 42, 0.98) 100%
+  );
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+/* Badge Content Container */
+.fj-aero-icon-badge__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

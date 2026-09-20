@@ -61,6 +61,17 @@ import {
   IconCalendar,
   IconLayers,
   IconZap,
+  IconMessenger,
+  IconHardDrive,
+  IconDocument,
+  IconPalette,
+  IconVideo,
+  IconGamepad,
+  IconNetwork,
+  IconRecycle,
+  IconKey,
+  IconCalculator,
+  IconFolderOpen,
 } from '@frutiger-js/react';
 
 export interface IconDefinition {
@@ -377,6 +388,72 @@ export const AERO_ICONS_LIST: IconDefinition[] = [
     category: 'Atmosphere',
     tags: ['zap', 'bolt', 'lightning', 'energy', 'power', 'electric'],
   },
+  {
+    name: 'IconMessenger',
+    component: IconMessenger,
+    category: 'Communication',
+    tags: ['messenger', 'msn', 'chat', 'message', 'bubbles', 'talk', 'aero'],
+  },
+  {
+    name: 'IconHardDrive',
+    component: IconHardDrive,
+    category: 'Hardware & Media',
+    tags: ['harddrive', 'hdd', 'drive', 'disk', 'storage', 'led'],
+  },
+  {
+    name: 'IconDocument',
+    component: IconDocument,
+    category: 'Hardware & Media',
+    tags: ['document', 'file', 'text', 'notepad', 'sheet', 'paper', 'page'],
+  },
+  {
+    name: 'IconPalette',
+    component: IconPalette,
+    category: 'Nature & Life',
+    tags: ['palette', 'paint', 'art', 'color', 'creative', 'brush', 'acrylic'],
+  },
+  {
+    name: 'IconVideo',
+    component: IconVideo,
+    category: 'Hardware & Media',
+    tags: ['video', 'media', 'movie', 'film', 'player', 'wmp', 'play'],
+  },
+  {
+    name: 'IconGamepad',
+    component: IconGamepad,
+    category: 'Hardware & Media',
+    tags: ['gamepad', 'controller', 'game', 'joystick', 'console', 'play'],
+  },
+  {
+    name: 'IconNetwork',
+    component: IconNetwork,
+    category: 'Hardware & Media',
+    tags: ['network', 'ethernet', 'connection', 'lan', 'workstation', 'nodes'],
+  },
+  {
+    name: 'IconRecycle',
+    component: IconRecycle,
+    category: 'Nature & Life',
+    tags: ['recycle', 'eco', 'green', 'loop', 'environment', 'nature', 'sustainability'],
+  },
+  {
+    name: 'IconKey',
+    component: IconKey,
+    category: 'Security & System',
+    tags: ['key', 'security', 'access', 'auth', 'gold', 'password'],
+  },
+  {
+    name: 'IconCalculator',
+    component: IconCalculator,
+    category: 'Hardware & Media',
+    tags: ['calculator', 'math', 'finance', 'numbers', 'lcd', 'desk'],
+  },
+  {
+    name: 'IconFolderOpen',
+    component: IconFolderOpen,
+    category: 'Security & System',
+    tags: ['folder', 'directory', 'open', 'files', 'storage', 'browse'],
+  },
 ];
 
 const CATEGORIES = [
@@ -420,7 +497,7 @@ export const AeroIconExplorer: React.FC = React.memo(() => {
             tactile depth.
           </CardDescription>
         </div>
-        <Badge variant="nature">45+ Authentic Icons</Badge>
+        <Badge variant="nature">55+ Authentic Icons</Badge>
       </CardHeader>
       <CardContent>
         {/* Interactive Toolbar */}
@@ -678,6 +755,12 @@ export const AeroIconExplorer: React.FC = React.memo(() => {
             </AeroIconBadge>
             <AeroIconBadge variant="berry" size="lg" glow>
               <IconHeart size={28} />
+            </AeroIconBadge>
+            <AeroIconBadge variant="aurora" size="lg" glow>
+              <IconMessenger size={28} />
+            </AeroIconBadge>
+            <AeroIconBadge variant="obsidian" size="lg" glow>
+              <IconGamepad size={28} />
             </AeroIconBadge>
             <AeroIconBadge variant="glass" size="lg">
               <IconGlobe size={28} />

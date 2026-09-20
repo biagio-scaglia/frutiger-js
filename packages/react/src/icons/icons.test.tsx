@@ -41,6 +41,17 @@ import {
   IconCalendar,
   IconLayers,
   IconZap,
+  IconMessenger,
+  IconHardDrive,
+  IconDocument,
+  IconPalette,
+  IconVideo,
+  IconGamepad,
+  IconNetwork,
+  IconRecycle,
+  IconKey,
+  IconCalculator,
+  IconFolderOpen,
   AeroIconBadge,
 } from './index';
 
@@ -175,6 +186,45 @@ describe('Frutiger Aero Custom Icons', () => {
     expect(layersContainer.querySelector('.fj-icon-layers')).toBeInTheDocument();
   });
 
+  it('renders new iconic 2000s Aero icons in aero and outline mode', () => {
+    const { container: msnContainer } = render(<IconMessenger animation="pulse" glow />);
+    expect(msnContainer.querySelector('.fj-icon-messenger')).toBeInTheDocument();
+    expect(msnContainer.querySelector('.fj-icon--pulse')).toBeInTheDocument();
+    expect(msnContainer.querySelector('.fj-icon--glow')).toBeInTheDocument();
+
+    const { container: hddContainer } = render(<IconHardDrive interactive />);
+    expect(hddContainer.querySelector('.fj-icon-harddrive')).toBeInTheDocument();
+    expect(hddContainer.querySelector('.fj-icon--interactive')).toBeInTheDocument();
+
+    const { container: docContainer } = render(<IconDocument variant="outline" />);
+    expect(docContainer.querySelector('.fj-icon-document')).toBeInTheDocument();
+
+    const { container: palContainer } = render(<IconPalette animation="float" />);
+    expect(palContainer.querySelector('.fj-icon-palette')).toBeInTheDocument();
+    expect(palContainer.querySelector('.fj-icon--float')).toBeInTheDocument();
+
+    const { container: vidContainer } = render(<IconVideo />);
+    expect(vidContainer.querySelector('.fj-icon-video')).toBeInTheDocument();
+
+    const { container: padContainer } = render(<IconGamepad />);
+    expect(padContainer.querySelector('.fj-icon-gamepad')).toBeInTheDocument();
+
+    const { container: netContainer } = render(<IconNetwork />);
+    expect(netContainer.querySelector('.fj-icon-network')).toBeInTheDocument();
+
+    const { container: recContainer } = render(<IconRecycle />);
+    expect(recContainer.querySelector('.fj-icon-recycle')).toBeInTheDocument();
+
+    const { container: keyContainer } = render(<IconKey />);
+    expect(keyContainer.querySelector('.fj-icon-key')).toBeInTheDocument();
+
+    const { container: calcContainer } = render(<IconCalculator />);
+    expect(calcContainer.querySelector('.fj-icon-calculator')).toBeInTheDocument();
+
+    const { container: folderOpenContainer } = render(<IconFolderOpen />);
+    expect(folderOpenContainer.querySelector('.fj-icon-folder-open')).toBeInTheDocument();
+  });
+
   it('renders all exported icon components without crashing', () => {
     Object.entries(Icons).forEach(([name, Component]) => {
       if (typeof Component === 'function' && name.startsWith('Icon')) {
@@ -185,9 +235,9 @@ describe('Frutiger Aero Custom Icons', () => {
     });
   });
 
-  it('renders AeroIconBadge with gloss reflections and glow', () => {
+  it('renders AeroIconBadge with gloss reflections, variants, and glow', () => {
     const { container } = render(
-      <AeroIconBadge size="lg" variant="nature" glow data-testid="aero-badge">
+      <AeroIconBadge size="lg" variant="nature" glow interactive data-testid="aero-badge">
         <IconLeaf size={24} />
       </AeroIconBadge>
     );
@@ -195,6 +245,8 @@ describe('Frutiger Aero Custom Icons', () => {
     const badge = container.querySelector('.fj-aero-icon-badge');
     expect(badge).toBeInTheDocument();
     expect(badge?.classList.contains('fj-aero-icon-badge--glow')).toBe(true);
+    expect(badge?.classList.contains('fj-aero-icon-badge--nature')).toBe(true);
+    expect(badge?.classList.contains('fj-aero-icon-badge--lg')).toBe(true);
     expect(badge?.querySelector('.fj-icon-leaf')).toBeInTheDocument();
   });
 });

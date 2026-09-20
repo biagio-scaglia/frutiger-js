@@ -4,15 +4,34 @@ export interface IconProps extends React.SVGAttributes<SVGElement> {
   size?: number | string;
   className?: string;
   variant?: 'outline' | 'gloss' | 'aero';
-  glow?: boolean;
+  glow?: boolean | 'green' | 'amber' | 'rose' | 'purple';
+  animation?: 'pulse' | 'float' | 'spin' | 'bounce' | 'none';
+  interactive?: boolean;
   color?: string;
 }
 
 // Helper to determine dimensions
-const getDims = (size: number | string) => ({
+export const getDims = (size: number | string) => ({
   width: size,
   height: size,
 });
+
+// Helper to assemble icon classes
+export const getIconClass = (
+  baseClass: string,
+  className = '',
+  glow?: boolean | string,
+  animation?: string,
+  interactive?: boolean
+) => {
+  const classes = ['fj-icon', baseClass];
+  if (className) classes.push(className);
+  if (glow === true) classes.push('fj-icon--glow');
+  else if (typeof glow === 'string') classes.push(`fj-icon--glow-${glow}`);
+  if (animation && animation !== 'none') classes.push(`fj-icon--${animation}`);
+  if (interactive) classes.push('fj-icon--interactive');
+  return classes.join(' ');
+};
 
 /* ==========================================================================
    NATURE & ECO AERO ICONS
@@ -2921,13 +2940,990 @@ export const IconZap: React.FC<IconProps> = ({
   </svg>
 );
 
+/* ==========================================================================
+   AUTHENTIC 2000s FRUTIGER AERO & SKEUOMORPHIC ICONS
+   ========================================================================== */
+
 /**
- * IconBadgeWrapper / AeroIconBadge - Wrap any icon in a glossy 3D Aero Glass/Gel circular disc
+ * IconMessenger - Iconic Aero Glass / MSN Style Dual Speech Bubbles
  */
+export const IconMessenger: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-messenger', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-msn-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#38bdf8" />
+        <stop offset="50%" stopColor="#0ea5e9" />
+        <stop offset="100%" stopColor="#0284c7" />
+      </linearGradient>
+      <linearGradient id="fj-msn-green" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#86efac" />
+        <stop offset="50%" stopColor="#22c55e" />
+        <stop offset="100%" stopColor="#15803d" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </>
+    ) : (
+      <>
+        {/* Back green chat bubble */}
+        <path
+          d="M19 12a6 6 0 0 1-5.5 5.97L13 21l-3-3H9a6 6 0 0 1-6-6c0-3.3 2.7-6 6-6h4a6 6 0 0 1 6 6z"
+          fill="url(#fj-msn-green)"
+          stroke="#166534"
+          strokeWidth="0.5"
+          opacity="0.85"
+        />
+        {/* Front cyan chat bubble */}
+        <path
+          d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6c0 1.6.6 3 1.7 4.1L3 17l4.2-1.2A5.94 5.94 0 0 0 9 15h6a6 6 0 0 0 6-6z"
+          fill="url(#fj-msn-cyan)"
+          stroke="#0369a1"
+          strokeWidth="0.75"
+        />
+        {/* Specular gloss crescents */}
+        <ellipse cx="12" cy="6" rx="5" ry="1.8" fill="#ffffff" opacity="0.65" />
+        <ellipse cx="10" cy="11.5" rx="3.5" ry="1.2" fill="#ffffff" opacity="0.4" />
+        {/* 3 Glowing dots */}
+        <circle cx="8" cy="9" r="1" fill="#ffffff" opacity="0.9" />
+        <circle cx="12" cy="9" r="1" fill="#ffffff" opacity="0.9" />
+        <circle cx="16" cy="9" r="1" fill="#ffffff" opacity="0.9" />
+      </>
+    )}
+  </svg>
+);
+export const IconChat = IconMessenger;
+
+/**
+ * IconHardDrive - Skeuomorphic 3D Hard Drive with Cyan LED Activity
+ */
+export const IconHardDrive: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-harddrive', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-hdd-body" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#e2e8f0" />
+        <stop offset="40%" stopColor="#cbd5e1" />
+        <stop offset="100%" stopColor="#94a3b8" />
+      </linearGradient>
+      <linearGradient id="fj-hdd-top" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#0284c7" stopOpacity="0.9" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="2" />
+        <line x1="2" y1="14" x2="22" y2="14" stroke="currentColor" strokeWidth="2" />
+        <circle cx="6" cy="17" r="1" fill="currentColor" />
+        <circle cx="10" cy="17" r="1" fill="currentColor" />
+      </>
+    ) : (
+      <>
+        {/* Drive Chassis */}
+        <rect
+          x="2.5"
+          y="3.5"
+          width="19"
+          height="17"
+          rx="2.5"
+          fill="url(#fj-hdd-body)"
+          stroke="#64748b"
+          strokeWidth="0.75"
+        />
+        {/* Top Metallic Label / Glass Cover */}
+        <rect
+          x="4.5"
+          y="5.5"
+          width="15"
+          height="8.5"
+          rx="1.5"
+          fill="url(#fj-hdd-top)"
+          stroke="#0369a1"
+          strokeWidth="0.5"
+        />
+        <path d="M5 6.5h14v2.5l-14 3z" fill="#ffffff" opacity="0.4" />
+        {/* Screws */}
+        <circle cx="4.5" cy="5.5" r="0.8" fill="#475569" />
+        <circle cx="19.5" cy="5.5" r="0.8" fill="#475569" />
+        <circle cx="4.5" cy="18.5" r="0.8" fill="#475569" />
+        <circle cx="19.5" cy="18.5" r="0.8" fill="#475569" />
+        {/* Lower Front Panel */}
+        <line x1="3" y1="15.5" x2="21" y2="15.5" stroke="#475569" strokeWidth="0.75" />
+        {/* Active Cyan Diode */}
+        <circle cx="6.5" cy="17.8" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.5" />
+        <circle cx="6.2" cy="17.5" r="0.5" fill="#ffffff" />
+        {/* Status Activity LED */}
+        <circle cx="10.5" cy="17.8" r="1.2" fill="#4ade80" stroke="#16a34a" strokeWidth="0.5" />
+      </>
+    )}
+  </svg>
+);
+export const IconHdd = IconHardDrive;
+export const IconDrive = IconHardDrive;
+
+/**
+ * IconDocument - Translucent Aero Sheet with Folded Dog-Ear Corner
+ */
+export const IconDocument: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-document', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-doc-sheet" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+        <stop offset="100%" stopColor="#e0f2fe" stopOpacity="0.85" />
+      </linearGradient>
+      <linearGradient id="fj-doc-fold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#bae6fd" />
+        <stop offset="100%" stopColor="#38bdf8" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <path
+          d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" />
+        <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" strokeWidth="2" />
+        <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" strokeWidth="2" />
+      </>
+    ) : (
+      <>
+        {/* Main Glass Sheet */}
+        <path
+          d="M4.5 4a2 2 0 0 1 2-2H14l5.5 5.5V20a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2V4z"
+          fill="url(#fj-doc-sheet)"
+          stroke="#38bdf8"
+          strokeWidth="0.75"
+        />
+        {/* Gloss Top Ribbon */}
+        <path d="M4.5 4a2 2 0 0 1 2-2H14v4H4.5V4z" fill="#38bdf8" opacity="0.35" />
+        {/* Folded Corner */}
+        <path
+          d="M14 2l5.5 5.5H15a1 1 0 0 1-1-1V2z"
+          fill="url(#fj-doc-fold)"
+          stroke="#0284c7"
+          strokeWidth="0.5"
+        />
+        {/* Document Text Lines */}
+        <line
+          x1="7.5"
+          y1="11"
+          x2="16.5"
+          y2="11"
+          stroke="#0284c7"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <line
+          x1="7.5"
+          y1="14"
+          x2="16.5"
+          y2="14"
+          stroke="#0284c7"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.8"
+        />
+        <line
+          x1="7.5"
+          y1="17"
+          x2="13.5"
+          y2="17"
+          stroke="#0284c7"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          opacity="0.6"
+        />
+      </>
+    )}
+  </svg>
+);
+export const IconFile = IconDocument;
+export const IconFileText = IconDocument;
+export const IconNotepad = IconDocument;
+
+/**
+ * IconPalette - 3D Acrylic Artist Palette with Glossy Color Droplets
+ */
+export const IconPalette: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-palette', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <radialGradient id="fj-pal-body" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+        <stop offset="60%" stopColor="#e0f2fe" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#7dd3fc" stopOpacity="0.85" />
+      </radialGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <path
+          d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.5-1.1-.3-.3-.4-.7-.4-1.2 0-.9.8-1.7 1.7-1.7H16c3.3 0 6-2.7 6-6 0-5.5-4.5-10-10-10z"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+      </>
+    ) : (
+      <>
+        {/* Palette Body */}
+        <path
+          d="M12 2.5C6.8 2.5 2.5 6.8 2.5 12c0 5.2 4.2 9.5 9.5 9.5.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6h1.8c3.1 0 5.6-2.5 5.6-5.6 0-5.2-4.3-9.5-9.6-9.5z"
+          fill="url(#fj-pal-body)"
+          stroke="#0284c7"
+          strokeWidth="0.75"
+        />
+        {/* Thumb Hole */}
+        <ellipse
+          cx="14"
+          cy="14"
+          rx="1.8"
+          ry="1.4"
+          fill="#ffffff"
+          stroke="#0284c7"
+          strokeWidth="0.5"
+        />
+        {/* Gloss Rim */}
+        <path
+          d="M4 11C4 7 7.5 4 12 4c3 0 5.5 1.2 7 3.2-1.5-2-4.2-3-7-3-4.5 0-8 3-8 7z"
+          fill="#ffffff"
+          opacity="0.6"
+        />
+        {/* Vibrant Gel Paint Droplets */}
+        <circle cx="7.5" cy="8.5" r="1.6" fill="#ef4444" stroke="#b91c1c" strokeWidth="0.3" />
+        <ellipse cx="7.2" cy="8" rx="0.5" ry="0.3" fill="#ffffff" />
+        <circle cx="12" cy="6.5" r="1.6" fill="#facc15" stroke="#ca8a04" strokeWidth="0.3" />
+        <ellipse cx="11.7" cy="6" rx="0.5" ry="0.3" fill="#ffffff" />
+        <circle cx="16.5" cy="8.5" r="1.6" fill="#22c55e" stroke="#15803d" strokeWidth="0.3" />
+        <ellipse cx="16.2" cy="8" rx="0.5" ry="0.3" fill="#ffffff" />
+        <circle cx="6.5" cy="13.5" r="1.6" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="0.3" />
+        <ellipse cx="6.2" cy="13" rx="0.5" ry="0.3" fill="#ffffff" />
+      </>
+    )}
+  </svg>
+);
+export const IconPaint = IconPalette;
+
+/**
+ * IconVideo - Classic Windows Media Player Style Glossy Video Slate
+ */
+export const IconVideo: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-video', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-wmp-screen" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#0284c7" />
+        <stop offset="60%" stopColor="#0369a1" />
+        <stop offset="100%" stopColor="#075985" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <polygon
+          points="23 7 16 12 23 17 23 7"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+        <rect x="1" y="5" width="15" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+      </>
+    ) : (
+      <>
+        {/* Outer Frame */}
+        <rect
+          x="2.5"
+          y="4.5"
+          width="14"
+          height="15"
+          rx="2.5"
+          fill="url(#fj-wmp-screen)"
+          stroke="#38bdf8"
+          strokeWidth="0.75"
+        />
+        {/* Projector lens / arrow */}
+        <path
+          d="M17 9.5l4.5-3.5a.5.5 0 0 1 .8.4v11.2a.5.5 0 0 1-.8.4L17 14.5v-5z"
+          fill="#38bdf8"
+          stroke="#0284c7"
+          strokeWidth="0.75"
+        />
+        {/* Screen Gloss Reflection */}
+        <path d="M3 5.5h13v5l-13 4z" fill="#ffffff" opacity="0.3" />
+        {/* Play Triangle Highlight */}
+        <polygon points="7.5 9 12.5 12 7.5 15" fill="#ffffff" opacity="0.9" />
+      </>
+    )}
+  </svg>
+);
+export const IconFilm = IconVideo;
+export const IconMediaPlayer = IconVideo;
+
+/**
+ * IconGamepad - 3D Aero Handheld Controller with Colorful Jelly Buttons
+ */
+export const IconGamepad: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-gamepad', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-pad-body" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+        <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.95" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <line
+          x1="6"
+          y1="12"
+          x2="10"
+          y2="12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="8"
+          y1="10"
+          x2="8"
+          y2="14"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <circle cx="15" cy="13" r="1" fill="currentColor" />
+        <circle cx="17" cy="11" r="1" fill="currentColor" />
+        <path
+          d="M6.5 6h11a5.5 5.5 0 0 1 5.5 5.5v2a4.5 4.5 0 0 1-7.7 3.2L13 15H11l-2.3 1.7A4.5 4.5 0 0 1 1 13.5v-2A5.5 5.5 0 0 1 6.5 6z"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+      </>
+    ) : (
+      <>
+        {/* Main Controller Shell */}
+        <path
+          d="M6.5 6.5h11a5.5 5.5 0 0 1 5.4 4.5c.3 1.8-.4 3.6-1.8 4.7l-2.4 2a2 2 0 0 1-2.6-.2L13.8 15h-3.6l-2.3 2.5a2 2 0 0 1-2.6.2l-2.4-2A5.4 5.4 0 0 1 1.1 11 5.5 5.5 0 0 1 6.5 6.5z"
+          fill="url(#fj-pad-body)"
+          stroke="#0284c7"
+          strokeWidth="0.75"
+        />
+        {/* Gloss Top Specular */}
+        <path
+          d="M6 7.5h12c2.5 0 4.5 1.5 5 3.5l-22 0C1.5 9 3.5 7.5 6 7.5z"
+          fill="#ffffff"
+          opacity="0.6"
+        />
+        {/* D-Pad */}
+        <path d="M5.5 11h4v2h-4zM6.5 10v4h2v-4z" fill="#0284c7" />
+        {/* Colorful Jewel XYAB Buttons */}
+        <circle cx="15" cy="12" r="1.3" fill="#ef4444" stroke="#b91c1c" strokeWidth="0.3" />
+        <circle cx="17.5" cy="9.5" r="1.3" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="0.3" />
+        <circle cx="17.5" cy="14.5" r="1.3" fill="#22c55e" stroke="#15803d" strokeWidth="0.3" />
+        <circle cx="20" cy="12" r="1.3" fill="#facc15" stroke="#ca8a04" strokeWidth="0.3" />
+      </>
+    )}
+  </svg>
+);
+export const IconController = IconGamepad;
+
+/**
+ * IconNetwork - Dual Interconnected Glass Workstations with Glowing Link
+ */
+export const IconNetwork: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-network', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-net-screen" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#7dd3fc" />
+        <stop offset="100%" stopColor="#0284c7" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <rect x="2" y="2" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="14" y="2" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="2" />
+        <rect x="8" y="16" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="2" />
+        <line x1="6" y1="8" x2="6" y2="12" stroke="currentColor" strokeWidth="2" />
+        <line x1="18" y1="8" x2="18" y2="12" stroke="currentColor" strokeWidth="2" />
+        <line x1="6" y1="12" x2="18" y2="12" stroke="currentColor" strokeWidth="2" />
+        <line x1="12" y1="12" x2="12" y2="16" stroke="currentColor" strokeWidth="2" />
+      </>
+    ) : (
+      <>
+        {/* Node 1 */}
+        <rect
+          x="2.5"
+          y="2.5"
+          width="7"
+          height="5.5"
+          rx="1"
+          fill="url(#fj-net-screen)"
+          stroke="#0369a1"
+          strokeWidth="0.5"
+        />
+        <path d="M3 3h6v2l-6 1z" fill="#ffffff" opacity="0.4" />
+        {/* Node 2 */}
+        <rect
+          x="14.5"
+          y="2.5"
+          width="7"
+          height="5.5"
+          rx="1"
+          fill="url(#fj-net-screen)"
+          stroke="#0369a1"
+          strokeWidth="0.5"
+        />
+        <path d="M15 3h6v2l-6 1z" fill="#ffffff" opacity="0.4" />
+        {/* Central Hub / Server */}
+        <rect
+          x="8.5"
+          y="16.5"
+          width="7"
+          height="5.5"
+          rx="1"
+          fill="url(#fj-net-screen)"
+          stroke="#0369a1"
+          strokeWidth="0.5"
+        />
+        <path d="M9 17h6v2l-6 1z" fill="#ffffff" opacity="0.4" />
+        {/* Glowing Network Links */}
+        <path
+          d="M6 8v3.5h12V8"
+          stroke="#38bdf8"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <line x1="12" y1="11.5" x2="12" y2="16.5" stroke="#38bdf8" strokeWidth="1.8" />
+        <circle cx="12" cy="11.5" r="1.5" fill="#38bdf8" />
+      </>
+    )}
+  </svg>
+);
+export const IconEthernet = IconNetwork;
+
+/**
+ * IconRecycle - 3D Green Glassy Möbius Infinity Ribbon
+ */
+export const IconRecycle: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-recycle', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-rec-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#86efac" />
+        <stop offset="50%" stopColor="#22c55e" />
+        <stop offset="100%" stopColor="#15803d" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <polyline
+          points="7 19 3 19 5 15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <polyline
+          points="17 5 21 5 19 9"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M7 19h10a4 4 0 0 0 4-4v-1"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M17 5H7a4 4 0 0 0-4 4v1"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </>
+    ) : (
+      <>
+        {/* Top Loop */}
+        <path
+          d="M10.5 4.5L12 2l1.5 2.5h3.5c1.4 0 2.5 1.1 2.5 2.5v1.5l-2.5-1.5V7c0-.6-.4-1-1-1h-4z"
+          fill="url(#fj-rec-grad)"
+          stroke="#166534"
+          strokeWidth="0.5"
+        />
+        {/* Right Loop */}
+        <path
+          d="M19.5 12l2.5 1.5-2.5 1.5v3.5c0 1.4-1.1 2.5-2.5 2.5h-1.5l1.5-2.5h0c.6 0 1-.4 1-1v-4z"
+          fill="url(#fj-rec-grad)"
+          stroke="#166534"
+          strokeWidth="0.5"
+        />
+        {/* Left Loop */}
+        <path
+          d="M4.5 12L2 10.5l2.5-1.5V5.5C4.5 4.1 5.6 3 7 3h1.5L7 5.5h0c-.6 0-1 .4-1 1v4z"
+          fill="url(#fj-rec-grad)"
+          stroke="#166534"
+          strokeWidth="0.5"
+        />
+        {/* Specular curved highlights */}
+        <circle cx="12" cy="12" r="3" fill="#ffffff" opacity="0.15" />
+      </>
+    )}
+  </svg>
+);
+export const IconEco = IconRecycle;
+
+/**
+ * IconKey - Skeuomorphic Golden Glass Key with Specular Highlight
+ */
+export const IconKey: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-key', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-key-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#fef08a" />
+        <stop offset="40%" stopColor="#facc15" />
+        <stop offset="80%" stopColor="#eab308" />
+        <stop offset="100%" stopColor="#ca8a04" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <path
+          d="M21 2l-2 2m-1.5 1.5L14 9l-3-3-8.5 8.5a5 5 0 0 0 7 7L18 13l3.5-3.5 1.5-1.5-2-2v-2h-2V2z"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="7.5" cy="16.5" r="1.5" stroke="currentColor" strokeWidth="2" />
+      </>
+    ) : (
+      <>
+        {/* Key Body */}
+        <path
+          d="M21.5 2.5l-2 2-1 1-3.5 3.5-2-2-1.5 1.5 2 2-3 3c-1.3-.7-2.9-.6-4.1.3-1.6 1.2-2.1 3.3-1.2 5 1 1.7 3.1 2.3 4.8 1.4.9-.5 1.6-1.4 1.8-2.4l4.5-4.5 2 2 1.5-1.5-2-2 1.6-1.8 1.5.5 1.5-1.5v-2.5h-2.5L21.5 2.5z"
+          fill="url(#fj-key-gold)"
+          stroke="#a16207"
+          strokeWidth="0.75"
+        />
+        {/* Ring Hole */}
+        <circle cx="8" cy="16" r="2.2" fill="#ffffff" stroke="#a16207" strokeWidth="0.5" />
+        {/* Specular Highlight */}
+        <ellipse
+          cx="6.5"
+          cy="14.5"
+          rx="1.5"
+          ry="0.8"
+          fill="#ffffff"
+          opacity="0.7"
+          transform="rotate(-45 6.5 14.5)"
+        />
+      </>
+    )}
+  </svg>
+);
+
+/**
+ * IconCalculator - Aero Glass Desk Calculator with LCD Display & Gel Keys
+ */
+export const IconCalculator: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-calculator', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-calc-body" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+        <stop offset="60%" stopColor="#e0f2fe" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.95" />
+      </linearGradient>
+      <linearGradient id="fj-calc-lcd" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#0f172a" />
+        <stop offset="100%" stopColor="#1e293b" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <>
+        <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" strokeWidth="2" />
+        <rect x="7" y="5" width="10" height="3" stroke="currentColor" strokeWidth="2" />
+        <line
+          x1="7"
+          y1="12"
+          x2="9"
+          y2="12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="11"
+          y1="12"
+          x2="13"
+          y2="12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="15"
+          y1="12"
+          x2="17"
+          y2="12"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="7"
+          y1="15"
+          x2="9"
+          y2="15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="11"
+          y1="15"
+          x2="13"
+          y2="15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="15"
+          y1="15"
+          x2="17"
+          y2="15"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="7"
+          y1="18"
+          x2="9"
+          y2="18"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="11"
+          y1="18"
+          x2="13"
+          y2="18"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          x1="15"
+          y1="18"
+          x2="17"
+          y2="18"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </>
+    ) : (
+      <>
+        {/* Chassis */}
+        <rect
+          x="3.5"
+          y="2.5"
+          width="17"
+          height="19"
+          rx="2.5"
+          fill="url(#fj-calc-body)"
+          stroke="#0284c7"
+          strokeWidth="0.75"
+        />
+        {/* Top Specular */}
+        <path d="M4 3.5h16c1 0 2 .5 2 1.5l-20 0c0-1 1-1.5 2-1.5z" fill="#ffffff" opacity="0.6" />
+        {/* LCD Display */}
+        <rect
+          x="6"
+          y="5"
+          width="12"
+          height="4.5"
+          rx="1"
+          fill="url(#fj-calc-lcd)"
+          stroke="#0369a1"
+          strokeWidth="0.5"
+        />
+        <line
+          x1="14"
+          y1="7.2"
+          x2="16.5"
+          y2="7.2"
+          stroke="#38bdf8"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        {/* Buttons Grid */}
+        <circle cx="8" cy="12" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="12" cy="12" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="16" cy="12" r="1.2" fill="#f59e0b" stroke="#d97706" strokeWidth="0.3" />
+        <circle cx="8" cy="15.5" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="12" cy="15.5" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="16" cy="15.5" r="1.2" fill="#f59e0b" stroke="#d97706" strokeWidth="0.3" />
+        <circle cx="8" cy="18.5" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="12" cy="18.5" r="1.2" fill="#38bdf8" stroke="#0284c7" strokeWidth="0.3" />
+        <circle cx="16" cy="18.5" r="1.2" fill="#22c55e" stroke="#16a34a" strokeWidth="0.3" />
+      </>
+    )}
+  </svg>
+);
+
+/**
+ * IconFolderOpen - Open Luminous Aero Blue Folder with Glowing Documents
+ */
+export const IconFolderOpen: React.FC<IconProps> = ({
+  size = 22,
+  className = '',
+  variant = 'aero',
+  glow,
+  animation,
+  interactive,
+  ...props
+}) => (
+  <svg
+    {...getDims(size)}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={getIconClass('fj-icon-folder-open', className, glow, animation, interactive)}
+    {...props}
+  >
+    <defs>
+      <linearGradient id="fj-folder-open-front" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#7dd3fc" />
+        <stop offset="60%" stopColor="#0ea5e9" />
+        <stop offset="100%" stopColor="#0284c7" />
+      </linearGradient>
+      <linearGradient id="fj-folder-open-back" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#0369a1" />
+        <stop offset="100%" stopColor="#075985" />
+      </linearGradient>
+    </defs>
+    {variant === 'outline' ? (
+      <path
+        d="M2 11l2-7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v2M2 11h18l-2 10H4L2 11z"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ) : (
+      <>
+        {/* Back Tab */}
+        <path
+          d="M21 16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4.5l2 2H19a2 2 0 0 1 2 2v8z"
+          fill="url(#fj-folder-open-back)"
+        />
+        {/* Floating Glass Sheet */}
+        <rect
+          x="5.5"
+          y="5.5"
+          width="13"
+          height="10"
+          rx="1"
+          fill="#ffffff"
+          opacity="0.85"
+          stroke="#38bdf8"
+          strokeWidth="0.5"
+        />
+        <line
+          x1="7.5"
+          y1="8.5"
+          x2="14.5"
+          y2="8.5"
+          stroke="#0284c7"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
+        <line
+          x1="7.5"
+          y1="11.5"
+          x2="12.5"
+          y2="11.5"
+          stroke="#0284c7"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
+        {/* Front Open Flap */}
+        <path
+          d="M1.5 11.5a1.5 1.5 0 0 1 1.5-1.5h18a1.5 1.5 0 0 1 1.5 1.5l-2.2 8.5a2 2 0 0 1-2 1.5H5.7a2 2 0 0 1-2-1.5L1.5 11.5z"
+          fill="url(#fj-folder-open-front)"
+          stroke="#0284c7"
+          strokeWidth="0.75"
+        />
+        {/* Gloss Top Strip */}
+        <path d="M3 11h18v2.5l-18 2z" fill="#ffffff" opacity="0.4" />
+      </>
+    )}
+  </svg>
+);
+
+/* ==========================================================================
+   AERO ICON BADGE WRAPPER
+   ========================================================================== */
+
 export interface AeroIconBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number | 'sm' | 'md' | 'lg' | 'xl';
-  variant?: 'aero' | 'glass' | 'nature' | 'water' | 'sun' | 'berry';
+  variant?: 'aero' | 'glass' | 'nature' | 'water' | 'sun' | 'berry' | 'aurora' | 'obsidian';
   glow?: boolean;
+  interactive?: boolean;
   children: React.ReactNode;
 }
 
@@ -2935,76 +3931,36 @@ export const AeroIconBadge: React.FC<AeroIconBadgeProps> = ({
   size = 'md',
   variant = 'aero',
   glow = false,
+  interactive = false,
   className = '',
   children,
   style,
   ...props
 }) => {
-  const sizeMap: Record<string, number> = {
-    sm: 32,
-    md: 44,
-    lg: 56,
-    xl: 72,
-  };
+  const isPresetSize = typeof size === 'string';
+  const sizeClass = isPresetSize ? `fj-aero-icon-badge--${size}` : '';
+  const variantClass = `fj-aero-icon-badge--${variant}`;
+  const glowClass = glow ? 'fj-aero-icon-badge--glow' : '';
+  const interactiveClass = interactive ? 'fj-icon--interactive' : '';
 
-  const pixelSize = typeof size === 'number' ? size : sizeMap[size] || 44;
-
-  const bgStyles: Record<string, string> = {
-    aero: 'linear-gradient(135deg, rgba(56, 189, 248, 0.9) 0%, rgba(2, 132, 199, 0.95) 100%)',
-    glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%)',
-    nature: 'linear-gradient(135deg, rgba(74, 222, 128, 0.9) 0%, rgba(22, 163, 74, 0.95) 100%)',
-    water: 'linear-gradient(135deg, rgba(125, 211, 252, 0.9) 0%, rgba(14, 165, 233, 0.95) 100%)',
-    sun: 'linear-gradient(135deg, rgba(253, 224, 71, 0.9) 0%, rgba(234, 179, 8, 0.95) 100%)',
-    berry: 'linear-gradient(135deg, rgba(244, 114, 182, 0.9) 0%, rgba(219, 39, 119, 0.95) 100%)',
-  };
+  const inlineSizeStyle =
+    typeof size === 'number'
+      ? {
+          width: size,
+          height: size,
+        }
+      : {};
 
   return (
     <div
-      className={`fj-aero-icon-badge ${glow ? 'fj-aero-icon-badge--glow' : ''} ${className}`}
+      className={`fj-aero-icon-badge ${variantClass} ${sizeClass} ${glowClass} ${interactiveClass} ${className}`.trim()}
       style={{
-        width: pixelSize,
-        height: pixelSize,
-        borderRadius: '50%',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        background: bgStyles[variant] || bgStyles.aero,
-        boxShadow: glow
-          ? '0 0 16px rgba(56, 189, 248, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.15)'
-          : 'inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -2px 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.15)',
-        border: '1px solid rgba(255, 255, 255, 0.6)',
-        backdropFilter: 'blur(8px)',
-        overflow: 'hidden',
+        ...inlineSizeStyle,
         ...style,
       }}
       {...props}
     >
-      {/* Specular gloss top cap */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: '15%',
-          right: '15%',
-          height: '45%',
-          background:
-            'linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%)',
-          borderRadius: '50% 50% 100% 100% / 0 0 60% 60%',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {children}
-      </div>
+      <div className="fj-aero-icon-badge__content">{children}</div>
     </div>
   );
 };
