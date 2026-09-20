@@ -1,0 +1,47 @@
+@layer fj.components {
+  /* ==========================================================================
+     FRUTIGER AERO AVATAR GROUP
+     ========================================================================== */
+
+  .fj-avatar-group {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .fj-avatar-group .fj-avatar {
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.2);
+    margin-left: -0.625rem;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.2s ease;
+  }
+
+  .fj-avatar-group .fj-avatar:first-child {
+    margin-left: 0;
+  }
+
+  .fj-avatar-group .fj-avatar:hover {
+    transform: translateY(-2px) scale(1.08);
+    z-index: 10;
+  }
+
+  .fj-avatar-group__excess {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -0.625rem;
+    background: linear-gradient(
+      180deg,
+      #38bdf8 0%,
+      #0284c7 100%
+    );
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border-radius: var(--fj-radius-full, 9999px);
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    user-select: none;
+    z-index: 5;
+  }
+}

@@ -1,0 +1,45 @@
+@layer fj.components {
+  /* ==========================================================================
+     FRUTIGER AERO FORM FIELD & LABELS
+     ========================================================================== */
+
+  .fj-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+  }
+
+  .fj-field__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--fj-color-text, #0c2d48);
+    user-select: none;
+  }
+
+  .fj-field__required {
+    color: var(--fj-color-danger, #e11d48);
+    font-weight: 700;
+  }
+
+  .fj-field__helper {
+    font-size: 0.8125rem;
+    color: var(--fj-color-text-muted, #1e4976);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .fj-field__error {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--fj-color-danger, #e11d48);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+  }
+}

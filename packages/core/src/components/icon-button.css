@@ -1,0 +1,55 @@
+@layer fj.components {
+  /* ==========================================================================
+     FRUTIGER AERO ICON BUTTON
+     ========================================================================== */
+
+  .fj-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--fj-radius-full, 9999px);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all var(--fj-transition-normal, 0.2s cubic-bezier(0.16, 1, 0.3, 1));
+  }
+
+  .fj-icon-btn--circle {
+    border-radius: var(--fj-radius-full, 9999px);
+  }
+
+  .fj-icon-btn--rounded {
+    border-radius: var(--fj-radius-md, 8px);
+  }
+
+  /* Sizes with minimum touch target safety */
+  .fj-icon-btn--sm {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+
+  .fj-icon-btn--md {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+  }
+
+  .fj-icon-btn--lg {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.375rem;
+  }
+
+  /* Touch device target boost */
+  @media (pointer: coarse) {
+    .fj-icon-btn--sm,
+    .fj-icon-btn--md {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+}

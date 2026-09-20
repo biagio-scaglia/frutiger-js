@@ -1,0 +1,82 @@
+@layer fj.components {
+  /* ==========================================================================
+     FRUTIGER AERO PAGINATION
+     ========================================================================== */
+
+  .fj-pagination {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(240, 249, 255, 0.65) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(186, 230, 253, 0.75);
+    border-radius: var(--fj-radius-full, 9999px);
+    box-shadow:
+      0 4px 12px -2px rgba(2, 132, 199, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .fj-pagination__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 0 0.5rem;
+    border-radius: var(--fj-radius-full, 9999px);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--fj-color-text, #0c2d48);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+  }
+
+  .fj-pagination__item:hover:not(:disabled):not(.fj-pagination__item--active) {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(186, 230, 253, 0.9);
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.15);
+  }
+
+  .fj-pagination__item--active {
+    background: linear-gradient(
+      180deg,
+      #38bdf8 0%,
+      #0284c7 60%,
+      #0369a1 100%
+    );
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow:
+      0 4px 10px rgba(2, 132, 199, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.75);
+    font-weight: 700;
+  }
+
+  .fj-pagination__item:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .fj-pagination__item:focus-visible {
+    outline: 2px solid var(--fj-color-sky-500, #0ea5e9);
+    outline-offset: 2px;
+  }
+
+  .fj-pagination__ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    color: var(--fj-color-text-muted, #1e4976);
+  }
+}
