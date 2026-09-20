@@ -12,6 +12,8 @@ export interface SegmentedControlProps<T extends string = string> {
   value: T;
   onChange: (value: T) => void;
   options: SegmentedControlOption<T>[];
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
   className?: string;
   name?: string;
 }
@@ -20,10 +22,20 @@ export function SegmentedControl<T extends string = string>({
   value,
   onChange,
   options,
+  size = 'md',
+  fullWidth = false,
   className,
 }: SegmentedControlProps<T>) {
   return (
-    <div role="radiogroup" className={cn('fj-segmented-control', className)}>
+    <div
+      role="radiogroup"
+      className={cn(
+        'fj-segmented-control',
+        size !== 'md' && `fj-segmented-control--${size}`,
+        fullWidth && 'fj-segmented-control--full-width',
+        className
+      )}
+    >
       {options.map(option => {
         const isSelected = option.value === value;
         return (
@@ -40,12 +52,15 @@ export function SegmentedControl<T extends string = string>({
             )}
           >
             {option.icon && (
-              <span style={{ display: 'inline-flex', alignItems: 'center' }}>{option.icon}</span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}>
+                {option.icon}
+              </span>
             )}
-            <span>{option.label}</span>
+            <span className="fj-segmented-control__item-label">{option.label}</span>
           </button>
         );
       })}
     </div>
   );
 }
+

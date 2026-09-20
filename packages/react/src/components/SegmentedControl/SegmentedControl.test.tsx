@@ -28,4 +28,23 @@ describe('SegmentedControl Suite', () => {
     fireEvent.click(gridBtn);
     expect(handleChange).toHaveBeenCalledWith('grid');
   });
+
+  it('renders fullWidth and size classes correctly', () => {
+    const { container } = render(
+      <SegmentedControl
+        value="a"
+        onChange={() => {}}
+        fullWidth
+        size="sm"
+        options={[
+          { value: 'a', label: 'Option A' },
+          { value: 'b', label: 'Option B' },
+        ]}
+      />
+    );
+
+    const radiogroup = container.querySelector('.fj-segmented-control');
+    expect(radiogroup).toHaveClass('fj-segmented-control--full-width');
+    expect(radiogroup).toHaveClass('fj-segmented-control--sm');
+  });
 });

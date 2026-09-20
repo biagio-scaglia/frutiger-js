@@ -659,6 +659,7 @@ export default function App() {
                           <SegmentedControl
                             value={segmentedMode}
                             onChange={setSegmentedMode}
+                            fullWidth
                             options={[
                               {
                                 value: 'glass',

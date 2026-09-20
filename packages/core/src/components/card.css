@@ -2,7 +2,6 @@
   .fj-card {
     position: relative;
     border-radius: var(--fj-radius-xl);
-    overflow: hidden;
     transition:
       transform 0.25s ease,
       box-shadow 0.25s ease;
@@ -58,6 +57,8 @@
     right: 0;
     height: 35%;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     pointer-events: none;
   }
 
@@ -97,6 +98,8 @@
   .fj-card__header {
     padding: var(--fj-space-4) var(--fj-space-5);
     border-bottom: 1px solid rgba(186, 230, 253, 0.4);
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -132,6 +135,8 @@
   .fj-card__footer {
     padding: var(--fj-space-3) var(--fj-space-5);
     border-top: 1px solid rgba(186, 230, 253, 0.4);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
     background: rgba(240, 249, 255, 0.35);
     display: flex;
     align-items: center;
