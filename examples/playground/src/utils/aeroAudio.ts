@@ -6,7 +6,9 @@ let audioCtx: AudioContext | null = null;
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
   if (!audioCtx) {
-    const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const AudioCtxClass =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (AudioCtxClass) {
       audioCtx = new AudioCtxClass();
     }
@@ -86,14 +88,17 @@ export function startAeroMusic(gainVal: number = 74, onTick?: (sec: number) => v
   if (!ctx) return;
 
   const masterGain = ctx.createGain();
-  masterGain.gain.setValueAtTime(Math.max(0.01, Math.min(1, gainVal / 100)) * 0.15, ctx.currentTime);
+  masterGain.gain.setValueAtTime(
+    Math.max(0.01, Math.min(1, gainVal / 100)) * 0.15,
+    ctx.currentTime
+  );
   masterGain.connect(ctx.destination);
 
   let step = 0;
   const melody = [
     [440, 554.37, 659.25], // A major
     [493.88, 587.33, 739.99], // B minor
-    [329.63, 415.30, 493.88], // E major
+    [329.63, 415.3, 493.88], // E major
     [369.99, 440, 554.37], // F# minor
   ];
 
@@ -102,7 +107,7 @@ export function startAeroMusic(gainVal: number = 74, onTick?: (sec: number) => v
     step++;
     const now = ctx.currentTime;
 
-    chord.forEach((freq) => {
+    chord.forEach(freq => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
@@ -133,11 +138,11 @@ export function stopAeroMusic() {
     clearInterval(musicInterval);
     musicInterval = null;
   }
-  musicOscillators.forEach((osc) => {
+  musicOscillators.forEach(osc => {
     try {
       osc.stop();
       osc.disconnect();
-    // eslint-disable-next-line no-empty
+      // eslint-disable-next-line no-empty
     } catch {}
   });
   musicOscillators = [];

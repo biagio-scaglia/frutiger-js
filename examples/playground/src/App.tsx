@@ -231,10 +231,7 @@ export default function App() {
 
                 {/* 4. FORMS */}
                 <TabPanel value="forms">
-                  <AeroFormsTab
-                    sliderGainVal={sliderGainVal}
-                    onGainChange={setSliderGainVal}
-                  />
+                  <AeroFormsTab sliderGainVal={sliderGainVal} onGainChange={setSliderGainVal} />
                 </TabPanel>
 
                 {/* 5. FEEDBACK */}

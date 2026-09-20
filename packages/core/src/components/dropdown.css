@@ -131,12 +131,7 @@
   }
 
   .fj-dropdown__item--active {
-    background: linear-gradient(
-      180deg,
-      #38bdf8 0%,
-      #0284c7 55%,
-      #0369a1 100%
-    ) !important;
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 55%, #0369a1 100%) !important;
     border-color: #0284c7 !important;
     color: #ffffff !important;
     font-weight: 700;

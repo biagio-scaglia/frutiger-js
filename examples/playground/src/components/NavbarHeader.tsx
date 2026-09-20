@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Navbar,
-  NavLink,
-  Button,
-  Avatar,
-  IconWater,
-  IconStar,
-} from '@frutiger.js/react';
+import { Navbar, NavLink, Button, Avatar, IconWater, IconStar } from '@frutiger.js/react';
 
 export interface NavbarHeaderProps {
   activeNav: string;

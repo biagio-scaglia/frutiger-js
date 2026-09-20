@@ -336,8 +336,8 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
           <AccordionItem value="item-3">
             <AccordionTrigger>Is it fully accessible?</AccordionTrigger>
             <AccordionContent>
-              Yes! Every component adheres to WCAG 2.2 AA standards with full keyboard
-              interaction, ARIA attributes, focus states, and reduced-motion fallbacks.
+              Yes! Every component adheres to WCAG 2.2 AA standards with full keyboard interaction,
+              ARIA attributes, focus states, and reduced-motion fallbacks.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

@@ -99,11 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
               Explore Components
             </Button>
           </a>
-          <a
-            href="#components"
-            style={{ textDecoration: 'none' }}
-            onClick={onExploreIcons}
-          >
+          <a href="#components" style={{ textDecoration: 'none' }} onClick={onExploreIcons}>
             <Button variant="glass" size="lg" leftIcon={<IconSparkles size={18} />}>
               Aero Icons (45+)
             </Button>

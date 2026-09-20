@@ -103,11 +103,7 @@ export const AeroFeedbackTab: React.FC<AeroFeedbackTabProps> = React.memo(
               >
                 Spawn Danger Toast
               </Button>
-              <Button
-                variant="aero"
-                leftIcon={<IconGlobe size={16} />}
-                onClick={onOpenDrawer}
-              >
+              <Button variant="aero" leftIcon={<IconGlobe size={16} />} onClick={onOpenDrawer}>
                 Open Slide Drawer ➔
               </Button>
             </div>

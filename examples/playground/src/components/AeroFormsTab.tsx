@@ -86,13 +86,7 @@ export const AeroFormsTab: React.FC<AeroFormsTabProps> = React.memo(
               </CardDescription>
             </div>
             <Badge
-              variant={
-                radioVal === 'meadow'
-                  ? 'nature'
-                  : radioVal === 'ocean'
-                    ? 'info'
-                    : 'primary'
-              }
+              variant={radioVal === 'meadow' ? 'nature' : radioVal === 'ocean' ? 'info' : 'primary'}
             >
               Theme: {radioVal.toUpperCase()}
             </Badge>

@@ -50,8 +50,7 @@ export const TokensPaletteSection: React.FC = React.memo(() => {
                   textAlign: 'center',
                   fontWeight: 600,
                   fontSize: 'var(--fj-font-size-xs)',
-                  boxShadow:
-                    'inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 6px rgba(0,0,0,0.1)',
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 6px rgba(0,0,0,0.1)',
                 }}
               >
                 {swatch.name}

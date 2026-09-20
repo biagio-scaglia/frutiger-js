@@ -24,9 +24,7 @@ export const FooterSection: React.FC = React.memo(() => {
             marginBottom: '0.75rem',
           }}
         >
-          <span
-            style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--fj-color-sky-950)' }}
-          >
+          <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--fj-color-sky-950)' }}>
             Frutiger<span style={{ color: 'var(--fj-color-sky-600)' }}>.js</span>
           </span>
           <Badge variant="primary">v1.0.5</Badge>

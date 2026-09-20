@@ -159,8 +159,7 @@ export const AeroOverflowTab: React.FC = React.memo(() => {
                         background: `linear-gradient(135deg, ${c.hex} 0%, rgba(255,255,255,0.85) 100%)`,
                         borderRadius: 'var(--fj-radius-lg)',
                         border: '1px solid rgba(255, 255, 255, 0.95)',
-                        boxShadow:
-                          'inset 0 1px 1px #fff, 0 4px 12px rgba(2, 132, 199, 0.15)',
+                        boxShadow: 'inset 0 1px 1px #fff, 0 4px 12px rgba(2, 132, 199, 0.15)',
                         textAlign: 'center',
                         fontWeight: 700,
                         fontSize: 'var(--fj-font-size-xs)',
