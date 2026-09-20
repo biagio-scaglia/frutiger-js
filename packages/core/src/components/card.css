@@ -1,6 +1,7 @@
 @layer fj.components {
   .fj-card {
     position: relative;
+    z-index: 1;
     border-radius: var(--fj-radius-xl);
     transition:
       transform 0.25s ease,
@@ -13,6 +14,14 @@
     overflow-wrap: break-word;
     word-break: break-word;
     min-width: 0;
+  }
+
+  .fj-card:has(.fj-dropdown--open),
+  .fj-card:has(.fj-dropdown__menu),
+  .fj-card:has([data-state='open']),
+  .fj-card:has([aria-expanded='true']),
+  .fj-card:focus-within {
+    z-index: 100;
   }
 
   /* Default Card */

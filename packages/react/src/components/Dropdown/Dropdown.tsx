@@ -15,6 +15,7 @@ export interface DropdownProps extends HTMLAttributes<HTMLDivElement> {
   trigger: ReactNode;
   children: ReactNode;
   align?: 'left' | 'right';
+  placement?: 'bottom' | 'top';
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   className?: string;
@@ -24,9 +25,11 @@ export const Dropdown: React.FC<DropdownProps> = ({
   trigger,
   children,
   align = 'left',
+  placement = 'bottom',
   isOpen: controlledOpen,
   onOpenChange,
   className,
+  style,
   ...props
 }) => {
   const [internalOpen, setInternalOpen] = useState(false);
@@ -70,7 +73,16 @@ export const Dropdown: React.FC<DropdownProps> = ({
   }, [isOpen, setOpen]);
 
   return (
-    <div ref={containerRef} className={cn('fj-dropdown', className)} {...props}>
+    <div
+      ref={containerRef}
+      className={cn('fj-dropdown', isOpen && 'fj-dropdown--open', className)}
+      data-state={isOpen ? 'open' : 'closed'}
+      style={{
+        zIndex: isOpen ? 1050 : undefined,
+        ...style,
+      }}
+      {...props}
+    >
       <div
         className="fj-dropdown__trigger"
         onClick={() => setOpen(!isOpen)}
@@ -84,7 +96,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
           role="menu"
           className={cn(
             'fj-dropdown__menu',
-            align === 'right' ? 'fj-dropdown__menu--right' : 'fj-dropdown__menu--left'
+            align === 'right' ? 'fj-dropdown__menu--right' : 'fj-dropdown__menu--left',
+            placement === 'top' ? 'fj-dropdown__menu--top' : 'fj-dropdown__menu--bottom'
           )}
         >
           {children}
@@ -184,6 +197,7 @@ export interface DropdownSelectProps<T extends string = string> {
   placeholder?: string;
   leftIcon?: ReactNode;
   align?: 'left' | 'right';
+  placement?: 'bottom' | 'top';
   className?: string;
 }
 
@@ -194,6 +208,7 @@ export const DropdownSelect = <T extends string = string>({
   placeholder = 'Select option...',
   leftIcon,
   align = 'left',
+  placement = 'bottom',
   className,
 }: DropdownSelectProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -204,6 +219,7 @@ export const DropdownSelect = <T extends string = string>({
       isOpen={isOpen}
       onOpenChange={setIsOpen}
       align={align}
+      placement={placement}
       className={className}
       trigger={
         <button
