@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { WindowFrame } from './WindowFrame';
+import { WindowFrame, WindowFrameVariant } from './WindowFrame';
 
 describe('WindowFrame', () => {
   it('renders window title and triggers close callback', () => {
@@ -15,4 +15,29 @@ describe('WindowFrame', () => {
     fireEvent.click(closeBtn);
     expect(handleClose).toHaveBeenCalled();
   });
+
+  it('renders correctly with different variants', () => {
+    const variants: WindowFrameVariant[] = [
+      'aero',
+      'vista',
+      'windows7',
+      'glass',
+      'glossy',
+      'frosted',
+    ];
+
+    variants.forEach(v => {
+      const { container } = render(
+        <WindowFrame title={`Window ${v}`} variant={v}>
+          <p>Content</p>
+        </WindowFrame>
+      );
+      const win = container.querySelector('.fj-window');
+      expect(win).toBeInTheDocument();
+      if (v !== 'aero') {
+        expect(win).toHaveClass(`fj-window--${v}`);
+      }
+    });
+  });
 });
+

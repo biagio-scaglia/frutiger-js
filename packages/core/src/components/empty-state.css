@@ -69,4 +69,29 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  @media (max-width: 480px) {
+    .fj-empty-state {
+      padding: 2rem 1rem;
+    }
+    .fj-empty-state__icon-wrapper {
+      width: 58px;
+      height: 58px;
+      margin-bottom: 1rem;
+    }
+    .fj-empty-state__title {
+      font-size: 1.125rem;
+    }
+    .fj-empty-state__description {
+      font-size: 0.875rem;
+      margin-bottom: 1.25rem;
+    }
+    .fj-empty-state__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .fj-empty-state__actions > * {
+      width: 100%;
+    }
+  }
 }

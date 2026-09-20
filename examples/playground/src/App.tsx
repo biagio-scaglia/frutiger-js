@@ -907,8 +907,22 @@ export default function App() {
                           </Dropdown>
 
                           {/* DropdownSelect Demo */}
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <span style={{ fontSize: 'var(--fj-font-size-sm)', fontWeight: 600 }}>
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '0.75rem',
+                              flexWrap: 'wrap',
+                              maxWidth: '100%',
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontSize: 'var(--fj-font-size-sm)',
+                                fontWeight: 600,
+                                flexShrink: 0,
+                              }}
+                            >
                               Format:
                             </span>
                             <DropdownSelect
@@ -982,11 +996,19 @@ export default function App() {
                             >
                               Interactive Aero Pagination (Page {paginationPage} of 8):
                             </span>
-                            <Pagination
-                              currentPage={paginationPage}
-                              totalPages={8}
-                              onPageChange={setPaginationPage}
-                            />
+                            <div
+                              style={{
+                                overflowX: 'auto',
+                                paddingBottom: '0.25rem',
+                                maxWidth: '100%',
+                              }}
+                            >
+                              <Pagination
+                                currentPage={paginationPage}
+                                totalPages={8}
+                                onPageChange={setPaginationPage}
+                              />
+                            </div>
                           </div>
                         </div>
                       </CardContent>

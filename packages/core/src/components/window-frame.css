@@ -1,20 +1,27 @@
 @layer fj.components {
-  /* Frutiger Aero Glass Window Frame (Vista / 7 Aero Glass) */
+  /* ==========================================================================
+     FRUTIGER AERO WINDOW FRAME (Vista, 7, Aqua, & Specular Glass Variants)
+     ========================================================================== */
+
   .fj-window {
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 100%;
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(24px) saturate(190%);
     -webkit-backdrop-filter: blur(24px) saturate(190%);
     border: 1px solid rgba(255, 255, 255, 0.95);
-    border-radius: var(--fj-radius-xl);
+    border-radius: var(--fj-radius-xl, 16px);
     box-shadow:
       inset 0 1px 1px #ffffff,
       0 12px 36px rgba(2, 132, 199, 0.2),
       0 1px 3px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    transition: box-shadow var(--fj-duration-normal) var(--fj-ease-out);
+    transition: box-shadow var(--fj-duration-normal) var(--fj-ease-out),
+      background-color var(--fj-duration-normal) var(--fj-ease-out),
+      border-color var(--fj-duration-normal) var(--fj-ease-out);
+    box-sizing: border-box;
   }
 
   .fj-window__header {
@@ -22,7 +29,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.65rem 1rem;
-    gap: var(--fj-space-2);
+    gap: var(--fj-space-2, 0.5rem);
     min-width: 0;
     background: linear-gradient(
       180deg,
@@ -33,15 +40,16 @@
     border-bottom: 1px solid rgba(186, 230, 253, 0.8);
     box-shadow: inset 0 1px 0 #ffffff;
     user-select: none;
+    box-sizing: border-box;
   }
 
   .fj-window__title-group {
     display: flex;
     align-items: center;
-    gap: var(--fj-space-2);
-    font-size: var(--fj-font-size-sm);
+    gap: var(--fj-space-2, 0.5rem);
+    font-size: var(--fj-font-size-sm, 0.875rem);
     font-weight: 700;
-    color: var(--fj-color-sky-950);
+    color: var(--fj-color-sky-950, #082f49);
     letter-spacing: -0.01em;
     min-width: 0;
     flex: 1 1 auto;
@@ -95,43 +103,76 @@
     background: radial-gradient(circle at 35% 30%, #86efac 0%, #22c55e 60%, #15803d 100%);
   }
 
-  /* Window Variants */
+  .fj-window__body {
+    padding: var(--fj-space-4, 1rem);
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--fj-color-text, #0c2d48);
+    box-sizing: border-box;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+
+  .fj-window__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: var(--fj-font-size-xs, 0.75rem);
+    color: var(--fj-color-text-muted, #1e4976);
+    background: rgba(240, 249, 255, 0.8);
+    border-top: 1px solid rgba(186, 230, 253, 0.6);
+    box-sizing: border-box;
+  }
+
+  /* ==========================================================================
+     WINDOW THEME VARIANTS
+     ========================================================================== */
+
+  /* 1. Vista Dark Aero Glass (Smoked Obsidian & Cyan Edge Glow) */
   .fj-window--vista {
-    background: rgba(18, 30, 48, 0.88);
+    background: rgba(15, 23, 42, 0.9);
     backdrop-filter: blur(28px) saturate(200%);
     -webkit-backdrop-filter: blur(28px) saturate(200%);
-    border: 1px solid rgba(56, 189, 248, 0.4);
+    border: 1px solid rgba(56, 189, 248, 0.45);
     box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.5),
-      0 16px 48px rgba(0, 0, 0, 0.4),
-      0 0 20px rgba(14, 165, 233, 0.3);
+      inset 0 1px 1px rgba(255, 255, 255, 0.4),
+      0 16px 48px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(14, 165, 233, 0.35);
   }
   .fj-window--vista .fj-window__header {
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(56, 189, 248, 0.15) 50%,
-      rgba(15, 23, 42, 0.8) 100%
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(56, 189, 248, 0.15) 45%,
+      rgba(15, 23, 42, 0.9) 100%
     );
-    border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   .fj-window--vista .fj-window__title-group {
     color: #f0f9ff;
     text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
   }
   .fj-window--vista .fj-window__body {
-    background: rgba(15, 23, 42, 0.75);
+    background: rgba(15, 23, 42, 0.85);
     color: #f8fafc;
   }
+  .fj-window--vista .fj-window__footer {
+    background: rgba(15, 23, 42, 0.95);
+    border-top-color: rgba(56, 189, 248, 0.3);
+    color: #94a3b8;
+  }
 
+  /* 2. Windows 7 Harmony Aero (Glacial Icy Cyan Glass) */
   .fj-window--windows7 {
-    background: rgba(230, 244, 255, 0.75);
+    background: rgba(224, 242, 254, 0.75);
     backdrop-filter: blur(32px) saturate(220%);
     -webkit-backdrop-filter: blur(32px) saturate(220%);
-    border: 1px solid rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
     box-shadow:
       inset 0 1.5px 1px #ffffff,
-      0 14px 40px rgba(2, 132, 199, 0.22);
+      0 14px 40px rgba(2, 132, 199, 0.24),
+      0 0 16px rgba(56, 189, 248, 0.2);
   }
   .fj-window--windows7 .fj-window__header {
     background: linear-gradient(
@@ -140,10 +181,126 @@
       rgba(224, 242, 254, 0.85) 45%,
       rgba(186, 230, 253, 0.7) 100%
     );
-    border-bottom: 1px solid rgba(14, 165, 233, 0.4);
+    border-bottom: 1px solid rgba(14, 165, 233, 0.45);
+    box-shadow: inset 0 1.5px 0 #ffffff;
+  }
+  .fj-window--windows7 .fj-window__title-group {
+    color: #034268;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  }
+  .fj-window--windows7 .fj-window__body {
+    background: rgba(240, 249, 255, 0.72);
   }
 
-  /* Inactive State */
+  /* 3. Pure Prismatic Glass (Hyper-Translucent Water Glass) */
+  .fj-window--glass {
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(30px) saturate(230%);
+    -webkit-backdrop-filter: blur(30px) saturate(230%);
+    border: 1.5px solid rgba(255, 255, 255, 0.98);
+    box-shadow:
+      inset 0 2px 2px #ffffff,
+      inset 0 -1px 2px rgba(6, 182, 212, 0.2),
+      0 16px 44px rgba(6, 182, 212, 0.22),
+      0 0 20px rgba(255, 255, 255, 0.85);
+  }
+  .fj-window--glass .fj-window__header {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(207, 250, 254, 0.75) 50%,
+      rgba(165, 243, 252, 0.5) 100%
+    );
+    border-bottom: 1px solid rgba(103, 232, 249, 0.75);
+    box-shadow: inset 0 1.5px 0 #ffffff;
+  }
+  .fj-window--glass .fj-window__title-group {
+    color: #0c4a6e;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95);
+  }
+  .fj-window--glass .fj-window__body {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .fj-window--glass .fj-window__footer {
+    background: rgba(240, 253, 250, 0.7);
+    border-top-color: rgba(165, 243, 252, 0.6);
+  }
+
+  /* 4. Aqua Gel Glossy (Apple Aqua & Web 2.0 Specular Gel Cap) */
+  .fj-window--glossy {
+    background: rgba(240, 249, 255, 0.88);
+    backdrop-filter: blur(22px) saturate(200%);
+    -webkit-backdrop-filter: blur(22px) saturate(200%);
+    border: 1.5px solid rgba(14, 165, 233, 0.6);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 14px 38px rgba(2, 132, 199, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  .fj-window--glossy .fj-window__header {
+    background: linear-gradient(
+      180deg,
+      #67e8f9 0%,
+      #0284c7 48%,
+      #0369a1 52%,
+      #0ea5e9 100%
+    );
+    border-bottom: 1px solid #0284c7;
+    box-shadow:
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.85),
+      0 1px 3px rgba(0, 0, 0, 0.15);
+  }
+  .fj-window--glossy .fj-window__title-group {
+    color: #ffffff;
+    font-weight: 800;
+    text-shadow: 0 1px 3px rgba(3, 105, 161, 0.9);
+  }
+  .fj-window--glossy .fj-window__body {
+    background: rgba(240, 249, 255, 0.85);
+  }
+  .fj-window--glossy .fj-window__footer {
+    background: rgba(224, 242, 254, 0.9);
+    border-top-color: rgba(14, 165, 233, 0.4);
+  }
+
+  /* 5. Frosted Satin Aurora (Biosphere Mint & Sky Frosted Acrylic) */
+  .fj-window--frosted {
+    background: rgba(245, 253, 250, 0.9);
+    backdrop-filter: blur(36px) saturate(170%);
+    -webkit-backdrop-filter: blur(36px) saturate(170%);
+    border: 1.5px solid rgba(167, 243, 208, 0.85);
+    box-shadow:
+      inset 0 1px 2px #ffffff,
+      0 14px 40px rgba(16, 185, 129, 0.16),
+      0 0 22px rgba(52, 211, 153, 0.2);
+  }
+  .fj-window--frosted .fj-window__header {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(209, 250, 229, 0.85) 50%,
+      rgba(167, 243, 208, 0.65) 100%
+    );
+    border-bottom: 1px solid rgba(110, 231, 183, 0.8);
+    box-shadow: inset 0 1px 0 #ffffff;
+  }
+  .fj-window--frosted .fj-window__title-group {
+    color: #064e3b;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  }
+  .fj-window--frosted .fj-window__body {
+    background: rgba(240, 253, 244, 0.7);
+  }
+  .fj-window--frosted .fj-window__footer {
+    background: rgba(236, 253, 245, 0.85);
+    border-top-color: rgba(167, 243, 208, 0.7);
+    color: #065f46;
+  }
+
+  /* ==========================================================================
+     INACTIVE STATE & RESPONSIVENESS
+     ========================================================================== */
+
   .fj-window--inactive {
     opacity: 0.88;
     box-shadow:
@@ -158,19 +315,18 @@
     opacity: 0.7;
   }
 
-  .fj-window__body {
-    padding: var(--fj-space-4);
-    background: rgba(255, 255, 255, 0.6);
-  }
-
-  .fj-window__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    font-size: var(--fj-font-size-xs);
-    color: var(--fj-color-text-muted);
-    background: rgba(240, 249, 255, 0.8);
-    border-top: 1px solid rgba(186, 230, 253, 0.6);
+  @media (max-width: 480px) {
+    .fj-window__header {
+      padding: 0.5rem 0.75rem;
+    }
+    .fj-window__title-group {
+      font-size: var(--fj-font-size-xs, 0.75rem);
+    }
+    .fj-window__body {
+      padding: var(--fj-space-3, 0.75rem);
+    }
+    .fj-window__footer {
+      padding: 0.4rem 0.75rem;
+    }
   }
 }
