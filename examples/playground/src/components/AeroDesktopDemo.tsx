@@ -28,7 +28,9 @@ import {
   IconAeroOrb,
   IconCamera,
   IconSettings,
+  useToast,
 } from '@frutiger.js/react';
+import { playAeroChime, playAeroClick } from '../utils/aeroAudio';
 
 const DESKTOP_THEMES: Record<
   WindowFrameVariant,
@@ -160,7 +162,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
   const [isExplorerMinimized, setIsExplorerMinimized] = useState(false);
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
   const [isPlayerMinimized, setIsPlayerMinimized] = useState(false);
+  const [isBrowserOpen, setIsBrowserOpen] = useState(false);
+  const [isBrowserMinimized, setIsBrowserMinimized] = useState(false);
 
+  const { toast } = useToast();
   const currentTheme = DESKTOP_THEMES[windowVariant] || DESKTOP_THEMES.aero;
 
   return (
@@ -480,6 +485,98 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
               </div>
             )}
 
+            {/* Window 3: Aero Web Browser */}
+            {isBrowserOpen && !isBrowserMinimized && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 'clamp(15px, 5vw, 40px)',
+                  left: 'clamp(60px, 12vw, 100px)',
+                  right: '10px',
+                  maxWidth: '520px',
+                  zIndex: 25,
+                  animation: 'fj-fade-in 0.2s ease',
+                }}
+              >
+                <WindowFrame
+                  title="Internet Explorer 7 — Frutiger Aero Network"
+                  icon={<IconGlobe size={16} />}
+                  variant={windowVariant}
+                  isActive={true}
+                  onClose={() => setIsBrowserOpen(false)}
+                  onMinimize={() => setIsBrowserMinimized(true)}
+                  onMaximize={() => {}}
+                >
+                  <div style={{ padding: '0.25rem 0' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        gap: '0.5rem',
+                        alignItems: 'center',
+                        padding: '0.35rem 0.6rem',
+                        background: currentTheme.addressBg,
+                        borderRadius: 'var(--fj-radius-sm, 6px)',
+                        border: currentTheme.addressBorder,
+                        fontSize: 'var(--fj-font-size-xs, 0.75rem)',
+                        marginBottom: '0.75rem',
+                        color: currentTheme.addressText,
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span style={{ color: '#22c55e' }}>🔒</span>
+                      <span>https://biagiocyberspace.it/frutiger-aero</span>
+                    </div>
+
+                    <div
+                      style={{
+                        padding: '1rem',
+                        background: currentTheme.cardBg,
+                        borderRadius: 'var(--fj-radius-md, 8px)',
+                        border: currentTheme.cardBorder,
+                        textAlign: 'center',
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 800,
+                          fontSize: 'var(--fj-font-size-md)',
+                          color: currentTheme.textColor,
+                          marginBottom: '0.35rem',
+                        }}
+                      >
+                        🌐 Frutiger Aero Cyberspace
+                      </div>
+                      <p
+                        style={{
+                          fontSize: '0.75rem',
+                          color: currentTheme.subText,
+                          margin: '0 0 0.75rem 0',
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        Web 2.0 daylight browsing experience with hardware-accelerated translucent
+                        canvases and skeuomorphic UI components.
+                      </p>
+                      <Button
+                        size="sm"
+                        variant="aero"
+                        onClick={() => {
+                          playAeroChime();
+                          toast({
+                            title: 'Navigation Synchronized',
+                            description: 'Loaded https://biagiocyberspace.it successfully.',
+                            variant: 'success',
+                          });
+                        }}
+                      >
+                        Refresh Web Node
+                      </Button>
+                    </div>
+                  </div>
+                </WindowFrame>
+              </div>
+            )}
+
             {/* Start Menu Popup */}
             <StartMenu
               isOpen={isStartOpen}
@@ -492,6 +589,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   subtitle: 'Browse files & media vault',
                   icon: <IconFolder size={20} />,
                   onClick: () => {
+                    playAeroClick();
                     setIsExplorerOpen(true);
                     setIsExplorerMinimized(false);
                     setIsStartOpen(false);
@@ -503,6 +601,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   subtitle: 'High fidelity audio',
                   icon: <IconMusic size={20} />,
                   onClick: () => {
+                    playAeroClick();
                     setIsPlayerOpen(true);
                     setIsPlayerMinimized(false);
                     setIsStartOpen(false);
@@ -514,16 +613,72 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   subtitle: 'Fast daylight navigation',
                   icon: <IconGlobe size={20} />,
                   onClick: () => {
-                    alert('Launching Aero Web Browser');
+                    playAeroClick();
+                    setIsBrowserOpen(true);
+                    setIsBrowserMinimized(false);
                     setIsStartOpen(false);
                   },
                 },
               ]}
               places={[
-                { id: 'docs', label: 'Documents', icon: <IconFolder size={16} /> },
-                { id: 'pics', label: 'Pictures', icon: <IconCamera size={16} /> },
-                { id: 'music', label: 'Music', icon: <IconMusic size={16} /> },
-                { id: 'ctrl', label: 'Control Panel', icon: <IconSettings size={16} /> },
+                {
+                  id: 'docs',
+                  label: 'Documents',
+                  icon: <IconFolder size={16} />,
+                  onClick: () => {
+                    playAeroClick();
+                    setIsExplorerOpen(true);
+                    setIsExplorerMinimized(false);
+                    setIsStartOpen(false);
+                    toast({
+                      title: 'Documents Folder',
+                      description: 'Opened C:\\Users\\Biagio\\Documents',
+                      variant: 'info',
+                    });
+                  },
+                },
+                {
+                  id: 'pics',
+                  label: 'Pictures',
+                  icon: <IconCamera size={16} />,
+                  onClick: () => {
+                    playAeroClick();
+                    setIsExplorerOpen(true);
+                    setIsExplorerMinimized(false);
+                    setIsStartOpen(false);
+                    toast({
+                      title: 'Pictures Folder',
+                      description: 'Opened C:\\Users\\Biagio\\Pictures (Aero Wallpapers)',
+                      variant: 'info',
+                    });
+                  },
+                },
+                {
+                  id: 'music',
+                  label: 'Music',
+                  icon: <IconMusic size={16} />,
+                  onClick: () => {
+                    playAeroClick();
+                    setIsPlayerOpen(true);
+                    setIsPlayerMinimized(false);
+                    setIsStartOpen(false);
+                  },
+                },
+                {
+                  id: 'ctrl',
+                  label: 'Control Panel',
+                  icon: <IconSettings size={16} />,
+                  onClick: () => {
+                    playAeroChime();
+                    setIsStartOpen(false);
+                    toast({
+                      title: 'Aero Control Panel',
+                      description: `Active Theme: ${currentTheme.name} (${windowVariant.toUpperCase()})`,
+                      variant: 'success',
+                      icon: <IconSettings size={16} />,
+                    });
+                  },
+                },
               ]}
             />
           </div>
@@ -533,7 +688,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
             {/* Start Button */}
             <TaskbarStart
               isOpen={isStartOpen}
-              onClick={() => setIsStartOpen(!isStartOpen)}
+              onClick={() => {
+                playAeroClick();
+                setIsStartOpen(!isStartOpen);
+              }}
               icon={<IconWater size={18} />}
             />
 
@@ -545,7 +703,10 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   icon={<IconFolder size={14} />}
                   isActive={!isExplorerMinimized}
                   isMinimized={isExplorerMinimized}
-                  onClick={() => setIsExplorerMinimized(!isExplorerMinimized)}
+                  onClick={() => {
+                    playAeroClick();
+                    setIsExplorerMinimized(!isExplorerMinimized);
+                  }}
                 />
               )}
               {isPlayerOpen && (
@@ -554,23 +715,66 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   icon={<IconMusic size={14} />}
                   isActive={!isPlayerMinimized}
                   isMinimized={isPlayerMinimized}
-                  onClick={() => setIsPlayerMinimized(!isPlayerMinimized)}
+                  onClick={() => {
+                    playAeroClick();
+                    setIsPlayerMinimized(!isPlayerMinimized);
+                  }}
                 />
               )}
-              <TaskbarItem
-                label="Frutiger Web"
-                icon={<IconGlobe size={14} />}
-                isActive={false}
-                onClick={() => alert('Frutiger.js online!')}
-              />
+              {isBrowserOpen && (
+                <TaskbarItem
+                  label="Frutiger Web"
+                  icon={<IconGlobe size={14} />}
+                  isActive={!isBrowserMinimized}
+                  isMinimized={isBrowserMinimized}
+                  onClick={() => {
+                    playAeroClick();
+                    setIsBrowserMinimized(!isBrowserMinimized);
+                  }}
+                />
+              )}
+              {!isBrowserOpen && (
+                <TaskbarItem
+                  label="Frutiger Web"
+                  icon={<IconGlobe size={14} />}
+                  isActive={false}
+                  onClick={() => {
+                    playAeroClick();
+                    setIsBrowserOpen(true);
+                    setIsBrowserMinimized(false);
+                  }}
+                />
+              )}
             </TaskbarItems>
 
             {/* System Tray */}
             <TaskbarTray>
-              <div className="fj-taskbar-tray-icon" title="Wi-Fi Connected">
+              <div
+                className="fj-taskbar-tray-icon"
+                title="Wi-Fi Connected"
+                onClick={() => {
+                  playAeroClick();
+                  toast({
+                    title: 'Network Telemetry',
+                    description: 'Connected to AeroNet-5G (1.2 Gbps)',
+                    variant: 'info',
+                  });
+                }}
+              >
                 <IconWifi size={14} />
               </div>
-              <div className="fj-taskbar-tray-icon" title="Speakers 80%">
+              <div
+                className="fj-taskbar-tray-icon"
+                title="Speakers 80%"
+                onClick={() => {
+                  playAeroChime();
+                  toast({
+                    title: 'Audio Master',
+                    description: 'Synthesizer Output: 80% (Lossless 24-bit/96kHz)',
+                    variant: 'info',
+                  });
+                }}
+              >
                 <IconSpeaker size={14} />
               </div>
               <TaskbarClock showDate />

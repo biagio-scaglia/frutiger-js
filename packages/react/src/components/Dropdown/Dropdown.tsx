@@ -153,7 +153,7 @@ export const DropdownItem = forwardRef<HTMLButtonElement, DropdownItemProps>(
         </div>
         {showCheck && isActive && (
           <span className="fj-dropdown__item-check">
-            <IconCheck size={14} />
+            <IconCheck size={14} variant="outline" />
           </span>
         )}
       </button>

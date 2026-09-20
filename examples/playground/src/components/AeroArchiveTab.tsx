@@ -23,7 +23,9 @@ import {
   IconAeroOrb,
   IconMonitor,
   IconFolder,
+  useToast,
 } from '@frutiger.js/react';
+import { playAeroChime } from '../utils/aeroAudio';
 
 export interface ArchiveMediaItem {
   id: string;
@@ -141,6 +143,26 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
   const [archiveCategory, setArchiveCategory] = useState<string>('all');
   const [archiveSearch, setArchiveSearch] = useState('');
   const [lightboxItem, setLightboxItem] = useState<ArchiveMediaItem | null>(null);
+  const { toast } = useToast();
+
+  const handleDownloadPreset = (item: ArchiveMediaItem) => {
+    const data = JSON.stringify(item, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${item.id}-preset.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    playAeroChime();
+    toast({
+      title: 'Preset Exported! 💧',
+      description: `Downloaded ${item.title} metadata package.`,
+      variant: 'success',
+      icon: <IconSparkles size={18} />,
+    });
+    setLightboxItem(null);
+  };
 
   const filteredArchive = useMemo(() => {
     const query = archiveSearch.trim().toLowerCase();
@@ -409,13 +431,7 @@ export const AeroArchiveTab: React.FC = React.memo(() => {
             <Button variant="ghost" onClick={() => setLightboxItem(null)}>
               Close
             </Button>
-            <Button
-              variant="aero"
-              onClick={() => {
-                alert(`Downloaded metadata for "${lightboxItem.title}"`);
-                setLightboxItem(null);
-              }}
-            >
+            <Button variant="aero" onClick={() => handleDownloadPreset(lightboxItem)}>
               Download Asset Preset
             </Button>
           </div>

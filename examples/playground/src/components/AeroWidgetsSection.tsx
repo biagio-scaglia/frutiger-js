@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -19,12 +19,48 @@ import {
   IconPlay,
   IconPause,
   IconCheck,
+  IconSparkles,
+  useToast,
 } from '@frutiger.js/react';
+import { startAeroMusic, stopAeroMusic } from '../utils/aeroAudio';
 
 export const AeroWidgetsSection: React.FC = React.memo(() => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songProgress, setSongProgress] = useState(38);
   const [sliderVolumeVal, setSliderVolumeVal] = useState(82);
+  const [tempUnit, setTempUnit] = useState<'C' | 'F'>('C');
+  const [isSyncingWeather, setIsSyncingWeather] = useState(false);
+  const { toast } = useToast();
+
+  // Audio Playback Lifecycle
+  useEffect(() => {
+    if (isPlaying) {
+      startAeroMusic(sliderVolumeVal, () => {
+        setSongProgress(prev => (prev >= 100 ? 0 : prev + 4));
+      });
+    } else {
+      stopAeroMusic();
+    }
+    return () => {
+      stopAeroMusic();
+    };
+  }, [isPlaying, sliderVolumeVal]);
+
+  // Handle weather sync
+  const handleSyncWeather = () => {
+    setIsSyncingWeather(true);
+    setTimeout(() => {
+      setIsSyncingWeather(false);
+      toast({
+        title: 'Atmospheric Radar Synchronized 🛰️',
+        description: 'Barometric pressure 1014 hPa • Humidity 58% • Daylight Index: 9.4',
+        variant: 'success',
+        icon: <IconCloud size={16} />,
+      });
+    }, 800);
+  };
+
+  const currentTemp = tempUnit === 'C' ? '22°C' : '72°F';
 
   return (
     <section
@@ -59,9 +95,15 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                 </span>
               </CardDescription>
             </div>
-            <Badge variant="nature" icon={<IconCheck size={12} />}>
-              Live Radar
-            </Badge>
+            <button
+              type="button"
+              onClick={handleSyncWeather}
+              style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+            >
+              <Badge variant="nature" icon={<IconCheck size={12} />}>
+                Live Radar
+              </Badge>
+            </button>
           </CardHeader>
           <CardContent>
             <div
@@ -72,15 +114,23 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                 margin: '1rem 0',
               }}
             >
-              <div
+              <button
+                type="button"
+                onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
+                title="Click to toggle °C / °F"
                 style={{
                   fontSize: '3.2rem',
                   fontWeight: 800,
                   color: 'var(--fj-color-sky-800)',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  textAlign: 'left',
                 }}
               >
-                22°C
-              </div>
+                {currentTemp}
+              </button>
               <div
                 style={{
                   width: 64,
@@ -106,18 +156,20 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
               }}
             >
               {[
-                { day: 'Mon', temp: '21°' },
-                { day: 'Tue', temp: '23°' },
-                { day: 'Wed', temp: '20°' },
-                { day: 'Thu', temp: '22°' },
+                { day: 'Mon', tempC: '21°', tempF: '70°' },
+                { day: 'Tue', tempC: '23°', tempF: '73°' },
+                { day: 'Wed', tempC: '20°', tempF: '68°' },
+                { day: 'Thu', tempC: '22°', tempF: '72°' },
               ].map(f => (
                 <div
                   key={f.day}
+                  onClick={() => setTempUnit(tempUnit === 'C' ? 'F' : 'C')}
                   style={{
                     padding: '0.5rem 0.25rem',
                     borderRadius: 'var(--fj-radius-md)',
                     background: 'rgba(255, 255, 255, 0.5)',
                     border: '1px solid rgba(255, 255, 255, 0.7)',
+                    cursor: 'pointer',
                   }}
                 >
                   <div
@@ -128,14 +180,21 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                   >
                     {f.day}
                   </div>
-                  <div style={{ fontWeight: 700, marginTop: '2px' }}>{f.temp}</div>
+                  <div style={{ fontWeight: 700, marginTop: '2px' }}>
+                    {tempUnit === 'C' ? f.tempC : f.tempF}
+                  </div>
                 </div>
               ))}
             </div>
           </CardContent>
           <CardFooter>
-            <Button variant="ghost" size="sm" leftIcon={<Spinner size="sm" />}>
-              Syncing Satellite
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleSyncWeather}
+              leftIcon={isSyncingWeather ? <Spinner size="sm" /> : <IconSparkles size={14} />}
+            >
+              {isSyncingWeather ? 'Syncing Satellite...' : 'Refresh Radar'}
             </Button>
           </CardFooter>
         </Card>
@@ -147,7 +206,9 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
               <IconMusic size={18} color="var(--fj-color-sky-500)" />
               <CardTitle>Aero Player</CardTitle>
             </div>
-            <Badge variant="primary">Lossless Audio</Badge>
+            <Badge variant={isPlaying ? 'nature' : 'primary'}>
+              {isPlaying ? '▶ Playing Audio' : 'Lossless Audio'}
+            </Badge>
           </CardHeader>
           <CardContent>
             <div style={{ marginBottom: '1rem' }}>
@@ -160,7 +221,7 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                   color: 'var(--fj-color-text-muted)',
                 }}
               >
-                David Wise (2007 Remaster)
+                Frutiger Aero Synthesizer (Real Web Audio)
               </div>
             </div>
 
@@ -179,7 +240,7 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                 marginBottom: '1.25rem',
               }}
             >
-              <span>01:24</span>
+              <span>{`0${Math.floor(songProgress / 40)}:${String((songProgress * 2) % 60).padStart(2, '0')}`}</span>
               <span>03:45</span>
             </div>
 
@@ -204,7 +265,7 @@ export const AeroWidgetsSection: React.FC = React.memo(() => {
                 onClick={() => setIsPlaying(!isPlaying)}
                 leftIcon={isPlaying ? <IconPause size={16} /> : <IconPlay size={16} />}
               >
-                {isPlaying ? 'Pause' : 'Play'}
+                {isPlaying ? 'Pause' : 'Play Synthesizer'}
               </Button>
               <Button
                 variant="glass"
