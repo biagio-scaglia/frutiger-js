@@ -56,58 +56,78 @@ export const IconFish: React.FC<IconProps> = ({
     <defs>
       <linearGradient id="fj-fish-body" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stopColor="#fed7aa" />
-        <stop offset="30%" stopColor="#f97316" />
-        <stop offset="80%" stopColor="#ea580c" />
+        <stop offset="30%" stopColor="#fb923c" />
+        <stop offset="70%" stopColor="#ea580c" />
         <stop offset="100%" stopColor="#c2410c" />
       </linearGradient>
       <linearGradient id="fj-fish-fin" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#fdba74" stopOpacity="0.9" />
-        <stop offset="100%" stopColor="#ea580c" stopOpacity="0.5" />
+        <stop offset="0%" stopColor="#fed7aa" stopOpacity="0.95" />
+        <stop offset="50%" stopColor="#f97316" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#c2410c" stopOpacity="0.5" />
+      </linearGradient>
+      <linearGradient id="fj-fish-bubble" x1="20%" y1="20%" x2="80%" y2="80%">
+        <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.95" />
+        <stop offset="60%" stopColor="#38bdf8" stopOpacity="0.75" />
+        <stop offset="100%" stopColor="#0284c7" stopOpacity="0.6" />
       </linearGradient>
     </defs>
     {variant === 'outline' ? (
       <path
-        d="M18 12c-3.5 4-8.5 5-13 3 2.5-3 2.5-7 0-10 4.5-2 9.5-1 13 3l4-3v8l-4-2z"
+        d="M17 13c-3 3.8-7.5 4.2-11.5 0 4-4.2 8.5-3.8 11.5 0l4-4.5v9l-4-4.5z"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
     ) : (
       <>
-        {/* Tail fin */}
+        {/* Dorsal Fin */}
         <path
-          d="M17 12l5-4.5c.3-.3.8-.1.8.3v8.4c0 .4-.5.6-.8.3L17 12z"
+          d="M10 9.8C11.5 6.8 14.5 6.8 16 8.8C14 9.4 12 9.8 10 9.8z"
           fill="url(#fj-fish-fin)"
           stroke="#ea580c"
-          strokeWidth="0.75"
+          strokeWidth="0.5"
         />
-        {/* Dorsal fin */}
-        <path d="M8.5 7.5c2-2.5 5-2.5 7 0-2.5.5-4.5.5-7 0z" fill="url(#fj-fish-fin)" />
+        {/* Ventral Fin */}
+        <path
+          d="M11 15.6C12 17.6 13.8 18 14.8 16.5C13.5 16 12.2 15.8 11 15.6z"
+          fill="url(#fj-fish-fin)"
+          stroke="#ea580c"
+          strokeWidth="0.5"
+        />
+        {/* Tail fin */}
+        <path
+          d="M16 13C17.5 10 19.8 7.6 21.6 8.2C20.6 11 19 12.5 19 13C19 13.5 20.6 15 21.6 17.8C19.8 18.4 17.5 16 16 13z"
+          fill="url(#fj-fish-fin)"
+          stroke="#ea580c"
+          strokeWidth="0.6"
+        />
         {/* Main Body */}
         <path
-          d="M18 12c-3.2 3.8-7.8 4.8-12.5 3 2.2-2.8 2.2-6.8 0-9.6 4.7-1.8 9.3-.8 12.5 3.6.5.6.5 2.4 0 3z"
+          d="M17 13C14.4 16.6 9.6 17 5.5 13C9.6 9 14.4 9.4 17 13z"
           fill="url(#fj-fish-body)"
-          stroke="#ea580c"
+          stroke="#c2410c"
           strokeWidth="0.75"
         />
         {/* Gloss Specular Highlight */}
         <ellipse
-          cx="10"
-          cy="9.5"
-          rx="4.5"
-          ry="1.8"
+          cx="11"
+          cy="11.2"
+          rx="3.8"
+          ry="1.3"
           fill="#ffffff"
-          opacity="0.5"
-          transform="rotate(-5 10 9.5)"
+          opacity="0.55"
+          transform="rotate(-5 11 11.2)"
         />
         {/* Eye */}
-        <circle cx="7.5" cy="11" r="1.5" fill="#ffffff" />
-        <circle cx="7.2" cy="11" r="0.8" fill="#0f172a" />
-        <circle cx="7" cy="10.7" r="0.3" fill="#ffffff" />
-        {/* Water bubble */}
-        <circle cx="3" cy="7" r="1.2" fill="#38bdf8" opacity="0.7" />
-        <circle cx="3.3" cy="6.7" r="0.4" fill="#ffffff" opacity="0.9" />
+        <circle cx="7.8" cy="12.2" r="1.3" fill="#ffffff" />
+        <circle cx="7.5" cy="12.2" r="0.75" fill="#0f172a" />
+        <circle cx="7.3" cy="11.9" r="0.3" fill="#ffffff" />
+        {/* Water Bubbles with specular dot */}
+        <circle cx="3.2" cy="10" r="1.2" fill="url(#fj-fish-bubble)" />
+        <circle cx="3.5" cy="9.7" r="0.35" fill="#ffffff" opacity="0.9" />
+        <circle cx="4.8" cy="6.8" r="0.75" fill="url(#fj-fish-bubble)" />
+        <circle cx="5" cy="6.6" r="0.22" fill="#ffffff" opacity="0.9" />
       </>
     )}
   </svg>
