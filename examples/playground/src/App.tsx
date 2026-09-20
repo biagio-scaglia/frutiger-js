@@ -235,7 +235,7 @@ export default function App() {
                 }}
               >
                 <Badge variant="nature" icon={<IconLeaf size={14} />}>
-                  v0.1.0 • Web 2.0 Aesthetic Reborn
+                  v1.0.0 • Web 2.0 Aesthetic Reborn
                 </Badge>
                 <a
                   href="https://biagiocyberspace.it"
@@ -1488,7 +1488,7 @@ export default function App() {
             >
               Frutiger<span style={{ color: 'var(--fj-color-sky-600)' }}>.js</span>
             </span>
-            <Badge variant="primary">v0.1.0</Badge>
+            <Badge variant="primary">v1.0.0</Badge>
           </div>
           <p style={{ margin: '0 0 0.75rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
             The Premier Frutiger Aero UI Component Suite & CSS Design System for React
