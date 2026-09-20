@@ -34,6 +34,14 @@ export * from './components/Table';
 export * from './components/Container';
 export * from './components/Stack';
 export * from './components/Grid';
+export * from './components/IconButton';
+export * from './components/Toast';
+export * from './components/Drawer';
+export * from './components/EmptyState';
+export * from './components/Pagination';
+export * from './components/Field';
+export * from './components/AvatarGroup';
+export * from './components/SegmentedControl';
 
 // Icons
 export * from './icons';
