@@ -249,19 +249,28 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                 boxShadow:
                   'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(12, 74, 110, 0.08)',
                 transition: 'all 0.3s ease',
+                maxWidth: '100%',
+                boxSizing: 'border-box',
+                overflow: 'hidden',
               }}
             >
               <div
                 style={{
                   display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
+                  flexDirection: 'column',
+                  gap: '0.6rem',
                   marginBottom: '0.75rem',
-                  flexWrap: 'wrap',
-                  gap: '0.5rem',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                  }}
+                >
                   <Badge
                     variant={
                       selectedPreset === 'emerald'
@@ -270,47 +279,53 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                           ? 'info'
                           : 'primary'
                     }
+                    style={{ flexShrink: 0, whiteSpace: 'nowrap' }}
                   >
                     Active Format: {selectedPreset.toUpperCase()}
                   </Badge>
-                  <span
-                    style={{
-                      fontSize: '0.8rem',
-                      color: 'var(--fj-color-sky-900)',
-                      fontWeight: 600,
+
+                  <Button
+                    size="sm"
+                    variant="glass"
+                    style={{ flexShrink: 0 }}
+                    onClick={() => {
+                      const codeSnippets: Record<string, string> = {
+                        daylight: ':root { --fj-theme: daylight; --fj-color-sky-500: #0ea5e9; }',
+                        gloss: ':root { --fj-surface: glass; --fj-backdrop-blur: 16px; }',
+                        emerald: ':root { --fj-theme: nature; --fj-color-nature-500: #22c55e; }',
+                        json: '{\n  "name": "@frutiger.js/theme",\n  "version": "1.0.6",\n  "preset": "aero-glass"\n}',
+                        css: ':root {\n  --fj-color-primary: #0284c7;\n  --fj-color-secondary: #0d9488;\n}',
+                        tsx: '<Button variant="aero" size="md">Click Me</Button>',
+                      };
+                      navigator.clipboard.writeText(codeSnippets[selectedPreset] || selectedPreset);
+                      playAeroChime(sliderGainVal);
+                      toast({
+                        title: 'Payload Copied! 📋',
+                        description: `Copied ${selectedPreset.toUpperCase()} output to clipboard.`,
+                        variant: 'success',
+                      });
                     }}
                   >
-                    {selectedPreset === 'daylight' && '☀️ Daylight Aero Sky Color Tokens'}
-                    {selectedPreset === 'gloss' && '✨ Frosted Specular Refractive Preset'}
-                    {selectedPreset === 'emerald' && '🌿 Organic Biosphere Foliage Tokens'}
-                    {selectedPreset === 'json' && '📦 Structured JSON Export Manifest'}
-                    {selectedPreset === 'css' && '🎨 Pure CSS Root Variable Definitions'}
-                    {selectedPreset === 'tsx' && '⚛️ React Component Implementation Code'}
-                  </span>
+                    Copy Payload
+                  </Button>
                 </div>
-                <Button
-                  size="sm"
-                  variant="glass"
-                  onClick={() => {
-                    const codeSnippets: Record<string, string> = {
-                      daylight: ':root { --fj-theme: daylight; --fj-color-sky-500: #0ea5e9; }',
-                      gloss: ':root { --fj-surface: glass; --fj-backdrop-blur: 16px; }',
-                      emerald: ':root { --fj-theme: nature; --fj-color-nature-500: #22c55e; }',
-                      json: '{\n  "name": "@frutiger.js/theme",\n  "version": "1.0.6",\n  "preset": "aero-glass"\n}',
-                      css: ':root {\n  --fj-color-primary: #0284c7;\n  --fj-color-secondary: #0d9488;\n}',
-                      tsx: '<Button variant="aero" size="md">Click Me</Button>',
-                    };
-                    navigator.clipboard.writeText(codeSnippets[selectedPreset] || selectedPreset);
-                    playAeroChime(sliderGainVal);
-                    toast({
-                      title: 'Payload Copied! 📋',
-                      description: `Copied ${selectedPreset.toUpperCase()} output to clipboard.`,
-                      variant: 'success',
-                    });
+
+                <div
+                  style={{
+                    fontSize: '0.8rem',
+                    color: 'var(--fj-color-sky-900)',
+                    fontWeight: 600,
+                    lineHeight: 1.4,
+                    wordBreak: 'break-word',
                   }}
                 >
-                  Copy Payload
-                </Button>
+                  {selectedPreset === 'daylight' && '☀️ Daylight Aero Sky Color Tokens'}
+                  {selectedPreset === 'gloss' && '✨ Frosted Specular Refractive Preset'}
+                  {selectedPreset === 'emerald' && '🌿 Organic Biosphere Foliage Tokens'}
+                  {selectedPreset === 'json' && '📦 Structured JSON Export Manifest'}
+                  {selectedPreset === 'css' && '🎨 Pure CSS Root Variable Definitions'}
+                  {selectedPreset === 'tsx' && '⚛️ React Component Implementation Code'}
+                </div>
               </div>
 
               <pre
@@ -324,6 +339,8 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                   fontFamily: 'monospace',
                   overflowX: 'auto',
                   border: '1px solid rgba(255, 255, 255, 0.15)',
+                  maxWidth: '100%',
+                  boxSizing: 'border-box',
                 }}
               >
                 {selectedPreset === 'daylight' &&
