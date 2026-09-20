@@ -54,5 +54,8 @@
     "modern-css"
   ],
   "author": "Biagio Scaglia <biagio.scaglia@gmail.com>",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT"
 }

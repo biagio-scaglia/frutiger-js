@@ -52,5 +52,8 @@
     "accessible-ui"
   ],
   "author": "Biagio Scaglia <biagio.scaglia@gmail.com>",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT"
 }

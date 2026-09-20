@@ -26,7 +26,13 @@
     "typecheck": "npm run typecheck --workspace=@frutiger-js/core && npm run typecheck --workspace=@frutiger-js/react && npm run typecheck --workspace=@frutiger-js/playground",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
-    "clean": "node -e \"fs.rmSync('dist', {recursive:true, force:true})\""
+    "clean": "node -e \"fs.rmSync('dist', {recursive:true, force:true})\"",
+    "bump": "node scripts/release.mjs",
+    "bump:minor": "node scripts/release.mjs minor",
+    "bump:major": "node scripts/release.mjs major",
+    "publish:npm": "npm publish ./packages/core --access public && npm publish ./packages/react --access public",
+    "release": "node scripts/release.mjs --publish",
+    "release:minor": "node scripts/release.mjs minor --publish"
   },
   "keywords": [
     "react",
