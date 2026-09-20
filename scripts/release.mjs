@@ -127,7 +127,7 @@ async function main() {
   console.log(colors.green(`  ✓ @frutiger.js/playground -> ${newVersion}`));
 
   // Sync package-lock.json
-  run('npm install --package-lock-only');
+  run('npm install');
   console.log(colors.green('  ✓ package-lock.json synchronized'));
 
   // 2. Update playground App.tsx version mentions
