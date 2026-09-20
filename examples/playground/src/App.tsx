@@ -665,41 +665,134 @@ export default function App() {
                                 value: 'glass',
                                 label: 'Aero Glass',
                                 icon: <IconSparkles size={14} />,
+                                variant: 'glass',
                               },
-                              { value: 'nature', label: 'Biosphere', icon: <IconLeaf size={14} /> },
+                              {
+                                value: 'nature',
+                                label: 'Biosphere',
+                                icon: <IconLeaf size={14} />,
+                                variant: 'nature',
+                              },
                               {
                                 value: 'water',
                                 label: 'Hydrosphere',
                                 icon: <IconWater size={14} />,
+                                variant: 'water',
                               },
                             ]}
                           />
                         </div>
 
-                        <Grid
-                          columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))"
-                          gap="1.5rem"
+                        {/* Interactive Form Controls Container reacting to Mode Switch */}
+                        <div
+                          style={{
+                            padding: '1.25rem',
+                            borderRadius: 'var(--fj-radius-lg, 12px)',
+                            transition: 'all 0.35s ease',
+                            background:
+                              segmentedMode === 'nature'
+                                ? 'linear-gradient(135deg, rgba(240, 253, 244, 0.85) 0%, rgba(220, 252, 231, 0.5) 100%)'
+                                : segmentedMode === 'water'
+                                  ? 'linear-gradient(135deg, rgba(224, 242, 254, 0.85) 0%, rgba(186, 230, 253, 0.5) 100%)'
+                                  : 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(240, 249, 255, 0.5) 100%)',
+                            border:
+                              segmentedMode === 'nature'
+                                ? '1.5px solid rgba(74, 222, 128, 0.7)'
+                                : segmentedMode === 'water'
+                                  ? '1.5px solid rgba(56, 189, 248, 0.7)'
+                                  : '1.5px solid rgba(186, 230, 253, 0.9)',
+                            boxShadow:
+                              segmentedMode === 'nature'
+                                ? '0 8px 24px rgba(34, 197, 94, 0.15), inset 0 1px 1px #fff'
+                                : segmentedMode === 'water'
+                                  ? '0 8px 24px rgba(2, 132, 199, 0.18), inset 0 1px 1px #fff'
+                                  : '0 8px 24px rgba(2, 132, 199, 0.1), inset 0 1px 1px #fff',
+                          }}
                         >
-                          <Field>
-                            <Label isRequired htmlFor="vault-field">
-                              Aqua Security Passcode
-                            </Label>
-                            <Input id="vault-field" type="password" defaultValue="secret-aero" />
-                            <HelperText>Used to decrypt glass desktop memory banks.</HelperText>
-                          </Field>
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              marginBottom: '1rem',
+                              flexWrap: 'wrap',
+                              gap: '0.5rem',
+                            }}
+                          >
+                            <div
+                              style={{
+                                fontWeight: 700,
+                                fontSize: '0.8125rem',
+                                color:
+                                  segmentedMode === 'nature'
+                                    ? '#065f46'
+                                    : segmentedMode === 'water'
+                                      ? '#0369a1'
+                                      : 'var(--fj-color-sky-950)',
+                              }}
+                            >
+                              {segmentedMode === 'nature'
+                                ? '🌿 Active Ecosystem: Biosphere Green'
+                                : segmentedMode === 'water'
+                                  ? '💧 Active Ecosystem: Deep Hydrosphere'
+                                  : '✨ Active Ecosystem: Luminous Aero Glass'}
+                            </div>
+                            <Badge
+                              variant={
+                                segmentedMode === 'nature'
+                                  ? 'nature'
+                                  : segmentedMode === 'water'
+                                    ? 'info'
+                                    : 'primary'
+                              }
+                            >
+                              {segmentedMode.toUpperCase()}
+                            </Badge>
+                          </div>
 
-                          <Field>
-                            <Label isRequired htmlFor="error-field">
-                              Resource Allocation
-                            </Label>
-                            <Input
-                              id="error-field"
-                              defaultValue="99999"
-                              error="Value exceeds allocated biosphere quota."
-                            />
-                            <ErrorMessage>Allocation must be between 10 and 1000.</ErrorMessage>
-                          </Field>
-                        </Grid>
+                          <Grid
+                            columns="repeat(auto-fit, minmax(min(100%, 260px), 1fr))"
+                            gap="1.25rem"
+                          >
+                            <Field>
+                              <Label isRequired htmlFor="vault-field">
+                                {segmentedMode === 'nature'
+                                  ? 'Biosphere Access Key'
+                                  : segmentedMode === 'water'
+                                    ? 'Hydrosphere Hydro-Lock'
+                                    : 'Aqua Security Passcode'}
+                              </Label>
+                              <Input
+                                id="vault-field"
+                                type="password"
+                                defaultValue="secret-aero"
+                              />
+                              <HelperText>
+                                {segmentedMode === 'nature'
+                                  ? 'Authenticates flora environmental monitors.'
+                                  : segmentedMode === 'water'
+                                    ? 'Unlocks subsea aquatic data pipelines.'
+                                    : 'Used to decrypt glass desktop memory banks.'}
+                              </HelperText>
+                            </Field>
+
+                            <Field>
+                              <Label isRequired htmlFor="error-field">
+                                {segmentedMode === 'nature'
+                                  ? 'Forest Canopy Allocation'
+                                  : segmentedMode === 'water'
+                                    ? 'Ocean Depth Quota'
+                                    : 'Resource Allocation'}
+                              </Label>
+                              <Input
+                                id="error-field"
+                                defaultValue="99999"
+                                error="Value exceeds allocated biosphere quota."
+                              />
+                              <ErrorMessage>Allocation must be between 10 and 1000.</ErrorMessage>
+                            </Field>
+                          </Grid>
+                        </div>
                       </div>
 
                       <Divider

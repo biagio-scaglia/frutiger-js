@@ -5,6 +5,7 @@ export interface SegmentedControlOption<T extends string = string> {
   value: T;
   label: React.ReactNode;
   icon?: React.ReactNode;
+  variant?: 'glass' | 'nature' | 'water' | 'primary' | 'danger';
   disabled?: boolean;
 }
 
@@ -48,6 +49,7 @@ export function SegmentedControl<T extends string = string>({
             onClick={() => !option.disabled && onChange(option.value)}
             className={cn(
               'fj-segmented-control__item',
+              option.variant && `fj-segmented-control__item--${option.variant}`,
               isSelected && 'fj-segmented-control__item--active'
             )}
           >
