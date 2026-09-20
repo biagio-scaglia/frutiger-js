@@ -59,6 +59,17 @@ import {
   IconStar,
   IconSun,
   IconGlobe,
+  IconButton,
+  useToast,
+  Drawer,
+  EmptyState,
+  Pagination,
+  Field,
+  Label,
+  HelperText,
+  ErrorMessage,
+  AvatarGroup,
+  SegmentedControl,
 } from '@frutiger.js/react';
 import { AeroWidgetsSection } from './components/AeroWidgetsSection';
 import { AeroArchiveTab } from './components/AeroArchiveTab';
@@ -71,11 +82,16 @@ export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
   const [selectedExplorerTab, setSelectedExplorerTab] = useState('primitives');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedBtnSize, setSelectedBtnSize] = useState<ButtonSize>('md');
   const [isBtnLoading, setIsBtnLoading] = useState(false);
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const [simulatedWidth, setSimulatedWidth] = useState<string>('100%');
   const [selectedPreset, setSelectedPreset] = useState('daylight');
+  const [paginationPage, setPaginationPage] = useState(2);
+  const [segmentedMode, setSegmentedMode] = useState('glass');
+
+  const { toast } = useToast();
 
   // Form states
   const [inputVal, setInputVal] = useState('frutiger.aero@web2007.net');
@@ -87,7 +103,12 @@ export default function App() {
 
   const handleCopyInstall = () => {
     navigator.clipboard.writeText('npm install @frutiger.js/core @frutiger.js/react');
-    alert('Copied to clipboard: npm install @frutiger.js/core @frutiger.js/react');
+    toast({
+      title: 'Command Copied! 💧',
+      description: 'npm install @frutiger.js/core @frutiger.js/react has been copied to your clipboard.',
+      variant: 'success',
+      icon: <IconSparkles size={18} />,
+    });
   };
 
   return (
@@ -456,6 +477,46 @@ export default function App() {
                           </Button>
                         ))}
                       </div>
+
+                      <Divider label="Aero IconButtons (Circle & Rounded)" style={{ margin: '2rem 0 1.25rem 0' }} />
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                        <IconButton
+                          aria-label="Water Drop"
+                          icon={<IconWater size={18} />}
+                          variant="aero"
+                          size={selectedBtnSize}
+                          shape="circle"
+                        />
+                        <IconButton
+                          aria-label="Nature Leaf"
+                          icon={<IconLeaf size={18} />}
+                          variant="success"
+                          size={selectedBtnSize}
+                          shape="circle"
+                        />
+                        <IconButton
+                          aria-label="Sparkles Action"
+                          icon={<IconSparkles size={18} />}
+                          variant="glass"
+                          size={selectedBtnSize}
+                          shape="rounded"
+                        />
+                        <IconButton
+                          aria-label="Favorite Star"
+                          icon={<IconStar size={18} />}
+                          variant="secondary"
+                          size={selectedBtnSize}
+                          shape="rounded"
+                        />
+                        <IconButton
+                          aria-label="Loading State"
+                          icon={<IconSun size={18} />}
+                          variant="primary"
+                          size={selectedBtnSize}
+                          isLoading={true}
+                        />
+                      </div>
                     </CardContent>
                   </Card>
                 </TabPanel>
@@ -567,6 +628,39 @@ export default function App() {
                         </div>
                       </div>
 
+                      <Divider label="Aero Segmented Switcher & Accessible Form Fields" style={{ margin: '2rem 0 1.5rem 0' }} />
+
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        <div>
+                          <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                            View Mode Selector:
+                          </span>
+                          <SegmentedControl
+                            value={segmentedMode}
+                            onChange={setSegmentedMode}
+                            options={[
+                              { value: 'glass', label: 'Aero Glass', icon: <IconSparkles size={14} /> },
+                              { value: 'nature', label: 'Biosphere', icon: <IconLeaf size={14} /> },
+                              { value: 'water', label: 'Hydrosphere', icon: <IconWater size={14} /> },
+                            ]}
+                          />
+                        </div>
+
+                        <Grid columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))" gap="1.5rem">
+                          <Field>
+                            <Label isRequired htmlFor="vault-field">Aqua Security Passcode</Label>
+                            <Input id="vault-field" type="password" defaultValue="secret-aero" />
+                            <HelperText>Used to decrypt glass desktop memory banks.</HelperText>
+                          </Field>
+
+                          <Field>
+                            <Label isRequired htmlFor="error-field">Resource Allocation</Label>
+                            <Input id="error-field" defaultValue="99999" error="Value exceeds allocated biosphere quota." />
+                            <ErrorMessage>Allocation must be between 10 and 1000.</ErrorMessage>
+                          </Field>
+                        </Grid>
+                      </div>
+
                       <Divider
                         label="Aero Range Sliders & Tactile Controls"
                         style={{ margin: '2rem 0 1.5rem 0' }}
@@ -605,7 +699,84 @@ export default function App() {
 
                 {/* FEEDBACK TAB */}
                 <TabPanel value="feedback">
-                  <Stack spacing="md">
+                  <Stack spacing="lg">
+                    <Card variant="glass">
+                      <CardHeader>
+                        <CardTitle>Aero Toast Notifications & Slide Drawers</CardTitle>
+                        <CardDescription>
+                          Non-intrusive acrylic toast pills and full slide-over glass sheets with specular highlights.
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+                          <Button
+                            variant="primary"
+                            leftIcon={<IconWater size={16} />}
+                            onClick={() =>
+                              toast({
+                                title: 'Hydrosphere Synchronized',
+                                description: 'Water flow physics calibrated to 60fps.',
+                                variant: 'info',
+                                icon: <IconWater size={18} />,
+                              })
+                            }
+                          >
+                            Spawn Info Toast
+                          </Button>
+                          <Button
+                            variant="success"
+                            leftIcon={<IconLeaf size={16} />}
+                            onClick={() =>
+                              toast({
+                                title: 'Biosphere Online',
+                                description: 'Natural foliage shaders enabled successfully.',
+                                variant: 'success',
+                                icon: <IconLeaf size={18} />,
+                              })
+                            }
+                          >
+                            Spawn Success Toast
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            leftIcon={<IconSun size={16} />}
+                            onClick={() =>
+                              toast({
+                                title: 'Solar Flare Warning',
+                                description: 'Atmospheric specular intensity at 94%.',
+                                variant: 'warning',
+                                icon: <IconSun size={18} />,
+                              })
+                            }
+                          >
+                            Spawn Warning Toast
+                          </Button>
+                          <Button
+                            variant="danger"
+                            leftIcon={<IconSparkles size={16} />}
+                            onClick={() =>
+                              toast({
+                                title: 'Memory Overflow',
+                                description: 'Specular cache exceeds 2048 MB.',
+                                variant: 'danger',
+                              })
+                            }
+                          >
+                            Spawn Danger Toast
+                          </Button>
+                          <Button
+                            variant="aero"
+                            leftIcon={<IconGlobe size={16} />}
+                            onClick={() => setIsDrawerOpen(true)}
+                          >
+                            Open Slide Drawer ➔
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    <Divider label="Static Frosted Alert Banners" />
+
                     {(['info', 'success', 'warning', 'danger'] as AlertVariant[]).map(av => (
                       <Alert
                         key={av}
@@ -715,6 +886,82 @@ export default function App() {
                             />
                           </div>
                         </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* AvatarGroup & Pagination Showcase */}
+                    <Card variant="glass">
+                      <CardHeader>
+                        <div>
+                          <CardTitle>Aero Avatar Groups & Pagination</CardTitle>
+                          <CardDescription>
+                            Tactile overlapping user bubbles and responsive glass page navigators.
+                          </CardDescription>
+                        </div>
+                        <Badge variant="primary">Data Navigation</Badge>
+                      </CardHeader>
+                      <CardContent>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                          <div>
+                            <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.75rem' }}>
+                              Aero Core Contributors (AvatarGroup):
+                            </span>
+                            <AvatarGroup max={4} size="md">
+                              <Avatar name="Biagio Scaglia" size="md" />
+                              <Avatar name="Aero Aqua" size="md" />
+                              <Avatar name="Biosphere Green" size="md" />
+                              <Avatar name="Solar Flare" size="md" />
+                              <Avatar name="Hydrosphere" size="md" />
+                              <Avatar name="Crystal Dome" size="md" />
+                            </AvatarGroup>
+                          </div>
+
+                          <div>
+                            <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.75rem' }}>
+                              Interactive Aero Pagination (Page {paginationPage} of 8):
+                            </span>
+                            <Pagination
+                              currentPage={paginationPage}
+                              totalPages={8}
+                              onPageChange={setPaginationPage}
+                            />
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* EmptyState Showcase */}
+                    <Card variant="glass">
+                      <CardHeader>
+                        <CardTitle>Tactile Empty State Container</CardTitle>
+                        <CardDescription>
+                          Aero empty data fallback with luminous halo and interactive calls-to-action.
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <EmptyState
+                          icon={<IconWater size={36} color="var(--fj-color-sky-600)" />}
+                          title="No Hydrosphere Data Points Found"
+                          description="Your atmospheric water cache is currently clear. Sync your environmental sensors to populate data."
+                          actions={
+                            <>
+                              <Button
+                                variant="primary"
+                                leftIcon={<IconSparkles size={16} />}
+                                onClick={() =>
+                                  toast({
+                                    title: 'Sync Triggered',
+                                    description: 'Connecting to Aero weather telemetry network...',
+                                    variant: 'info',
+                                  })
+                                }
+                              >
+                                Sync Weather Sensors
+                              </Button>
+                              <Button variant="glass">Configure Parameters</Button>
+                            </>
+                          }
+                        />
                       </CardContent>
                     </Card>
 
@@ -1455,11 +1702,51 @@ export default function App() {
           <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
             Cancel
           </Button>
-          <Button variant="aero" onClick={() => setIsModalOpen(false)}>
-            Confirm Experience
-          </Button>
         </div>
       </Modal>
+
+      {/* Interactive Aero Slide Drawer */}
+      <Drawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+        title="Aero Slide-Over Workspace"
+        placement="right"
+        footer={
+          <>
+            <Button variant="ghost" onClick={() => setIsDrawerOpen(false)}>
+              Dismiss
+            </Button>
+            <Button variant="primary" onClick={() => setIsDrawerOpen(false)}>
+              Apply Changes
+            </Button>
+          </>
+        }
+      >
+        <Stack spacing="md">
+          <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.5 }}>
+            This slide-over drawer is rendered with acrylic hardware-accelerated glass backdrop filters,
+            specular rim highlights, and complete WCAG 2.2 keyboard navigation (ESC key dismiss).
+          </p>
+
+          <Field>
+            <Label isRequired htmlFor="drawer-preset">Workspace Name</Label>
+            <Input id="drawer-preset" defaultValue="Aero Biosphere Lab" />
+            <HelperText>Visible to all synchronized network nodes.</HelperText>
+          </Field>
+
+          <Field>
+            <Label htmlFor="drawer-mode">Rendering Pipeline</Label>
+            <Select
+              id="drawer-mode"
+              options={[
+                { value: 'vulkan', label: 'Hardware Accelerated Glass' },
+                { value: 'directx', label: 'DirectX Acrylic Shaders' },
+                { value: 'webgl', label: 'WebGL Water Caustics' },
+              ]}
+            />
+          </Field>
+        </Stack>
+      </Drawer>
 
       {/* Footer */}
       <footer
