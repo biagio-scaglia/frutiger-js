@@ -109,7 +109,7 @@ export default function App() {
   const handleExportComponents = () => {
     const pkg = {
       name: '@frutiger.js/components',
-      version: '1.0.5',
+      version: '1.0.6',
       components: [
         'Button',
         'Card',

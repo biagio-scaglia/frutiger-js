@@ -190,30 +190,148 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                     setSelectedPreset(val);
                     playAeroClick(sliderGainVal);
                     toast({
-                      title: `Preset: ${val.toUpperCase()} ✨`,
-                      description: `Format preset switched to ${val}.`,
+                      title: `Format Switched: ${val.toUpperCase()} ✨`,
+                      description: `Active preview format is now ${val}.`,
                       variant: val === 'emerald' ? 'success' : 'info',
                     });
                   }}
                   options={[
                     {
                       value: 'daylight',
-                      label: 'Daylight Sky',
+                      label: 'Daylight Sky (Theme)',
                       icon: <IconWater size={14} />,
                     },
                     {
                       value: 'gloss',
-                      label: 'Specular Crystal',
+                      label: 'Specular Crystal (Theme)',
                       icon: <IconSparkles size={14} />,
                     },
                     {
                       value: 'emerald',
-                      label: 'Biosphere Green',
+                      label: 'Biosphere Green (Theme)',
                       icon: <IconLeaf size={14} />,
+                    },
+                    {
+                      value: 'json',
+                      label: 'JSON Schema (Export)',
+                      icon: <IconSun size={14} />,
+                    },
+                    {
+                      value: 'css',
+                      label: 'CSS Tokens (Variables)',
+                      icon: <IconSparkles size={14} />,
+                    },
+                    {
+                      value: 'tsx',
+                      label: 'React TSX (Component)',
+                      icon: <IconStar size={14} />,
                     },
                   ]}
                 />
               </div>
+            </div>
+
+            {/* Live Format Output & Preview Container */}
+            <div
+              style={{
+                marginTop: '1.25rem',
+                padding: '1rem',
+                borderRadius: 'var(--fj-radius-lg)',
+                background:
+                  selectedPreset === 'daylight'
+                    ? 'linear-gradient(135deg, rgba(224, 242, 254, 0.8) 0%, rgba(186, 230, 253, 0.5) 100%)'
+                    : selectedPreset === 'emerald'
+                      ? 'linear-gradient(135deg, rgba(220, 252, 231, 0.8) 0%, rgba(187, 247, 208, 0.5) 100%)'
+                      : selectedPreset === 'gloss'
+                        ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.7) 100%)'
+                        : 'rgba(15, 23, 42, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.8)',
+                boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(12, 74, 110, 0.08)',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '0.75rem',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Badge
+                    variant={
+                      selectedPreset === 'emerald'
+                        ? 'nature'
+                        : selectedPreset === 'gloss'
+                          ? 'info'
+                          : 'primary'
+                    }
+                  >
+                    Active Format: {selectedPreset.toUpperCase()}
+                  </Badge>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--fj-color-sky-900)', fontWeight: 600 }}>
+                    {selectedPreset === 'daylight' && '☀️ Daylight Aero Sky Color Tokens'}
+                    {selectedPreset === 'gloss' && '✨ Frosted Specular Refractive Preset'}
+                    {selectedPreset === 'emerald' && '🌿 Organic Biosphere Foliage Tokens'}
+                    {selectedPreset === 'json' && '📦 Structured JSON Export Manifest'}
+                    {selectedPreset === 'css' && '🎨 Pure CSS Root Variable Definitions'}
+                    {selectedPreset === 'tsx' && '⚛️ React Component Implementation Code'}
+                  </span>
+                </div>
+                <Button
+                  size="sm"
+                  variant="glass"
+                  onClick={() => {
+                    const codeSnippets: Record<string, string> = {
+                      daylight: ':root { --fj-theme: daylight; --fj-color-sky-500: #0ea5e9; }',
+                      gloss: ':root { --fj-surface: glass; --fj-backdrop-blur: 16px; }',
+                      emerald: ':root { --fj-theme: nature; --fj-color-nature-500: #22c55e; }',
+                      json: '{\n  "name": "@frutiger.js/theme",\n  "version": "1.0.6",\n  "preset": "aero-glass"\n}',
+                      css: ':root {\n  --fj-color-primary: #0284c7;\n  --fj-color-secondary: #0d9488;\n}',
+                      tsx: '<Button variant="aero" size="md">Click Me</Button>',
+                    };
+                    navigator.clipboard.writeText(codeSnippets[selectedPreset] || selectedPreset);
+                    playAeroChime(sliderGainVal);
+                    toast({
+                      title: 'Payload Copied! 📋',
+                      description: `Copied ${selectedPreset.toUpperCase()} output to clipboard.`,
+                      variant: 'success',
+                    });
+                  }}
+                >
+                  Copy Payload
+                </Button>
+              </div>
+
+              <pre
+                style={{
+                  margin: 0,
+                  padding: '0.75rem 1rem',
+                  background: 'rgba(15, 23, 42, 0.85)',
+                  color: '#e0f2fe',
+                  borderRadius: 'var(--fj-radius-md)',
+                  fontSize: '0.825rem',
+                  fontFamily: 'monospace',
+                  overflowX: 'auto',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                }}
+              >
+                {selectedPreset === 'daylight' &&
+                  `/* Daylight Sky Theme Variables */\n:root {\n  --fj-color-sky-400: #38bdf8;\n  --fj-color-sky-500: #0ea5e9;\n  --fj-color-sky-600: #0284c7;\n  --fj-gloss-sheen: rgba(255, 255, 255, 0.75);\n}`}
+                {selectedPreset === 'gloss' &&
+                  `/* Specular Crystal Preset */\n.fj-surface--specular {\n  background: rgba(255, 255, 255, 0.85);\n  backdrop-filter: blur(16px);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);\n}`}
+                {selectedPreset === 'emerald' &&
+                  `/* Biosphere Nature Preset */\n:root {\n  --fj-color-nature-400: #4ade80;\n  --fj-color-nature-500: #22c55e;\n  --fj-color-nature-600: #16a34a;\n  --fj-glow-nature: 0 0 16px rgba(34, 197, 94, 0.5);\n}`}
+                {selectedPreset === 'json' &&
+                  `{\n  "name": "@frutiger.js/playground",\n  "version": "1.0.6",\n  "designSystem": "Frutiger Aero",\n  "activePreset": "${selectedPreset}"\n}`}
+                {selectedPreset === 'css' &&
+                  `:root {\n  --fj-radius-pill: 9999px;\n  --fj-radius-lg: 1rem;\n  --fj-shadow-aero: 0 4px 14px rgba(14, 165, 233, 0.45);\n}`}
+                {selectedPreset === 'tsx' &&
+                  `import { Button, Dropdown, DropdownSelect } from '@frutiger.js/react';\n\nexport const MyComponent = () => (\n  <Button variant="aero" size="md">Frutiger Aero Button</Button>\n);`}
+              </pre>
             </div>
           </CardContent>
         </Card>

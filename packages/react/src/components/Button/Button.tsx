@@ -32,6 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const isActuallyDisabled = disabled || isLoading;
+    const isWhiteSpinner = variant !== 'glass' && variant !== 'ghost';
 
     return (
       <button
@@ -54,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && (
           <span className="fj-button__spinner" aria-hidden="true">
-            <span className="fj-spinner fj-spinner--sm fj-spinner--white" />
+            <span className={cn('fj-spinner fj-spinner--sm', isWhiteSpinner && 'fj-spinner--white')} />
           </span>
         )}
         <span

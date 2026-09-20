@@ -145,6 +145,8 @@ export const AeroButtonsTab: React.FC<AeroButtonsTabProps> = React.memo(
               variant="aero"
               size={selectedBtnSize}
               shape="circle"
+              isLoading={isBtnLoading}
+              disabled={isBtnDisabled}
               onClick={() => {
                 playAeroClick(sliderGainVal);
                 toast({
@@ -160,6 +162,8 @@ export const AeroButtonsTab: React.FC<AeroButtonsTabProps> = React.memo(
               variant="success"
               size={selectedBtnSize}
               shape="circle"
+              isLoading={isBtnLoading}
+              disabled={isBtnDisabled}
               onClick={() => {
                 playAeroClick(sliderGainVal);
                 toast({
@@ -175,6 +179,8 @@ export const AeroButtonsTab: React.FC<AeroButtonsTabProps> = React.memo(
               variant="glass"
               size={selectedBtnSize}
               shape="rounded"
+              isLoading={isBtnLoading}
+              disabled={isBtnDisabled}
               onClick={() => {
                 playAeroChime(sliderGainVal);
                 toast({
@@ -190,6 +196,8 @@ export const AeroButtonsTab: React.FC<AeroButtonsTabProps> = React.memo(
               variant="secondary"
               size={selectedBtnSize}
               shape="rounded"
+              isLoading={isBtnLoading}
+              disabled={isBtnDisabled}
               onClick={() => {
                 playAeroClick(sliderGainVal);
                 toast({
@@ -200,11 +208,21 @@ export const AeroButtonsTab: React.FC<AeroButtonsTabProps> = React.memo(
               }}
             />
             <IconButton
-              aria-label="Loading State"
+              aria-label="Sun Energy Indicator"
               icon={<IconSun size={18} />}
               variant="primary"
               size={selectedBtnSize}
-              isLoading={true}
+              shape="circle"
+              isLoading={isBtnLoading}
+              disabled={isBtnDisabled}
+              onClick={() => {
+                playAeroClick(sliderGainVal);
+                toast({
+                  title: 'Solar Radiance Action ☀️',
+                  description: 'Photosphere intensity calibrated.',
+                  variant: 'info',
+                });
+              }}
             />
           </div>
         </CardContent>
