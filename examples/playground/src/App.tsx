@@ -257,7 +257,7 @@ export default function App() {
                 }}
               >
                 <Badge variant="nature" icon={<IconLeaf size={14} />}>
-                  v1.0.4 • Web 2.0 Aesthetic Reborn
+                  v1.0.5 • Web 2.0 Aesthetic Reborn
                 </Badge>
                 <a
                   href="https://biagiocyberspace.it"
@@ -762,11 +762,7 @@ export default function App() {
                                     ? 'Hydrosphere Hydro-Lock'
                                     : 'Aqua Security Passcode'}
                               </Label>
-                              <Input
-                                id="vault-field"
-                                type="password"
-                                defaultValue="secret-aero"
-                              />
+                              <Input id="vault-field" type="password" defaultValue="secret-aero" />
                               <HelperText>
                                 {segmentedMode === 'nature'
                                   ? 'Authenticates flora environmental monitors.'
@@ -1957,7 +1953,7 @@ export default function App() {
             >
               Frutiger<span style={{ color: 'var(--fj-color-sky-600)' }}>.js</span>
             </span>
-            <Badge variant="primary">v1.0.4</Badge>
+            <Badge variant="primary">v1.0.5</Badge>
           </div>
           <p style={{ margin: '0 0 0.75rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
             The Premier Frutiger Aero UI Component Suite & CSS Design System for React

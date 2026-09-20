@@ -1,6 +1,6 @@
 {
   "name": "frutiger-js-monorepo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "description": "Frutiger Aero, rebuilt for the modern web. React component library & CSS design system.",
   "type": "module",
