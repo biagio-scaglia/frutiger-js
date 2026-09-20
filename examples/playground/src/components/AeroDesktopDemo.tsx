@@ -265,9 +265,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   color: currentTheme.textColor,
                   transition: 'background 0.15s ease',
                 }}
-                onMouseEnter={e =>
-                  (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)')
-                }
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
                 <div
@@ -285,9 +283,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                     fontSize: '11px',
                     fontWeight: 700,
                     textShadow:
-                      windowVariant === 'vista'
-                        ? '0 1px 3px rgba(0, 0, 0, 0.9)'
-                        : '0 1px 2px #fff',
+                      windowVariant === 'vista' ? '0 1px 3px rgba(0, 0, 0, 0.9)' : '0 1px 2px #fff',
                     marginTop: '3px',
                     textAlign: 'center',
                   }}
@@ -314,9 +310,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                   color: currentTheme.textColor,
                   transition: 'background 0.15s ease',
                 }}
-                onMouseEnter={e =>
-                  (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)')
-                }
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.35)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}
               >
                 <div
@@ -334,9 +328,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                     fontSize: '11px',
                     fontWeight: 700,
                     textShadow:
-                      windowVariant === 'vista'
-                        ? '0 1px 3px rgba(0, 0, 0, 0.9)'
-                        : '0 1px 2px #fff',
+                      windowVariant === 'vista' ? '0 1px 3px rgba(0, 0, 0, 0.9)' : '0 1px 2px #fff',
                     marginTop: '3px',
                     textAlign: 'center',
                   }}
@@ -430,9 +422,7 @@ export const AeroDesktopDemo: React.FC = React.memo(() => {
                           >
                             {f.name}
                           </div>
-                          <div style={{ fontSize: '9px', color: currentTheme.subText }}>
-                            {f.sz}
-                          </div>
+                          <div style={{ fontSize: '9px', color: currentTheme.subText }}>{f.sz}</div>
                         </div>
                       ))}
                     </Grid>
