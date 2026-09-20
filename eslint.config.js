@@ -50,5 +50,15 @@ export default tseslint.config(
         version: 'detect',
       },
     },
+  },
+  {
+    files: ['scripts/**/*.{js,mjs}', '*.mjs'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      globals: {
+        ...globals.node,
+        ...globals.es2021,
+      },
+    },
   }
 );
