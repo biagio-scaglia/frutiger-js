@@ -1,414 +1,217 @@
 # Frutiger.js - Component Documentation & API Reference
 
-Welcome to the comprehensive component guide for **Frutiger.js**. Every component is engineered with pure CSS cascade layers (`@layer fj.*`), strict TypeScript types, fluid responsiveness, and full WCAG 2.1 AA accessibility compliance.
+Welcome to the comprehensive component guide for **Frutiger.js**. Every component is engineered with pure CSS cascade layers (`@layer fj.*`), strict TypeScript types, fluid responsiveness, and full WCAG 2.2 AA accessibility compliance.
 
 ---
 
-## 1. Custom Overflow & ScrollArea (`ScrollArea`)
+## Table of Contents
+1. [Aero Visual Primitives (`AeroSurface`, `Glass`, `Gloss`, `Bevel`, `Glow`, `Reflection`)](#1-aero-visual-primitives)
+2. [Buttons & IconButtons (`Button`, `IconButton`)](#2-buttons--iconbuttons)
+3. [Forms & Fields (`Field`, `Label`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Slider`, `SegmentedControl`)](#3-forms--fields)
+4. [Feedback & Overlays (`Toast`, `ToastProvider`, `useToast`, `Alert`, `Modal`, `Drawer`, `Tooltip`)](#4-feedback--overlays)
+5. [Data & Navigation (`Navbar`, `Tabs`, `Breadcrumb`, `Pagination`, `Accordion`, `Table`, `Avatar`, `AvatarGroup`, `EmptyState`, `StatCard`, `ScrollArea`, `Dropzone`)](#5-data--navigation)
+6. [Desktop & Media Experience (`WindowFrame`, `Taskbar`, `GalleryGrid`, `GalleryItem`)](#6-desktop--media-experience)
 
-The `ScrollArea` component provides cross-browser skeuomorphic Frutiger Aero scrollbars with translucent aqua thumbs, subtle inset groove tracks, momentum scrolling, and dynamic top/bottom gradient shadow masks.
+---
 
-### Usage
+## 1. Aero Visual Primitives
+
+Low-level composable layers that impart authentic skeuomorphic gloss and acrylic depth to any container.
 
 ```tsx
-import { ScrollArea } from '@frutiger-js/react';
+import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from '@frutiger.js/react';
 
-export function MyFeed() {
+export function CrystalCard() {
   return (
-    <ScrollArea maxHeight="300px" showOverflowShadows>
-      <div className="content">
-        <p>Long scrollable feed item 1...</p>
-        <p>Long scrollable feed item 2...</p>
-      </div>
-    </ScrollArea>
+    <Reflection>
+      <AeroSurface variant="crystal" hasBevel="deep" glow="aqua" isInteractive>
+        <Gloss opacity={0.65} />
+        <h3>Luminous Aqua Surface</h3>
+      </AeroSurface>
+    </Reflection>
   );
 }
 ```
 
-### Props
+---
 
-| Prop                  | Type               | Default     | Description                                    |
-| :-------------------- | :----------------- | :---------- | :--------------------------------------------- |
-| `maxHeight`           | `string \| number` | `'300px'`   | Maximum height before scrolling begins         |
-| `maxWidth`            | `string \| number` | `undefined` | Maximum width for horizontal scroll            |
-| `showOverflowShadows` | `boolean`          | `true`      | Enables dynamic top/bottom gradient fade masks |
-| `className`           | `string`           | `undefined` | Optional CSS classes                           |
+## 2. Buttons & IconButtons
 
-### Pure CSS Utility
+### `Button`
+Tactile glossy buttons with dome highlights, active indentation, and loading state spinner.
 
-You can also apply custom Aero scrollbars directly to any element using the CSS class:
+```tsx
+import { Button, IconSparkles } from '@frutiger.js/react';
 
-```html
-<div class="fj-scroll-area fj-scrollbar-aero" style="max-height: 200px;">
-  <!-- content -->
-</div>
+<Button variant="primary" size="md" leftIcon={<IconSparkles size={16} />}>
+  Explore Frutiger Aero
+</Button>
+```
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `variant` | `'primary' \| 'secondary' \| 'success' \| 'danger' \| 'ghost' \| 'glass' \| 'aero'` | `'primary'` | Visual style preset |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button dimensions (min 44px on touch) |
+| `isLoading` | `boolean` | `false` | Displays accessible loading spinner |
+| `isFullWidth` | `boolean` | `false` | Stretches button to 100% container width |
+| `leftIcon` / `rightIcon` | `React.ReactNode` | `undefined` | Optional icon adornments |
+
+### `IconButton`
+Dedicated circular or rounded icon button with strict `aria-label` enforcement for accessibility.
+
+```tsx
+import { IconButton, IconWater } from '@frutiger.js/react';
+
+<IconButton
+  aria-label="Synchronize Hydrosphere"
+  icon={<IconWater size={18} />}
+  variant="aero"
+  shape="circle"
+/>
 ```
 
 ---
 
-## 2. File Upload & Dropzone (`Dropzone`)
+## 3. Forms & Fields
 
-A tactile Frutiger Aero dropzone for uploading files, featuring glossy sky border highlights, drag-over micro-animations, and full keyboard/screen-reader support.
-
-### Usage
+### `Field`, `Label`, `HelperText`, `ErrorMessage`
+Accessible form structure wrapping inputs with automatic error announcement and required indicators.
 
 ```tsx
-import { Dropzone } from '@frutiger-js/react';
+import { Field, Label, Input, HelperText, ErrorMessage } from '@frutiger.js/react';
 
-export function MediaUploader() {
-  return (
-    <Dropzone
-      title="Drag & drop wallpapers or click to browse"
-      subtitle="Supports PNG, JPG, WebP, and SVG up to 50MB"
-      accept="image/*"
-      onFilesSelected={files => console.log(files)}
-    />
-  );
-}
+<Field>
+  <Label isRequired htmlFor="email">User Email</Label>
+  <Input id="email" type="email" placeholder="user@web2007.net" />
+  <HelperText>We will never share your email address.</HelperText>
+</Field>
 ```
 
-### Props
+### `SegmentedControl`
+Glossy toggle pill switcher for switching view modes or binary options.
 
-| Prop              | Type                        | Default                                | Description                                       |
-| :---------------- | :-------------------------- | :------------------------------------- | :------------------------------------------------ |
-| `title`           | `ReactNode`                 | `'Drop files here or click to browse'` | Main call-to-action title                         |
-| `subtitle`        | `ReactNode`                 | `'Supports PNG, JPG...'`               | Helper file type instructions                     |
-| `icon`            | `ReactNode`                 | `<IconCloud size={24} />`              | Custom top icon                                   |
-| `accept`          | `string`                    | `undefined`                            | Native file accept filter                         |
-| `multiple`        | `boolean`                   | `false`                                | Allow multiple file selections                    |
-| `disabled`        | `boolean`                   | `false`                                | Disables upload interactions                      |
-| `onFilesSelected` | `(files: FileList) => void` | `undefined`                            | Callback fired when files are selected or dropped |
+```tsx
+import { SegmentedControl, IconSparkles, IconLeaf } from '@frutiger.js/react';
+
+<SegmentedControl
+  value={mode}
+  onChange={setMode}
+  options={[
+    { value: 'glass', label: 'Aero Glass', icon: <IconSparkles size={14} /> },
+    { value: 'nature', label: 'Biosphere', icon: <IconLeaf size={14} /> },
+  ]}
+/>
+```
 
 ---
 
-## 3. Skeleton Shimmer Loader (`Skeleton`)
+## 4. Feedback & Overlays
 
-Provides an iridescent, glass-refracting loading placeholder with smooth horizontal shimmer animations.
-
-### Usage
-
-```tsx
-import { Skeleton } from '@frutiger-js/react';
-
-export function LoadingCard() {
-  return (
-    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-      <Skeleton variant="circle" width="48px" height="48px" />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <Skeleton height="16px" width="70%" />
-        <Skeleton height="12px" width="40%" />
-      </div>
-    </div>
-  );
-}
-```
-
-### Props
-
-| Prop      | Type                           | Default     | Description                  |
-| :-------- | :----------------------------- | :---------- | :--------------------------- |
-| `variant` | `'rect' \| 'circle' \| 'pill'` | `'rect'`    | Shape of the shimmer element |
-| `width`   | `string \| number`             | `undefined` | Width of the placeholder     |
-| `height`  | `string \| number`             | `undefined` | Height of the placeholder    |
-
----
-
-## 4. Range Slider (`Slider`)
-
-Tactile skeuomorphic slider with spherical glossy thumb, inner track groove, and live formatted value readout.
-
-### Usage
+### `Toast` & `useToast`
+Floating acrylic notification pills with specular rim reflections and auto-dismiss timer.
 
 ```tsx
-import { useState } from 'react';
-import { Slider } from '@frutiger-js/react';
+import { useToast, Button, IconWater } from '@frutiger.js/react';
 
-export function VolumeControl() {
-  const [volume, setVolume] = useState(75);
+export function Notifier() {
+  const { toast } = useToast();
 
   return (
-    <Slider
-      label="Master Audio Output"
-      value={volume}
-      min={0}
-      max={100}
-      onChange={e => setVolume(Number(e.target.value))}
-      valueFormat={v => `${v}%`}
-    />
-  );
-}
-```
-
-### Props
-
-| Prop          | Type                      | Default             | Description                       |
-| :------------ | :------------------------ | :------------------ | :-------------------------------- |
-| `label`       | `ReactNode`               | `undefined`         | Accessible label above the slider |
-| `showValue`   | `boolean`                 | `true`              | Toggles the numeric value badge   |
-| `valueFormat` | `(val: number) => string` | `(v) => \`\${v}%\`` | Custom formatter function         |
-| `min`         | `number`                  | `0`                 | Minimum range value               |
-| `max`         | `number`                  | `100`               | Maximum range value               |
-| `step`        | `number`                  | `1`                 | Step granularity                  |
-| `disabled`    | `boolean`                 | `false`             | Disables user interaction         |
-
----
-
-## 5. Etched Divider (`Divider`)
-
-Glass-etched horizontal or vertical rule with translucent specular highlights and optional center label.
-
-### Usage
-
-```tsx
-import { Divider } from '@frutiger-js/react';
-
-// Horizontal with label
-<Divider label="OR" />
-
-// Simple horizontal
-<Divider />
-
-// Vertical
-<Divider orientation="vertical" />
-```
-
----
-
-## 6. Responsive Navigation Bar (`Navbar` & `NavLink`)
-
-Sticky frosted-glass navigation bar with 1024px mobile drawer breakpoint, escape key dismissal, and seamless active state indicators.
-
-### Usage
-
-```tsx
-import { Navbar, NavLink, Avatar, Button } from '@frutiger-js/react';
-
-export function Navigation() {
-  return (
-    <Navbar
-      brand={
-        <span>
-          Frutiger<strong>.js</strong>
-        </span>
-      }
-      actions={
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <Avatar name="Biagio Scaglia" size="sm" />
-          <Button variant="primary" size="sm">
-            GitHub
-          </Button>
-        </div>
+    <Button
+      onClick={() =>
+        toast({
+          title: 'Hydrosphere Online',
+          description: 'Atmospheric water caustics calibrated.',
+          variant: 'success',
+          icon: <IconWater size={18} />,
+        })
       }
     >
-      <NavLink href="#overview" isActive>
-        Overview
-      </NavLink>
-      <NavLink href="#components">Components</NavLink>
-      <NavLink href="#tokens">Tokens</NavLink>
-    </Navbar>
+      Trigger Toast
+    </Button>
   );
 }
 ```
 
----
-
-## 7. Aero Window Frame (`WindowFrame`)
-
-Authentic Windows Vista / 7 Aero glass desktop window frame with specular jewel controls (minimize, maximize, close), translucent titlebar, and header/footer containers.
-
-### Usage
+### `Drawer`
+Slide-out glass sheet from left, right, or bottom with backdrop blur, focus trap, and Escape key handling.
 
 ```tsx
-import { WindowFrame, Badge } from '@frutiger-js/react';
+import { Drawer, Button } from '@frutiger.js/react';
 
-export function ExplorerDemo() {
-  return (
-    <WindowFrame
-      title="Windows Aero Explorer — C:\Media\FrutigerArchive"
-      variant="aero"
-      isActive={true}
-      onClose={() => console.log('Close')}
-      onMinimize={() => console.log('Minimize')}
-      onMaximize={() => console.log('Maximize')}
-      headerActions={<Badge variant="nature">Ready</Badge>}
-      footer={<span>8 items • 124 MB Aero Cache</span>}
-    >
-      <div style={{ padding: '1rem' }}>
-        <p>Aero Explorer window content...</p>
-      </div>
-    </WindowFrame>
-  );
-}
+<Drawer
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Settings Vault"
+  placement="right"
+>
+  <p>Slide-over drawer content with acrylic frosted backing.</p>
+</Drawer>
 ```
-
-### Props
-
-| Prop            | Type                                         | Default         | Description                                    |
-| :-------------- | :------------------------------------------- | :-------------- | :--------------------------------------------- |
-| `title`         | `ReactNode`                                  | `'Aero Window'` | Window title text or node                      |
-| `icon`          | `ReactNode`                                  | `undefined`     | Icon displayed on the left side of titlebar    |
-| `variant`       | `'aero' \| 'glass' \| 'glossy' \| 'frosted'` | `'aero'`        | Visual glass theme                             |
-| `isActive`      | `boolean`                                    | `true`          | Active / inactive titlebar state               |
-| `headerActions` | `ReactNode`                                  | `undefined`     | Extra actions or badges in the header          |
-| `onClose`       | `() => void`                                 | `undefined`     | Close button click handler                     |
-| `onMinimize`    | `() => void`                                 | `undefined`     | Minimize button click handler                  |
-| `onMaximize`    | `() => void`                                 | `undefined`     | Maximize button click handler                  |
-| `footer`        | `ReactNode`                                  | `undefined`     | Status bar content at the bottom of the window |
 
 ---
 
-## 8. Media Gallery & Grid (`GalleryGrid` & `GalleryItem`)
+## 5. Data & Navigation
 
-Inspired by the [Frutiger Aero Archive](https://frutigeraeroarchive.org), these components provide fluid responsive media grids with tactile hover elevations, specular light badges, and keyboard-accessible preview triggers.
-
-### Usage
+### `Pagination`
+Accessible page navigator with active glass highlight, previous/next triggers, and keyboard navigation.
 
 ```tsx
-import { GalleryGrid, GalleryItem, Button } from '@frutiger-js/react';
+import { Pagination } from '@frutiger.js/react';
 
-export function ArchiveGallery() {
-  return (
-    <GalleryGrid cols={3} minWidth="260px" gap="1.5rem">
-      <GalleryItem
-        title="Windows Vista Aurora Bliss"
-        category="2006 • 3840 × 2160"
-        description="High-resolution organic glass ribbons and fluid aurora bokeh."
-        badge="Vista"
-        imageUrl="/assets/aurora.png"
-        footer={
-          <Button size="sm" variant="glass">
-            Inspect 🔍
-          </Button>
-        }
-        onClick={() => console.log('Open Lightbox')}
-      />
-    </GalleryGrid>
-  );
-}
+<Pagination
+  currentPage={currentPage}
+  totalPages={10}
+  onPageChange={setCurrentPage}
+/>
 ```
 
-### `GalleryGrid` Props
-
-| Prop       | Type     | Default     | Description                    |
-| :--------- | :------- | :---------- | :----------------------------- |
-| `cols`     | `number` | `3`         | Target number of columns       |
-| `minWidth` | `string` | `'260px'`   | Fluid column minimum width     |
-| `gap`      | `string` | `'1.5rem'`  | Grid item spacing              |
-| `columns`  | `string` | `undefined` | Custom `grid-template-columns` |
-
-### `GalleryItem` Props
-
-| Prop           | Type         | Default     | Description                                   |
-| :------------- | :----------- | :---------- | :-------------------------------------------- |
-| `title`        | `ReactNode`  | Required    | Item title                                    |
-| `category`     | `string`     | `undefined` | Sub-header or metadata string                 |
-| `description`  | `ReactNode`  | `undefined` | Item synopsis text                            |
-| `imageUrl`     | `string`     | `undefined` | Media image URL                               |
-| `imageNode`    | `ReactNode`  | `undefined` | Custom media element or 3D gradient container |
-| `badge`        | `ReactNode`  | `undefined` | Tag badge in the upper right of preview media |
-| `fallbackIcon` | `ReactNode`  | `'🖼️'`      | Fallback icon when no image is loaded         |
-| `footer`       | `ReactNode`  | `undefined` | Card footer actions or author metadata        |
-| `onSelect`     | `() => void` | `undefined` | Trigger callback on click or Enter/Space keys |
-
----
-
-## 9. Metric & Stat Card (`StatCard`)
-
-Glossy metric indicator cards featuring vibrant 3D crystal icon wrappers, fluid typography values, and color-coded trend indicators.
-
-### Usage
+### `AvatarGroup`
+Overlapping glossy avatars with customizable maximum count and `+N` excess counter.
 
 ```tsx
-import { StatCard } from '@frutiger-js/react';
+import { AvatarGroup, Avatar } from '@frutiger.js/react';
 
-export function MetricsOverview() {
-  return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-        gap: '1rem',
-      }}
-    >
-      <StatCard
-        title="Archive Media Assets"
-        value="2,480"
-        subtitle="High-res wallpapers & renders"
-        icon="🖼️"
-        variant="aero"
-        trend={{ value: '+14.2%', isPositive: true }}
-      />
-      <StatCard
-        title="Lossless Audio & FX"
-        value="1,120"
-        subtitle="44.1kHz FLAC & WAV cues"
-        icon="🎵"
-        variant="grass"
-        trend={{ value: '+4.1%', isPositive: true }}
-      />
-    </div>
-  );
-}
+<AvatarGroup max={3} size="md">
+  <Avatar name="Alice" />
+  <Avatar name="Bob" />
+  <Avatar name="Charlie" />
+  <Avatar name="David" />
+</AvatarGroup>
 ```
 
-### Props
-
-| Prop              | Type                                                 | Default     | Description                                 |
-| :---------------- | :--------------------------------------------------- | :---------- | :------------------------------------------ |
-| `value`           | `ReactNode`                                          | Required    | Large metric value text (e.g. "2,480")      |
-| `title` / `label` | `ReactNode`                                          | `undefined` | Metric label or title                       |
-| `subtitle`        | `ReactNode`                                          | `undefined` | Subtitle explanation text                   |
-| `icon`            | `ReactNode`                                          | `undefined` | Icon or emoji in the glossy circle wrapper  |
-| `variant`         | `'default' \| 'aero' \| 'sky' \| 'grass' \| 'glass'` | `'default'` | Glass gradient background variant           |
-| `trend`           | `string \| { value: string; isPositive?: boolean }`  | `undefined` | Delta value readout (e.g. "+14.2%")         |
-| `trendDirection`  | `'up' \| 'down'`                                     | `'up'`      | Arrow direction when string trend is passed |
-
----
-
-## 10. Skeuomorphic FAQ & Accordion (`FaqList` & `FaqItem`)
-
-A semantic, accessible accordion system based on HTML `<details>` and `<summary>` elements, styled with glossy aqua borders, chevron rotation, and smooth content transitions.
-
-### Usage
+### `EmptyState`
+Dimensional empty data placeholder with luminous halo icon and interactive action buttons.
 
 ```tsx
-import { FaqList, FaqItem, Badge } from '@frutiger-js/react';
+import { EmptyState, Button, IconWater } from '@frutiger.js/react';
 
-export function Knowledgebase() {
-  return (
-    <FaqList>
-      <FaqItem
-        question="What is Frutiger Aero?"
-        badge={<Badge variant="nature">Philosophy</Badge>}
-        defaultOpen
-      >
-        <p>Frutiger Aero is a design aesthetic that dominated technology from 2004 to 2013...</p>
-      </FaqItem>
-      <FaqItem
-        question="Is Frutiger.js fully responsive?"
-        badge={<Badge variant="nature">Architecture</Badge>}
-      >
-        <p>Yes, all components are engineered on a Fluid-First container query model...</p>
-      </FaqItem>
-    </FaqList>
-  );
-}
+<EmptyState
+  icon={<IconWater size={36} />}
+  title="No Hydrosphere Data"
+  description="Your water telemetry storage is empty."
+  actions={<Button variant="primary">Sync Sensors</Button>}
+/>
 ```
-
-### `FaqItem` Props
-
-| Prop          | Type        | Default     | Description                               |
-| :------------ | :---------- | :---------- | :---------------------------------------- |
-| `question`    | `ReactNode` | Required    | Accordion trigger question                |
-| `badge`       | `ReactNode` | `undefined` | Category badge beside the question        |
-| `icon`        | `ReactNode` | `undefined` | Optional question icon                    |
-| `defaultOpen` | `boolean`   | `false`     | Initial open state for native `<details>` |
 
 ---
 
-## Accessibility Best Practices
+## 6. Desktop & Media Experience
 
-- All interactive controls feature **44px minimum hit targets** on touch devices via `@media (pointer: coarse)`.
-- Custom focus rings with high-visibility cyan halo (`0 0 0 3px rgba(56, 189, 248, 0.5)`).
-- Full `prefers-reduced-motion: reduce` support for shimmer loaders and animations.
-- WCAG 2.1 AA compliant contrast across all daylight Frutiger Aero surfaces.
+### `WindowFrame`
+Authentic Windows Vista / 7 acrylic glass desktop application window with minimize, maximize, and close controls.
+
+```tsx
+import { WindowFrame, Badge } from '@frutiger.js/react';
+
+<WindowFrame
+  title="Aqua Media Player"
+  onClose={() => console.log('Closed')}
+  actions={<Badge variant="nature">Running</Badge>}
+>
+  <p>Inside the window frame.</p>
+</WindowFrame>
+```
+
+### `Taskbar`, `TaskbarStart`, `TaskbarItem`, `TaskbarTray`, `StartMenu`
+Authentic glass taskbar with Start Orb, running application tabs, live system clock, and start menu popup.

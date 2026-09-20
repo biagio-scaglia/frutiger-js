@@ -75,46 +75,48 @@ import { AeroSurface, Glass, Gloss, Bevel, Glow, Reflection } from '@frutiger.js
 
 ---
 
-## 🧱 Components Included in v0.1.0
+## 🧱 Component Suite (45+ Components & Primitives)
 
-| Category                 | Components                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Aero Primitives**      | `AeroSurface`, `Glass`, `Gloss`, `Bevel`, `Glow`, `Reflection`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Buttons & Actions**    | `Button` (aero, primary, secondary, success, danger, glass, ghost), `Dropdown`, `DropdownItem`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Surfaces & Cards**     | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter` (default, glass, gloss, floating, nature), `ScrollArea` (aqua scrollbars with dynamic fade masks)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Windows & Desktop OS** | `WindowFrame` (Vista, Windows 7, Aero, Glass, Glossy, Frosted), `Taskbar`, `TaskbarStart` (3D Start Orb), `TaskbarItems`, `TaskbarTray`, `TaskbarClock`, `StartMenu`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **Archive & Media**      | `GalleryGrid`, `GalleryItem` (media vault), `StatCard` (glossy metrics & trends), `FaqList`, `FaqItem`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **Form Controls**        | `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Slider`, `Dropzone`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Feedback & Loading**   | `Badge`, `Alert`, `Tooltip`, `Progress` (linear & circular), `Spinner`, `Skeleton`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Navigation & Overlay** | `Navbar`, `NavLink`, `Sidebar`, `SidebarItem`, `Breadcrumb`, `Modal`, `Tabs`, `Accordion`, `Table` (with mobile card-stacking)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| **Layout & Primitives**  | `Container`, `Stack`, `Grid`, `Avatar`, `Divider`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **Aero Icons (45+)**     | `IconFish`, `IconBubble`, `IconWater`, `IconLeaf`, `IconSprout`, `IconSun`, `IconCloud`, `IconGlobe`, `IconRainbow`, `IconFlame`, `IconAeroOrb`, `IconDisc`, `IconMonitor`, `IconCamera`, `IconSpeaker`, `IconBattery`, `IconWifi`, `IconShield`, `IconLock`, `IconUnlock`, `IconCompass`, `IconSettings`, `IconFolder`, `IconTrash`, `IconMusic`, `IconPlay`, `IconPause`, `IconUser`, `IconUsers`, `IconMail`, `IconHeart`, `IconStar`, `IconSparkles`, `IconSearch`, `IconCheck`, `IconClose`, `IconMenu`, `IconInfo`, `IconAlertTriangle`, `IconChevronDown`, `IconChevronUp`, `IconChevronLeft`, `IconChevronRight`, `IconDownload`, `IconUpload`, `IconRefresh`, `IconEye`, `IconClock`, `IconCalendar`, `IconLayers`, `IconZap`, `AeroIconBadge` |
+| Category | Components |
+| :--- | :--- |
+| **Aero Primitives** | `AeroSurface`, `Glass`, `Gloss`, `Bevel`, `Glow`, `Reflection` |
+| **Buttons & Actions** | `Button` (aero, primary, secondary, success, danger, glass, ghost), `IconButton` (circle, rounded), `Dropdown`, `DropdownItem`, `DropdownSelect` |
+| **Surfaces & Cards** | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`, `ScrollArea` (aero scrollbars with dynamic fade masks) |
+| **Forms & Fields** | `Field`, `Label`, `HelperText`, `ErrorMessage`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `Switch`, `Slider`, `SegmentedControl`, `Dropzone` |
+| **Feedback & Notices** | `Toast`, `ToastProvider`, `useToast`, `Badge`, `Alert`, `Tooltip`, `Progress` (linear & circular), `Spinner`, `Skeleton` |
+| **Navigation & Overlays** | `Navbar`, `NavLink`, `Sidebar`, `SidebarItem`, `Breadcrumb`, `Tabs`, `Pagination`, `Accordion`, `Modal`, `Drawer` |
+| **Data & Structure** | `Table` (with responsive mobile card-stacking), `Container`, `Stack`, `Grid`, `Avatar`, `AvatarGroup`, `Divider`, `EmptyState`, `StatCard`, `FaqList`, `FaqItem` |
+| **Desktop OS & Media** | `WindowFrame`, `Taskbar`, `TaskbarStart` (3D Start Orb), `TaskbarItem`, `TaskbarTray`, `StartMenu`, `GalleryGrid`, `GalleryItem` |
+| **Aero Icons (45+)** | `IconFish`, `IconBubble`, `IconWater`, `IconLeaf`, `IconSprout`, `IconSun`, `IconCloud`, `IconGlobe`, `IconRainbow`, `IconFlame`, `IconAeroOrb`, `IconDisc`, `IconMonitor`, `IconCamera`, `IconSpeaker`, `IconBattery`, `IconWifi`, `IconShield`, `IconLock`, `IconUnlock`, `IconCompass`, `IconSettings`, `IconFolder`, `IconTrash`, `IconMusic`, `IconPlay`, `IconPause`, `IconUser`, `IconUsers`, `IconMail`, `IconHeart`, `IconStar`, `IconSparkles`, `IconSearch`, `IconCheck`, `IconClose`, `IconMenu`, `IconInfo`, `IconAlertTriangle`, `IconChevronDown`, `IconChevronUp`, `IconChevronLeft`, `IconChevronRight`, `IconDownload`, `IconUpload`, `IconRefresh`, `IconEye`, `IconClock`, `IconCalendar`, `IconLayers`, `IconZap`, `AeroIconBadge` |
 
 ---
 
 ## 🛠️ Development & Testing
 
 ```bash
-# Run playground
+# Run interactive showcase
 npm run dev
 
-# Run Vitest test suite
+# Run full Vitest suite (30 test suites, 79+ unit tests)
 npm test
 
-# Build production bundles
+# Run TypeScript typecheck
+npm run typecheck
+
+# Build all packages & showcase
 npm run build
 ```
 
 ---
 
-## 🗺️ Roadmap to v1.0
+## 🗺️ Versioning & Releases
 
-- [x] **v0.1**: Core CSS Cascade Layers, Design Tokens, React Component Suite & 45+ Aero Icons.
-- [x] **v0.2**: Responsive Viewport Matrix (320px–3840px), Mobile Stack Tables & Container Queries.
-- [x] **v0.3**: Aero Visual Primitives (`AeroSurface`, `Glass`, `Gloss`, `Bevel`, `Glow`, `Reflection`) & Multi-Theme Engine.
-- [ ] **v0.4**: Draggable & Resizable Window Manager, Window Snapping & Aero Peek Taskbar Previews.
-- [ ] **v0.5**: `@frutiger-js/sound` tactile skeuomorphic audio stems (water drops, window chimes, button clicks).
-- [ ] **v1.0**: Automated `axe-core` CI accessibility audit, Storybook documentation portal, semantic versioning freeze.
+Frutiger.js releases are governed by semantic versioning with automated testing, linting, and package packaging verification:
+
+```bash
+# Automated release bump & publish
+npm run release
+```
 
 ---
 
