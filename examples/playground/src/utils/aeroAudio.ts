@@ -137,6 +137,7 @@ export function stopAeroMusic() {
     try {
       osc.stop();
       osc.disconnect();
+    // eslint-disable-next-line no-empty
     } catch {}
   });
   musicOscillators = [];
