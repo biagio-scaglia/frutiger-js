@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@frutiger-js/core": "^1.0.0",
-    "@frutiger-js/react": "^1.0.0",
+    "@frutiger.js/core": "^1.0.0",
+    "@frutiger.js/react": "^1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

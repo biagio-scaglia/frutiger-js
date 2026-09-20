@@ -1,5 +1,5 @@
 {
-  "name": "@frutiger-js/react",
+  "name": "@frutiger.js/react",
   "version": "1.0.0",
   "description": "Modern React UI component library inspired by Frutiger Aero and Web 2.0 aesthetics.",
   "type": "module",
@@ -37,7 +37,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "dependencies": {
-    "@frutiger-js/core": "^1.0.0"
+    "@frutiger.js/core": "^1.0.0"
   },
   "keywords": [
     "frutiger-aero",

@@ -66,6 +66,9 @@ async function main() {
   const skipGit = args.includes('--skip-git');
   const versionArg = args.find((a) => !a.startsWith('--')) || 'patch';
 
+  const otpArg = args.find((a) => a.startsWith('--otp='));
+  const otpFlag = otpArg ? ` ${otpArg}` : '';
+
   const rootPkgPath = path.resolve(rootDir, 'package.json');
   const corePkgPath = path.resolve(rootDir, 'packages/core/package.json');
   const reactPkgPath = path.resolve(rootDir, 'packages/react/package.json');
@@ -98,30 +101,30 @@ async function main() {
   const corePkg = getJson(corePkgPath);
   corePkg.version = newVersion;
   writeJson(corePkgPath, corePkg);
-  console.log(colors.green(`  ✓ @frutiger-js/core -> ${newVersion}`));
+  console.log(colors.green(`  ✓ @frutiger.js/core -> ${newVersion}`));
 
   // React
   const reactPkg = getJson(reactPkgPath);
   reactPkg.version = newVersion;
-  if (reactPkg.dependencies && reactPkg.dependencies['@frutiger-js/core']) {
-    reactPkg.dependencies['@frutiger-js/core'] = `^${newVersion}`;
+  if (reactPkg.dependencies && reactPkg.dependencies['@frutiger.js/core']) {
+    reactPkg.dependencies['@frutiger.js/core'] = `^${newVersion}`;
   }
   writeJson(reactPkgPath, reactPkg);
-  console.log(colors.green(`  ✓ @frutiger-js/react -> ${newVersion} (dep @frutiger-js/core: ^${newVersion})`));
+  console.log(colors.green(`  ✓ @frutiger.js/react -> ${newVersion} (dep @frutiger.js/core: ^${newVersion})`));
 
   // Playground
   const playgroundPkg = getJson(playgroundPkgPath);
   playgroundPkg.version = newVersion;
   if (playgroundPkg.dependencies) {
-    if (playgroundPkg.dependencies['@frutiger-js/core']) {
-      playgroundPkg.dependencies['@frutiger-js/core'] = `^${newVersion}`;
+    if (playgroundPkg.dependencies['@frutiger.js/core']) {
+      playgroundPkg.dependencies['@frutiger.js/core'] = `^${newVersion}`;
     }
-    if (playgroundPkg.dependencies['@frutiger-js/react']) {
-      playgroundPkg.dependencies['@frutiger-js/react'] = `^${newVersion}`;
+    if (playgroundPkg.dependencies['@frutiger.js/react']) {
+      playgroundPkg.dependencies['@frutiger.js/react'] = `^${newVersion}`;
     }
   }
   writeJson(playgroundPkgPath, playgroundPkg);
-  console.log(colors.green(`  ✓ @frutiger-js/playground -> ${newVersion}`));
+  console.log(colors.green(`  ✓ @frutiger.js/playground -> ${newVersion}`));
 
   // 2. Update playground App.tsx version mentions
   console.log(colors.bold('\n2. Updating Playground UI version badges...'));
@@ -166,14 +169,14 @@ async function main() {
   // 5. NPM Publish (if requested)
   if (isPublish) {
     console.log(colors.bold('\n5. Publishing packages to NPM...'));
-    
-    console.log(colors.cyan('\nPublishing @frutiger-js/core...'));
-    run('npm publish ./packages/core --access public');
-    console.log(colors.green('  ✓ @frutiger-js/core published to npm!'));
 
-    console.log(colors.cyan('\nPublishing @frutiger-js/react...'));
-    run('npm publish ./packages/react --access public');
-    console.log(colors.green('  ✓ @frutiger-js/react published to npm!'));
+    console.log(colors.cyan('\nPublishing @frutiger.js/core...'));
+    run(`npm publish ./packages/core --access public${otpFlag}`);
+    console.log(colors.green('  ✓ @frutiger.js/core published to npm!'));
+
+    console.log(colors.cyan('\nPublishing @frutiger.js/react...'));
+    run(`npm publish ./packages/react --access public${otpFlag}`);
+    console.log(colors.green('  ✓ @frutiger.js/react published to npm!'));
   }
 
   console.log(colors.bold(colors.green('\n🎉 SUCCESS! Release completed successfully.')));

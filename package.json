@@ -17,13 +17,13 @@
     "examples/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=@frutiger-js/playground",
-    "build": "npm run build --workspace=@frutiger-js/core && npm run build --workspace=@frutiger-js/react && npm run build --workspace=@frutiger-js/playground",
-    "build:packages": "npm run build --workspace=@frutiger-js/core && npm run build --workspace=@frutiger-js/react",
+    "dev": "npm run dev --workspace=@frutiger.js/playground",
+    "build": "npm run build --workspace=@frutiger.js/core && npm run build --workspace=@frutiger.js/react && npm run build --workspace=@frutiger.js/playground",
+    "build:packages": "npm run build --workspace=@frutiger.js/core && npm run build --workspace=@frutiger.js/react",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "typecheck": "npm run typecheck --workspace=@frutiger-js/core && npm run typecheck --workspace=@frutiger-js/react && npm run typecheck --workspace=@frutiger-js/playground",
+    "typecheck": "npm run typecheck --workspace=@frutiger.js/core && npm run typecheck --workspace=@frutiger.js/react && npm run typecheck --workspace=@frutiger.js/playground",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "clean": "node -e \"fs.rmSync('dist', {recursive:true, force:true})\"",
