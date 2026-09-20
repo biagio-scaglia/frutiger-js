@@ -15,6 +15,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -23,6 +24,8 @@
     font-family: var(--fj-font-family-sans);
     color: var(--fj-color-text);
     background-color: var(--fj-color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   img,
@@ -40,21 +43,33 @@
   select {
     font: inherit;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
   }
 
   button {
     cursor: pointer;
     background: none;
     border: none;
+    -webkit-appearance: none;
+    appearance: none;
   }
 
   a {
     color: inherit;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   :focus-visible {
     outline: 2px solid var(--fj-color-sky-500);
     outline-offset: 2px;
+  }
+
+  /* WebKit Momentum Touch Scrolling for Scrollable Containers */
+  [data-fj-scroll],
+  .fj-scroll-area,
+  .fj-modal__content,
+  .fj-drawer__body {
+    -webkit-overflow-scrolling: touch;
   }
 }

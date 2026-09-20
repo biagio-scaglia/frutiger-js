@@ -5,12 +5,16 @@
     gap: var(--fj-space-3);
     cursor: pointer;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
     font-size: var(--fj-font-size-sm);
     color: var(--fj-color-text);
   }
 
   .fj-switch {
     position: relative;
+    -webkit-appearance: none;
+    appearance: none;
     width: 48px;
     height: 26px;
     border-radius: var(--fj-radius-pill);

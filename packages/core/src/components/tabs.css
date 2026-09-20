@@ -38,6 +38,8 @@
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
     outline: none;
     flex-shrink: 0;

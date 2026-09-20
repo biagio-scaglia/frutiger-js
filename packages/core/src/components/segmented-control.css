@@ -23,6 +23,8 @@
       0 2px 8px rgba(2, 132, 199, 0.12);
     position: relative;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
     max-width: 100%;
     overflow-x: auto;
     scrollbar-width: none;

@@ -28,6 +28,8 @@
     font-size: var(--fj-font-size-sm);
     font-family: var(--fj-font-family-sans);
     color: var(--fj-color-text);
+    -webkit-appearance: none;
+    appearance: none;
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(186, 230, 253, 0.9);
     border-radius: var(--fj-radius-md);

@@ -5,12 +5,15 @@
     gap: var(--fj-space-3);
     cursor: pointer;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
     font-size: var(--fj-font-size-sm);
     color: var(--fj-color-text);
   }
 
   .fj-checkbox {
     position: relative;
+    -webkit-appearance: none;
     appearance: none;
     width: 20px;
     height: 20px;
