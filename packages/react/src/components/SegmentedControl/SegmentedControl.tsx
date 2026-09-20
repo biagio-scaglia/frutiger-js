@@ -23,11 +23,8 @@ export function SegmentedControl<T extends string = string>({
   className,
 }: SegmentedControlProps<T>) {
   return (
-    <div
-      role="radiogroup"
-      className={cn('fj-segmented-control', className)}
-    >
-      {options.map((option) => {
+    <div role="radiogroup" className={cn('fj-segmented-control', className)}>
+      {options.map(option => {
         const isSelected = option.value === value;
         return (
           <button
@@ -42,7 +39,9 @@ export function SegmentedControl<T extends string = string>({
               isSelected && 'fj-segmented-control__item--active'
             )}
           >
-            {option.icon && <span style={{ display: 'inline-flex', alignItems: 'center' }}>{option.icon}</span>}
+            {option.icon && (
+              <span style={{ display: 'inline-flex', alignItems: 'center' }}>{option.icon}</span>
+            )}
             <span>{option.label}</span>
           </button>
         );

@@ -44,13 +44,7 @@ describe('Toast & ToastProvider Suite', () => {
   });
 
   it('renders alert role for danger variant', () => {
-    render(
-      <Toast
-        id="t-err"
-        title="Disk Error"
-        variant="danger"
-      />
-    );
+    render(<Toast id="t-err" title="Disk Error" variant="danger" />);
 
     expect(screen.getByRole('alert')).toBeInTheDocument();
   });

@@ -6,13 +6,7 @@ import { Pagination } from './Pagination';
 describe('Pagination Suite', () => {
   it('renders page buttons and marks active page with aria-current', () => {
     const handlePageChange = vi.fn();
-    render(
-      <Pagination
-        currentPage={2}
-        totalPages={5}
-        onPageChange={handlePageChange}
-      />
-    );
+    render(<Pagination currentPage={2} totalPages={5} onPageChange={handlePageChange} />);
 
     expect(screen.getByRole('navigation', { name: 'Pagination Navigation' })).toBeInTheDocument();
 
@@ -25,13 +19,7 @@ describe('Pagination Suite', () => {
   });
 
   it('disables previous button on first page', () => {
-    render(
-      <Pagination
-        currentPage={1}
-        totalPages={5}
-        onPageChange={vi.fn()}
-      />
-    );
+    render(<Pagination currentPage={1} totalPages={5} onPageChange={vi.fn()} />);
 
     const prevBtn = screen.getByRole('button', { name: 'Go to previous page' });
     expect(prevBtn).toBeDisabled();

@@ -93,10 +93,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             aria-label={`Go to page ${pageNum}`}
             aria-current={isActive ? 'page' : undefined}
             onClick={() => onPageChange(pageNum)}
-            className={cn(
-              'fj-pagination__item',
-              isActive && 'fj-pagination__item--active'
-            )}
+            className={cn('fj-pagination__item', isActive && 'fj-pagination__item--active')}
           >
             {pageNum}
           </button>

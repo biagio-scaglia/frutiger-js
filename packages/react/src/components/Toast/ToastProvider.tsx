@@ -2,12 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 import { Toast, ToastProps } from './Toast';
 
 export type ToastPlacement =
-  | 'top-right'
-  | 'top-left'
-  | 'bottom-right'
-  | 'bottom-left'
-  | 'top-center'
-  | 'bottom-center';
+  'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
 
 export interface ToastOptions extends Omit<ToastProps, 'id' | 'onClose'> {
   duration?: number;
@@ -32,7 +27,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   const [toasts, setToasts] = useState<ToastProps[]>([]);
 
   const removeToast = useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
+    setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
   const toast = useCallback(
@@ -44,7 +39,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
         onClose: removeToast,
       };
 
-      setToasts((prev) => [...prev, newToast]);
+      setToasts(prev => [...prev, newToast]);
 
       if (duration > 0) {
         setTimeout(() => {
@@ -61,7 +56,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
     <ToastContext.Provider value={{ toast, removeToast }}>
       {children}
       <div className={`fj-toast-container fj-toast-container--${placement}`}>
-        {toasts.map((t) => (
+        {toasts.map(t => (
           <Toast key={t.id} {...t} />
         ))}
       </div>

@@ -7,12 +7,7 @@ describe('Drawer Suite', () => {
   it('renders drawer dialog when isOpen is true', () => {
     const handleClose = vi.fn();
     render(
-      <Drawer
-        isOpen={true}
-        onClose={handleClose}
-        title="Aqua Settings"
-        placement="right"
-      >
+      <Drawer isOpen={true} onClose={handleClose} title="Aqua Settings" placement="right">
         <p>Drawer Content</p>
       </Drawer>
     );

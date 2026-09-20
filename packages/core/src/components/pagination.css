@@ -48,12 +48,7 @@
   }
 
   .fj-pagination__item--active {
-    background: linear-gradient(
-      180deg,
-      #38bdf8 0%,
-      #0284c7 60%,
-      #0369a1 100%
-    );
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 60%, #0369a1 100%);
     color: #ffffff;
     border-color: #0284c7;
     box-shadow:

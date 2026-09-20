@@ -7,7 +7,9 @@ describe('Field Suite', () => {
   it('renders label with required asterisk and helper text', () => {
     render(
       <Field>
-        <Label isRequired htmlFor="email-input">Email Address</Label>
+        <Label isRequired htmlFor="email-input">
+          Email Address
+        </Label>
         <input id="email-input" type="email" />
         <HelperText>We will never share your email.</HelperText>
       </Field>

@@ -105,7 +105,8 @@ export default function App() {
     navigator.clipboard.writeText('npm install @frutiger.js/core @frutiger.js/react');
     toast({
       title: 'Command Copied! 💧',
-      description: 'npm install @frutiger.js/core @frutiger.js/react has been copied to your clipboard.',
+      description:
+        'npm install @frutiger.js/core @frutiger.js/react has been copied to your clipboard.',
       variant: 'success',
       icon: <IconSparkles size={18} />,
     });
@@ -478,9 +479,19 @@ export default function App() {
                         ))}
                       </div>
 
-                      <Divider label="Aero IconButtons (Circle & Rounded)" style={{ margin: '2rem 0 1.25rem 0' }} />
+                      <Divider
+                        label="Aero IconButtons (Circle & Rounded)"
+                        style={{ margin: '2rem 0 1.25rem 0' }}
+                      />
 
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '1rem',
+                          alignItems: 'center',
+                        }}
+                      >
                         <IconButton
                           aria-label="Water Drop"
                           icon={<IconWater size={18} />}
@@ -628,34 +639,63 @@ export default function App() {
                         </div>
                       </div>
 
-                      <Divider label="Aero Segmented Switcher & Accessible Form Fields" style={{ margin: '2rem 0 1.5rem 0' }} />
+                      <Divider
+                        label="Aero Segmented Switcher & Accessible Form Fields"
+                        style={{ margin: '2rem 0 1.5rem 0' }}
+                      />
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         <div>
-                          <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.5rem' }}>
+                          <span
+                            style={{
+                              display: 'block',
+                              fontSize: '0.875rem',
+                              fontWeight: 600,
+                              marginBottom: '0.5rem',
+                            }}
+                          >
                             View Mode Selector:
                           </span>
                           <SegmentedControl
                             value={segmentedMode}
                             onChange={setSegmentedMode}
                             options={[
-                              { value: 'glass', label: 'Aero Glass', icon: <IconSparkles size={14} /> },
+                              {
+                                value: 'glass',
+                                label: 'Aero Glass',
+                                icon: <IconSparkles size={14} />,
+                              },
                               { value: 'nature', label: 'Biosphere', icon: <IconLeaf size={14} /> },
-                              { value: 'water', label: 'Hydrosphere', icon: <IconWater size={14} /> },
+                              {
+                                value: 'water',
+                                label: 'Hydrosphere',
+                                icon: <IconWater size={14} />,
+                              },
                             ]}
                           />
                         </div>
 
-                        <Grid columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))" gap="1.5rem">
+                        <Grid
+                          columns="repeat(auto-fit, minmax(min(100%, 280px), 1fr))"
+                          gap="1.5rem"
+                        >
                           <Field>
-                            <Label isRequired htmlFor="vault-field">Aqua Security Passcode</Label>
+                            <Label isRequired htmlFor="vault-field">
+                              Aqua Security Passcode
+                            </Label>
                             <Input id="vault-field" type="password" defaultValue="secret-aero" />
                             <HelperText>Used to decrypt glass desktop memory banks.</HelperText>
                           </Field>
 
                           <Field>
-                            <Label isRequired htmlFor="error-field">Resource Allocation</Label>
-                            <Input id="error-field" defaultValue="99999" error="Value exceeds allocated biosphere quota." />
+                            <Label isRequired htmlFor="error-field">
+                              Resource Allocation
+                            </Label>
+                            <Input
+                              id="error-field"
+                              defaultValue="99999"
+                              error="Value exceeds allocated biosphere quota."
+                            />
                             <ErrorMessage>Allocation must be between 10 and 1000.</ErrorMessage>
                           </Field>
                         </Grid>
@@ -704,11 +744,19 @@ export default function App() {
                       <CardHeader>
                         <CardTitle>Aero Toast Notifications & Slide Drawers</CardTitle>
                         <CardDescription>
-                          Non-intrusive acrylic toast pills and full slide-over glass sheets with specular highlights.
+                          Non-intrusive acrylic toast pills and full slide-over glass sheets with
+                          specular highlights.
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '0.75rem',
+                            alignItems: 'center',
+                          }}
+                        >
                           <Button
                             variant="primary"
                             leftIcon={<IconWater size={16} />}
@@ -903,7 +951,14 @@ export default function App() {
                       <CardContent>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                           <div>
-                            <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.75rem' }}>
+                            <span
+                              style={{
+                                display: 'block',
+                                fontSize: '0.875rem',
+                                fontWeight: 600,
+                                marginBottom: '0.75rem',
+                              }}
+                            >
                               Aero Core Contributors (AvatarGroup):
                             </span>
                             <AvatarGroup max={4} size="md">
@@ -917,7 +972,14 @@ export default function App() {
                           </div>
 
                           <div>
-                            <span style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, marginBottom: '0.75rem' }}>
+                            <span
+                              style={{
+                                display: 'block',
+                                fontSize: '0.875rem',
+                                fontWeight: 600,
+                                marginBottom: '0.75rem',
+                              }}
+                            >
                               Interactive Aero Pagination (Page {paginationPage} of 8):
                             </span>
                             <Pagination
@@ -935,7 +997,8 @@ export default function App() {
                       <CardHeader>
                         <CardTitle>Tactile Empty State Container</CardTitle>
                         <CardDescription>
-                          Aero empty data fallback with luminous halo and interactive calls-to-action.
+                          Aero empty data fallback with luminous halo and interactive
+                          calls-to-action.
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
@@ -1724,12 +1787,15 @@ export default function App() {
       >
         <Stack spacing="md">
           <p style={{ margin: 0, fontSize: '0.9375rem', lineHeight: 1.5 }}>
-            This slide-over drawer is rendered with acrylic hardware-accelerated glass backdrop filters,
-            specular rim highlights, and complete WCAG 2.2 keyboard navigation (ESC key dismiss).
+            This slide-over drawer is rendered with acrylic hardware-accelerated glass backdrop
+            filters, specular rim highlights, and complete WCAG 2.2 keyboard navigation (ESC key
+            dismiss).
           </p>
 
           <Field>
-            <Label isRequired htmlFor="drawer-preset">Workspace Name</Label>
+            <Label isRequired htmlFor="drawer-preset">
+              Workspace Name
+            </Label>
             <Input id="drawer-preset" defaultValue="Aero Biosphere Lab" />
             <HelperText>Visible to all synchronized network nodes.</HelperText>
           </Field>
