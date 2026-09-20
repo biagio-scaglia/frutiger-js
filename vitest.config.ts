@@ -16,6 +16,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      '@frutiger.js/core': resolve(__dirname, 'packages/core/src'),
+      '@frutiger.js/react': resolve(__dirname, 'packages/react/src'),
       '@frutiger-js/core': resolve(__dirname, 'packages/core/src'),
       '@frutiger-js/react': resolve(__dirname, 'packages/react/src'),
     },

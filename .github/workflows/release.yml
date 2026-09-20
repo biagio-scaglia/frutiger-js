@@ -36,17 +36,17 @@ jobs:
 
       - name: Inspect Package Tarballs
         run: |
-          npm pack --dry-run --workspace=@frutiger-js/core
-          npm pack --dry-run --workspace=@frutiger-js/react
+          npm pack --dry-run --workspace=@frutiger.js/core
+          npm pack --dry-run --workspace=@frutiger.js/react
 
-      - name: Publish @frutiger-js/core
-        run: npm publish --workspace=@frutiger-js/core --access public --provenance
+      - name: Publish @frutiger.js/core
+        run: npm publish --workspace=@frutiger.js/core --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true
 
-      - name: Publish @frutiger-js/react
-        run: npm publish --workspace=@frutiger-js/react --access public --provenance
+      - name: Publish @frutiger.js/react
+        run: npm publish --workspace=@frutiger.js/react --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         continue-on-error: true

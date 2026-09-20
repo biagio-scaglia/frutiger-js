@@ -45,5 +45,5 @@ jobs:
 
       - name: Test Package Packing
         run: |
-          npm pack --dry-run --workspace=@frutiger-js/core
-          npm pack --dry-run --workspace=@frutiger-js/react
+          npm pack --dry-run --workspace=@frutiger.js/core
+          npm pack --dry-run --workspace=@frutiger.js/react

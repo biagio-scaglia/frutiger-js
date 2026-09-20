@@ -22,7 +22,7 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', '@frutiger-js/core'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', '@frutiger.js/core'],
       output: {
         globals: {
           react: 'React',
