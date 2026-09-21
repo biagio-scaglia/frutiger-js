@@ -9,6 +9,7 @@ import {
   IconSparkles,
   IconLeaf,
   IconSun,
+  IconMonitor,
   Dropdown,
   DropdownItem,
   DropdownHeader,
@@ -83,6 +84,8 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                             <IconLeaf size={14} />
                           ) : cursorMode === 'classic' ? (
                             <IconSun size={14} />
+                          ) : cursorMode === 'default' ? (
+                            <IconMonitor size={14} />
                           ) : (
                             <IconWater size={14} />
                           )
@@ -90,18 +93,28 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                         title="Select Desktop Cursor Style"
                         style={{ minWidth: 0, paddingInline: '0.65rem' }}
                       >
-                        Cursor: {cursorMode.charAt(0).toUpperCase() + cursorMode.slice(1)} ▾
+                        Cursor:{' '}
+                        {cursorMode === 'droplet'
+                          ? 'Droplet'
+                          : cursorMode === 'crystal'
+                            ? 'Crystal'
+                            : cursorMode === 'nature'
+                              ? 'Emerald'
+                              : cursorMode === 'classic'
+                                ? 'Classic'
+                                : 'Default'}{' '}
+                        ▾
                       </Button>
                     }
                   >
-                    <DropdownHeader>Aero Desktop Cursors</DropdownHeader>
+                    <DropdownHeader>Desktop Cursor Style</DropdownHeader>
                     <DropdownItem
                       icon={<IconWater size={16} />}
                       isActive={cursorMode === 'droplet'}
                       showCheck
                       onClick={() => onSelectCursorMode('droplet')}
                     >
-                      💧 Aero Water Droplet
+                      Aero Water Droplet
                     </DropdownItem>
                     <DropdownItem
                       icon={<IconSparkles size={16} />}
@@ -109,7 +122,7 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                       showCheck
                       onClick={() => onSelectCursorMode('crystal')}
                     >
-                      ✨ Specular Crystal
+                      Specular Crystal
                     </DropdownItem>
                     <DropdownItem
                       icon={<IconLeaf size={16} />}
@@ -117,7 +130,7 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                       showCheck
                       onClick={() => onSelectCursorMode('nature')}
                     >
-                      🌿 Biosphere Emerald
+                      Biosphere Emerald
                     </DropdownItem>
                     <DropdownItem
                       icon={<IconSun size={16} />}
@@ -125,14 +138,15 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                       showCheck
                       onClick={() => onSelectCursorMode('classic')}
                     >
-                      🖱️ Classic Web 2.0
+                      Classic Web 2.0
                     </DropdownItem>
                     <DropdownItem
+                      icon={<IconMonitor size={16} />}
                       isActive={cursorMode === 'default'}
                       showCheck
                       onClick={() => onSelectCursorMode('default')}
                     >
-                      🖥️ System Native
+                      System Native
                     </DropdownItem>
                   </Dropdown>
                 </div>

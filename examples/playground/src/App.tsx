@@ -17,6 +17,9 @@ import {
   Button,
   IconSparkles,
   IconWater,
+  IconLeaf,
+  IconSun,
+  IconMonitor,
   WaterRipple,
   AeroCursor,
   AeroCursorMode,
@@ -61,19 +64,27 @@ export default function App() {
     setCursorMode(mode);
     playAeroClick(sliderGainVal);
     const modeNames: Record<AeroCursorMode, string> = {
-      droplet: 'Water Droplet 💧',
-      crystal: 'Aero Crystal 🔮',
-      nature: 'Bio Green 🌿',
-      classic: 'Classic Vista ☀️',
-      default: 'System Native 🖱️',
+      droplet: 'Aero Water Droplet',
+      crystal: 'Specular Crystal',
+      nature: 'Biosphere Emerald',
+      classic: 'Classic Web 2.0',
+      default: 'System Native',
+    };
+    const modeIcons: Record<AeroCursorMode, React.ReactElement> = {
+      droplet: <IconWater size={18} />,
+      crystal: <IconSparkles size={18} />,
+      nature: <IconLeaf size={18} />,
+      classic: <IconSun size={18} />,
+      default: <IconMonitor size={18} />,
     };
     toast({
       title: `Cursor: ${modeNames[mode]}`,
       description:
         mode === 'default'
           ? 'Reverted to native operating system cursor.'
-          : `Activated ${modeNames[mode]} dynamic cursor (Desktop only).`,
+          : `Activated ${modeNames[mode]} dynamic cursor preset.`,
       variant: 'info',
+      icon: modeIcons[mode],
     });
   };
 
