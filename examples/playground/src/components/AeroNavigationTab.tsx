@@ -293,7 +293,7 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                         daylight: ':root { --fj-theme: daylight; --fj-color-sky-500: #0ea5e9; }',
                         gloss: ':root { --fj-surface: glass; --fj-backdrop-blur: 16px; }',
                         emerald: ':root { --fj-theme: nature; --fj-color-nature-500: #22c55e; }',
-                        json: '{\n  "name": "@frutiger.js/theme",\n  "version": "1.0.6",\n  "preset": "aero-glass"\n}',
+                        json: '{\n  "name": "@frutiger.js/theme",\n  "version": "1.0.8",\n  "preset": "aero-glass"\n}',
                         css: ':root {\n  --fj-color-primary: #0284c7;\n  --fj-color-secondary: #0d9488;\n}',
                         tsx: '<Button variant="aero" size="md">Click Me</Button>',
                       };
@@ -350,7 +350,7 @@ export const AeroNavigationTab: React.FC<AeroNavigationTabProps> = React.memo(
                 {selectedPreset === 'emerald' &&
                   `/* Biosphere Nature Preset */\n:root {\n  --fj-color-nature-400: #4ade80;\n  --fj-color-nature-500: #22c55e;\n  --fj-color-nature-600: #16a34a;\n  --fj-glow-nature: 0 0 16px rgba(34, 197, 94, 0.5);\n}`}
                 {selectedPreset === 'json' &&
-                  `{\n  "name": "@frutiger.js/playground",\n  "version": "1.0.6",\n  "designSystem": "Frutiger Aero",\n  "activePreset": "${selectedPreset}"\n}`}
+                  `{\n  "name": "@frutiger.js/playground",\n  "version": "1.0.8",\n  "designSystem": "Frutiger Aero",\n  "activePreset": "${selectedPreset}"\n}`}
                 {selectedPreset === 'css' &&
                   `:root {\n  --fj-radius-pill: 9999px;\n  --fj-radius-lg: 1rem;\n  --fj-shadow-aero: 0 4px 14px rgba(14, 165, 233, 0.45);\n}`}
                 {selectedPreset === 'tsx' &&

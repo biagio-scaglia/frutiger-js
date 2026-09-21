@@ -73,7 +73,6 @@ async function main() {
   const corePkgPath = path.resolve(rootDir, 'packages/core/package.json');
   const reactPkgPath = path.resolve(rootDir, 'packages/react/package.json');
   const playgroundPkgPath = path.resolve(rootDir, 'examples/playground/package.json');
-  const appTsxPath = path.resolve(rootDir, 'examples/playground/src/App.tsx');
 
   const rootPkg = getJson(rootPkgPath);
   const oldVersion = rootPkg.version;
@@ -130,13 +129,37 @@ async function main() {
   run('npm install');
   console.log(colors.green('  ✓ package-lock.json synchronized'));
 
-  // 2. Update playground App.tsx version mentions
-  console.log(colors.bold('\n2. Updating Playground UI version badges...'));
-  if (fs.existsSync(appTsxPath)) {
-    let appContent = fs.readFileSync(appTsxPath, 'utf-8');
-    appContent = appContent.replaceAll(`v${oldVersion}`, `v${newVersion}`);
-    fs.writeFileSync(appTsxPath, appContent, 'utf-8');
-    console.log(colors.green(`  ✓ examples/playground/src/App.tsx updated from v${oldVersion} to v${newVersion}`));
+  // 2. Update playground UI components version badges & snippets
+  console.log(colors.bold('\n2. Updating Playground UI version badges & snippets...'));
+  const playgroundFilesToUpdate = [
+    {
+      name: 'HeroSection.tsx',
+      path: path.resolve(rootDir, 'examples/playground/src/components/HeroSection.tsx'),
+    },
+    {
+      name: 'FooterSection.tsx',
+      path: path.resolve(rootDir, 'examples/playground/src/components/FooterSection.tsx'),
+    },
+    {
+      name: 'AeroNavigationTab.tsx',
+      path: path.resolve(rootDir, 'examples/playground/src/components/AeroNavigationTab.tsx'),
+    },
+    {
+      name: 'App.tsx',
+      path: path.resolve(rootDir, 'examples/playground/src/App.tsx'),
+    },
+  ];
+
+  for (const item of playgroundFilesToUpdate) {
+    if (fs.existsSync(item.path)) {
+      let content = fs.readFileSync(item.path, 'utf-8');
+      content = content.replaceAll(`v${oldVersion}`, `v${newVersion}`);
+      content = content.replaceAll(`version: '${oldVersion}'`, `version: '${newVersion}'`);
+      content = content.replaceAll(`"version": "${oldVersion}"`, `"version": "${newVersion}"`);
+      content = content.replaceAll(`'version': '${oldVersion}'`, `'version': '${newVersion}'`);
+      fs.writeFileSync(item.path, content, 'utf-8');
+      console.log(colors.green(`  ✓ ${item.name} updated (v${oldVersion} -> v${newVersion})`));
+    }
   }
 
   // 3. Format, Lint, Test & Build
