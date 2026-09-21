@@ -6,10 +6,19 @@ export interface NavbarHeaderProps {
   onNavClick: (nav: string) => void;
   onExploreIcons: () => void;
   onExploreResponsive: () => void;
+  isWaterRippleEnabled?: boolean;
+  onToggleWaterRipple?: () => void;
 }
 
 export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
-  ({ activeNav, onNavClick, onExploreIcons, onExploreResponsive }) => {
+  ({
+    activeNav,
+    onNavClick,
+    onExploreIcons,
+    onExploreResponsive,
+    isWaterRippleEnabled = true,
+    onToggleWaterRipple,
+  }) => {
     return (
       <header role="banner">
         <Navbar
@@ -39,8 +48,19 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
           }
           actions={
             <div
-              style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'nowrap' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'nowrap' }}
             >
+              {onToggleWaterRipple && (
+                <Button
+                  variant={isWaterRippleEnabled ? 'aero' : 'glass'}
+                  size="sm"
+                  leftIcon={<IconWater size={14} />}
+                  onClick={onToggleWaterRipple}
+                  title="Toggle interactive Water Ripple & Bubble FX"
+                >
+                  {isWaterRippleEnabled ? 'Water FX: ON' : 'Water FX: OFF'}
+                </Button>
+              )}
               <Avatar name="Biagio Scaglia" size="sm" />
               <a
                 href="https://github.com/biagio-scaglia/frutiger-js"

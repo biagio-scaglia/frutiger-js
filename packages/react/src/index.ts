@@ -42,6 +42,7 @@ export * from './components/Pagination';
 export * from './components/Field';
 export * from './components/AvatarGroup';
 export * from './components/SegmentedControl';
+export * from './components/WaterRipple';
 
 // Icons
 export * from './icons';

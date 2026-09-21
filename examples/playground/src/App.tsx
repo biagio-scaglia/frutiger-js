@@ -16,6 +16,8 @@ import {
   HelperText,
   Button,
   IconSparkles,
+  IconWater,
+  WaterRipple,
   useToast,
 } from '@frutiger.js/react';
 
@@ -48,8 +50,23 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [sliderGainVal, setSliderGainVal] = useState(74);
+  const [isWaterRippleEnabled, setIsWaterRippleEnabled] = useState(true);
 
   const { toast } = useToast();
+
+  const handleToggleWaterRipple = () => {
+    const next = !isWaterRippleEnabled;
+    setIsWaterRippleEnabled(next);
+    playAeroClick(sliderGainVal);
+    toast({
+      title: next ? 'Water FX Active 💧' : 'Water FX Disabled 🔇',
+      description: next
+        ? 'Interactive water ripples and micro bubbles enabled on click.'
+        : 'Water ripple effects paused.',
+      variant: next ? 'info' : 'warning',
+      icon: <IconWater size={18} />,
+    });
+  };
 
   const handleCopyInstall = () => {
     playAeroClick(sliderGainVal);
@@ -146,10 +163,20 @@ export default function App() {
 
   return (
     <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
+      {/* Interactive Water Ripple & Bubble Overlay */}
+      <WaterRipple
+        enabled={isWaterRippleEnabled}
+        showBubbles={true}
+        ambientBubbles={true}
+        colorScheme="sky"
+      />
+
       {/* Top Aero Header */}
       <NavbarHeader
         activeNav={activeNav}
         onNavClick={setActiveNav}
+        isWaterRippleEnabled={isWaterRippleEnabled}
+        onToggleWaterRipple={handleToggleWaterRipple}
         onExploreIcons={() => {
           setActiveNav('icons');
           setSelectedExplorerTab('icons');
