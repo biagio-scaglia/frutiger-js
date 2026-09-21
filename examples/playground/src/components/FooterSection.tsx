@@ -27,7 +27,7 @@ export const FooterSection: React.FC = React.memo(() => {
           <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--fj-color-sky-950)' }}>
             Frutiger<span style={{ color: 'var(--fj-color-sky-600)' }}>.js</span>
           </span>
-          <Badge variant="primary">v1.0.9</Badge>
+          <Badge variant="primary">v1.10.0</Badge>
         </div>
         <p style={{ margin: '0 0 0.75rem 0', fontWeight: 600, color: 'var(--fj-color-sky-900)' }}>
           The Premier Frutiger Aero UI Component Suite & CSS Design System for React

@@ -90,8 +90,7 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                         title="Select Desktop Cursor Style"
                         style={{ minWidth: 0, paddingInline: '0.65rem' }}
                       >
-                        Cursor:{' '}
-                        {cursorMode.charAt(0).toUpperCase() + cursorMode.slice(1)} ▾
+                        Cursor: {cursorMode.charAt(0).toUpperCase() + cursorMode.slice(1)} ▾
                       </Button>
                     }
                   >
