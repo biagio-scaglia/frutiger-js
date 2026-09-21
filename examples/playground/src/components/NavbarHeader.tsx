@@ -48,7 +48,7 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
           }
           actions={
             <div
-              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'nowrap' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'nowrap' }}
             >
               {onToggleWaterRipple && (
                 <Button
@@ -57,19 +57,32 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                   leftIcon={<IconWater size={14} />}
                   onClick={onToggleWaterRipple}
                   title="Toggle interactive Water Ripple & Bubble FX"
+                  style={{ minWidth: 0, paddingInline: '0.6rem' }}
                 >
-                  {isWaterRippleEnabled ? 'Water FX: ON' : 'Water FX: OFF'}
+                  <span className="fj-hide-mobile">
+                    {isWaterRippleEnabled ? 'Water FX: ON' : 'Water FX: OFF'}
+                  </span>
+                  <span className="fj-hide-desktop" style={{ fontSize: '0.75rem' }}>
+                    {isWaterRippleEnabled ? 'FX' : 'OFF'}
+                  </span>
                 </Button>
               )}
-              <Avatar name="Biagio Scaglia" size="sm" />
+              <span className="fj-hide-mobile">
+                <Avatar name="Biagio Scaglia" size="sm" />
+              </span>
               <a
                 href="https://github.com/biagio-scaglia/frutiger-js"
                 target="_blank"
                 rel="noreferrer"
                 style={{ textDecoration: 'none' }}
               >
-                <Button variant="primary" size="sm" leftIcon={<IconStar size={14} />}>
-                  GitHub
+                <Button
+                  variant="primary"
+                  size="sm"
+                  leftIcon={<IconStar size={14} />}
+                  style={{ minWidth: 0, paddingInline: '0.6rem' }}
+                >
+                  <span className="fj-hide-mobile">GitHub</span>
                 </Button>
               </a>
             </div>
