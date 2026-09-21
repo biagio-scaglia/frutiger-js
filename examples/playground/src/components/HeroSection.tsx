@@ -44,7 +44,7 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
           }}
         >
           <Badge variant="nature" icon={<IconLeaf size={14} />}>
-            v1.0.8 • Web 2.0 Aesthetic Reborn
+            v1.0.9 • Web 2.0 Aesthetic Reborn
           </Badge>
           <a
             href="https://biagiocyberspace.it"

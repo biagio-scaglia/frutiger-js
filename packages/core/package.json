@@ -1,6 +1,6 @@
 {
   "name": "@frutiger.js/core",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Pure CSS design system inspired by Frutiger Aero and Web 2.0 aesthetics.",
   "type": "module",
   "main": "./dist/styles.css",
