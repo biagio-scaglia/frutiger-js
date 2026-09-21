@@ -1,5 +1,19 @@
 import React from 'react';
-import { Navbar, NavLink, Button, Avatar, IconWater, IconStar } from '@frutiger.js/react';
+import {
+  Navbar,
+  NavLink,
+  Button,
+  Avatar,
+  IconWater,
+  IconStar,
+  IconSparkles,
+  IconLeaf,
+  IconSun,
+  Dropdown,
+  DropdownItem,
+  DropdownHeader,
+  AeroCursorMode,
+} from '@frutiger.js/react';
 
 export interface NavbarHeaderProps {
   activeNav: string;
@@ -8,6 +22,8 @@ export interface NavbarHeaderProps {
   onExploreResponsive: () => void;
   isWaterRippleEnabled?: boolean;
   onToggleWaterRipple?: () => void;
+  cursorMode?: AeroCursorMode;
+  onSelectCursorMode?: (mode: AeroCursorMode) => void;
 }
 
 export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
@@ -18,6 +34,8 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
     onExploreResponsive,
     isWaterRippleEnabled = true,
     onToggleWaterRipple,
+    cursorMode = 'droplet',
+    onSelectCursorMode,
   }) => {
     return (
       <header role="banner">
@@ -50,6 +68,77 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
             <div
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'nowrap' }}
             >
+              {/* Desktop-Only Aero Cursor Selector */}
+              {onSelectCursorMode && (
+                <div className="fj-hide-mobile">
+                  <Dropdown
+                    trigger={
+                      <Button
+                        variant="glass"
+                        size="sm"
+                        leftIcon={
+                          cursorMode === 'crystal' ? (
+                            <IconSparkles size={14} />
+                          ) : cursorMode === 'nature' ? (
+                            <IconLeaf size={14} />
+                          ) : cursorMode === 'classic' ? (
+                            <IconSun size={14} />
+                          ) : (
+                            <IconWater size={14} />
+                          )
+                        }
+                        title="Select Desktop Cursor Style"
+                        style={{ minWidth: 0, paddingInline: '0.65rem' }}
+                      >
+                        Cursor:{' '}
+                        {cursorMode.charAt(0).toUpperCase() + cursorMode.slice(1)} ▾
+                      </Button>
+                    }
+                  >
+                    <DropdownHeader>Aero Desktop Cursors</DropdownHeader>
+                    <DropdownItem
+                      icon={<IconWater size={16} />}
+                      isActive={cursorMode === 'droplet'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('droplet')}
+                    >
+                      💧 Aero Water Droplet
+                    </DropdownItem>
+                    <DropdownItem
+                      icon={<IconSparkles size={16} />}
+                      isActive={cursorMode === 'crystal'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('crystal')}
+                    >
+                      ✨ Specular Crystal
+                    </DropdownItem>
+                    <DropdownItem
+                      icon={<IconLeaf size={16} />}
+                      isActive={cursorMode === 'nature'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('nature')}
+                    >
+                      🌿 Biosphere Emerald
+                    </DropdownItem>
+                    <DropdownItem
+                      icon={<IconSun size={16} />}
+                      isActive={cursorMode === 'classic'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('classic')}
+                    >
+                      🖱️ Classic Web 2.0
+                    </DropdownItem>
+                    <DropdownItem
+                      isActive={cursorMode === 'default'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('default')}
+                    >
+                      🖥️ System Native
+                    </DropdownItem>
+                  </Dropdown>
+                </div>
+              )}
+
               {onToggleWaterRipple && (
                 <Button
                   variant={isWaterRippleEnabled ? 'aero' : 'glass'}

@@ -18,6 +18,8 @@ import {
   IconSparkles,
   IconWater,
   WaterRipple,
+  AeroCursor,
+  AeroCursorMode,
   useToast,
 } from '@frutiger.js/react';
 
@@ -51,8 +53,29 @@ export default function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [sliderGainVal, setSliderGainVal] = useState(74);
   const [isWaterRippleEnabled, setIsWaterRippleEnabled] = useState(true);
+  const [cursorMode, setCursorMode] = useState<AeroCursorMode>('droplet');
 
   const { toast } = useToast();
+
+  const handleSelectCursorMode = (mode: AeroCursorMode) => {
+    setCursorMode(mode);
+    playAeroClick(sliderGainVal);
+    const modeNames: Record<AeroCursorMode, string> = {
+      droplet: 'Water Droplet 💧',
+      crystal: 'Aero Crystal 🔮',
+      nature: 'Bio Green 🌿',
+      classic: 'Classic Vista ☀️',
+      default: 'System Native 🖱️',
+    };
+    toast({
+      title: `Cursor: ${modeNames[mode]}`,
+      description:
+        mode === 'default'
+          ? 'Reverted to native operating system cursor.'
+          : `Activated ${modeNames[mode]} dynamic cursor (Desktop only).`,
+      variant: 'info',
+    });
+  };
 
   const handleToggleWaterRipple = () => {
     const next = !isWaterRippleEnabled;
@@ -171,12 +194,17 @@ export default function App() {
         colorScheme="sky"
       />
 
+      {/* Custom Aero Cursor (Desktop Only) */}
+      <AeroCursor mode={cursorMode} />
+
       {/* Top Aero Header */}
       <NavbarHeader
         activeNav={activeNav}
         onNavClick={setActiveNav}
         isWaterRippleEnabled={isWaterRippleEnabled}
         onToggleWaterRipple={handleToggleWaterRipple}
+        cursorMode={cursorMode}
+        onSelectCursorMode={handleSelectCursorMode}
         onExploreIcons={() => {
           setActiveNav('icons');
           setSelectedExplorerTab('icons');

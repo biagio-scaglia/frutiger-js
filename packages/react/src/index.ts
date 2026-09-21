@@ -43,6 +43,7 @@ export * from './components/Field';
 export * from './components/AvatarGroup';
 export * from './components/SegmentedControl';
 export * from './components/WaterRipple';
+export * from './components/AeroCursor';
 
 // Icons
 export * from './icons';
