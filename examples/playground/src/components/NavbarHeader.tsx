@@ -73,6 +73,7 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
               {onSelectCursorMode && (
                 <div className="fj-hide-mobile">
                   <Dropdown
+                    align="right"
                     trigger={
                       <Button
                         variant="glass"

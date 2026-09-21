@@ -29,7 +29,8 @@
     position: absolute;
     top: calc(100% + 6px);
     z-index: 1050;
-    min-width: 190px;
+    min-width: 220px;
+    width: max-content;
     max-width: calc(100vw - 2rem);
     padding: var(--fj-space-2);
     border-radius: var(--fj-radius-lg);
@@ -110,6 +111,7 @@
     transition: all 0.15s ease;
     user-select: none;
     text-decoration: none;
+    white-space: nowrap;
     font-family: inherit;
     box-sizing: border-box;
   }
