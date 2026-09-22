@@ -175,4 +175,31 @@
       display: none !important;
     }
   }
+
+  /* Tablet Specific Utilities (768px - 1024px) */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .fj-hide-tablet {
+      display: none !important;
+    }
+    .fj-show-tablet {
+      display: block !important;
+    }
+  }
+  @media (max-width: 767px), (min-width: 1025px) {
+    .fj-show-tablet {
+      display: none !important;
+    }
+  }
+
+  /* Mobile & Tablet Combined (< 1024px) */
+  @media (max-width: 1024px) {
+    .fj-hide-below-desktop {
+      display: none !important;
+    }
+  }
+  @media (min-width: 1025px) {
+    .fj-show-below-desktop {
+      display: none !important;
+    }
+  }
 }

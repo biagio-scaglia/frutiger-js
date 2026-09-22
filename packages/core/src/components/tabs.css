@@ -15,6 +15,8 @@
     padding: 0 var(--fj-space-2);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     scrollbar-width: none;
     max-width: 100%;
     box-sizing: border-box;
@@ -45,6 +47,7 @@
     flex-shrink: 0;
     min-height: 40px;
     touch-action: manipulation;
+    scroll-snap-align: start;
   }
 
   .fj-tab:hover:not([aria-selected='true']):not(:disabled) {
@@ -78,6 +81,13 @@
     min-width: 0;
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+
+  @media (max-width: 1024px) {
+    .fj-tab {
+      padding: var(--fj-space-2) var(--fj-space-4);
+      font-size: var(--fj-font-size-sm);
+    }
   }
 
   @media (max-width: 480px) {

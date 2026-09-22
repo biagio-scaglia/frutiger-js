@@ -14,7 +14,7 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
         aria-labelledby="hero-heading"
         className="fj-glass"
         style={{
-          padding: '3.5rem 2.5rem',
+          padding: 'clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2.5rem)',
           borderRadius: 'var(--fj-radius-2xl)',
           textAlign: 'center',
           position: 'relative',
@@ -128,9 +128,9 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
         <div
           style={{
             marginTop: '2.5rem',
-            marginLeft: '-2.5rem',
-            marginRight: '-2.5rem',
-            marginBottom: '-3.5rem',
+            marginLeft: 'calc(-1 * clamp(1.25rem, 4vw, 2.5rem))',
+            marginRight: 'calc(-1 * clamp(1.25rem, 4vw, 2.5rem))',
+            marginBottom: 'calc(-1 * clamp(2rem, 5vw, 3.5rem))',
             borderRadius: '0 0 var(--fj-radius-2xl) var(--fj-radius-2xl)',
             overflow: 'hidden',
           }}
