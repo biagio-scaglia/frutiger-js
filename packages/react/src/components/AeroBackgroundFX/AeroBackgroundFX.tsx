@@ -201,7 +201,10 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
       const now = Date.now();
 
       // Ambient generator
-      if (now - lastAmbientSpawnRef.current > (mode === 'clouds' ? 3200 : mode === 'leaves' ? 1200 : 1500)) {
+      if (
+        now - lastAmbientSpawnRef.current >
+        (mode === 'clouds' ? 3200 : mode === 'leaves' ? 1200 : 1500)
+      ) {
         lastAmbientSpawnRef.current = now;
 
         if (mode === 'bubbles') {
@@ -282,7 +285,14 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
       if (mode === 'aurora') {
         const time = now * 0.0006;
         ctx.save();
-        const beamGrad = ctx.createRadialGradient(width * 0.85, 0, 10, width * 0.85, 0, width * 0.9);
+        const beamGrad = ctx.createRadialGradient(
+          width * 0.85,
+          0,
+          10,
+          width * 0.85,
+          0,
+          width * 0.9
+        );
         beamGrad.addColorStop(0, 'rgba(254, 240, 138, 0.15)');
         beamGrad.addColorStop(0.4, 'rgba(56, 189, 248, 0.08)');
         beamGrad.addColorStop(1, 'transparent');

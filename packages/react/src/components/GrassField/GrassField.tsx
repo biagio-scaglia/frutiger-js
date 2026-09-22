@@ -52,7 +52,11 @@ export const GrassField: React.FC<GrassFieldProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const bladesRef = useRef<Blade[]>([]);
-  const mouseRef = useRef<{ x: number; y: number; active: boolean }>({ x: -1000, y: -1000, active: false });
+  const mouseRef = useRef<{ x: number; y: number; active: boolean }>({
+    x: -1000,
+    y: -1000,
+    active: false,
+  });
   const animFrameRef = useRef<number | null>(null);
 
   const getColors = useCallback(() => {
@@ -234,8 +238,10 @@ export const GrassField: React.FC<GrassFieldProps> = ({
         // Render Dew Drop
         if (b.hasDew) {
           const dewT = b.dewPos;
-          const dewX = (1 - dewT) * (1 - dewT) * b.x + 2 * (1 - dewT) * dewT * ctrlX + dewT * dewT * tipX;
-          const dewY = (1 - dewT) * (1 - dewT) * cHeight + 2 * (1 - dewT) * dewT * ctrlY + dewT * dewT * tipY;
+          const dewX =
+            (1 - dewT) * (1 - dewT) * b.x + 2 * (1 - dewT) * dewT * ctrlX + dewT * dewT * tipX;
+          const dewY =
+            (1 - dewT) * (1 - dewT) * cHeight + 2 * (1 - dewT) * dewT * ctrlY + dewT * dewT * tipY;
 
           // Water drop body
           ctx.beginPath();
@@ -248,7 +254,13 @@ export const GrassField: React.FC<GrassFieldProps> = ({
 
           // Specular gleam
           ctx.beginPath();
-          ctx.arc(dewX - b.dewSize * 0.35, dewY - b.dewSize * 0.35, b.dewSize * 0.3, 0, Math.PI * 2);
+          ctx.arc(
+            dewX - b.dewSize * 0.35,
+            dewY - b.dewSize * 0.35,
+            b.dewSize * 0.3,
+            0,
+            Math.PI * 2
+          );
           ctx.fillStyle = '#ffffff';
           ctx.fill();
         }

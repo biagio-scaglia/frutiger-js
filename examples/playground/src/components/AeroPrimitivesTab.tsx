@@ -64,8 +64,7 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
                 overflow: 'hidden',
                 background:
                   'radial-gradient(ellipse at 50% 0%, #e0f2fe 0%, #bae6fd 60%, #7dd3fc 100%)',
-                boxShadow:
-                  'inset 0 1px 2px #fff, 0 8px 24px rgba(2, 132, 199, 0.15)',
+                boxShadow: 'inset 0 1px 2px #fff, 0 8px 24px rgba(2, 132, 199, 0.15)',
                 border: '1px solid rgba(186, 230, 253, 0.8)',
                 position: 'relative',
               }}
@@ -94,10 +93,16 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
             >
               {/* Color Scheme */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                <span
+                  style={{
+                    fontSize: '0.8125rem',
+                    fontWeight: 600,
+                    color: 'var(--fj-color-text-muted)',
+                  }}
+                >
                   Color:
                 </span>
-                {(['lush', 'sunny', 'emerald', 'golden'] as const).map((scheme) => (
+                {(['lush', 'sunny', 'emerald', 'golden'] as const).map(scheme => (
                   <Button
                     key={scheme}
                     size="sm"
@@ -111,10 +116,16 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
 
               {/* Wind Speed */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                <span
+                  style={{
+                    fontSize: '0.8125rem',
+                    fontWeight: 600,
+                    color: 'var(--fj-color-text-muted)',
+                  }}
+                >
                   Wind:
                 </span>
-                {(['calm', 'breeze', 'windy'] as const).map((w) => (
+                {(['calm', 'breeze', 'windy'] as const).map(w => (
                   <Button
                     key={w}
                     size="sm"
@@ -128,10 +139,16 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
 
               {/* Density */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                <span
+                  style={{
+                    fontSize: '0.8125rem',
+                    fontWeight: 600,
+                    color: 'var(--fj-color-text-muted)',
+                  }}
+                >
                   Density:
                 </span>
-                {(['low', 'medium', 'high'] as const).map((d) => (
+                {(['low', 'medium', 'high'] as const).map(d => (
                   <Button
                     key={d}
                     size="sm"

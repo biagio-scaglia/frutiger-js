@@ -44,7 +44,7 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
           }}
         >
           <Badge variant="nature" icon={<IconLeaf size={14} />}>
-            v1.11.0 • Web 2.0 Aesthetic Reborn
+            v1.12.0 • Web 2.0 Aesthetic Reborn
           </Badge>
           <a
             href="https://biagiocyberspace.it"
@@ -135,7 +135,13 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
             overflow: 'hidden',
           }}
         >
-          <GrassField height={85} density="medium" windSpeed="breeze" showDew={true} showFlowers={true} />
+          <GrassField
+            height={85}
+            density="medium"
+            windSpeed="breeze"
+            showDew={true}
+            showFlowers={true}
+          />
         </div>
       </section>
     );
