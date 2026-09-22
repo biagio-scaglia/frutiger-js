@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Button, IconLeaf, IconSparkles, IconStar } from '@frutiger.js/react';
+import { Badge, Button, IconLeaf, IconSparkles, IconStar, GrassField } from '@frutiger.js/react';
 
 export interface HeroSectionProps {
   onCopyInstall: () => void;
@@ -122,6 +122,20 @@ export const HeroSection: React.FC<HeroSectionProps> = React.memo(
               GitHub
             </Button>
           </a>
+        </div>
+
+        {/* Ambient Living Frutiger Aero Grass Field */}
+        <div
+          style={{
+            marginTop: '2.5rem',
+            marginLeft: '-2.5rem',
+            marginRight: '-2.5rem',
+            marginBottom: '-3.5rem',
+            borderRadius: '0 0 var(--fj-radius-2xl) var(--fj-radius-2xl)',
+            overflow: 'hidden',
+          }}
+        >
+          <GrassField height={85} density="medium" windSpeed="breeze" showDew={true} showFlowers={true} />
         </div>
       </section>
     );

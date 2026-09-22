@@ -10,10 +10,13 @@ import {
   IconLeaf,
   IconSun,
   IconMonitor,
+  IconCloud,
+  IconClose,
   Dropdown,
   DropdownItem,
   DropdownHeader,
   AeroCursorMode,
+  AeroBackgroundFXMode,
 } from '@frutiger.js/react';
 
 export interface NavbarHeaderProps {
@@ -21,6 +24,8 @@ export interface NavbarHeaderProps {
   onNavClick: (nav: string) => void;
   onExploreIcons: () => void;
   onExploreResponsive: () => void;
+  ambientFXMode?: AeroBackgroundFXMode;
+  onSelectAmbientFXMode?: (mode: AeroBackgroundFXMode) => void;
   isWaterRippleEnabled?: boolean;
   onToggleWaterRipple?: () => void;
   cursorMode?: AeroCursorMode;
@@ -33,6 +38,8 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
     onNavClick,
     onExploreIcons,
     onExploreResponsive,
+    ambientFXMode = 'bubbles',
+    onSelectAmbientFXMode,
     isWaterRippleEnabled = true,
     onToggleWaterRipple,
     cursorMode = 'droplet',
@@ -153,7 +160,92 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                 </div>
               )}
 
-              {onToggleWaterRipple && (
+              {/* Ambient FX Selector Dropdown */}
+              {onSelectAmbientFXMode ? (
+                <Dropdown
+                  align="right"
+                  trigger={
+                    <Button
+                      variant={ambientFXMode !== 'none' ? 'aero' : 'glass'}
+                      size="sm"
+                      leftIcon={
+                        ambientFXMode === 'aurora' ? (
+                          <IconSparkles size={14} />
+                        ) : ambientFXMode === 'leaves' ? (
+                          <IconLeaf size={14} />
+                        ) : ambientFXMode === 'clouds' ? (
+                          <IconCloud size={14} />
+                        ) : ambientFXMode === 'none' ? (
+                          <IconClose size={14} />
+                        ) : (
+                          <IconWater size={14} />
+                        )
+                      }
+                      title="Select Ambient Environmental FX"
+                      style={{ minWidth: 0, paddingInline: '0.65rem' }}
+                    >
+                      <span className="fj-hide-mobile">
+                        FX:{' '}
+                        {ambientFXMode === 'bubbles'
+                          ? 'Bubbles'
+                          : ambientFXMode === 'aurora'
+                            ? 'Aurora'
+                            : ambientFXMode === 'leaves'
+                              ? 'Leaves'
+                              : ambientFXMode === 'clouds'
+                                ? 'Clouds'
+                                : 'Off'}{' '}
+                        ▾
+                      </span>
+                      <span className="fj-hide-desktop" style={{ fontSize: '0.75rem' }}>
+                        {ambientFXMode !== 'none' ? 'FX' : 'OFF'}
+                      </span>
+                    </Button>
+                  }
+                >
+                  <DropdownHeader>Ambient Background FX</DropdownHeader>
+                  <DropdownItem
+                    icon={<IconWater size={16} />}
+                    isActive={ambientFXMode === 'bubbles'}
+                    showCheck
+                    onClick={() => onSelectAmbientFXMode('bubbles')}
+                  >
+                    Water Bubbles & Ripples
+                  </DropdownItem>
+                  <DropdownItem
+                    icon={<IconSparkles size={16} />}
+                    isActive={ambientFXMode === 'aurora'}
+                    showCheck
+                    onClick={() => onSelectAmbientFXMode('aurora')}
+                  >
+                    Aurora & Sunbeams
+                  </DropdownItem>
+                  <DropdownItem
+                    icon={<IconLeaf size={16} />}
+                    isActive={ambientFXMode === 'leaves'}
+                    showCheck
+                    onClick={() => onSelectAmbientFXMode('leaves')}
+                  >
+                    Floating Botanical Leaves
+                  </DropdownItem>
+                  <DropdownItem
+                    icon={<IconCloud size={16} />}
+                    isActive={ambientFXMode === 'clouds'}
+                    showCheck
+                    onClick={() => onSelectAmbientFXMode('clouds')}
+                  >
+                    Drifting Aero Clouds
+                  </DropdownItem>
+                  <DropdownItem
+                    icon={<IconClose size={16} />}
+                    isActive={ambientFXMode === 'none'}
+                    showCheck
+                    onClick={() => onSelectAmbientFXMode('none')}
+                  >
+                    Disable FX
+                  </DropdownItem>
+                </Dropdown>
+              ) : onToggleWaterRipple ? (
                 <Button
                   variant={isWaterRippleEnabled ? 'aero' : 'glass'}
                   size="sm"
@@ -169,7 +261,8 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                     {isWaterRippleEnabled ? 'FX' : 'OFF'}
                   </span>
                 </Button>
-              )}
+              ) : null}
+
               <span className="fj-hide-mobile">
                 <Avatar name="Biagio Scaglia" size="sm" />
               </span>

@@ -20,7 +20,10 @@ import {
   IconLeaf,
   IconSun,
   IconMonitor,
-  WaterRipple,
+  IconCloud,
+  IconClose,
+  AeroBackgroundFX,
+  AeroBackgroundFXMode,
   AeroCursor,
   AeroCursorMode,
   useToast,
@@ -55,10 +58,38 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [sliderGainVal, setSliderGainVal] = useState(74);
-  const [isWaterRippleEnabled, setIsWaterRippleEnabled] = useState(true);
   const [cursorMode, setCursorMode] = useState<AeroCursorMode>('droplet');
+  const [ambientFXMode, setAmbientFXMode] = useState<AeroBackgroundFXMode>('bubbles');
 
   const { toast } = useToast();
+
+  const handleSelectAmbientFXMode = (mode: AeroBackgroundFXMode) => {
+    setAmbientFXMode(mode);
+    playAeroClick(sliderGainVal);
+    const fxNames: Record<AeroBackgroundFXMode, string> = {
+      bubbles: 'Water Bubbles & Ripples',
+      aurora: 'Aurora & Sunbeams',
+      leaves: 'Floating Botanical Leaves',
+      clouds: 'Drifting Aero Clouds',
+      none: 'Ambient FX Disabled',
+    };
+    const fxIcons: Record<AeroBackgroundFXMode, React.ReactElement> = {
+      bubbles: <IconWater size={18} />,
+      aurora: <IconSparkles size={18} />,
+      leaves: <IconLeaf size={18} />,
+      clouds: <IconCloud size={18} />,
+      none: <IconClose size={18} />,
+    };
+    toast({
+      title: `Ambient FX: ${fxNames[mode]}`,
+      description:
+        mode === 'none'
+          ? 'Background ambient particle shaders paused.'
+          : `Activated ${fxNames[mode]} dynamic environment.`,
+      variant: mode === 'none' ? 'warning' : 'info',
+      icon: fxIcons[mode],
+    });
+  };
 
   const handleSelectCursorMode = (mode: AeroCursorMode) => {
     setCursorMode(mode);
@@ -85,20 +116,6 @@ export default function App() {
           : `Activated ${modeNames[mode]} dynamic cursor preset.`,
       variant: 'info',
       icon: modeIcons[mode],
-    });
-  };
-
-  const handleToggleWaterRipple = () => {
-    const next = !isWaterRippleEnabled;
-    setIsWaterRippleEnabled(next);
-    playAeroClick(sliderGainVal);
-    toast({
-      title: next ? 'Water FX Active 💧' : 'Water FX Disabled 🔇',
-      description: next
-        ? 'Interactive water ripples and micro bubbles enabled on click.'
-        : 'Water ripple effects paused.',
-      variant: next ? 'info' : 'warning',
-      icon: <IconWater size={18} />,
     });
   };
 
@@ -197,13 +214,8 @@ export default function App() {
 
   return (
     <div className="fj-bg-aero" style={{ minHeight: '100vh' }}>
-      {/* Interactive Water Ripple & Bubble Overlay */}
-      <WaterRipple
-        enabled={isWaterRippleEnabled}
-        showBubbles={true}
-        ambientBubbles={true}
-        colorScheme="sky"
-      />
+      {/* Interactive Aero Environmental Background FX (Bubbles, Aurora, Leaves, Clouds) */}
+      <AeroBackgroundFX mode={ambientFXMode} colorScheme="sky" />
 
       {/* Custom Aero Cursor (Desktop Only) */}
       <AeroCursor mode={cursorMode} />
@@ -212,8 +224,8 @@ export default function App() {
       <NavbarHeader
         activeNav={activeNav}
         onNavClick={setActiveNav}
-        isWaterRippleEnabled={isWaterRippleEnabled}
-        onToggleWaterRipple={handleToggleWaterRipple}
+        ambientFXMode={ambientFXMode}
+        onSelectAmbientFXMode={handleSelectAmbientFXMode}
         cursorMode={cursorMode}
         onSelectCursorMode={handleSelectCursorMode}
         onExploreIcons={() => {

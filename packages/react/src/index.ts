@@ -44,6 +44,8 @@ export * from './components/AvatarGroup';
 export * from './components/SegmentedControl';
 export * from './components/WaterRipple';
 export * from './components/AeroCursor';
+export * from './components/GrassField';
+export * from './components/AeroBackgroundFX';
 
 // Icons
 export * from './icons';

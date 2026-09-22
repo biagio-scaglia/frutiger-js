@@ -1,0 +1,61 @@
+@layer fj.components {
+  /* ==========================================================================
+     FRUTIGER AERO GRASS FIELD COMPONENT
+     Lush, organic layered grass blades with wind motion and dew reflections
+     ========================================================================== */
+
+  .fj-grass-field {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    user-select: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .fj-grass-field__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+  }
+
+  .fj-grass-field--non-interactive .fj-grass-field__canvas {
+    pointer-events: none;
+  }
+
+  /* Ground Soil / Horizon Base Gradient */
+  .fj-grass-field__ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: linear-gradient(
+      180deg,
+      rgba(22, 163, 74, 0.4) 0%,
+      rgba(21, 128, 61, 0.8) 50%,
+      rgba(15, 23, 42, 0.15) 100%
+    );
+    filter: blur(4px);
+    pointer-events: none;
+  }
+
+  /* Ambient Sunlight Caustic Overlay */
+  .fj-grass-field__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at 50% 120%,
+      rgba(134, 239, 172, 0.22) 0%,
+      rgba(56, 189, 248, 0.08) 50%,
+      transparent 80%
+    );
+    pointer-events: none;
+  }
+}

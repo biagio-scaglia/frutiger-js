@@ -23,6 +23,7 @@ import {
   IconAeroOrb,
   IconBubble,
   IconDisc,
+  GrassField,
 } from '@frutiger.js/react';
 
 export const AeroPrimitivesTab: React.FC = React.memo(() => {
@@ -31,8 +32,138 @@ export const AeroPrimitivesTab: React.FC = React.memo(() => {
   const [selectedGlow, setSelectedGlow] = useState<'aqua' | 'sun' | 'meadow' | 'aurora'>('aqua');
   const [hasGlossCap, setHasGlossCap] = useState(true);
 
+  // GrassField state
+  const [grassColor, setGrassColor] = useState<'lush' | 'sunny' | 'emerald' | 'golden'>('lush');
+  const [grassWind, setGrassWind] = useState<'calm' | 'breeze' | 'windy'>('breeze');
+  const [grassDensity, setGrassDensity] = useState<'low' | 'medium' | 'high'>('medium');
+  const [grassDew, setGrassDew] = useState(true);
+  const [grassFlowers, setGrassFlowers] = useState(true);
+
   return (
     <Stack spacing="xl">
+      {/* Interactive Aero Grass Field Studio */}
+      <Card variant="glass">
+        <CardHeader>
+          <div>
+            <CardTitle>Aero Living Grass Field (&lt;GrassField /&gt;)</CardTitle>
+            <CardDescription>
+              Photorealistic Frutiger Aero organic grass field with real-time mouse bending physics,
+              sinusoidal wind simulation, morning dew drops, and blooming daisies.
+            </CardDescription>
+          </div>
+          <Badge variant="nature" icon={<IconLeaf size={14} />}>
+            Interactive Biosphere
+          </Badge>
+        </CardHeader>
+        <CardContent>
+          <Stack spacing="md">
+            {/* Live Interactive Canvas */}
+            <div
+              style={{
+                borderRadius: 'var(--fj-radius-xl)',
+                overflow: 'hidden',
+                background:
+                  'radial-gradient(ellipse at 50% 0%, #e0f2fe 0%, #bae6fd 60%, #7dd3fc 100%)',
+                boxShadow:
+                  'inset 0 1px 2px #fff, 0 8px 24px rgba(2, 132, 199, 0.15)',
+                border: '1px solid rgba(186, 230, 253, 0.8)',
+                position: 'relative',
+              }}
+            >
+              <GrassField
+                height={160}
+                colorScheme={grassColor}
+                windSpeed={grassWind}
+                density={grassDensity}
+                showDew={grassDew}
+                showFlowers={grassFlowers}
+                interactive={true}
+              />
+            </div>
+
+            {/* Live Controls */}
+            <div
+              style={{
+                display: 'flex',
+                gap: '1.25rem',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingTop: '0.5rem',
+              }}
+            >
+              {/* Color Scheme */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                  Color:
+                </span>
+                {(['lush', 'sunny', 'emerald', 'golden'] as const).map((scheme) => (
+                  <Button
+                    key={scheme}
+                    size="sm"
+                    variant={grassColor === scheme ? 'primary' : 'glass'}
+                    onClick={() => setGrassColor(scheme)}
+                  >
+                    {scheme.charAt(0).toUpperCase() + scheme.slice(1)}
+                  </Button>
+                ))}
+              </div>
+
+              {/* Wind Speed */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                  Wind:
+                </span>
+                {(['calm', 'breeze', 'windy'] as const).map((w) => (
+                  <Button
+                    key={w}
+                    size="sm"
+                    variant={grassWind === w ? 'primary' : 'glass'}
+                    onClick={() => setGrassWind(w)}
+                  >
+                    {w.charAt(0).toUpperCase() + w.slice(1)}
+                  </Button>
+                ))}
+              </div>
+
+              {/* Density */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--fj-color-text-muted)' }}>
+                  Density:
+                </span>
+                {(['low', 'medium', 'high'] as const).map((d) => (
+                  <Button
+                    key={d}
+                    size="sm"
+                    variant={grassDensity === d ? 'primary' : 'glass'}
+                    onClick={() => setGrassDensity(d)}
+                  >
+                    {d.charAt(0).toUpperCase() + d.slice(1)}
+                  </Button>
+                ))}
+              </div>
+
+              {/* Toggles */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Button
+                  size="sm"
+                  variant={grassDew ? 'aero' : 'glass'}
+                  onClick={() => setGrassDew(!grassDew)}
+                >
+                  Dew: {grassDew ? 'ON' : 'OFF'}
+                </Button>
+                <Button
+                  size="sm"
+                  variant={grassFlowers ? 'aero' : 'glass'}
+                  onClick={() => setGrassFlowers(!grassFlowers)}
+                >
+                  Flowers: {grassFlowers ? 'ON' : 'OFF'}
+                </Button>
+              </div>
+            </div>
+          </Stack>
+        </CardContent>
+      </Card>
       <Card variant="glass">
         <CardHeader>
           <div>
