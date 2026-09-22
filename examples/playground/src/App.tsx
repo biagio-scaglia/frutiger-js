@@ -38,43 +38,43 @@ import { FooterSection } from './components/FooterSection';
 
 // Lazy-loaded secondary tabs & modules for high-speed bundle splitting
 const AeroButtonsTab = lazy(() =>
-  import('./components/AeroButtonsTab').then((m) => ({ default: m.AeroButtonsTab }))
+  import('./components/AeroButtonsTab').then(m => ({ default: m.AeroButtonsTab }))
 );
 const AeroCardsTab = lazy(() =>
-  import('./components/AeroCardsTab').then((m) => ({ default: m.AeroCardsTab }))
+  import('./components/AeroCardsTab').then(m => ({ default: m.AeroCardsTab }))
 );
 const AeroFormsTab = lazy(() =>
-  import('./components/AeroFormsTab').then((m) => ({ default: m.AeroFormsTab }))
+  import('./components/AeroFormsTab').then(m => ({ default: m.AeroFormsTab }))
 );
 const AeroFeedbackTab = lazy(() =>
-  import('./components/AeroFeedbackTab').then((m) => ({ default: m.AeroFeedbackTab }))
+  import('./components/AeroFeedbackTab').then(m => ({ default: m.AeroFeedbackTab }))
 );
 const AeroNavigationTab = lazy(() =>
-  import('./components/AeroNavigationTab').then((m) => ({ default: m.AeroNavigationTab }))
+  import('./components/AeroNavigationTab').then(m => ({ default: m.AeroNavigationTab }))
 );
 const AeroOverflowTab = lazy(() =>
-  import('./components/AeroOverflowTab').then((m) => ({ default: m.AeroOverflowTab }))
+  import('./components/AeroOverflowTab').then(m => ({ default: m.AeroOverflowTab }))
 );
 const AeroArchiveTab = lazy(() =>
-  import('./components/AeroArchiveTab').then((m) => ({ default: m.AeroArchiveTab }))
+  import('./components/AeroArchiveTab').then(m => ({ default: m.AeroArchiveTab }))
 );
 const AeroDesktopDemo = lazy(() =>
-  import('./components/AeroDesktopDemo').then((m) => ({ default: m.AeroDesktopDemo }))
+  import('./components/AeroDesktopDemo').then(m => ({ default: m.AeroDesktopDemo }))
 );
 const AeroIconExplorer = lazy(() =>
-  import('./components/AeroIconExplorer').then((m) => ({ default: m.AeroIconExplorer }))
+  import('./components/AeroIconExplorer').then(m => ({ default: m.AeroIconExplorer }))
 );
 const AeroFaqTab = lazy(() =>
-  import('./components/AeroFaqTab').then((m) => ({ default: m.AeroFaqTab }))
+  import('./components/AeroFaqTab').then(m => ({ default: m.AeroFaqTab }))
 );
 const AeroResponsiveTab = lazy(() =>
-  import('./components/AeroResponsiveTab').then((m) => ({ default: m.AeroResponsiveTab }))
+  import('./components/AeroResponsiveTab').then(m => ({ default: m.AeroResponsiveTab }))
 );
 const TokensPaletteSection = lazy(() =>
-  import('./components/TokensPaletteSection').then((m) => ({ default: m.TokensPaletteSection }))
+  import('./components/TokensPaletteSection').then(m => ({ default: m.TokensPaletteSection }))
 );
 const CreatorSection = lazy(() =>
-  import('./components/CreatorSection').then((m) => ({ default: m.CreatorSection }))
+  import('./components/CreatorSection').then(m => ({ default: m.CreatorSection }))
 );
 
 // Audio & utilities

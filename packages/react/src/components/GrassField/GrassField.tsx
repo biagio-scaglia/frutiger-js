@@ -313,7 +313,7 @@ export const GrassField: React.FC<GrassFieldProps> = ({
 
     if (typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver(
-        (entries) => {
+        entries => {
           isIntersecting = entries[0]?.isIntersecting ?? true;
           if (isIntersecting && !animFrameRef.current && !document.hidden) {
             animFrameRef.current = requestAnimationFrame(render);
