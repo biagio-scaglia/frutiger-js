@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import {
   Container,
   Stack,
@@ -29,28 +29,86 @@ import {
   useToast,
 } from '@frutiger.js/react';
 
-// Modular Sections & Tabs
+// Core layout sections
 import { NavbarHeader } from './components/NavbarHeader';
 import { HeroSection } from './components/HeroSection';
 import { AeroWidgetsSection } from './components/AeroWidgetsSection';
 import { AeroPrimitivesTab } from './components/AeroPrimitivesTab';
-import { AeroButtonsTab } from './components/AeroButtonsTab';
-import { AeroCardsTab } from './components/AeroCardsTab';
-import { AeroFormsTab } from './components/AeroFormsTab';
-import { AeroFeedbackTab } from './components/AeroFeedbackTab';
-import { AeroNavigationTab } from './components/AeroNavigationTab';
-import { AeroOverflowTab } from './components/AeroOverflowTab';
-import { AeroArchiveTab } from './components/AeroArchiveTab';
-import { AeroDesktopDemo } from './components/AeroDesktopDemo';
-import { AeroIconExplorer } from './components/AeroIconExplorer';
-import { AeroFaqTab } from './components/AeroFaqTab';
-import { AeroResponsiveTab } from './components/AeroResponsiveTab';
-import { TokensPaletteSection } from './components/TokensPaletteSection';
-import { CreatorSection } from './components/CreatorSection';
 import { FooterSection } from './components/FooterSection';
+
+// Lazy-loaded secondary tabs & modules for high-speed bundle splitting
+const AeroButtonsTab = lazy(() =>
+  import('./components/AeroButtonsTab').then((m) => ({ default: m.AeroButtonsTab }))
+);
+const AeroCardsTab = lazy(() =>
+  import('./components/AeroCardsTab').then((m) => ({ default: m.AeroCardsTab }))
+);
+const AeroFormsTab = lazy(() =>
+  import('./components/AeroFormsTab').then((m) => ({ default: m.AeroFormsTab }))
+);
+const AeroFeedbackTab = lazy(() =>
+  import('./components/AeroFeedbackTab').then((m) => ({ default: m.AeroFeedbackTab }))
+);
+const AeroNavigationTab = lazy(() =>
+  import('./components/AeroNavigationTab').then((m) => ({ default: m.AeroNavigationTab }))
+);
+const AeroOverflowTab = lazy(() =>
+  import('./components/AeroOverflowTab').then((m) => ({ default: m.AeroOverflowTab }))
+);
+const AeroArchiveTab = lazy(() =>
+  import('./components/AeroArchiveTab').then((m) => ({ default: m.AeroArchiveTab }))
+);
+const AeroDesktopDemo = lazy(() =>
+  import('./components/AeroDesktopDemo').then((m) => ({ default: m.AeroDesktopDemo }))
+);
+const AeroIconExplorer = lazy(() =>
+  import('./components/AeroIconExplorer').then((m) => ({ default: m.AeroIconExplorer }))
+);
+const AeroFaqTab = lazy(() =>
+  import('./components/AeroFaqTab').then((m) => ({ default: m.AeroFaqTab }))
+);
+const AeroResponsiveTab = lazy(() =>
+  import('./components/AeroResponsiveTab').then((m) => ({ default: m.AeroResponsiveTab }))
+);
+const TokensPaletteSection = lazy(() =>
+  import('./components/TokensPaletteSection').then((m) => ({ default: m.TokensPaletteSection }))
+);
+const CreatorSection = lazy(() =>
+  import('./components/CreatorSection').then((m) => ({ default: m.CreatorSection }))
+);
 
 // Audio & utilities
 import { playAeroChime, playAeroClick } from './utils/aeroAudio';
+
+const TabLoadingFallback: React.FC = () => (
+  <div
+    className="fj-glass"
+    style={{
+      padding: '3rem 2rem',
+      borderRadius: 'var(--fj-radius-xl)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '1rem',
+      minHeight: '260px',
+    }}
+  >
+    <div
+      className="fj-animate-spin"
+      style={{
+        width: 38,
+        height: 38,
+        borderRadius: '50%',
+        border: '3px solid rgba(186, 230, 253, 0.4)',
+        borderTopColor: 'var(--fj-color-sky-500)',
+      }}
+    />
+    <span style={{ fontSize: '0.9rem', color: 'var(--fj-color-text-muted)', fontWeight: 600 }}>
+      Loading Aero Component Module...
+    </span>
+  </div>
+);
 
 export default function App() {
   const [activeNav, setActiveNav] = useState('overview');
@@ -149,15 +207,8 @@ export default function App() {
 
     --fj-color-grass-500: #22c55e;
     --fj-color-water-400: #38bdf8;
-    --fj-color-sun-400: #facc15;
-    
-    --fj-glass-bg: rgba(255, 255, 255, 0.75);
-    --fj-glass-border: 1px solid rgba(255, 255, 255, 0.95);
-    --fj-glass-shadow: 0 12px 36px rgba(2, 132, 199, 0.2), inset 0 1px 1px #ffffff;
-    --fj-glass-blur: blur(20px) saturate(180%);
   }
-}
-`;
+}`;
     const blob = new Blob([cssContent], { type: 'text/css' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -168,36 +219,21 @@ export default function App() {
     playAeroChime(sliderGainVal);
     toast({
       title: 'Tokens Exported! 💧',
-      description: 'Downloaded frutiger-tokens.css to your machine.',
+      description: 'Downloaded frutiger-tokens.css design system tokens.',
       variant: 'success',
-      icon: <IconSparkles size={18} />,
     });
   };
 
   const handleExportComponents = () => {
-    const pkg = {
-      name: '@frutiger.js/components',
-      version: '1.12.0',
-      components: [
-        'Button',
-        'Card',
-        'Input',
-        'Dropdown',
-        'DropdownSelect',
-        'SegmentedControl',
-        'WindowFrame',
-        'Taskbar',
-        'StartMenu',
-        'Dropzone',
-        'Tabs',
-        'Slider',
-        'Badge',
-        'Alert',
-      ],
+    const manifest = {
+      name: '@frutiger.js',
+      version: '1.11.0',
       author: 'Biagio Scaglia',
-      url: 'https://biagiocyberspace.it/frutiger-js',
+      repository: 'https://github.com/biagio-scaglia/frutiger-js',
+      componentsCount: 45,
+      tokensCategory: ['colors', 'radii', 'shadows', 'typography', 'glassmorphism'],
     };
-    const blob = new Blob([JSON.stringify(pkg, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -299,74 +335,100 @@ export default function App() {
 
                 {/* 2. BUTTONS */}
                 <TabPanel value="buttons">
-                  <AeroButtonsTab sliderGainVal={sliderGainVal} />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroButtonsTab sliderGainVal={sliderGainVal} />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 3. CARDS */}
                 <TabPanel value="cards">
-                  <AeroCardsTab />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroCardsTab />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 4. FORMS */}
                 <TabPanel value="forms">
-                  <AeroFormsTab sliderGainVal={sliderGainVal} onGainChange={setSliderGainVal} />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroFormsTab sliderGainVal={sliderGainVal} onGainChange={setSliderGainVal} />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 5. FEEDBACK */}
                 <TabPanel value="feedback">
-                  <AeroFeedbackTab
-                    onOpenDrawer={() => setIsDrawerOpen(true)}
-                    sliderGainVal={sliderGainVal}
-                  />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroFeedbackTab
+                      onOpenDrawer={() => setIsDrawerOpen(true)}
+                      sliderGainVal={sliderGainVal}
+                    />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 6. NAVIGATION */}
                 <TabPanel value="navigation">
-                  <AeroNavigationTab
-                    onOpenDrawer={() => setIsDrawerOpen(true)}
-                    sliderGainVal={sliderGainVal}
-                    onExportTokens={handleExportTokens}
-                    onExportComponents={handleExportComponents}
-                  />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroNavigationTab
+                      onOpenDrawer={() => setIsDrawerOpen(true)}
+                      sliderGainVal={sliderGainVal}
+                      onExportTokens={handleExportTokens}
+                      onExportComponents={handleExportComponents}
+                    />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 7. OVERFLOW */}
                 <TabPanel value="overflow">
-                  <AeroOverflowTab />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroOverflowTab />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 8. ARCHIVE */}
                 <TabPanel value="archive">
-                  <AeroArchiveTab />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroArchiveTab />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 9. WINDOW & DESKTOP */}
                 <TabPanel value="window">
-                  <AeroDesktopDemo />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroDesktopDemo />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 10. ICONS */}
                 <TabPanel value="icons">
-                  <AeroIconExplorer />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroIconExplorer />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 11. FAQ */}
                 <TabPanel value="faq">
-                  <AeroFaqTab />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroFaqTab />
+                  </Suspense>
                 </TabPanel>
 
                 {/* 12. RESPONSIVE */}
                 <TabPanel value="responsive">
-                  <AeroResponsiveTab />
+                  <Suspense fallback={<TabLoadingFallback />}>
+                    <AeroResponsiveTab />
+                  </Suspense>
                 </TabPanel>
               </Tabs>
             </section>
 
             {/* Design Tokens Palette Section */}
-            <TokensPaletteSection />
+            <Suspense fallback={<TabLoadingFallback />}>
+              <TokensPaletteSection />
+            </Suspense>
 
             {/* Biagio Scaglia - Creator & Architect Section */}
-            <CreatorSection />
+            <Suspense fallback={<TabLoadingFallback />}>
+              <CreatorSection />
+            </Suspense>
           </Stack>
         </Container>
       </main>
@@ -378,12 +440,15 @@ export default function App() {
         title="Welcome to Frutiger.js"
       >
         <p style={{ marginBottom: '1.25rem', lineHeight: 1.6 }}>
-          You have successfully initialized <strong>Frutiger.js</strong>. Enjoy the crisp glossy
-          surfaces, specular dome highlights, and natural digital textures!
+          Experience the authentic glassmorphic, glossy, skeuomorphic aesthetic of the Windows Vista
+          and 7 era, re-engineered for modern React applications.
         </p>
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
           <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
-            Cancel
+            Dismiss
+          </Button>
+          <Button variant="primary" onClick={() => setIsModalOpen(false)}>
+            Aero Onward
           </Button>
         </div>
       </Modal>

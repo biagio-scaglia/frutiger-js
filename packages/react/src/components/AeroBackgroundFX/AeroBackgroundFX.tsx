@@ -419,10 +419,23 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
       animFrameRef.current = requestAnimationFrame(render);
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (animFrameRef.current) {
+          cancelAnimationFrame(animFrameRef.current);
+          animFrameRef.current = null;
+        }
+      } else if (!animFrameRef.current) {
+        animFrameRef.current = requestAnimationFrame(render);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     animFrameRef.current = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }

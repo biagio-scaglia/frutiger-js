@@ -17,6 +17,18 @@ export default defineConfig(({ mode }) => {
         '@frutiger-js/react': resolve(__dirname, '../../packages/react/src/index.ts'),
       },
     },
+    build: {
+      target: 'esnext',
+      minify: 'esbuild',
+      cssMinify: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+          },
+        },
+      },
+    },
     server: {
       port: 3000,
       open: true,

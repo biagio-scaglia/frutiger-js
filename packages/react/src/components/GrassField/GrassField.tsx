@@ -166,8 +166,15 @@ export const GrassField: React.FC<GrassFieldProps> = ({
     const windStrength = windSpeed === 'calm' ? 8 : windSpeed === 'windy' ? 26 : 16;
 
     const startTime = performance.now();
+    let isIntersecting = true;
+    let observer: IntersectionObserver | null = null;
 
     const render = (time: number) => {
+      if (!isIntersecting || (typeof document !== 'undefined' && document.hidden)) {
+        animFrameRef.current = null;
+        return;
+      }
+
       const rect = canvas.getBoundingClientRect();
       const width = rect.width;
       const cHeight = rect.height;
@@ -304,10 +311,37 @@ export const GrassField: React.FC<GrassFieldProps> = ({
       animFrameRef.current = requestAnimationFrame(render);
     };
 
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          isIntersecting = entries[0]?.isIntersecting ?? true;
+          if (isIntersecting && !animFrameRef.current && !document.hidden) {
+            animFrameRef.current = requestAnimationFrame(render);
+          }
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(canvas);
+    }
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (animFrameRef.current) {
+          cancelAnimationFrame(animFrameRef.current);
+          animFrameRef.current = null;
+        }
+      } else if (isIntersecting && !animFrameRef.current) {
+        animFrameRef.current = requestAnimationFrame(render);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     animFrameRef.current = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      observer?.disconnect();
       if (animFrameRef.current) {
         cancelAnimationFrame(animFrameRef.current);
       }
