@@ -22,6 +22,8 @@ import {
   IconMonitor,
   IconCloud,
   IconClose,
+  IconBubble,
+  IconAeroOrb,
   AeroBackgroundFX,
   AeroBackgroundFXMode,
   AeroCursor,
@@ -154,6 +156,8 @@ export default function App() {
     playAeroClick(sliderGainVal);
     const modeNames: Record<AeroCursorMode, string> = {
       droplet: 'Aero Water Droplet',
+      bubble: 'Iridescent Soap Bubble',
+      cyber: 'Cyber Aurora Plasma',
       crystal: 'Specular Crystal',
       nature: 'Biosphere Emerald',
       classic: 'Classic Web 2.0',
@@ -161,6 +165,8 @@ export default function App() {
     };
     const modeIcons: Record<AeroCursorMode, React.ReactElement> = {
       droplet: <IconWater size={18} />,
+      bubble: <IconBubble size={18} />,
+      cyber: <IconAeroOrb size={18} />,
       crystal: <IconSparkles size={18} />,
       nature: <IconLeaf size={18} />,
       classic: <IconSun size={18} />,

@@ -12,6 +12,8 @@ import {
   IconMonitor,
   IconCloud,
   IconClose,
+  IconBubble,
+  IconAeroOrb,
   Dropdown,
   DropdownItem,
   DropdownHeader,
@@ -86,7 +88,11 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                         variant="glass"
                         size="sm"
                         leftIcon={
-                          cursorMode === 'crystal' ? (
+                          cursorMode === 'bubble' ? (
+                            <IconBubble size={14} />
+                          ) : cursorMode === 'cyber' ? (
+                            <IconAeroOrb size={14} />
+                          ) : cursorMode === 'crystal' ? (
                             <IconSparkles size={14} />
                           ) : cursorMode === 'nature' ? (
                             <IconLeaf size={14} />
@@ -104,13 +110,17 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                         Cursor:{' '}
                         {cursorMode === 'droplet'
                           ? 'Droplet'
-                          : cursorMode === 'crystal'
-                            ? 'Crystal'
-                            : cursorMode === 'nature'
-                              ? 'Emerald'
-                              : cursorMode === 'classic'
-                                ? 'Classic'
-                                : 'Default'}{' '}
+                          : cursorMode === 'bubble'
+                            ? 'Bubble'
+                            : cursorMode === 'cyber'
+                              ? 'Cyber'
+                              : cursorMode === 'crystal'
+                                ? 'Crystal'
+                                : cursorMode === 'nature'
+                                  ? 'Emerald'
+                                  : cursorMode === 'classic'
+                                    ? 'Classic'
+                                    : 'Default'}{' '}
                         ▾
                       </Button>
                     }
@@ -123,6 +133,22 @@ export const NavbarHeader: React.FC<NavbarHeaderProps> = React.memo(
                       onClick={() => onSelectCursorMode('droplet')}
                     >
                       Aero Water Droplet
+                    </DropdownItem>
+                    <DropdownItem
+                      icon={<IconBubble size={16} />}
+                      isActive={cursorMode === 'bubble'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('bubble')}
+                    >
+                      Iridescent Soap Bubble
+                    </DropdownItem>
+                    <DropdownItem
+                      icon={<IconAeroOrb size={16} />}
+                      isActive={cursorMode === 'cyber'}
+                      showCheck
+                      onClick={() => onSelectCursorMode('cyber')}
+                    >
+                      Cyber Aurora Plasma
                     </DropdownItem>
                     <DropdownItem
                       icon={<IconSparkles size={16} />}
