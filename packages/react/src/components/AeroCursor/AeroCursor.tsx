@@ -2,13 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '../../utils/cn';
 
 export type AeroCursorMode =
-  | 'droplet'
-  | 'crystal'
-  | 'nature'
-  | 'classic'
-  | 'bubble'
-  | 'cyber'
-  | 'default';
+  'droplet' | 'crystal' | 'nature' | 'classic' | 'bubble' | 'cyber' | 'default';
 
 export interface AeroCursorProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Selected Aero cursor mode preset */
