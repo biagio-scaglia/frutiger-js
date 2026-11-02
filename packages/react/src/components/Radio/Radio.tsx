@@ -19,7 +19,7 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           disabled={disabled}
           aria-label={
             ((props as Record<string, unknown>)['aria-label'] as string) ||
-            (typeof label === 'string' ? label : 'Radio')
+            (label ? undefined : 'Radio')
           }
           className={cn('fj-radio', className)}
           {...props}
