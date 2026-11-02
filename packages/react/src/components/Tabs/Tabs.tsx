@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useId } from 'react';
+import React, { createContext, useContext, useState, useId, useRef } from 'react';
 import { cn } from '../../utils/cn';
 
 interface TabsContextValue {
@@ -52,9 +52,60 @@ export const Tabs: React.FC<TabsProps> = ({
 };
 
 export type TabListProps = React.HTMLAttributes<HTMLDivElement>;
-export const TabList: React.FC<TabListProps> = ({ children, className, ...props }) => {
+export const TabList: React.FC<TabListProps> = ({ children, className, onKeyDown, ...props }) => {
+  const listRef = useRef<HTMLDivElement>(null);
+  const { setActiveTab } = useTabsContext();
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const tabs = Array.from(
+      listRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]:not([disabled])') ?? []
+    );
+    if (tabs.length === 0) {
+      onKeyDown?.(e);
+      return;
+    }
+
+    const currentIndex = tabs.findIndex(tab => tab === document.activeElement);
+    if (currentIndex < 0) {
+      onKeyDown?.(e);
+      return;
+    }
+
+    let nextIndex = currentIndex;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      nextIndex = (currentIndex + 1) % tabs.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      nextIndex = tabs.length - 1;
+    } else {
+      onKeyDown?.(e);
+      return;
+    }
+
+    const nextTab = tabs[nextIndex];
+    nextTab.focus();
+    const value = nextTab.dataset.value;
+    if (value !== undefined) {
+      setActiveTab(value);
+    }
+    onKeyDown?.(e);
+  };
+
   return (
-    <div role="tablist" className={cn('fj-tabs__list', className)} {...props}>
+    <div
+      ref={listRef}
+      role="tablist"
+      className={cn('fj-tabs__list', className)}
+      {...props}
+      onKeyDown={handleKeyDown}
+    >
       {children}
     </div>
   );
@@ -63,7 +114,7 @@ export const TabList: React.FC<TabListProps> = ({ children, className, ...props 
 export interface TabProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
 }
-export const Tab: React.FC<TabProps> = ({ children, className, value, ...props }) => {
+export const Tab: React.FC<TabProps> = ({ children, className, value, onClick, ...props }) => {
   const { activeTab, setActiveTab, baseId } = useTabsContext();
   const isSelected = activeTab === value;
 
@@ -72,12 +123,16 @@ export const Tab: React.FC<TabProps> = ({ children, className, value, ...props }
       type="button"
       role="tab"
       id={`${baseId}-tab-${value}`}
+      data-value={value}
       aria-selected={isSelected}
       aria-controls={`${baseId}-panel-${value}`}
       tabIndex={isSelected ? 0 : -1}
       className={cn('fj-tab', className)}
-      onClick={() => setActiveTab(value)}
       {...props}
+      onClick={e => {
+        setActiveTab(value);
+        onClick?.(e);
+      }}
     >
       {children}
     </button>
