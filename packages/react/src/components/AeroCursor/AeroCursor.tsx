@@ -36,6 +36,7 @@ export const AeroCursor: React.FC<AeroCursorProps> = ({
   const posRef = useRef({ x: -100, y: -100 });
   const ringPosRef = useRef({ x: -100, y: -100 });
   const rafRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     // Check if the current device is a desktop with a fine pointer (mouse/trackpad)
@@ -74,7 +75,10 @@ export const AeroCursor: React.FC<AeroCursorProps> = ({
 
     const handleMouseMove = (e: MouseEvent) => {
       posRef.current = { x: e.clientX, y: e.clientY };
-      if (!isVisible) setIsVisible(true);
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
 
       // Check if hovering over interactive elements
       const target = e.target as HTMLElement | null;
@@ -90,8 +94,14 @@ export const AeroCursor: React.FC<AeroCursorProps> = ({
 
     const handleMouseDown = () => setIsActive(true);
     const handleMouseUp = () => setIsActive(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => {
+      isVisibleRef.current = false;
+      setIsVisible(false);
+    };
+    const handleMouseEnter = () => {
+      isVisibleRef.current = true;
+      setIsVisible(true);
+    };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown, { passive: true });
@@ -130,7 +140,7 @@ export const AeroCursor: React.FC<AeroCursorProps> = ({
       document.removeEventListener('mouseenter', handleMouseEnter);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [isDesktop, enabled, mode, isVisible, trail]);
+  }, [isDesktop, enabled, mode, trail]);
 
   if (!isDesktop || !enabled || mode === 'default') {
     return null;
