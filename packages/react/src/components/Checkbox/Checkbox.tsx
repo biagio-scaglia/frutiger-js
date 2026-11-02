@@ -19,7 +19,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           disabled={disabled}
           aria-label={
             ((props as Record<string, unknown>)['aria-label'] as string) ||
-            (typeof label === 'string' ? label : 'Checkbox')
+            (label ? undefined : 'Checkbox')
           }
           className={cn('fj-checkbox', className)}
           {...props}
