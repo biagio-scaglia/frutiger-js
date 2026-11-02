@@ -45,13 +45,13 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(
 
     useEffect(() => {
       const handleResize = () => {
-        if (window.innerWidth >= 1025 && !isControlled && uncontrolledMenuOpen) {
-          setUncontrolledMenuOpen(false);
+        if (window.innerWidth >= 1025 && isMenuOpen) {
+          handleClose();
         }
       };
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
-    }, [isControlled, uncontrolledMenuOpen]);
+    }, [isMenuOpen, handleClose]);
 
     useEffect(() => {
       if (!isMenuOpen) return;
