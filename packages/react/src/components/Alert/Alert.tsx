@@ -22,10 +22,12 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>(
   ({ children, className, variant = 'info', title, onClose, icon, ...props }, ref) => {
     const alertIcon = icon !== undefined ? icon : defaultIcons[variant];
 
+    const role = variant === 'danger' || variant === 'warning' ? 'alert' : 'status';
+
     return (
       <div
         ref={ref}
-        role="alert"
+        role={role}
         data-fj-variant={variant}
         className={cn('fj-alert', `fj-alert--${variant}`, className)}
         {...props}

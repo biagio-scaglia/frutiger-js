@@ -6,9 +6,14 @@ import { Alert } from './Alert';
 describe('Alert', () => {
   it('renders alert message and title', () => {
     render(<Alert title="System Notification">Update successfully installed.</Alert>);
-    expect(screen.getByRole('alert')).toBeInTheDocument();
+    expect(screen.getByRole('status')).toBeInTheDocument();
     expect(screen.getByText('System Notification')).toBeInTheDocument();
     expect(screen.getByText('Update successfully installed.')).toBeInTheDocument();
+  });
+
+  it('uses assertive alert role for danger variant', () => {
+    render(<Alert variant="danger">Critical failure</Alert>);
+    expect(screen.getByRole('alert')).toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', async () => {
