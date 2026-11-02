@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId, useState } from 'react';
 import { cn } from '../../utils/cn';
 
 export interface SliderProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -26,9 +26,18 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
     },
     ref
   ) => {
-    const inputId =
-      id || (label ? `fj-slider-${Math.random().toString(36).substring(2, 9)}` : undefined);
-    const currentValue = Number(value !== undefined ? value : defaultValue);
+    const generatedId = useId();
+    const inputId = id || (label ? generatedId : undefined);
+    const isControlled = value !== undefined;
+    const [uncontrolledValue, setUncontrolledValue] = useState(Number(defaultValue));
+    const currentValue = Number(isControlled ? value : uncontrolledValue);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        setUncontrolledValue(Number(e.target.value));
+      }
+      onChange?.(e);
+    };
 
     return (
       <div className={cn('fj-slider', disabled && 'fj-slider--disabled', className)}>
@@ -54,9 +63,8 @@ export const Slider = forwardRef<HTMLInputElement, SliderProps>(
             min={min}
             max={max}
             step={step}
-            value={value}
-            defaultValue={value === undefined ? defaultValue : undefined}
-            onChange={onChange}
+            value={isControlled ? value : uncontrolledValue}
+            onChange={handleChange}
             disabled={disabled}
             className="fj-slider__input"
             aria-valuenow={currentValue}
