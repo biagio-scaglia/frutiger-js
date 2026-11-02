@@ -1,4 +1,4 @@
-import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 import { IconLock } from '../../icons';
 
@@ -26,8 +26,8 @@ export const StartMenu = forwardRef<HTMLDivElement, StartMenuProps>(
   (
     {
       isOpen,
-      onClose: _onClose,
-      userName = 'Biagio Scaglia',
+      onClose,
+      userName = 'User',
       userAvatar,
       programs = [],
       places = [],
@@ -39,11 +39,49 @@ export const StartMenu = forwardRef<HTMLDivElement, StartMenuProps>(
     },
     ref
   ) => {
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (!isOpen || !onClose) return;
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+
+      const handlePointerDown = (e: MouseEvent | TouchEvent) => {
+        const node = menuRef.current;
+        if (node && !node.contains(e.target as Node)) {
+          onClose();
+        }
+      };
+
+      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('mousedown', handlePointerDown);
+      document.addEventListener('touchstart', handlePointerDown, { passive: true });
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown);
+        document.removeEventListener('mousedown', handlePointerDown);
+        document.removeEventListener('touchstart', handlePointerDown);
+      };
+    }, [isOpen, onClose]);
+
     if (!isOpen) return null;
+
+    const setRefs = (node: HTMLDivElement | null) => {
+      menuRef.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    };
 
     return (
       <div
-        ref={ref}
+        ref={setRefs}
         role="dialog"
         aria-modal="false"
         aria-label="Start Menu"
@@ -141,6 +179,7 @@ export const StartMenu = forwardRef<HTMLDivElement, StartMenuProps>(
           <input
             type="text"
             placeholder={searchPlaceholder}
+            aria-label={searchPlaceholder}
             onChange={e => onSearch?.(e.target.value)}
             style={{
               flex: 1,
