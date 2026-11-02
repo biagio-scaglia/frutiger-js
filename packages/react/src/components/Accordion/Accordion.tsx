@@ -1,10 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useId, useState } from 'react';
 import { cn } from '../../utils/cn';
 import { IconChevronDown } from '../../icons';
 
 interface AccordionContextValue {
   openValues: string[];
   toggleItem: (value: string) => void;
+  baseId: string;
 }
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
@@ -12,6 +13,8 @@ const AccordionContext = createContext<AccordionContextValue | null>(null);
 export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
   type?: 'single' | 'multiple';
   defaultValue?: string | string[];
+  value?: string | string[];
+  onValueChange?: (value: string | string[]) => void;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
@@ -19,26 +22,45 @@ export const Accordion: React.FC<AccordionProps> = ({
   className,
   type = 'single',
   defaultValue,
+  value: controlledValue,
+  onValueChange,
   ...props
 }) => {
-  const [openValues, setOpenValues] = useState<string[]>(() => {
+  const baseId = useId();
+  const [uncontrolledValues, setUncontrolledValues] = useState<string[]>(() => {
     if (!defaultValue) return [];
     return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
   });
 
-  const toggleItem = (value: string) => {
-    setOpenValues(prev => {
-      const isOpen = prev.includes(value);
-      if (type === 'single') {
-        return isOpen ? [] : [value];
-      } else {
-        return isOpen ? prev.filter(v => v !== value) : [...prev, value];
-      }
-    });
+  const isControlled = controlledValue !== undefined;
+  const openValues = isControlled
+    ? Array.isArray(controlledValue)
+      ? controlledValue
+      : [controlledValue]
+    : uncontrolledValues;
+
+  const toggleItem = (itemValue: string) => {
+    const isOpen = openValues.includes(itemValue);
+    let next: string[];
+    if (type === 'single') {
+      next = isOpen ? [] : [itemValue];
+    } else {
+      next = isOpen ? openValues.filter(v => v !== itemValue) : [...openValues, itemValue];
+    }
+
+    if (!isControlled) {
+      setUncontrolledValues(next);
+    }
+
+    if (type === 'single') {
+      onValueChange?.(next[0] ?? '');
+    } else {
+      onValueChange?.(next);
+    }
   };
 
   return (
-    <AccordionContext.Provider value={{ openValues, toggleItem }}>
+    <AccordionContext.Provider value={{ openValues, toggleItem, baseId }}>
       <div className={cn('fj-accordion', className)} {...props}>
         {children}
       </div>
@@ -49,6 +71,8 @@ export const Accordion: React.FC<AccordionProps> = ({
 interface AccordionItemContextValue {
   value: string;
   isOpen: boolean;
+  triggerId: string;
+  contentId: string;
 }
 const AccordionItemContext = createContext<AccordionItemContextValue | null>(null);
 
@@ -65,9 +89,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   if (!ctx) throw new Error('AccordionItem must be used within <Accordion>');
 
   const isOpen = ctx.openValues.includes(value);
+  const triggerId = `${ctx.baseId}-trigger-${value}`;
+  const contentId = `${ctx.baseId}-content-${value}`;
 
   return (
-    <AccordionItemContext.Provider value={{ value, isOpen }}>
+    <AccordionItemContext.Provider value={{ value, isOpen, triggerId, contentId }}>
       <div
         className={cn('fj-accordion-item', isOpen && 'fj-accordion-item--open', className)}
         {...props}
@@ -82,6 +108,7 @@ export type AccordionTriggerProps = React.ButtonHTMLAttributes<HTMLButtonElement
 export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   children,
   className,
+  onClick,
   ...props
 }) => {
   const accordionCtx = useContext(AccordionContext);
@@ -93,10 +120,15 @@ export const AccordionTrigger: React.FC<AccordionTriggerProps> = ({
   return (
     <button
       type="button"
+      id={itemCtx.triggerId}
       aria-expanded={itemCtx.isOpen}
+      aria-controls={itemCtx.contentId}
       className={cn('fj-accordion-trigger', className)}
-      onClick={() => accordionCtx.toggleItem(itemCtx.value)}
       {...props}
+      onClick={e => {
+        accordionCtx.toggleItem(itemCtx.value);
+        onClick?.(e);
+      }}
     >
       <span>{children}</span>
       <span className="fj-accordion-chevron">
@@ -118,7 +150,13 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
   if (!itemCtx.isOpen) return null;
 
   return (
-    <div className={cn('fj-accordion-content', className)} {...props}>
+    <div
+      id={itemCtx.contentId}
+      role="region"
+      aria-labelledby={itemCtx.triggerId}
+      className={cn('fj-accordion-content', className)}
+      {...props}
+    >
       {children}
     </div>
   );
