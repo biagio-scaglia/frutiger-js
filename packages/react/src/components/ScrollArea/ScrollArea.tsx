@@ -1,5 +1,13 @@
-import React, { forwardRef, useRef, useState, useEffect } from 'react';
+import React, { forwardRef, useRef, useState, useEffect, useCallback } from 'react';
 import { cn } from '../../utils/cn';
+
+function assignRef<T>(ref: React.ForwardedRef<T>, value: T | null) {
+  if (typeof ref === 'function') {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+}
 
 export interface ScrollAreaProps extends React.HTMLAttributes<HTMLDivElement> {
   maxHeight?: string | number;
@@ -22,12 +30,19 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
     ref
   ) => {
     const internalRef = useRef<HTMLDivElement>(null);
-    const resolvedRef = (ref || internalRef) as React.RefObject<HTMLDivElement>;
     const [hasTopShadow, setHasTopShadow] = useState(false);
     const [hasBottomShadow, setHasBottomShadow] = useState(false);
 
-    const checkScroll = React.useCallback(() => {
-      const el = resolvedRef.current;
+    const setRefs = useCallback(
+      (node: HTMLDivElement | null) => {
+        internalRef.current = node;
+        assignRef(ref, node);
+      },
+      [ref]
+    );
+
+    const checkScroll = useCallback(() => {
+      const el = internalRef.current;
       if (!el || !showOverflowShadows) return;
 
       const isScrollable = el.scrollHeight > el.clientHeight;
@@ -39,7 +54,7 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
 
       setHasTopShadow(el.scrollTop > 5);
       setHasBottomShadow(el.scrollTop + el.clientHeight < el.scrollHeight - 5);
-    }, [resolvedRef, showOverflowShadows]);
+    }, [showOverflowShadows]);
 
     useEffect(() => {
       checkScroll();
@@ -61,7 +76,7 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
         )}
       >
         <div
-          ref={resolvedRef}
+          ref={setRefs}
           className={cn('fj-scroll-area fj-scrollbar-aero', className)}
           style={{
             maxHeight,
