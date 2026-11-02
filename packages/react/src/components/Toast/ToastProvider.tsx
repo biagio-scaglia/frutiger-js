@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 import { Toast, ToastProps } from './Toast';
 
 export type ToastPlacement =
@@ -25,9 +25,29 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
   placement = 'top-right',
 }) => {
   const [toasts, setToasts] = useState<ToastProps[]>([]);
+  const timersRef = useRef<Map<string, ReturnType<typeof setTimeout>>>(new Map());
 
-  const removeToast = useCallback((id: string) => {
-    setToasts(prev => prev.filter(t => t.id !== id));
+  const clearTimer = useCallback((id: string) => {
+    const timer = timersRef.current.get(id);
+    if (timer) {
+      clearTimeout(timer);
+      timersRef.current.delete(id);
+    }
+  }, []);
+
+  const removeToast = useCallback(
+    (id: string) => {
+      clearTimer(id);
+      setToasts(prev => prev.filter(t => t.id !== id));
+    },
+    [clearTimer]
+  );
+
+  useEffect(() => {
+    return () => {
+      timersRef.current.forEach(timer => clearTimeout(timer));
+      timersRef.current.clear();
+    };
   }, []);
 
   const toast = useCallback(
@@ -42,9 +62,11 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
       setToasts(prev => [...prev, newToast]);
 
       if (duration > 0) {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
+          timersRef.current.delete(id);
           removeToast(id);
         }, duration);
+        timersRef.current.set(id, timer);
       }
 
       return id;
