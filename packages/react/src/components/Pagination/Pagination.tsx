@@ -53,7 +53,8 @@ export const Pagination: React.FC<PaginationProps> = ({
       return [1, '...', ...middleRange, '...', totalPages];
     }
 
-    return [];
+    // Fallback for edge currentPage/totalPages combos
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
   };
 
   const pages = getPageNumbers();
