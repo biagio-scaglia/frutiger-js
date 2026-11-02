@@ -20,6 +20,8 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       onChange,
       disabled,
       label,
+      onClick,
+      onKeyDown,
       ...props
     },
     ref
@@ -34,7 +36,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         setUncontrolledChecked(!isChecked);
       }
       onChange?.(!isChecked);
-      props.onClick?.(e);
+      onClick?.(e);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -46,7 +48,7 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         }
         onChange?.(!isChecked);
       }
-      props.onKeyDown?.(e);
+      onKeyDown?.(e);
     };
 
     return (
@@ -61,10 +63,10 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
             (typeof label === 'string' ? label : 'Toggle switch')
           }
           disabled={disabled}
-          onClick={handleClick}
-          onKeyDown={handleKeyDown}
           className={cn('fj-switch', isChecked && 'fj-switch--checked', className)}
           {...props}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
         >
           <span className="fj-switch__thumb" />
         </button>
