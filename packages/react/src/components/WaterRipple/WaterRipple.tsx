@@ -254,15 +254,31 @@ export const WaterRipple: React.FC<WaterRippleProps> = ({
   useEffect(() => {
     if (!enabled) return;
 
+    let target: EventTarget | null = null;
+    let raf = 0;
+    let cancelled = false;
+
     const handlePointerDown = (e: PointerEvent) => {
       addRipple(e.clientX, e.clientY);
     };
 
-    const target = targetRef?.current || window;
-    target.addEventListener('pointerdown', handlePointerDown as EventListener, { passive: true });
+    const tryBind = () => {
+      if (cancelled) return;
+      const next = targetRef ? targetRef.current : window;
+      if (!next) {
+        raf = requestAnimationFrame(tryBind);
+        return;
+      }
+      target = next;
+      target.addEventListener('pointerdown', handlePointerDown as EventListener, { passive: true });
+    };
+
+    tryBind();
 
     return () => {
-      target.removeEventListener('pointerdown', handlePointerDown as EventListener);
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      target?.removeEventListener('pointerdown', handlePointerDown as EventListener);
     };
   }, [enabled, addRipple, targetRef]);
 
