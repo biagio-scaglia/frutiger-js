@@ -24,7 +24,8 @@ export const Progress: React.FC<ProgressProps> = ({
   className,
   ...props
 }) => {
-  const percentage = Math.min(Math.max(0, (value / max) * 100), 100);
+  const clampedValue = Math.min(Math.max(0, value), max);
+  const percentage = Math.min(Math.max(0, (clampedValue / max) * 100), 100);
   const progressLabel =
     ((props as Record<string, unknown>)['aria-label'] as string) ||
     (typeof label === 'string' ? label : `Progress: ${Math.round(percentage)}%`);
@@ -37,7 +38,7 @@ export const Progress: React.FC<ProgressProps> = ({
     return (
       <div
         role="progressbar"
-        aria-valuenow={value}
+        aria-valuenow={clampedValue}
         aria-valuemin={0}
         aria-valuemax={max}
         aria-label={progressLabel}
@@ -73,7 +74,7 @@ export const Progress: React.FC<ProgressProps> = ({
   return (
     <div
       role="progressbar"
-      aria-valuenow={value}
+      aria-valuenow={clampedValue}
       aria-valuemin={0}
       aria-valuemax={max}
       aria-label={progressLabel}
