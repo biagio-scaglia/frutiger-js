@@ -83,16 +83,17 @@ export const GalleryItem = forwardRef<HTMLDivElement, GalleryItemProps>(
         ref={ref}
         role={props.role || 'article'}
         tabIndex={0}
+        aria-label={typeof title === 'string' ? title : undefined}
+        className={cn('fj-gallery-item', className)}
+        {...props}
         onClick={handleClick}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleClick(e as unknown as React.MouseEvent<HTMLDivElement>);
           }
+          props.onKeyDown?.(e);
         }}
-        aria-label={typeof title === 'string' ? title : undefined}
-        className={cn('fj-gallery-item', className)}
-        {...props}
       >
         <div className="fj-gallery-item__media" style={aspectRatio ? { aspectRatio } : undefined}>
           {image || imageNode ? (
