@@ -48,6 +48,60 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
   const animFrameRef = useRef<number | null>(null);
   const lastAmbientSpawnRef = useRef<number>(0);
 
+  const getPalette = useCallback(() => {
+    switch (colorScheme) {
+      case 'emerald':
+        return {
+          rippleOuter: '56, 189, 248',
+          rippleInner: '16, 185, 129',
+          bubbleFill: '220, 252, 231',
+          bubbleStroke: '52, 211, 153',
+          sparkleGlow: '#34d399',
+          beamInner: 'rgba(167, 243, 208, 0.18)',
+          beamMid: 'rgba(52, 211, 153, 0.1)',
+          leafLight: '134, 239, 172',
+          leafDark: '34, 197, 94',
+        };
+      case 'gloss':
+        return {
+          rippleOuter: '255, 255, 255',
+          rippleInner: '224, 242, 254',
+          bubbleFill: '255, 255, 255',
+          bubbleStroke: '255, 255, 255',
+          sparkleGlow: '#ffffff',
+          beamInner: 'rgba(255, 255, 255, 0.2)',
+          beamMid: 'rgba(224, 242, 254, 0.1)',
+          leafLight: '226, 232, 240',
+          leafDark: '148, 163, 184',
+        };
+      case 'sunset':
+        return {
+          rippleOuter: '251, 146, 60',
+          rippleInner: '244, 63, 94',
+          bubbleFill: '255, 237, 213',
+          bubbleStroke: '251, 146, 60',
+          sparkleGlow: '#fb923c',
+          beamInner: 'rgba(254, 240, 138, 0.2)',
+          beamMid: 'rgba(251, 146, 60, 0.1)',
+          leafLight: '253, 186, 116',
+          leafDark: '234, 88, 12',
+        };
+      case 'sky':
+      default:
+        return {
+          rippleOuter: '56, 189, 248',
+          rippleInner: '14, 165, 233',
+          bubbleFill: '224, 242, 254',
+          bubbleStroke: '56, 189, 248',
+          sparkleGlow: '#38bdf8',
+          beamInner: 'rgba(254, 240, 138, 0.15)',
+          beamMid: 'rgba(56, 189, 248, 0.08)',
+          leafLight: '134, 239, 172',
+          leafDark: '34, 197, 94',
+        };
+    }
+  }, [colorScheme]);
+
   const addInteractiveBurst = useCallback(
     (clientX: number, clientY: number) => {
       if (mode === 'none') return;
@@ -191,6 +245,7 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
 
     handleResize();
     window.addEventListener('resize', handleResize);
+    const palette = getPalette();
 
     const render = () => {
       const rect = canvas.getBoundingClientRect();
@@ -293,8 +348,8 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
           0,
           width * 0.9
         );
-        beamGrad.addColorStop(0, 'rgba(254, 240, 138, 0.15)');
-        beamGrad.addColorStop(0.4, 'rgba(56, 189, 248, 0.08)');
+        beamGrad.addColorStop(0, palette.beamInner);
+        beamGrad.addColorStop(0.4, palette.beamMid);
         beamGrad.addColorStop(1, 'transparent');
         ctx.fillStyle = beamGrad;
         ctx.fillRect(0, 0, width, height);
@@ -331,13 +386,13 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity * 0.75})`;
+          ctx.strokeStyle = `rgba(${palette.rippleOuter}, ${p.opacity * 0.75})`;
           ctx.lineWidth = (p.lineWidth || 2) + 2;
           ctx.stroke();
 
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius * 0.95, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(14, 165, 233, ${p.opacity})`;
+          ctx.strokeStyle = `rgba(${palette.rippleInner}, ${p.opacity})`;
           ctx.lineWidth = p.lineWidth || 2;
           ctx.stroke();
           continue;
@@ -357,9 +412,9 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
           // Bubble Body
           ctx.beginPath();
           ctx.arc(0, 0, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(224, 242, 254, ${currentOpacity * 0.45})`;
+          ctx.fillStyle = `rgba(${palette.bubbleFill}, ${currentOpacity * 0.45})`;
           ctx.fill();
-          ctx.strokeStyle = `rgba(56, 189, 248, ${currentOpacity * 0.75})`;
+          ctx.strokeStyle = `rgba(${palette.bubbleStroke}, ${currentOpacity * 0.75})`;
           ctx.lineWidth = 1;
           ctx.stroke();
 
@@ -380,7 +435,7 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
           ctx.closePath();
           ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity * 0.95})`;
           ctx.fill();
-          ctx.shadowColor = '#38bdf8';
+          ctx.shadowColor = palette.sparkleGlow;
           ctx.shadowBlur = 8;
         } else if (p.type === 'leaf') {
           // Frutiger Organic Leaf
@@ -393,8 +448,8 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
           ctx.closePath();
 
           const leafGrad = ctx.createLinearGradient(0, -r, 0, r);
-          leafGrad.addColorStop(0, `rgba(134, 239, 172, ${currentOpacity * 0.85})`);
-          leafGrad.addColorStop(1, `rgba(34, 197, 94, ${currentOpacity * 0.75})`);
+          leafGrad.addColorStop(0, `rgba(${palette.leafLight}, ${currentOpacity * 0.85})`);
+          leafGrad.addColorStop(1, `rgba(${palette.leafDark}, ${currentOpacity * 0.75})`);
           ctx.fillStyle = leafGrad;
           ctx.fill();
           ctx.strokeStyle = `rgba(255, 255, 255, ${currentOpacity * 0.6})`;
@@ -440,20 +495,36 @@ export const AeroBackgroundFX: React.FC<AeroBackgroundFXProps> = ({
         cancelAnimationFrame(animFrameRef.current);
       }
     };
-  }, [mode, colorScheme]);
+  }, [mode, colorScheme, getPalette]);
 
   useEffect(() => {
     if (mode === 'none') return;
+
+    let target: EventTarget | null = null;
+    let raf = 0;
+    let cancelled = false;
 
     const handlePointerDown = (e: PointerEvent) => {
       addInteractiveBurst(e.clientX, e.clientY);
     };
 
-    const target = targetRef?.current || window;
-    target.addEventListener('pointerdown', handlePointerDown as EventListener, { passive: true });
+    const tryBind = () => {
+      if (cancelled) return;
+      const next = targetRef ? targetRef.current : window;
+      if (!next) {
+        raf = requestAnimationFrame(tryBind);
+        return;
+      }
+      target = next;
+      target.addEventListener('pointerdown', handlePointerDown as EventListener, { passive: true });
+    };
+
+    tryBind();
 
     return () => {
-      target.removeEventListener('pointerdown', handlePointerDown as EventListener);
+      cancelled = true;
+      cancelAnimationFrame(raf);
+      target?.removeEventListener('pointerdown', handlePointerDown as EventListener);
     };
   }, [mode, addInteractiveBurst, targetRef]);
 
