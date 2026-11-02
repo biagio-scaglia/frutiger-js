@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../utils/cn';
 import { IconClose } from '../../icons';
+import { useFocusTrap } from '../../utils/useFocusTrap';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -23,6 +24,9 @@ export const Modal: React.FC<ModalProps> = ({
   closeOnEsc = true,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const titleId = useId();
+
+  useFocusTrap(modalRef, isOpen);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -57,24 +61,27 @@ export const Modal: React.FC<ModalProps> = ({
         ref={modalRef}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? 'fj-modal-title' : undefined}
+        aria-labelledby={title ? titleId : undefined}
+        aria-label={title ? undefined : 'Dialog'}
         className={cn('fj-modal', className)}
       >
-        {title && (
-          <div className="fj-modal__header">
-            <h2 id="fj-modal-title" className="fj-modal__title">
+        <div className="fj-modal__header">
+          {title ? (
+            <h2 id={titleId} className="fj-modal__title">
               {title}
             </h2>
-            <button
-              type="button"
-              className="fj-modal__close"
-              onClick={onClose}
-              aria-label="Close dialog"
-            >
-              <IconClose size={18} />
-            </button>
-          </div>
-        )}
+          ) : (
+            <span className="fj-modal__title" aria-hidden="true" />
+          )}
+          <button
+            type="button"
+            className="fj-modal__close"
+            onClick={onClose}
+            aria-label="Close dialog"
+          >
+            <IconClose size={18} />
+          </button>
+        </div>
         <div className="fj-modal__body">{children}</div>
       </div>
     </div>,
