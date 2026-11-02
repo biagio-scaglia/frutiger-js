@@ -19,10 +19,7 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
  * Traps focus inside `containerRef` while `active` is true,
  * moves initial focus into the container, and restores focus on cleanup.
  */
-export function useFocusTrap(
-  containerRef: RefObject<HTMLElement | null>,
-  active: boolean
-): void {
+export function useFocusTrap(containerRef: RefObject<HTMLElement | null>, active: boolean): void {
   useEffect(() => {
     if (!active) return;
 
