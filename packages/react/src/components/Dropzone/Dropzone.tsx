@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useRef, useState } from 'react';
 import { cn } from '../../utils/cn';
 import { IconCloud } from '../../icons';
 
@@ -26,11 +26,14 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
       multiple = false,
       disabled = false,
       onFilesSelected,
+      onKeyDown,
       ...props
     },
     ref
   ) => {
     const [isDragActive, setIsDragActive] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const dropHandledRef = useRef(false);
 
     const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
       e.preventDefault();
@@ -55,14 +58,38 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
       setIsDragActive(false);
       if (disabled) return;
       if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        // Prevent the overlay file input from also firing change for the same drop
+        dropHandledRef.current = true;
         onFilesSelected?.(e.dataTransfer.files);
+        window.setTimeout(() => {
+          dropHandledRef.current = false;
+        }, 0);
       }
     };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (dropHandledRef.current) {
+        e.target.value = '';
+        return;
+      }
       if (e.target.files && e.target.files.length > 0) {
         onFilesSelected?.(e.target.files);
       }
+      e.target.value = '';
+    };
+
+    const openFilePicker = () => {
+      if (disabled) return;
+      inputRef.current?.click();
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+      if (disabled) return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openFilePicker();
+      }
+      onKeyDown?.(e);
     };
 
     return (
@@ -78,13 +105,16 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
           disabled && 'fj-dropzone--disabled',
           className
         )}
+        {...props}
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        {...props}
+        onKeyDown={handleKeyDown}
+        onClick={openFilePicker}
       >
         <input
+          ref={inputRef}
           type="file"
           accept={accept}
           multiple={multiple}
@@ -92,6 +122,7 @@ export const Dropzone = forwardRef<HTMLDivElement, DropzoneProps>(
           tabIndex={-1}
           className="fj-dropzone__input"
           onChange={handleInputChange}
+          onClick={e => e.stopPropagation()}
           aria-hidden="true"
         />
         {icon && <div className="fj-dropzone__icon-wrapper">{icon}</div>}
