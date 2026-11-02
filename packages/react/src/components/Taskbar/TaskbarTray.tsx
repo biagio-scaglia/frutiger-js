@@ -55,12 +55,12 @@ export const TaskbarClock = forwardRef<HTMLDivElement, TaskbarClockProps>(
       <div
         ref={ref}
         className={cn('fj-taskbar-clock', className)}
-        role="timer"
         aria-live="off"
+        aria-label={[timeStr, showDate ? dateStr : null].filter(Boolean).join(', ') || undefined}
         {...props}
       >
-        <span>{timeStr || '12:00 PM'}</span>
-        {showDate && <span className="fj-taskbar-clock-date">{dateStr || '01/01/2007'}</span>}
+        <span>{timeStr || '--:--'}</span>
+        {showDate && <span className="fj-taskbar-clock-date">{dateStr || '--/--/----'}</span>}
       </div>
     );
   }

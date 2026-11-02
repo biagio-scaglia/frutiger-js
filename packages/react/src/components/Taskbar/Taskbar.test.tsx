@@ -60,7 +60,7 @@ describe('Taskbar Suite', () => {
 
     const clock = screen.getByTestId('clock');
     expect(clock).toBeInTheDocument();
-    expect(clock).toHaveAttribute('role', 'timer');
+    expect(clock).toHaveAttribute('aria-live', 'off');
   });
 
   it('renders StartMenu when isOpen is true and fires item clicks', () => {
