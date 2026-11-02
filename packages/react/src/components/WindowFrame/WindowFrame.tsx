@@ -52,24 +52,30 @@ export const WindowFrame = forwardRef<HTMLDivElement, WindowFrameProps>(
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             {headerActions && <div>{headerActions}</div>}
             <div className="fj-window__controls">
-              <button
-                type="button"
-                className="fj-window__btn fj-window__btn--minimize"
-                aria-label="Minimize window"
-                onClick={onMinimize}
-              />
-              <button
-                type="button"
-                className="fj-window__btn fj-window__btn--maximize"
-                aria-label="Maximize window"
-                onClick={onMaximize}
-              />
-              <button
-                type="button"
-                className="fj-window__btn fj-window__btn--close"
-                aria-label="Close window"
-                onClick={onClose}
-              />
+              {onMinimize && (
+                <button
+                  type="button"
+                  className="fj-window__btn fj-window__btn--minimize"
+                  aria-label="Minimize window"
+                  onClick={onMinimize}
+                />
+              )}
+              {onMaximize && (
+                <button
+                  type="button"
+                  className="fj-window__btn fj-window__btn--maximize"
+                  aria-label="Maximize window"
+                  onClick={onMaximize}
+                />
+              )}
+              {onClose && (
+                <button
+                  type="button"
+                  className="fj-window__btn fj-window__btn--close"
+                  aria-label="Close window"
+                  onClick={onClose}
+                />
+              )}
             </div>
           </div>
         </div>
