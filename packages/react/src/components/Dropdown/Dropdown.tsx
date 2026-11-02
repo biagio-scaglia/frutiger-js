@@ -4,8 +4,11 @@ import {
   useEffect,
   useCallback,
   forwardRef,
+  isValidElement,
+  cloneElement,
   type HTMLAttributes,
   type ButtonHTMLAttributes,
+  type ReactElement,
   type ReactNode,
 } from 'react';
 import { cn } from '../../utils/cn';
@@ -37,6 +40,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   const isOpen = isControlled ? controlledOpen : internalOpen;
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   const setOpen = useCallback(
     (next: boolean) => {
@@ -60,6 +64,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpen(false);
+        triggerRef.current?.focus();
       }
     };
 
@@ -74,6 +79,22 @@ export const Dropdown: React.FC<DropdownProps> = ({
     };
   }, [isOpen, setOpen]);
 
+  const triggerNode = isValidElement(trigger)
+    ? cloneElement(trigger as ReactElement<Record<string, unknown>>, {
+        ref: (node: HTMLElement | null) => {
+          triggerRef.current = node;
+          const originalRef = (trigger as ReactElement & { ref?: unknown }).ref;
+          if (typeof originalRef === 'function') {
+            originalRef(node);
+          } else if (originalRef && typeof originalRef === 'object') {
+            (originalRef as { current: HTMLElement | null }).current = node;
+          }
+        },
+        'aria-haspopup': 'menu',
+        'aria-expanded': isOpen,
+      })
+    : trigger;
+
   return (
     <div
       ref={containerRef}
@@ -85,13 +106,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
       }}
       {...props}
     >
-      <div
-        className="fj-dropdown__trigger"
-        onClick={() => setOpen(!isOpen)}
-        aria-haspopup="menu"
-        aria-expanded={isOpen}
-      >
-        {trigger}
+      <div className="fj-dropdown__trigger" onClick={() => setOpen(!isOpen)}>
+        {triggerNode}
       </div>
       {isOpen && (
         <div
@@ -143,11 +159,11 @@ export const DropdownItem = forwardRef<HTMLButtonElement, DropdownItemProps>(
           isDisabled && 'fj-dropdown__item--disabled',
           className
         )}
+        {...props}
         onClick={e => {
           if (isDisabled) return;
           onClick?.(e);
         }}
-        {...props}
       >
         <div className="fj-dropdown__item-content">
           {icon && <span className="fj-dropdown__item-icon">{icon}</span>}
