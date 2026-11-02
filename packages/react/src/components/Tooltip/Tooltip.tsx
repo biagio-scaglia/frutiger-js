@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useId, cloneElement, isValidElement } from 'react';
 import { cn } from '../../utils/cn';
 
 export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
@@ -18,6 +18,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipId = useId();
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const showTooltip = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -31,6 +38,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
     setIsVisible(false);
   };
 
+  const trigger = isValidElement(children)
+    ? cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+        'aria-describedby': isVisible ? tooltipId : undefined,
+      })
+    : children;
+
   return (
     <div
       className="fj-tooltip-container"
@@ -39,8 +52,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
       onFocus={showTooltip}
       onBlur={hideTooltip}
     >
-      {children}
+      {trigger}
       <div
+        id={tooltipId}
         role="tooltip"
         aria-hidden={!isVisible}
         className={cn(
